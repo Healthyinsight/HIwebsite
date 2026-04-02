@@ -1,6 +1,5 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -34,7 +33,7 @@ export default function AboutPage() {
               How HI works
             </h2>
             <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, marginBottom: '32px', fontWeight: 300 }}>
-              Here's the thing: health information should be accurate, accessible, and honest. Every article on HI follows the same process.
+              Here&apos;s the thing: health information should be accurate, accessible, and honest. Every article on HI follows the same process.
             </p>
             {[
               { n: '1', title: 'Start with the research', body: 'Recent peer-reviewed studies (5 years preferred), with convergence across multiple findings, not single studies.' },
