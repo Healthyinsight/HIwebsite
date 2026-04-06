@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
 
       if (!audienceRes.ok && audienceRes.status !== 409) {
         // 409 = already subscribed, that's fine
-        console.error('Resend audience error:', await audienceRes.text())
+        console.error('Resend audience error', { status: audienceRes.status })
       }
     }
 
@@ -55,14 +55,13 @@ export async function POST(req: NextRequest) {
     })
 
     if (!emailRes.ok) {
-      const err = await emailRes.text()
-      console.error('Resend email error:', err)
+      console.error('Resend email error', { status: emailRes.status })
       // Still return success — contact was added even if welcome email failed
     }
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Subscribe error:', error)
+    console.error('Subscribe error')
     return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
   }
 }

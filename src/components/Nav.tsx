@@ -28,6 +28,7 @@ export default function Nav() {
             { href: '/nutrition', label: 'Nutrition' },
             { href: '/recovery',  label: 'Recovery' },
             { href: '/mindset',   label: 'Mindset' },
+            { href: '/quiz',      label: 'Quiz' },
             { href: '/articles',  label: 'Articles' },
             { href: '/protocols', label: 'Protocols' },
             { href: '/about',     label: 'About' },
