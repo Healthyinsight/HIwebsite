@@ -1,6 +1,31 @@
-.site-nav__bar {
-    overflow: hidden;
-    max-width: 100%;
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy:       #0F2A3F;
+  --blue:       #1A4D6E;
+  --blue-mid:   #2D7DA8;
+  --blue-light: #5095AC;
+  --blue-pale:  #A8CCE0;
+  --sky:        #D4EAF5;
+  --cream:      #F5F2EC;
+  --warm:       #FAFAF7;
+  --sand:       #E8E2D8;
 }
-/* Original CSS content restored */
-/* Add your restored CSS content here, as I don't have access to the original CSS. */
+
+html {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--warm);
+  color: #1A1A17;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+html { scroll-behavior: smooth; }
+
+::selection {
+  background: var(--sky);
+  color: var(--navy);
+}
