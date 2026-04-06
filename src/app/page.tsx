@@ -160,7 +160,7 @@ export default function HomePage() {
         <section style={{ padding: '84px 52px', background: 'var(--cream)' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-              This week's protocol
+              This week&apos;s protocol
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px' }}>
