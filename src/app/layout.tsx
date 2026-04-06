@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import './globals.css'
+import { Analytics } from '@vercel/analytics/next'
+import '../styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
@@ -31,6 +32,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen" style={{ background: 'var(--warm)' }}>
         {children}
+        <Analytics />
       </body>
     </html>
   )

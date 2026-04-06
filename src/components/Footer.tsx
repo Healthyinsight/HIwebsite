@@ -12,10 +12,19 @@ export default function Footer() {
       ],
     },
     {
-      heading: 'Company',
+      heading: 'Content',
       links: [
-        { href: '/about',      label: 'About' },
+        { href: '/articles',  label: 'All Articles' },
+        { href: '/protocols', label: 'Protocols & Guides' },
         { href: '/newsletter', label: 'Newsletter' },
+      ],
+    },
+    {
+      heading: 'About',
+      links: [
+        { href: '/about',         label: 'About HI' },
+        { href: '/about#method',  label: 'How we work with evidence' },
+        { href: '/about#sources', label: 'Sources & transparency' },
         { href: 'https://tracker.healthyinsight.eu', label: 'The Path Tracker' },
       ],
     },
@@ -30,30 +39,24 @@ export default function Footer() {
   ]
 
   return (
-    <footer style={{ background: 'var(--cream)', borderTop: '1px solid var(--sand)' }}
-      className="px-14 pt-14 pb-10">
-      <div className="grid gap-12 mb-11"
-        style={{ gridTemplateColumns: '2fr 1fr 1fr 1fr' }}>
+    <footer style={{ background: 'var(--cream)', borderTop: '1px solid var(--sand)', padding: '56px 52px 40px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '48px', maxWidth: '1200px', margin: '0 auto', marginBottom: '44px' }}>
         <div>
-          <span className="font-serif text-[19px]" style={{ color: 'var(--navy)' }}>
+          <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: '19px', color: 'var(--navy)', display: 'block', marginBottom: '12px' }}>
             Healthy Insight
           </span>
-          <p className="text-sm mt-3 leading-relaxed max-w-[265px]"
-            style={{ color: '#8A8A80', fontWeight: 300 }}>
-            Evidence-based health insights for people who want to make better decisions.
-            Grounded in physiology, not marketing.
+          <p style={{ fontSize: '14px', lineHeight: 1.7, maxWidth: '265px', color: '#8A8A80', fontWeight: 300, marginBottom: '0' }}>
+            Evidence-based health insights for people who want to make better decisions. Grounded in physiology, not marketing.
           </p>
         </div>
         {cols.map((col) => (
           <div key={col.heading}>
-            <h4 className="text-[10px] font-medium mb-4 tracking-widest uppercase"
-              style={{ color: '#8A8A80' }}>
+            <h4 style={{ fontSize: '10px', fontWeight: 500, marginBottom: '16px', letterSpacing: '2px', textTransform: 'uppercase', color: '#8A8A80' }}>
               {col.heading}
             </h4>
             {col.links.map(({ href, label }) => (
               <Link key={href} href={href}
-                className="block text-sm mb-2.5 no-underline transition-colors hover:text-navy"
-                style={{ color: '#444440' }}>
+                style={{ display: 'block', fontSize: '14px', marginBottom: '10px', textDecoration: 'none', color: '#444440' }}>
                 {label}
               </Link>
             ))}
@@ -61,12 +64,11 @@ export default function Footer() {
         ))}
       </div>
 
-      <div className="flex justify-between items-center pt-7"
-        style={{ borderTop: '1px solid var(--sand)' }}>
-        <p className="text-[13px]" style={{ color: '#8A8A80' }}>
-          2026 Healthy Insight. All rights reserved.
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '28px', borderTop: '1px solid var(--sand)', maxWidth: '1200px', margin: '0 auto' }}>
+        <p style={{ fontSize: '13px', color: '#8A8A80' }}>
+          © 2026 Healthy Insight. All rights reserved.
         </p>
-        <p className="font-serif italic text-sm" style={{ color: 'var(--blue-mid)' }}>
+        <p style={{ fontFamily: 'DM Serif Display, serif', fontStyle: 'italic', fontSize: '14px', color: 'var(--blue-mid)' }}>
           Science Made Simple, Action Made Fun
         </p>
       </div>
