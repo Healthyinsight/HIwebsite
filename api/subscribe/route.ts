@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
     }
 
-    // 1. Add contact to Resend Audience
+    // 1. Add contact to Resend audience when audience id is configured
     if (RESEND_AUDIENCE_ID) {
       const audienceRes = await fetch(
         `https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`,
@@ -37,6 +37,8 @@ export async function POST(req: NextRequest) {
         // 409 = already subscribed, that's fine
         console.error('Resend audience error', { status: audienceRes.status })
       }
+    } else {
+      console.warn('Resend audience id missing; skipping audience add')
     }
 
     // 2. Send welcome email

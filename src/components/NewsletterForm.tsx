@@ -42,8 +42,8 @@ export default function NewsletterForm({ dark = true, size = 'lg' }: NewsletterF
         setStatus('success')
         setEmail('')
       } else {
-        const data = await res.json()
-        setErrorMsg(data.error || 'Something went wrong. Try again.')
+        const data = await res.json().catch(() => null)
+        setErrorMsg(data?.error || 'Something went wrong. Try again.')
         setStatus('error')
       }
     } catch {
