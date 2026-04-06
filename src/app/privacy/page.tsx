@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import type { Metadata } from 'next'
 
@@ -9,11 +8,10 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <Nav />
       <main>
-        <section style={{ padding: '80px 52px', background: 'var(--warm)', minHeight: '70vh' }}>
-          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '44px', fontWeight: 400, color: 'var(--navy)', marginBottom: '12px', letterSpacing: '-0.5px' }}>
+        <section style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 80px)', paddingBottom: 'clamp(48px, 10vw, 80px)', minHeight: '70vh' }}>
+          <div className="container" style={{ maxWidth: '720px' }}>
+            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '12px', letterSpacing: '-0.5px' }}>
               Privacy Policy
             </h1>
             <p style={{ fontSize: '14px', color: '#8A8A80', marginBottom: '48px' }}>

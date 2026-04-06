@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
 import { getArticlesByPillar, type Pillar } from '@/lib/articles'
@@ -8,9 +7,8 @@ export default function PillarListing({ pillar, title }: { pillar: Pillar; title
 
   return (
     <>
-      <Nav />
-      <main style={{ padding: '80px 52px 100px', background: 'var(--warm)', minHeight: '50vh' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <main style={{ paddingTop: 'clamp(48px, 10vw, 80px)', paddingBottom: 'clamp(48px, 12vw, 100px)', background: 'var(--warm)', minHeight: '50vh' }}>
+        <div className="container">
           <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px' }}>
             Pillar
           </div>
@@ -25,13 +23,7 @@ export default function PillarListing({ pillar, title }: { pillar: Pillar; title
               Articles in this pillar are coming soon.
             </p>
           ) : (
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                gap: '28px',
-              }}
-            >
+            <div className="grid-pillar-articles">
               {list.map((article) => (
                 <ArticleCard key={article.slug} {...article} />
               ))}

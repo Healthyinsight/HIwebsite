@@ -1,67 +1,123 @@
+'use client'
+
 import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
+
+const PRIMARY_LINKS = [
+  { href: '/motion', label: 'Motion' },
+  { href: '/nutrition', label: 'Nutrition' },
+  { href: '/recovery', label: 'Recovery' },
+  { href: '/mindset', label: 'Mindset' },
+  { href: '/quiz', label: 'Quiz' },
+  { href: '/articles', label: 'Articles' },
+  { href: '/protocols', label: 'Protocols' },
+  { href: '/about', label: 'About' },
+] as const
+
+const SECONDARY_LINKS = [
+  { href: '/about#method', label: 'How we work with evidence' },
+  { href: '/about#sources', label: 'Sources & transparency' },
+  { href: 'mailto:filipb@healthyinsight.eu', label: 'Contact' },
+] as const
 
 export default function Nav() {
+  const [open, setOpen] = useState(false)
+
+  const close = useCallback(() => setOpen(false), [])
+  const toggle = useCallback(() => setOpen(o => !o), [])
+
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [open])
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open, close])
+
   return (
-    <nav style={{
-      background: 'rgba(250,250,247,0.94)',
-      backdropFilter: 'blur(10px)',
-      borderBottom: '1px solid rgba(15,42,63,0.08)',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100,
-    }}>
-      {/* Primary nav row */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0 52px',
-        height: '62px',
-      }}>
-        <Link href="/" style={{ fontFamily: 'DM Serif Display, serif', fontSize: '19px', color: '#0F2A3F', textDecoration: 'none', letterSpacing: '-0.2px', flexShrink: 0 }}>
-          Healthy Insight
+    <nav className="site-nav" aria-label="Main">
+      <div className="container site-nav__bar">
+        <Link href="/" className="site-nav__brand">
+          <span className="nav-brand-full">Healthy Insight</span>
+          <span className="nav-brand-short">HI</span>
         </Link>
 
-        <ul style={{ display: 'flex', gap: '24px', listStyle: 'none', margin: 0, padding: 0 }}>
-          {[
-            { href: '/motion',    label: 'Motion' },
-            { href: '/nutrition', label: 'Nutrition' },
-            { href: '/recovery',  label: 'Recovery' },
-            { href: '/mindset',   label: 'Mindset' },
-            { href: '/quiz',      label: 'Quiz' },
-            { href: '/articles',  label: 'Articles' },
-            { href: '/protocols', label: 'Protocols' },
-            { href: '/about',     label: 'About' },
-          ].map(({ href, label }) => (
+        <ul className="site-nav__links">
+          {PRIMARY_LINKS.map(({ href, label }) => (
             <li key={href}>
-              <Link href={href} style={{ fontSize: '14px', color: '#444440', textDecoration: 'none', fontWeight: 400 }}>
-                {label}
-              </Link>
+              <Link href={href}>{label}</Link>
             </li>
           ))}
         </ul>
 
-        <Link href="/newsletter" style={{ background: '#0F2A3F', color: 'white', borderRadius: '100px', padding: '9px 22px', fontSize: '13px', fontWeight: 500, textDecoration: 'none', flexShrink: 0 }}>
+        <Link href="/newsletter" className="site-nav__cta site-nav__cta--desktop">
           Newsletter
         </Link>
+
+        <button
+          type="button"
+          className="site-nav__menu-btn"
+          aria-expanded={open}
+          aria-controls="nav-drawer"
+          onClick={toggle}
+        >
+          <span className="site-nav__menu-icon" aria-hidden>
+            <span />
+            <span />
+            <span />
+          </span>
+          Menu
+        </button>
       </div>
 
-      {/* Secondary nav row */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        gap: '28px',
-        padding: '0 52px 8px',
-      }}>
-        {[
-          { href: '/about#method',  label: 'How we work with evidence' },
-          { href: '/about#sources', label: 'Sources & transparency' },
-          { href: 'mailto:filipb@healthyinsight.eu', label: 'Contact' },
-        ].map(({ href, label }) => (
-          <a key={href} href={href} style={{ fontSize: '11px', color: '#8A8A80', textDecoration: 'none', letterSpacing: '0.2px' }}>
+      <div className="container site-nav__secondary site-nav__secondary--desktop">
+        {SECONDARY_LINKS.map(({ href, label }) => (
+          <a key={href} href={href}>
             {label}
           </a>
         ))}
+      </div>
+
+      <div
+        className={`site-nav__backdrop${open ? ' is-open' : ''}`}
+        aria-hidden={!open}
+        onClick={close}
+      />
+
+      <div
+        id="nav-drawer"
+        className={`site-nav__drawer${open ? ' is-open' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+      >
+        <Link href="/newsletter" className="site-nav__cta site-nav__cta--drawer" onClick={close}>
+          Newsletter
+        </Link>
+        <nav className="site-nav__drawer-nav" aria-label="Primary">
+          {PRIMARY_LINKS.map(({ href, label }) => (
+            <Link key={href} href={href} onClick={close}>
+              {label}
+            </Link>
+          ))}
+        </nav>
+        <div className="site-nav__drawer-secondary">
+          {SECONDARY_LINKS.map(({ href, label }) => (
+            <a key={href} href={href} onClick={close}>
+              {label}
+            </a>
+          ))}
+        </div>
       </div>
     </nav>
   )

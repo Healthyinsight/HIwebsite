@@ -149,7 +149,7 @@ export default function HealthIQQuiz() {
   }
 
   return (
-    <div style={{ maxWidth: '560px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '560px', margin: '0 auto', width: '100%', minWidth: 0 }}>
       {/* Quiz in progress */}
       {!showResult && (
         <>

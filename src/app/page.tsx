@@ -1,4 +1,4 @@
-import Nav from '@/components/Nav'
+import { Fragment } from 'react'
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
 import { getLatestArticles } from '@/lib/articles'
@@ -10,19 +10,18 @@ export default function HomePage() {
 
   return (
     <>
-      <Nav />
       <main>
 
         {/* HERO */}
-        <section style={{ background: 'var(--cream)', padding: '72px 52px 80px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' }}>
+        <section style={{ background: 'var(--cream)', paddingTop: 'clamp(40px, 10vw, 72px)', paddingBottom: 'clamp(48px, 10vw, 80px)' }}>
+          <div className="container grid-hero">
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '22px' }}>
                 <span style={{ display: 'inline-block', width: '24px', height: '1px', background: 'var(--blue-mid)' }} />
                 Evidence-based health
               </div>
 
-              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '52px', lineHeight: 1.08, fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
+              <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
                 Evidence-based strategies for a healthier,
                 stronger <em style={{ fontStyle: 'italic', color: 'var(--blue-mid)' }}>life.</em>
               </h1>
@@ -48,7 +47,7 @@ export default function HomePage() {
             </div>
 
             {/* Hero cards */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', minWidth: 0 }}>
               <HeroIllustrationCard />
               <HeroArticleCard
                 pillar="Recovery"
@@ -71,15 +70,15 @@ export default function HomePage() {
         </section>
 
         {/* TRUST STRIP */}
-        <div style={{ background: 'var(--navy)', padding: '28px 52px', display: 'flex', alignItems: 'center' }}>
+        <div className="trust-strip">
           {[
             { num: '30–50', label: 'studies per\ndeep-dive article' },
             { num: '5y', label: 'preferred recency\nof cited research' },
             { num: '0', label: 'affiliate links\never' },
             { num: '4', label: 'evidence-based\npillars' },
           ].map((item, i, arr) => (
-            <>
-              <div key={item.num} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
+            <Fragment key={item.num}>
+              <div className="trust-strip__item">
                 <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: '30px', color: 'var(--blue-pale)', fontWeight: 400 }}>
                   {item.num}
                 </span>
@@ -87,28 +86,26 @@ export default function HomePage() {
                   {item.label}
                 </span>
               </div>
-              {i < arr.length - 1 && (
-                <div key={`sep-${i}`} style={{ width: '1px', height: '36px', background: 'rgba(255,255,255,0.1)' }} />
-              )}
-            </>
+              {i < arr.length - 1 && <div className="trust-strip__sep" aria-hidden />}
+            </Fragment>
           ))}
         </div>
 
         {/* PILLARS */}
-        <section style={{ padding: '84px 52px', background: 'var(--warm)' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <section style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+          <div className="container">
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
               Four pillars
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
             </div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '36px', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '12px', lineHeight: 1.2 }}>
+            <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '12px' }}>
               Every article.<br />One framework.
             </h2>
             <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, maxWidth: '490px', marginBottom: '52px', fontWeight: 300 }}>
               Motion, nutrition, recovery, mindset. The fundamentals of human health and performance, grounded in peer-reviewed evidence.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '18px' }}>
+            <div className="grid-pillars">
               {[
                 {
                   href: '/motion',    icon: '🏃', label: 'Motion',    bg: 'var(--sky)',
@@ -157,14 +154,14 @@ export default function HomePage() {
         </section>
 
         {/* ACTION-FIRST BLOCK */}
-        <section style={{ padding: '84px 52px', background: 'var(--cream)' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <section style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+          <div className="container">
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
               This week&apos;s protocol
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px' }}>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '36px', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', lineHeight: 1.2 }}>
+            <div className="section-heading-row">
+              <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', margin: 0 }}>
                 3 things you can do<br />this week.
               </h2>
               <Link href="/protocols" style={{ fontSize: '14px', color: 'var(--navy)', fontWeight: 500, textDecoration: 'none', flexShrink: 0 }}>
@@ -172,7 +169,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '20px' }}>
+            <div className="grid-three">
               {[
                 {
                   num: '01',
@@ -234,15 +231,15 @@ export default function HomePage() {
         </section>
 
         {/* ARTICLES */}
-        <section style={{ padding: '84px 52px', background: 'var(--warm)' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '44px' }}>
+        <section style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+          <div className="container">
+            <div className="section-heading-row" style={{ marginBottom: '44px' }}>
               <div>
                 <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
                   Latest articles
                   <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
                 </div>
-                <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '36px', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', lineHeight: 1.2 }}>
+                <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', margin: 0 }}>
                   Research into action
                 </h2>
               </div>
@@ -252,7 +249,7 @@ export default function HomePage() {
             </div>
 
             {/* Top row: large + 2 stacked */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '18px', marginBottom: '18px' }}>
+            <div className="grid-articles-featured">
               <ArticleCard {...latest[0]} large />
               <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 <ArticleCard {...latest[1]} />
@@ -261,7 +258,7 @@ export default function HomePage() {
             </div>
 
             {/* Bottom row: 3 equal */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '18px' }}>
+            <div className="grid-three" style={{ gap: '18px' }}>
               <ArticleCard {...latest[3]} />
               <ArticleCard {...latest[4]} />
               <ArticleCard {...latest[5]} />
@@ -270,7 +267,8 @@ export default function HomePage() {
         </section>
 
         {/* HOW WE READ THE RESEARCH */}
-        <section style={{ padding: '84px 52px', background: 'var(--navy)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '72px', alignItems: 'center' }}>
+        <section style={{ background: 'var(--navy)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+          <div className="container grid-two">
           <div style={{ maxWidth: '440px' }}>
             <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '38px', fontWeight: 400, color: 'white', letterSpacing: '-0.4px', lineHeight: 1.2, marginBottom: '18px' }}>
               How we read the research
@@ -300,11 +298,12 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          </div>
         </section>
 
         {/* NEWSLETTER */}
-        <section style={{ padding: '84px 52px', background: 'var(--cream)', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ background: 'var(--blue)', borderRadius: '26px', padding: '60px 68px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center', maxWidth: '900px', width: '100%' }}>
+        <section style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)', display: 'flex', justifyContent: 'center' }}>
+          <div className="container newsletter-panel">
             <div>
               <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '34px', fontWeight: 400, color: 'white', lineHeight: 1.2, letterSpacing: '-0.3px', marginBottom: '13px' }}>
                 Stay evidence-based.
@@ -337,7 +336,7 @@ export default function HomePage() {
 
 function HeroIllustrationCard() {
   return (
-    <div style={{ background: 'var(--warm)', borderRadius: '20px', padding: '24px', border: '1px solid rgba(15,42,63,0.07)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+    <div className="hero-card hero-card-shift" style={{ background: 'var(--warm)', borderRadius: '20px', padding: '24px', border: '1px solid rgba(15,42,63,0.07)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
       <div style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1.6px', textTransform: 'uppercase', color: 'var(--blue-mid)' }}>Motion</div>
       <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: '17px', color: 'var(--navy)', textAlign: 'center' }}>VO₂ Max — Understanding the Basics</div>
       <div style={{ fontSize: '12px', color: '#8A8A80', textAlign: 'center' }}>An evidence-based guide to aerobic capacity</div>
@@ -376,7 +375,7 @@ function HeroArticleCard({ pillar, dotColor, title, excerpt, level, indent, padd
   pillar: string; dotColor: string; title: string; excerpt: string; level: number; indent?: string; paddingRight?: string;
 }) {
   return (
-    <div style={{ background: 'var(--warm)', borderRadius: '18px', padding: '18px 22px', border: '1px solid rgba(15,42,63,0.07)', marginLeft: indent, marginRight: paddingRight }}>
+    <div className="hero-card-shift" style={{ background: 'var(--warm)', borderRadius: '18px', padding: '18px 22px', border: '1px solid rgba(15,42,63,0.07)', marginLeft: indent, marginRight: paddingRight }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
         <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: dotColor, display: 'inline-block' }} />
         <span style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#8A8A80' }}>{pillar}</span>

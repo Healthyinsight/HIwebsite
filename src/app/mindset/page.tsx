@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
 import { getArticlesByPillar } from '@/lib/articles'
@@ -14,7 +13,6 @@ export default function MindsetPage() {
 
   return (
     <>
-      <Nav />
       <main>
         <section style={{ background: 'linear-gradient(150deg, #0A1F2E 0%, #1A4D6E 100%)', padding: '80px 52px' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>

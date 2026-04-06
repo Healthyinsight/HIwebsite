@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 import type { Metadata } from 'next'
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <Nav />
       <main>
 
         {/* HERO */}

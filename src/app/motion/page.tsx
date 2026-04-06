@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
 import { getArticlesByPillar } from '@/lib/articles'
@@ -17,7 +16,6 @@ export default function MotionPage() {
 
   return (
     <>
-      <Nav />
       <main>
         <section style={{ background: 'linear-gradient(150deg, #253527 0%, #1A4D6E 100%)', padding: '80px 52px' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>

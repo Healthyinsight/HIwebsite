@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
 import NewsletterForm from '@/components/NewsletterForm'
@@ -16,7 +15,6 @@ export default function ProtocolsPage() {
 
   return (
     <>
-      <Nav />
       <main>
 
         {/* HEADER */}

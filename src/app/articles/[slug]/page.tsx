@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { articles } from '@/lib/articles'
 import { pillarGradients } from '@/lib/pillars'
@@ -36,7 +35,6 @@ export default async function ArticlePage(
 
   return (
     <>
-      <Nav />
       <main>
         {/* Header */}
         <div style={{ background: pillarGradients[article.pillar], padding: '72px 52px 80px', position: 'relative', overflow: 'hidden' }}>
