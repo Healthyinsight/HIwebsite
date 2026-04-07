@@ -12,8 +12,10 @@ export default function Footer() {
       ],
     },
     {
-      heading: 'Content',
+      heading: 'Learn',
       links: [
+        { href: '/trails',    label: 'Learning Trails' },
+        { href: '/quiz',      label: 'Health IQ Quiz' },
         { href: '/articles',  label: 'All Articles' },
         { href: '/protocols', label: 'Protocols & Guides' },
         { href: '/newsletter', label: 'Newsletter' },
