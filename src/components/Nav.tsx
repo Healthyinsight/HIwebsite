@@ -101,9 +101,17 @@ export default function Nav() {
         aria-modal="true"
         aria-label="Menu"
       >
-        <Link href="/newsletter" className="site-nav__cta site-nav__cta--drawer" onClick={close}>
-          Newsletter
-        </Link>
+        <div className="site-nav__drawer-header">
+          <Link href="/" className="site-nav__brand" onClick={close}>HI</Link>
+          <button
+            type="button"
+            className="site-nav__drawer-close"
+            aria-label="Close menu"
+            onClick={close}
+          >
+            ✕
+          </button>
+        </div>
         <nav className="site-nav__drawer-nav" aria-label="Primary">
           {PRIMARY_LINKS.map(({ href, label }) => (
             <Link key={href} href={href} onClick={close}>
@@ -118,6 +126,9 @@ export default function Nav() {
             </a>
           ))}
         </div>
+        <Link href="/newsletter" className="site-nav__cta site-nav__cta--drawer" onClick={close}>
+          Get the newsletter
+        </Link>
       </div>
     </nav>
   )

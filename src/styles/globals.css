@@ -545,3 +545,21 @@ body {
   color: #8a8a80;
   text-decoration: none;
 }
+
+.site-nav__drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.site-nav__drawer-close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #0f2a3f;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  font-family: inherit;
+}
