@@ -13,12 +13,12 @@ export default function AboutPage() {
       <main>
 
         {/* HERO */}
-        <section style={{ background: 'var(--cream)', padding: '80px 52px' }}>
-          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+        <section className="section-pad" style={{ background: 'var(--cream)' }}>
+          <div className="container" style={{ maxWidth: '720px' }}>
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '20px' }}>
               About
             </div>
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '48px', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.8px', lineHeight: 1.1, marginBottom: '28px' }}>
+            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.8px', lineHeight: 1.1, marginBottom: '28px' }}>
               Your source for evidence-based<br />
               <em style={{ fontStyle: 'italic', color: 'var(--blue-mid)' }}>health strategies.</em>
             </h1>
@@ -29,16 +29,16 @@ export default function AboutPage() {
         </section>
 
         {/* WHY HI EXISTS */}
-        <section style={{ padding: '80px 52px', background: 'var(--warm)' }}>
-          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+        <section className="section-pad" style={{ background: 'var(--warm)' }}>
+          <div className="container" style={{ maxWidth: '720px' }}>
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '20px' }}>
               Why HI exists
             </div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '34px', fontWeight: 400, color: 'var(--navy)', marginBottom: '32px', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '32px', lineHeight: 1.2 }}>
               The health information landscape is broken.
             </h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '40px' }}>
+            <div className="grid-three" style={{ marginBottom: '40px' }}>
               {[
                 {
                   icon: '🚫',
@@ -96,12 +96,12 @@ export default function AboutPage() {
         </section>
 
         {/* HOW HI WORKS */}
-        <section id="method" style={{ padding: '80px 52px', background: 'var(--cream)' }}>
-          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+        <section id="method" className="section-pad" style={{ background: 'var(--cream)' }}>
+          <div className="container" style={{ maxWidth: '720px' }}>
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '20px' }}>
               The method
             </div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '34px', fontWeight: 400, color: 'var(--navy)', marginBottom: '12px', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '12px', lineHeight: 1.2 }}>
               How HI works
             </h2>
             <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, marginBottom: '40px', fontWeight: 300 }}>
@@ -127,12 +127,12 @@ export default function AboutPage() {
         </section>
 
         {/* TRANSPARENCY & SOURCE POLICY */}
-        <section id="sources" style={{ padding: '80px 52px', background: 'var(--warm)' }}>
-          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+        <section id="sources" className="section-pad" style={{ background: 'var(--warm)' }}>
+          <div className="container" style={{ maxWidth: '720px' }}>
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '20px' }}>
               Transparency
             </div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '34px', fontWeight: 400, color: 'var(--navy)', marginBottom: '28px', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '28px', lineHeight: 1.2 }}>
               Sources & transparency
             </h2>
 
@@ -175,12 +175,12 @@ export default function AboutPage() {
         </section>
 
         {/* ABOUT FILIP */}
-        <section style={{ padding: '80px 52px', background: 'var(--navy)' }}>
-          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+        <section className="section-pad" style={{ background: 'var(--navy)' }}>
+          <div className="container" style={{ maxWidth: '720px' }}>
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-pale)', opacity: 0.7, marginBottom: '20px' }}>
               The founder
             </div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '34px', fontWeight: 400, color: 'white', marginBottom: '20px', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'white', marginBottom: '20px', lineHeight: 1.2 }}>
               About Filip Berggren
             </h2>
             <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, marginBottom: '20px', fontWeight: 300 }}>
@@ -189,7 +189,7 @@ export default function AboutPage() {
             <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, marginBottom: '32px', fontWeight: 300 }}>
               He reads peer-reviewed studies, checks the data, and shares what actually works — grounded in physiology, not marketing. HI is the resource he wished existed when he started.
             </p>
-            <div style={{ display: 'flex', gap: '12px' }}>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
               <a href="mailto:filipb@healthyinsight.eu"
                 style={{ display: 'inline-block', background: 'white', color: 'var(--navy)', borderRadius: '100px', padding: '12px 26px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
                 Get in touch

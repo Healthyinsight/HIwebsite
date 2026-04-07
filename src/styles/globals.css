@@ -282,6 +282,54 @@ body {
   }
 }
 
+/* —— Section padding utility —— */
+/* Replaces hard-coded inline padding: '80px 52px' across page files */
+.section-pad {
+  padding-block: clamp(48px, 10vw, 84px);
+  padding-inline: clamp(16px, 4vw, 52px);
+}
+
+/* —— Responsive 2-column equal grid (stacks on mobile) —— */
+.grid-two-equal {
+  display: grid;
+  gap: clamp(28px, 6vw, 64px);
+  grid-template-columns: 1fr;
+  align-items: end;
+}
+
+@media (min-width: 641px) {
+  .grid-two-equal {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* —— 2-col stats grid (compact; stays 2-col on mobile, fine for small cards) —— */
+.grid-stats {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* —— Pillar "Start here" callout (stacks on mobile) —— */
+.pillar-start-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 20px;
+  padding: clamp(20px, 5vw, 32px);
+  margin-bottom: 40px;
+  background: var(--cream);
+  border: 1px solid rgba(15, 42, 63, 0.06);
+}
+
+@media (min-width: 641px) {
+  .pillar-start-callout {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
 /* —— Site nav —— */
 .site-nav {
   position: sticky;
