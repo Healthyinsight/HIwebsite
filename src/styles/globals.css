@@ -35,6 +35,10 @@ body {
   font-size: clamp(15px, 2.8vw, 16px);
   margin: 0;
 }
+html,
+body {
+  overflow-x: hidden;
+}
 
 ::selection {
   background: var(--sky);
