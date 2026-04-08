@@ -331,13 +331,29 @@ body {
 }
 
 /* —— Site nav —— */
+/*
+  backdrop-filter is moved to a ::before pseudo-element so the nav's
+  stacking context is established only by position+z-index, not by
+  backdrop-filter. In some browsers, backdrop-filter on a sticky element
+  can cause the stacking context to be composited behind subsequent DOM
+  siblings despite a high z-index.
+*/
 .site-nav {
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-bottom: 1px solid rgba(15, 42, 63, 0.08);
+}
+
+.site-nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: rgba(250, 250, 247, 0.94);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(15, 42, 63, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .site-nav__bar {
