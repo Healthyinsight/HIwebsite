@@ -6,8 +6,11 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Learning Trails — Healthy Insight',
-  description: 'Structured paths through health and performance science. Progress from fundamentals to advanced research at your own pace, earn Evidence IQ as you go.',
+  description: 'Structured paths through health and performance science. Progress from fundamentals to advanced research, answer quiz questions, and earn Health IQ points.',
 }
+
+const activeTrails = trails.filter(t => !t.comingSoon)
+const comingSoonTrails = trails.filter(t => t.comingSoon)
 
 export default function TrailsPage() {
   return (
@@ -24,7 +27,7 @@ export default function TrailsPage() {
               Your path through the evidence
             </h1>
             <p style={{ fontSize: 'clamp(15px, 2.5vw, 18px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, fontWeight: 300, maxWidth: '560px', margin: 0 }}>
-              Each trail is a curated sequence of articles that builds from foundations to the research frontier. Read in order, earn Evidence IQ, unlock advanced content.
+              Each trail is a curated sequence of articles that builds from foundations to the research frontier. Read, answer quiz questions, and earn Health IQ points.
             </p>
           </div>
         </section>
@@ -34,9 +37,9 @@ export default function TrailsPage() {
           <div className="container">
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '28px 48px' }}>
               {[
-                { icon: '📖', text: 'Click any article step to read it on Beehiiv — it\'s automatically marked complete.' },
-                { icon: '⚡', text: 'Each article earns Evidence IQ points. Advanced articles earn more.' },
-                { icon: '🔒', text: 'Level 4+ articles require a free email unlock — one time, for all trails.' },
+                { icon: '📖', text: 'Read each article on Beehiiv — take your time, then come back to answer the quiz question.' },
+                { icon: '✅', text: 'Answer the question correctly to earn Health IQ points. Wrong answers can be retried.' },
+                { icon: '🔒', text: 'Create a free account (just your email) before seeing if you got it right.' },
               ].map(({ icon, text }) => (
                 <div key={icon} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', maxWidth: '300px' }}>
                   <span style={{ fontSize: '18px', flexShrink: 0, marginTop: '1px' }}>{icon}</span>
@@ -47,14 +50,21 @@ export default function TrailsPage() {
           </div>
         </section>
 
-        {/* Trail cards */}
+        {/* Active trail cards */}
         <section className="section-pad" style={{ background: 'var(--warm)' }}>
           <div className="container">
             <div className="grid-trails">
-              {trails.map(trail => (
+              {activeTrails.map(trail => (
                 <TrailCard key={trail.id} trail={trail} />
               ))}
             </div>
+
+            {/* Coming soon note */}
+            {comingSoonTrails.length > 0 && (
+              <p style={{ marginTop: '32px', fontSize: '13px', color: '#8A8A80', textAlign: 'center', fontWeight: 300 }}>
+                {comingSoonTrails.map(t => t.name).join(' and ')} {comingSoonTrails.length === 1 ? 'trail is' : 'trails are'} coming soon.
+              </p>
+            )}
           </div>
         </section>
       </main>

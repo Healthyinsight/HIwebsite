@@ -23,8 +23,7 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { href: '/trails/recovery', label: 'The Sleep Stack' },
       { href: '/trails/motion', label: 'Build Your Engine' },
-      { href: '/trails/nutrition', label: 'Fuel the Machine', comingSoon: true },
-      { href: '/trails/mindset', label: 'The Performance Mind', comingSoon: true },
+      // Add new trails here when comingSoon is removed from trails.ts
     ],
   },
   {

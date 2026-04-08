@@ -57,15 +57,17 @@ export default function TrailCard({ trail }: { trail: Trail }) {
 
       {trail.comingSoon ? (
         <div style={{
-          display: 'inline-block',
+          display: 'inline-flex',
+          alignItems: 'center',
           alignSelf: 'flex-start',
           background: 'rgba(255,255,255,0.08)',
           border: '1px solid rgba(255,255,255,0.14)',
           borderRadius: '100px',
-          padding: '6px 14px',
+          padding: '7px 16px 6px',
           fontSize: '12px',
           color: 'rgba(255,255,255,0.4)',
           fontWeight: 500,
+          lineHeight: 1,
         }}>
           Coming soon
         </div>

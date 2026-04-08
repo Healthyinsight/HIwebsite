@@ -13,7 +13,7 @@
   --cream:      #F5F2EC;
   --warm:       #FAFAF7;
   --sand:       #E8E2D8;
-  --nav-breakpoint: 640px;
+  --nav-breakpoint: 900px;
 }
 
 *,
@@ -358,7 +358,7 @@ body {
   flex-shrink: 0;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .site-nav__brand {
     font-size: 17px;
   }
@@ -372,7 +372,7 @@ body {
   display: inline;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .nav-brand-full {
     display: none;
   }
@@ -460,7 +460,7 @@ body {
   letter-spacing: 0.2px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .site-nav__links,
   .site-nav__cta--desktop,
   .site-nav__secondary--desktop {
@@ -472,7 +472,7 @@ body {
   }
 }
 
-@media (min-width: 641px) {
+@media (min-width: 901px) {
   .site-nav__menu-btn,
   .site-nav__backdrop,
   .site-nav__drawer {
@@ -564,7 +564,13 @@ body {
   font-family: inherit;
 }
 
-/* —— Nav dropdown (desktop) —— */
+/* —— Nav dropdown (desktop only ≥901px) —— */
+@media (max-width: 900px) {
+  .site-nav__dropdown {
+    display: none !important;
+  }
+}
+
 /* Override bar overflow so dropdowns are visible */
 .site-nav__bar {
   overflow: visible !important;
@@ -648,6 +654,7 @@ body {
 .site-nav__badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -655,8 +662,8 @@ body {
   background: var(--sky);
   color: var(--navy);
   border-radius: 100px;
-  padding: 2px 6px;
-  line-height: 1.3;
+  padding: 3px 7px 2px; /* extra top compensates for DM Sans cap-height offset */
+  line-height: 1;
   flex-shrink: 0;
 }
 

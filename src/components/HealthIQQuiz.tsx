@@ -285,7 +285,7 @@ export default function HealthIQQuiz() {
             Your results are on their way.
           </h3>
           <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, marginBottom: '28px', fontWeight: 300 }}>
-            Check your inbox for your personalised reading list. Ready to go deeper? Start a Learning Trail to build structured knowledge and earn Evidence IQ.
+            Check your inbox for your personalised reading list. Ready to go deeper? Start a Learning Trail to build structured knowledge and earn Health IQ points.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
             <Link

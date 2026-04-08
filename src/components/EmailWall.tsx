@@ -83,10 +83,10 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
         <div style={{ textAlign: 'center', marginBottom: '24px' }}>
           <div style={{ fontSize: '36px', marginBottom: '12px' }}>🔒</div>
           <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '22px', fontWeight: 400, color: 'var(--navy)', marginBottom: '8px', lineHeight: 1.25 }}>
-            Advanced level content
+            Sign up to track your progress
           </h3>
           <p style={{ fontSize: '14px', color: '#444440', lineHeight: 1.65, fontWeight: 300, margin: 0 }}>
-            This article is part of the advanced tier. Enter your email to unlock it and get the full Healthy Insight newsletter.
+            Enter your email to see if you got it right and start earning Health IQ points. You will also get the Healthy Insight newsletter.
           </p>
         </div>
 
@@ -94,7 +94,7 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
           <div style={{ textAlign: 'center', padding: '16px 0' }}>
             <div style={{ fontSize: '36px', marginBottom: '8px' }}>✓</div>
             <p style={{ fontSize: '15px', fontWeight: 500, color: 'var(--navy)', margin: 0 }}>
-              Unlocked. Opening article…
+              You are in. Revealing your result…
             </p>
           </div>
         ) : (
@@ -130,7 +130,7 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
                 opacity: status === 'loading' ? 0.7 : 1,
               }}
             >
-              {status === 'loading' ? 'Unlocking…' : 'Unlock this article'}
+              {status === 'loading' ? 'Signing up…' : 'Sign up and see the answer'}
             </button>
             {status === 'error' && (
               <p style={{ color: '#ff6b6b', fontSize: '13px', textAlign: 'center', margin: 0 }}>
