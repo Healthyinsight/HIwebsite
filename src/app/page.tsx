@@ -270,7 +270,7 @@ export default function HomePage() {
         <section style={{ background: 'var(--navy)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
           <div className="container grid-two">
           <div style={{ maxWidth: '440px' }}>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '38px', fontWeight: 400, color: 'white', letterSpacing: '-0.4px', lineHeight: 1.2, marginBottom: '18px' }}>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.75rem, 5vw, 2.375rem)', fontWeight: 400, color: 'white', letterSpacing: '-0.4px', lineHeight: 1.2, marginBottom: '18px' }}>
               How we read the research
             </h2>
             <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '28px', fontWeight: 300 }}>

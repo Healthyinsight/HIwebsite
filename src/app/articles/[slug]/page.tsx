@@ -37,9 +37,9 @@ export default async function ArticlePage(
     <>
       <main>
         {/* Header */}
-        <div style={{ background: pillarGradients[article.pillar], padding: '72px 52px 80px', position: 'relative', overflow: 'hidden' }}>
+        <div className="section-pad" style={{ background: pillarGradients[article.pillar], paddingBottom: 'clamp(48px, 10vw, 84px)', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', width: '600px', height: '600px', borderRadius: '50%', background: 'rgba(255,255,255,0.04)', top: '-200px', right: '-100px' }} />
-          <div style={{ maxWidth: '720px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <div className="container" style={{ maxWidth: '720px', position: 'relative', zIndex: 1 }}>
             <div style={{ display: 'flex', gap: '12px', marginBottom: '24px', alignItems: 'center' }}>
               <Link href="/articles" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>Articles</Link>
               <span style={{ color: 'rgba(255,255,255,0.3)' }}>/</span>
@@ -59,7 +59,7 @@ export default async function ArticlePage(
               )}
             </div>
 
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '44px', fontWeight: 400, color: 'white', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '20px' }}>
+            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.75rem, 6vw, 2.75rem)', fontWeight: 400, color: 'white', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '20px' }}>
               {article.title}
             </h1>
 
@@ -82,8 +82,8 @@ export default async function ArticlePage(
           </div>
         </div>
 
-        <section style={{ padding: '72px 52px', background: 'var(--warm)' }}>
-          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+        <section className="section-pad" style={{ background: 'var(--warm)' }}>
+          <div className="container" style={{ maxWidth: '720px' }}>
 
             {/* Excerpt pull quote */}
             <p style={{ fontSize: '18px', lineHeight: 1.75, color: '#444440', fontWeight: 300, marginBottom: '36px', borderLeft: '3px solid var(--blue-light)', paddingLeft: '20px' }}>

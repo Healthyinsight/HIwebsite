@@ -17,22 +17,22 @@ export default function NutritionPage() {
   return (
     <>
       <main>
-        <section style={{ background: 'linear-gradient(150deg, #1A4D6E 0%, #3A8FBF 100%)', padding: '80px 52px' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <section className="section-pad" style={{ background: 'linear-gradient(150deg, #1A4D6E 0%, #3A8FBF 100%)' }}>
+          <div className="container">
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '20px', opacity: 0.7 }}>
               Pillar
             </div>
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '52px', fontWeight: 400, color: 'white', letterSpacing: '-0.8px', lineHeight: 1.1, marginBottom: '20px' }}>
+            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'white', letterSpacing: '-0.8px', lineHeight: 1.1, marginBottom: '20px' }}>
               Nutrition
             </h1>
-            <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, maxWidth: '520px', fontWeight: 300 }}>
+            <p style={{ fontSize: 'clamp(15px, 2.5vw, 18px)', color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, maxWidth: '520px', fontWeight: 300 }}>
               Fueling strategies, supplements, and metabolic health. What the research actually supports.
             </p>
           </div>
         </section>
 
-        <section style={{ padding: '72px 52px', background: 'var(--warm)' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <section className="section-pad" style={{ background: 'var(--warm)' }}>
+          <div className="container">
             {articles.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '80px 0' }}>
                 <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: '24px', color: 'var(--navy)', marginBottom: '12px' }}>Coming soon</p>
@@ -41,7 +41,7 @@ export default function NutritionPage() {
             ) : (
               <>
                 {starterArticle && (
-                  <div style={{ background: 'var(--cream)', borderRadius: '20px', padding: '28px 32px', marginBottom: '40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid rgba(15,42,63,0.06)' }}>
+                  <div className="pillar-start-callout">
                     <div>
                       <div style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '8px' }}>Start here</div>
                       <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '6px' }}>
@@ -52,7 +52,7 @@ export default function NutritionPage() {
                       </p>
                     </div>
                     <Link href={`/articles/${starterArticle.slug}`}
-                      style={{ background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '11px 24px', fontSize: '13px', fontWeight: 500, textDecoration: 'none', flexShrink: 0, marginLeft: '32px' }}>
+                      style={{ background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '11px 24px', fontSize: '13px', fontWeight: 500, textDecoration: 'none', flexShrink: 0, alignSelf: 'flex-start' }}>
                       Read · {starterArticle.readingTime}
                     </Link>
                   </div>
@@ -60,7 +60,7 @@ export default function NutritionPage() {
                 <p style={{ fontSize: '14px', color: '#8A8A80', marginBottom: '32px', fontWeight: 300 }}>
                   {articles.length} articles
                 </p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+                <div className="grid-three">
                   {rest.map(article => (
                     <ArticleCard key={article.slug} {...article} />
                   ))}
