@@ -168,9 +168,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
                 </div>
 
                 <a
-                  href={step.beehiivUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`/articles/${step.slug}`}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',

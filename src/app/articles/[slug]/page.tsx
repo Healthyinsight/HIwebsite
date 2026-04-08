@@ -4,6 +4,9 @@ import { pillarGradients } from '@/lib/pillars'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { compileMDX } from 'next-mdx-remote/rsc'
+import fs from 'fs'
+import path from 'path'
 
 export async function generateStaticParams() {
   return articles.map(a => ({ slug: a.slug }))
@@ -32,6 +35,15 @@ export default async function ArticlePage(
   if (!article) notFound()
 
   const badge = article.evidenceStrength ? evidenceBadgeStyles[article.evidenceStrength] : null
+
+  // Try to load MDX content
+  const mdxPath = path.join(process.cwd(), 'content/articles', `${slug}.mdx`)
+  let mdxContent: React.ReactElement | null = null
+  if (fs.existsSync(mdxPath)) {
+    const source = fs.readFileSync(mdxPath, 'utf8')
+    const { content } = await compileMDX({ source, options: { parseFrontmatter: true } })
+    mdxContent = content
+  }
 
   return (
     <>
@@ -63,7 +75,6 @@ export default async function ArticlePage(
               {article.title}
             </h1>
 
-            {/* "What you'll learn" preview if tldr exists */}
             {article.tldr && article.tldr.length > 0 && (
               <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, marginBottom: '20px', fontStyle: 'italic' }}>
                 You&apos;ll learn: {article.tldr.slice(0, 2).join(' · ')}
@@ -108,27 +119,33 @@ export default async function ArticlePage(
               </div>
             )}
 
-            {/* Full article link */}
-            <div style={{ background: 'var(--cream)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px', display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-              <span style={{ fontSize: '20px', flexShrink: 0 }}>📖</span>
-              <div>
-                <div style={{ fontSize: '12px', fontWeight: 500, color: 'var(--blue-mid)', marginBottom: '4px', letterSpacing: '0.5px' }}>FULL ARTICLE</div>
-                <p style={{ fontSize: '14px', color: 'var(--navy)', lineHeight: 1.6, marginBottom: '12px' }}>
-                  This article was originally published on Beehiiv. Click below to read the full version with all sources and evidence ratings.
-                </p>
-                <a
-                  href={article.beehiivUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ display: 'inline-block', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '10px 22px', fontSize: '13px', fontWeight: 500, textDecoration: 'none' }}>
-                  Read full article
-                </a>
+            {/* Article body (MDX) or fallback to Beehiiv link */}
+            {mdxContent ? (
+              <div className="article-body">
+                {mdxContent}
               </div>
-            </div>
+            ) : (
+              <div style={{ background: 'var(--cream)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px', display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                <span style={{ fontSize: '20px', flexShrink: 0 }}>📖</span>
+                <div>
+                  <div style={{ fontSize: '12px', fontWeight: 500, color: 'var(--blue-mid)', marginBottom: '4px', letterSpacing: '0.5px' }}>FULL ARTICLE</div>
+                  <p style={{ fontSize: '14px', color: 'var(--navy)', lineHeight: 1.6, marginBottom: '12px' }}>
+                    This article was originally published on Beehiiv. Click below to read the full version with all sources and evidence ratings.
+                  </p>
+                  <a
+                    href={article.beehiivUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ display: 'inline-block', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '10px 22px', fontSize: '13px', fontWeight: 500, textDecoration: 'none' }}>
+                    Read full article
+                  </a>
+                </div>
+              </div>
+            )}
 
             {/* Evidence module */}
             {badge && (
-              <div style={{ background: 'var(--warm)', border: '1px solid var(--sand)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px' }}>
+              <div style={{ background: 'var(--warm)', border: '1px solid var(--sand)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px', marginTop: mdxContent ? '40px' : 0 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
                   <span style={{ fontSize: '12px', fontWeight: 500, color: 'var(--navy)', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Evidence strength</span>
                   <span style={{
