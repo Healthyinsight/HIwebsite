@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import TrailCard from '@/components/TrailCard'
 import { trails } from '@/lib/trails'
@@ -15,7 +14,6 @@ const comingSoonTrails = trails.filter(t => t.comingSoon)
 export default function TrailsPage() {
   return (
     <>
-      <Nav />
       <main>
         {/* Hero */}
         <section className="section-pad" style={{ background: 'var(--navy)' }}>

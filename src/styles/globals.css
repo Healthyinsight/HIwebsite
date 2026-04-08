@@ -668,9 +668,8 @@ body {
 
 /* "Soon" badge inside dropdown / drawer */
 .site-nav__badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  vertical-align: middle;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -678,8 +677,8 @@ body {
   background: var(--sky);
   color: var(--navy);
   border-radius: 100px;
-  padding: 3px 7px 2px; /* extra top compensates for DM Sans cap-height offset */
-  line-height: 1;
+  padding: 3px 8px;
+  line-height: 1.4;
   flex-shrink: 0;
 }
 
