@@ -34,11 +34,16 @@ html {
 body {
   font-size: clamp(15px, 2.8vw, 16px);
   margin: 0;
-  overflow-x: hidden;
 }
-html,
-body {
-  overflow-x: hidden;
+
+/* overflow-x is handled by .page-content wrapper in layout.tsx.
+   Do NOT put overflow-x: hidden on html/body — in iOS Safari that
+   breaks position: sticky on the nav (sticky requires a scroll
+   container that is NOT overflow: hidden). overflow: clip is used
+   on the wrapper instead because it clips without creating a new
+   scroll container. */
+.page-content {
+  overflow-x: clip;
 }
 
 ::selection {

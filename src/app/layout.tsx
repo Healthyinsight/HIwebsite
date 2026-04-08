@@ -38,8 +38,10 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen" style={{ background: 'var(--warm)' }}>
         <Nav />
-        {children}
-        <Analytics />
+        <div className="page-content">
+          {children}
+          <Analytics />
+        </div>
       </body>
     </html>
   )

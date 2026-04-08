@@ -40,9 +40,13 @@ export default async function ArticlePage(
   const mdxPath = path.join(process.cwd(), 'content/articles', `${slug}.mdx`)
   let mdxContent: React.ReactElement | null = null
   if (fs.existsSync(mdxPath)) {
-    const source = fs.readFileSync(mdxPath, 'utf8')
-    const { content } = await compileMDX({ source, options: { parseFrontmatter: true } })
-    mdxContent = content
+    try {
+      const source = fs.readFileSync(mdxPath, 'utf8')
+      const { content } = await compileMDX({ source, options: { parseFrontmatter: true } })
+      mdxContent = content
+    } catch {
+      // MDX parse/compile failed — fall back to Beehiiv link below
+    }
   }
 
   return (
