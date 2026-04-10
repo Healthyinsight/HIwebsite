@@ -255,38 +255,48 @@ export default function Nav() {
         </div>
 
         <nav className="site-nav__acc" aria-label="Primary">
-          {NAV_ITEMS.map((item) => (
-            <div key={item.label} className="site-nav__acc-item">
-              <button
-                type="button"
-                className="site-nav__acc-trigger"
-                aria-expanded={expanded === item.label}
-                onClick={() =>
-                  setExpanded(e => e === item.label ? null : item.label)
-                }
-              >
-                {item.label}
-                <span className="site-nav__acc-chevron" aria-hidden>
-                  {expanded === item.label ? '−' : '+'}
-                </span>
-              </button>
-
-              {expanded === item.label && item.sections && (
-                <div className="site-nav__acc-content">
-                  {item.sections.map((section, i) => (
-                    <div key={i}>
-                      {section.heading && (
-                        <p className="site-nav__acc-heading">{section.heading}</p>
-                      )}
-                      {section.items.map((child) => (
-                        <PanelChild key={child.label} child={child} onClick={close} />
-                      ))}
-                    </div>
-                  ))}
+          {NAV_ITEMS.map((item) => {
+            const isExpanded = expanded === item.label
+            const panelId = `site-nav-acc-${item.label.toLowerCase().replace(/\s+/g, '-')}`
+            return (
+              <div key={item.label} className="site-nav__acc-item">
+                <div className="site-nav__acc-trigger">
+                  <Link href={item.href} className="site-nav__acc-link" onClick={close}>
+                    {item.label}
+                  </Link>
+                  <button
+                    type="button"
+                    className="site-nav__acc-toggle"
+                    aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${item.label}`}
+                    aria-expanded={isExpanded}
+                    aria-controls={panelId}
+                    onClick={() =>
+                      setExpanded(e => e === item.label ? null : item.label)
+                    }
+                  >
+                    <span className="site-nav__acc-chevron" aria-hidden>
+                      {isExpanded ? '−' : '+'}
+                    </span>
+                  </button>
                 </div>
-              )}
-            </div>
-          ))}
+
+                {isExpanded && item.sections && (
+                  <div id={panelId} className="site-nav__acc-content">
+                    {item.sections.map((section, i) => (
+                      <div key={i}>
+                        {section.heading && (
+                          <p className="site-nav__acc-heading">{section.heading}</p>
+                        )}
+                        {section.items.map((child) => (
+                          <PanelChild key={child.label} child={child} onClick={close} />
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </nav>
 
         <Link

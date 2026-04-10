@@ -634,15 +634,35 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 16px 0;
+  padding: 10px 0;
+}
+
+.site-nav__acc-link {
+  display: block;
+  flex: 1;
+  padding: 6px 0;
   font-size: 16px;
   font-weight: 500;
   color: #1a1a17;
+  text-decoration: none;
+}
+
+.site-nav__acc-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
   background: none;
   border: none;
   cursor: pointer;
   font-family: inherit;
-  text-align: left;
+  padding: 0;
+  border-radius: 8px;
+}
+
+.site-nav__acc-toggle:hover {
+  background: var(--sand);
 }
 
 .site-nav__acc-chevron {
