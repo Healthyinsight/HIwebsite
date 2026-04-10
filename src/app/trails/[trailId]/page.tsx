@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import TrailProgress from '@/components/TrailProgress'
 import { trails, getTrailById } from '@/lib/trails'
@@ -46,7 +45,6 @@ export default async function TrailPage(
 
   return (
     <>
-      <Nav />
       <main>
         {/* Hero */}
         <section className="section-pad" style={{ background: gradient }}>

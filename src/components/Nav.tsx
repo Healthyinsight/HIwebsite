@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { createPortal } from 'react-dom'
 import { useCallback, useEffect, useState } from 'react'
 
 type NavChild = {
@@ -91,9 +92,12 @@ function DropdownChild({ child, onClick }: { child: NavChild; onClick?: () => vo
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   const close = useCallback(() => setOpen(false), [])
   const toggle = useCallback(() => setOpen(o => !o), [])
+
+  useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
     if (!open) return
@@ -110,107 +114,114 @@ export default function Nav() {
   }, [open, close])
 
   return (
-    <nav className="site-nav" aria-label="Main">
-      <div className="container site-nav__bar">
-        <Link href="/" className="site-nav__brand">
-          <span className="nav-brand-full">Healthy Insight</span>
-          <span className="nav-brand-short">HI</span>
-        </Link>
+    <>
+      <nav className="site-nav" aria-label="Main">
+        <div className="container site-nav__bar">
+          <Link href="/" className="site-nav__brand">
+            <span className="nav-brand-full">Healthy Insight</span>
+            <span className="nav-brand-short">HI</span>
+          </Link>
 
-        <ul className="site-nav__links">
-          {NAV_ITEMS.map((item) => (
-            <li key={item.label} className="site-nav__top">
-              <Link href={item.href}>{item.label}</Link>
-              {item.children && (
-                <div className="site-nav__dropdown" role="menu">
-                  {item.children.map((child) => (
-                    <DropdownChild key={child.label} child={child} />
-                  ))}
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
+          <ul className="site-nav__links">
+            {NAV_ITEMS.map((item) => (
+              <li key={item.label} className="site-nav__top">
+                <Link href={item.href}>{item.label}</Link>
+                {item.children && (
+                  <div className="site-nav__dropdown" role="menu">
+                    {item.children.map((child) => (
+                      <DropdownChild key={child.label} child={child} />
+                    ))}
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
 
-        <Link href="/newsletter" className="site-nav__cta site-nav__cta--desktop">
-          Newsletter
-        </Link>
+          <Link href="/newsletter" className="site-nav__cta site-nav__cta--desktop">
+            Newsletter
+          </Link>
 
-        <button
-          type="button"
-          className="site-nav__menu-btn"
-          aria-expanded={open}
-          aria-controls="nav-drawer"
-          onClick={toggle}
-        >
-          <span className="site-nav__menu-icon" aria-hidden>
-            <span /><span /><span />
-          </span>
-          Menu
-        </button>
-      </div>
-
-      <div
-        className={`site-nav__backdrop${open ? ' is-open' : ''}`}
-        aria-hidden={!open}
-        onClick={close}
-      />
-
-      <div
-        id="nav-drawer"
-        className={`site-nav__drawer${open ? ' is-open' : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Menu"
-      >
-        <div className="site-nav__drawer-header">
-          <Link href="/" className="site-nav__brand" onClick={close}>HI</Link>
           <button
             type="button"
-            className="site-nav__drawer-close"
-            aria-label="Close menu"
-            onClick={close}
+            className="site-nav__menu-btn"
+            aria-expanded={open}
+            aria-controls="nav-drawer"
+            onClick={toggle}
           >
-            ✕
+            <span className="site-nav__menu-icon" aria-hidden>
+              <span /><span /><span />
+            </span>
+            Menu
           </button>
         </div>
+      </nav>
 
-        <nav className="site-nav__drawer-nav" aria-label="Primary">
-          {NAV_ITEMS.map((item) => (
-            <div key={item.label} className="site-nav__drawer-group">
-              <Link href={item.href} className="site-nav__drawer-group-title" onClick={close}>
-                {item.label}
-                {item.children && <span style={{ fontSize: '12px', color: '#c0c0b8' }}>›</span>}
-              </Link>
-              {item.children && (
-                <div className="site-nav__drawer-group-children">
-                  {item.children.map((child) =>
-                    child.comingSoon ? (
-                      <span key={child.label}>
-                        {child.label}
-                        <span className="site-nav__badge">Soon</span>
-                      </span>
-                    ) : child.external ? (
-                      <a key={child.href} href={child.href} target="_blank" rel="noopener noreferrer" onClick={close}>
-                        {child.label}
-                      </a>
-                    ) : (
-                      <Link key={child.href} href={child.href} onClick={close}>
-                        {child.label}
-                      </Link>
-                    )
+      {mounted && createPortal(
+        <>
+          <div
+            className={`site-nav__backdrop${open ? ' is-open' : ''}`}
+            aria-hidden={!open}
+            onClick={close}
+          />
+
+          <div
+            id="nav-drawer"
+            className={`site-nav__drawer${open ? ' is-open' : ''}`}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
+          >
+            <div className="site-nav__drawer-header">
+              <Link href="/" className="site-nav__brand" onClick={close}>HI</Link>
+              <button
+                type="button"
+                className="site-nav__drawer-close"
+                aria-label="Close menu"
+                onClick={close}
+              >
+                ✕
+              </button>
+            </div>
+
+            <nav className="site-nav__drawer-nav" aria-label="Primary">
+              {NAV_ITEMS.map((item) => (
+                <div key={item.label} className="site-nav__drawer-group">
+                  <Link href={item.href} className="site-nav__drawer-group-title" onClick={close}>
+                    {item.label}
+                    {item.children && <span style={{ fontSize: '12px', color: '#c0c0b8' }}>›</span>}
+                  </Link>
+                  {item.children && (
+                    <div className="site-nav__drawer-group-children">
+                      {item.children.map((child) =>
+                        child.comingSoon ? (
+                          <span key={child.label}>
+                            {child.label}
+                            <span className="site-nav__badge">Soon</span>
+                          </span>
+                        ) : child.external ? (
+                          <a key={child.href} href={child.href} target="_blank" rel="noopener noreferrer" onClick={close}>
+                            {child.label}
+                          </a>
+                        ) : (
+                          <Link key={child.href} href={child.href} onClick={close}>
+                            {child.label}
+                          </Link>
+                        )
+                      )}
+                    </div>
                   )}
                 </div>
-              )}
-            </div>
-          ))}
-        </nav>
+              ))}
+            </nav>
 
-        <Link href="/newsletter" className="site-nav__cta site-nav__cta--drawer" onClick={close}
-          style={{ display: 'block', textAlign: 'center', marginTop: '24px' }}>
-          Get the newsletter
-        </Link>
-      </div>
-    </nav>
+            <Link href="/newsletter" className="site-nav__cta site-nav__cta--drawer" onClick={close}
+              style={{ display: 'block', textAlign: 'center', marginTop: '24px' }}>
+              Get the newsletter
+            </Link>
+          </div>
+        </>,
+        document.body
+      )}
+    </>
   )
 }

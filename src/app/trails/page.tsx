@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import TrailCard from '@/components/TrailCard'
 import { trails } from '@/lib/trails'
@@ -12,7 +11,6 @@ export const metadata: Metadata = {
 export default function TrailsPage() {
   return (
     <>
-      <Nav />
       <main>
         {/* Hero */}
         <section className="section-pad" style={{ background: 'var(--navy)' }}>
