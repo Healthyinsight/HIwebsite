@@ -1,8 +1,11 @@
 import Footer from '@/components/Footer'
+import { mdxComponents } from '@/components/MdxComponents'
 import { articles } from '@/lib/articles'
+import { getArticleContent } from '@/lib/articleContent'
 import { pillarGradients } from '@/lib/pillars'
 import { getTrailForArticle } from '@/lib/trails'
 import Link from 'next/link'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
@@ -33,6 +36,9 @@ export default async function ArticlePage(
   if (!article) notFound()
 
   const badge = article.evidenceStrength ? evidenceBadgeStyles[article.evidenceStrength] : null
+
+  // ── MDX body (null when no local file exists; falls back to Beehiiv CTA) ─
+  const mdxBody = getArticleContent(slug)
 
   // ── Trail context ────────────────────────────────────────────────────────
   const trailContext = getTrailForArticle(slug)
@@ -152,23 +158,29 @@ export default async function ArticlePage(
               </div>
             )}
 
-            {/* Full article link */}
-            <div style={{ background: 'var(--cream)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px', display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-              <span style={{ fontSize: '20px', flexShrink: 0 }}>📖</span>
-              <div>
-                <div style={{ fontSize: '12px', fontWeight: 500, color: 'var(--blue-mid)', marginBottom: '4px', letterSpacing: '0.5px' }}>FULL ARTICLE</div>
-                <p style={{ fontSize: '14px', color: 'var(--navy)', lineHeight: 1.6, marginBottom: '12px' }}>
-                  This article was originally published on Beehiiv. Click below to read the full version with all sources and evidence ratings.
-                </p>
-                <a
-                  href={article.beehiivUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ display: 'inline-block', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '10px 22px', fontSize: '13px', fontWeight: 500, textDecoration: 'none' }}>
-                  Read full article
-                </a>
+            {/* Article body — MDX when available, Beehiiv CTA fallback otherwise */}
+            {mdxBody ? (
+              <article style={{ marginBottom: '36px' }}>
+                <MDXRemote source={mdxBody} components={mdxComponents} />
+              </article>
+            ) : (
+              <div style={{ background: 'var(--cream)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px', display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                <span style={{ fontSize: '20px', flexShrink: 0 }}>📖</span>
+                <div>
+                  <div style={{ fontSize: '12px', fontWeight: 500, color: 'var(--blue-mid)', marginBottom: '4px', letterSpacing: '0.5px' }}>FULL ARTICLE</div>
+                  <p style={{ fontSize: '14px', color: 'var(--navy)', lineHeight: 1.6, marginBottom: '12px' }}>
+                    This article was originally published on Beehiiv. Click below to read the full version with all sources and evidence ratings.
+                  </p>
+                  <a
+                    href={article.beehiivUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ display: 'inline-block', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '10px 22px', fontSize: '13px', fontWeight: 500, textDecoration: 'none' }}>
+                    Read full article
+                  </a>
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Evidence module */}
             {badge && (
