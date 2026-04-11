@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer'
 import TrailProgress from '@/components/TrailProgress'
-import { trails, getTrailById } from '@/lib/trails'
+import { trails, getTrailById, calcMaxTrailIQ } from '@/lib/trails'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
@@ -38,10 +38,8 @@ export default async function TrailPage(
   if (!trail || trail.comingSoon) notFound()
 
   const gradient = PILLAR_GRADIENTS[trail.pillar] ?? PILLAR_GRADIENTS.recovery
-  const totalIQ = trail.steps.reduce((sum, s) => {
-    const pts: Record<number, number> = { 1: 5, 2: 8, 3: 10, 4: 15, 5: 20 }
-    return sum + (pts[s.level] ?? 5)
-  }, 0) + 25 // +25 trail complete bonus
+  const totalIQ = calcMaxTrailIQ(trail)
+  const activeStepCount = trail.steps.filter(s => !s.comingSoon && !!s.slug).length
 
   return (
     <>
@@ -55,7 +53,7 @@ export default async function TrailPage(
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
               <span style={{ fontSize: '32px', lineHeight: 1 }}>{trail.badge.emoji}</span>
               <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>
-                {trail.pillar} trail · {trail.steps.length} articles · up to {totalIQ} IQ
+                {trail.pillar} trail · {activeStepCount} articles · up to {totalIQ} IQ
               </span>
             </div>
             <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'white', letterSpacing: '-0.5px', marginBottom: '12px' }}>

@@ -1,52 +1,67 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Trail, TrailStep } from '@/lib/trails'
-import { calcEvidenceIQ } from '@/lib/trails'
+import { IQ_POINTS } from '@/lib/trails'
+import { useEvidenceIQ } from '@/hooks/useEvidenceIQ'
 import EmailWall from './EmailWall'
 
-const IQ_PER_LEVEL: Record<number, number> = { 1: 5, 2: 8, 3: 10, 4: 15, 5: 20 }
-
 export default function TrailProgress({ trail }: { trail: Trail }) {
-  const [completedSlugs, setCompletedSlugs] = useState<string[]>([])
+  const {
+    isHydrated,
+    completedArticles,
+    evidenceIQ,
+    markArticleRead,
+    isArticleRead,
+  } = useEvidenceIQ()
+
   const [emailUnlocked, setEmailUnlocked] = useState(false)
   const [pendingStep, setPendingStep] = useState<TrailStep | null>(null)
   const [showBadge, setShowBadge] = useState(false)
-  const [evidenceIQ, setEvidenceIQ] = useState(0)
 
+  // Read the (separate-concern) email gate flag once on hydration.
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hi_completed_slugs')
-      const slugs: string[] = raw ? JSON.parse(raw) : []
-      setCompletedSlugs(slugs)
       setEmailUnlocked(localStorage.getItem('hi_email_unlocked') === 'true')
-      setEvidenceIQ(calcEvidenceIQ(slugs))
-    } catch {}
+    } catch {
+      // ignore
+    }
   }, [])
 
-  const markComplete = useCallback((step: TrailStep) => {
-    setCompletedSlugs(prev => {
-      const alreadyDone = prev.includes(step.slug)
-      const updated = alreadyDone ? prev : [...prev, step.slug]
+  // Active (non-comingSoon) steps drive completion + counts.
+  const activeSteps = trail.steps.filter(s => !s.comingSoon && !!s.slug)
+  const activeSlugSet = new Set(activeSteps.map(s => s.slug))
+  const doneCount = activeSteps.filter(s => isArticleRead(s.slug)).length
+  const trailComplete = activeSteps.length > 0 && doneCount === activeSteps.length
 
-      if (!alreadyDone) {
-        try {
-          localStorage.setItem('hi_completed_slugs', JSON.stringify(updated))
-          const newIQ = calcEvidenceIQ(updated)
-          setEvidenceIQ(newIQ)
-          // Check trail completion
-          const trailSlugs = new Set(trail.steps.map(s => s.slug))
-          const doneInTrail = updated.filter(s => trailSlugs.has(s)).length
-          if (doneInTrail === trail.steps.length) setShowBadge(true)
-        } catch {}
-      }
+  // Fire badge modal exactly when the trail transitions from incomplete → complete.
+  // We wait until after hydration so a returning user who has already finished the
+  // trail isn't shown the modal on every page load.
+  const wasCompleteRef = useRef<boolean | null>(null)
+  useEffect(() => {
+    if (!isHydrated) return
+    if (wasCompleteRef.current === null) {
+      wasCompleteRef.current = trailComplete
+      return
+    }
+    if (trailComplete && !wasCompleteRef.current) {
+      setShowBadge(true)
+    }
+    wasCompleteRef.current = trailComplete
+    // Only re-evaluate when underlying read state changes; trailComplete is derived from it.
+  }, [completedArticles, isHydrated, trailComplete])
 
+  function markComplete(step: TrailStep) {
+    if (step.slug && activeSlugSet.has(step.slug)) {
+      markArticleRead(step.slug)
+    }
+    if (step.beehiivUrl) {
       window.open(step.beehiivUrl, '_blank', 'noopener,noreferrer')
-      return updated
-    })
-  }, [trail.steps])
+    }
+  }
 
   function handleStepClick(step: TrailStep) {
+    if (step.comingSoon || !step.slug) return
     if (step.level >= 4 && !emailUnlocked) {
       setPendingStep(step)
       return
@@ -55,15 +70,13 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
   }
 
   function handleEmailWallSuccess() {
+    // EmailWall persists `hi_email_unlocked` itself; we just mirror to local state.
     setEmailUnlocked(true)
     if (pendingStep) {
       markComplete(pendingStep)
       setPendingStep(null)
     }
   }
-
-  const completedSet = new Set(completedSlugs)
-  const doneCount = trail.steps.filter(s => completedSet.has(s.slug)).length
 
   return (
     <>
@@ -85,10 +98,10 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
             Evidence IQ
           </div>
           <div style={{ fontSize: '13px', color: '#444440', fontWeight: 300 }}>
-            {doneCount} of {trail.steps.length} articles read
+            {doneCount} of {activeSteps.length} articles read
           </div>
         </div>
-        {doneCount === trail.steps.length && (
+        {trailComplete && (
           <div style={{ marginLeft: 'auto', fontSize: '22px' }}>{trail.badge.emoji}</div>
         )}
       </div>
@@ -96,14 +109,16 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
       {/* Step list */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         {trail.steps.map((step, i) => {
-          const done = completedSet.has(step.slug)
-          const locked = step.level >= 4 && !emailUnlocked
-          const iqPoints = IQ_PER_LEVEL[step.level] ?? 5
+          const isComing = !!step.comingSoon || !step.slug
+          const done = !isComing && isArticleRead(step.slug)
+          const locked = !isComing && step.level >= 4 && !emailUnlocked
+          const iqPoints = step.evidenceIQPoints ?? IQ_POINTS[step.level] ?? 50
 
           return (
             <button
-              key={step.slug}
+              key={`${step.slug || 'coming'}-${i}`}
               onClick={() => handleStepClick(step)}
+              disabled={isComing}
               style={{
                 display: 'flex',
                 alignItems: 'flex-start',
@@ -112,17 +127,18 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
                 border: done ? '1px solid var(--blue-pale)' : '1px solid var(--sand)',
                 borderRadius: '14px',
                 padding: '15px 16px',
-                cursor: 'pointer',
+                cursor: isComing ? 'default' : 'pointer',
                 textAlign: 'left',
                 fontFamily: 'DM Sans, sans-serif',
                 width: '100%',
+                opacity: isComing ? 0.6 : 1,
                 transition: 'border-color 0.15s',
               }}
               onMouseEnter={e => {
-                if (!done) (e.currentTarget as HTMLElement).style.borderColor = '#A8CCE0'
+                if (!done && !isComing) (e.currentTarget as HTMLElement).style.borderColor = '#A8CCE0'
               }}
               onMouseLeave={e => {
-                if (!done) (e.currentTarget as HTMLElement).style.borderColor = 'var(--sand)'
+                if (!done && !isComing) (e.currentTarget as HTMLElement).style.borderColor = 'var(--sand)'
               }}
             >
               {/* Step indicator */}
@@ -149,27 +165,34 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
                   <span style={{ fontSize: '14px', fontWeight: 400, color: '#1A1A17', lineHeight: 1.3 }}>
                     {step.title}
                   </span>
+                  {isComing && (
+                    <span style={{ fontSize: '10px', background: '#F0EDE8', borderRadius: '100px', padding: '2px 8px', color: '#8A8A80', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                      Coming soon
+                    </span>
+                  )}
                   {locked && (
                     <span style={{ fontSize: '10px', background: '#F0EDE8', borderRadius: '100px', padding: '2px 8px', color: '#8A8A80', whiteSpace: 'nowrap', flexShrink: 0 }}>
                       🔒 L{step.level}
                     </span>
                   )}
-                  {!locked && step.level >= 4 && (
+                  {!locked && !isComing && step.level >= 4 && (
                     <span style={{ fontSize: '10px', background: 'var(--sky)', borderRadius: '100px', padding: '2px 7px', color: 'var(--blue-mid)', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0 }}>
                       L{step.level}
                     </span>
                   )}
                 </div>
                 <div style={{ fontSize: '12px', color: '#8A8A80', display: 'flex', gap: '10px' }}>
-                  <span>{step.readingTime}</span>
-                  <span>+{iqPoints} IQ</span>
+                  {step.readingTime && <span>{step.readingTime}</span>}
+                  {!isComing && <span>+{iqPoints} IQ</span>}
                 </div>
               </div>
 
               {/* Arrow */}
-              <span style={{ color: locked ? '#C8C8C0' : 'var(--blue-mid)', fontSize: '15px', flexShrink: 0, alignSelf: 'center', marginLeft: '4px' }}>
-                →
-              </span>
+              {!isComing && (
+                <span style={{ color: locked ? '#C8C8C0' : 'var(--blue-mid)', fontSize: '15px', flexShrink: 0, alignSelf: 'center', marginLeft: '4px' }}>
+                  →
+                </span>
+              )}
             </button>
           )
         })}

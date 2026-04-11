@@ -283,35 +283,92 @@ export const TRAIL_COMPLETE_BONUS = 200
 export const MASTERBADGE_BONUS = 500
 
 /**
- * Calculates total Evidence IQ from completed article slugs.
- * Uses step.evidenceIQPoints if set, else falls back to IQ_POINTS[level].
- * Trail completion bonuses are added when all active (non-comingSoon) steps are done.
+ * Calculates total Evidence IQ from completed article slugs and (optionally)
+ * passed quiz slugs. Uses step.evidenceIQPoints / step.quizPoints when set,
+ * else falls back to IQ_POINTS / QUIZ_POINTS by level.
+ *
+ * Bonuses applied:
+ *  - +TRAIL_COMPLETE_BONUS once per fully-read trail (all active steps in readSlugs)
+ *  - +MASTERBADGE_BONUS when every active (non-comingSoon) trail is fully read
  */
-export function calcEvidenceIQ(completedSlugs: string[]): number {
-  const slugSet = new Set(completedSlugs)
-  const counted = new Set<string>()
+export function calcEvidenceIQ(readSlugs: string[], quizSlugs: string[] = []): number {
+  const readSet = new Set(readSlugs)
+  const quizSet = new Set(quizSlugs)
+  const countedRead = new Set<string>()
+  const countedQuiz = new Set<string>()
   let total = 0
 
-  // Points per unique completed article (skip comingSoon placeholder steps)
+  // Per-article points (skip comingSoon placeholder steps)
   for (const trail of trails) {
     for (const step of trail.steps) {
       if (!step.slug || step.comingSoon) continue
-      if (slugSet.has(step.slug) && !counted.has(step.slug)) {
+      if (readSet.has(step.slug) && !countedRead.has(step.slug)) {
         total += step.evidenceIQPoints ?? IQ_POINTS[step.level] ?? 50
-        counted.add(step.slug)
+        countedRead.add(step.slug)
+      }
+      if (quizSet.has(step.slug) && !countedQuiz.has(step.slug)) {
+        total += step.quizPoints ?? QUIZ_POINTS[step.level] ?? 25
+        countedQuiz.add(step.slug)
       }
     }
   }
 
-  // Trail completion bonuses — only when all active steps are done
+  // Trail completion bonuses — only when all active steps are read
+  const completedTrailIds = getCompletedTrails(readSlugs)
+  total += completedTrailIds.length * TRAIL_COMPLETE_BONUS
+
+  // Masterbadge — every active trail completed
+  if (hasMasterBadge(completedTrailIds)) {
+    total += MASTERBADGE_BONUS
+  }
+
+  return total
+}
+
+/**
+ * Returns the IDs of every active (non-comingSoon) trail whose active steps
+ * are all present in `readSlugs`.
+ */
+export function getCompletedTrails(readSlugs: string[]): string[] {
+  const readSet = new Set(readSlugs)
+  const completed: string[] = []
   for (const trail of trails) {
     if (trail.comingSoon) continue
     const activeSteps = trail.steps.filter(s => !s.comingSoon && s.slug)
     if (activeSteps.length === 0) continue
-    if (activeSteps.every(s => slugSet.has(s.slug))) {
-      total += TRAIL_COMPLETE_BONUS
+    if (activeSteps.every(s => readSet.has(s.slug))) {
+      completed.push(trail.id)
     }
   }
+  return completed
+}
 
+/**
+ * Returns true when every active (non-comingSoon) trail has been completed.
+ * Phase 5 uses the simplest interpretation of "all pillar trails";
+ * the masterbadge semantics can be tightened later without touching consumers.
+ */
+export function hasMasterBadge(completedTrailIds: string[]): boolean {
+  const completedSet = new Set(completedTrailIds)
+  const activeIds = trails.filter(t => !t.comingSoon).map(t => t.id)
+  if (activeIds.length === 0) return false
+  return activeIds.every(id => completedSet.has(id))
+}
+
+/**
+ * Maximum Evidence IQ achievable in a single trail = sum of read points +
+ * sum of quiz points + the trail completion bonus (when the trail has any
+ * active steps). Used by the trail page hero "up to N IQ" label.
+ */
+export function calcMaxTrailIQ(trail: Trail): number {
+  let total = 0
+  let hasActiveSteps = false
+  for (const step of trail.steps) {
+    if (step.comingSoon || !step.slug) continue
+    hasActiveSteps = true
+    total += step.evidenceIQPoints ?? IQ_POINTS[step.level] ?? 50
+    total += step.quizPoints ?? QUIZ_POINTS[step.level] ?? 25
+  }
+  if (hasActiveSteps) total += TRAIL_COMPLETE_BONUS
   return total
 }
