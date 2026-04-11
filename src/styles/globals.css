@@ -648,6 +648,7 @@ body {
 .site-nav__badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -655,8 +656,8 @@ body {
   background: var(--sky);
   color: var(--navy);
   border-radius: 100px;
-  padding: 2px 6px;
-  line-height: 1.3;
+  padding: 3px 7px 3px 6px; /* extra right compensates letter-spacing optical gap */
+  line-height: 1;
   flex-shrink: 0;
 }
 
