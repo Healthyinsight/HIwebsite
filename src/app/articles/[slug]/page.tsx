@@ -1,3 +1,4 @@
+import ArticleProgressSection from '@/components/ArticleProgressSection'
 import Footer from '@/components/Footer'
 import { mdxComponents } from '@/components/MdxComponents'
 import { articles } from '@/lib/articles'
@@ -201,6 +202,16 @@ export default async function ArticlePage(
                   </p>
                 )}
               </div>
+            )}
+
+            {/* Phase 6: Interactive progress — mark read + micro-quiz.
+                Sleep-for-performance only for now; Phase 7 rolls out broadly. */}
+            {slug === 'sleep-for-performance' && (
+              <ArticleProgressSection
+                slug={slug}
+                level={article.level ?? 1}
+                trail={trail}
+              />
             )}
 
             <hr style={{ border: 'none', borderTop: '1px solid var(--sand)', margin: '48px 0' }} />

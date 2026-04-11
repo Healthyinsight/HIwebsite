@@ -3,19 +3,23 @@
 import { useState, type CSSProperties } from 'react'
 
 /**
- * MicroQuiz — standalone Phase 4 component.
+ * MicroQuiz — sleep-themed dummy quiz with optional Phase 6 wiring.
  *
- * Hardcoded sleep-themed dummy data so the component can be visually verified
- * end-to-end. No localStorage, no points persistence, no network — Phase 5/6
- * will refactor this to accept questions/points as props and wire side-effects.
+ * Standalone mode (no props): self-contained, "Continue learning" on the pass
+ * screen resets the quiz. Used for isolated visual verification.
+ *
+ * Wired mode (`onPass` provided): when the user reaches the pass screen and
+ * clicks "Continue learning", `onPass()` is invoked instead of resetting.
+ * The parent is expected to persist the pass, unmount the quiz, and render a
+ * locked confirmation in its place.
  *
  * Behaviour:
  * - One question at a time
- * - First click reveals feedback (correct ✓ + explanation, or wrong ✕ + explanation)
+ * - First click locks the answer and reveals feedback
  * - "Next question" advances after the user has seen the feedback
  * - On the last question, "See result" reveals pass/fail
- * - Pass = ≥70% (so 2 of 3 here). Pass screen shows "+25 Evidence IQ"
- * - Fail screen has "Try again" → resets the entire quiz
+ * - Pass = ≥70% (so 2 of 3 here). Pass screen shows "+{points} Evidence IQ"
+ * - Fail screen has "Try again" → always resets internally
  */
 
 type Question = {
@@ -54,10 +58,19 @@ const QUESTIONS: Question[] = [
   },
 ]
 
-const PASS_POINTS = 25
+const DEFAULT_PASS_POINTS = 25
 const PASS_THRESHOLD = 0.7
 
-export default function MicroQuiz() {
+interface MicroQuizProps {
+  /** Called once when the user clicks "Continue learning" on the pass screen.
+   *  When provided, replaces the default reset behaviour — the parent should
+   *  persist the pass and unmount the quiz in response. */
+  onPass?: () => void
+  /** Points displayed on the pass screen. Defaults to 25 for standalone use. */
+  points?: number
+}
+
+export default function MicroQuiz({ onPass, points = DEFAULT_PASS_POINTS }: MicroQuizProps = {}) {
   const [qIndex, setQIndex] = useState(0)
   const [selected, setSelected] = useState<number | null>(null)
   const [results, setResults] = useState<boolean[]>([])
@@ -102,7 +115,12 @@ export default function MicroQuiz() {
     return (
       <div style={cardStyle}>
         {passed ? (
-          <PassView score={score} total={total} onContinue={reset} />
+          <PassView
+            score={score}
+            total={total}
+            points={points}
+            onContinue={onPass ?? reset}
+          />
         ) : (
           <FailView score={score} total={total} threshold={passThreshold} onRetry={reset} />
         )}
@@ -256,7 +274,17 @@ export default function MicroQuiz() {
 
 // ── Result subcomponents ───────────────────────────────────────────────────
 
-function PassView({ score, total, onContinue }: { score: number; total: number; onContinue: () => void }) {
+function PassView({
+  score,
+  total,
+  points,
+  onContinue,
+}: {
+  score: number
+  total: number
+  points: number
+  onContinue: () => void
+}) {
   return (
     <div style={{ textAlign: 'center', padding: '8px 0' }}>
       <div style={{ fontSize: '52px', marginBottom: '12px', lineHeight: 1 }}>🧠</div>
@@ -283,7 +311,7 @@ function PassView({ score, total, onContinue }: { score: number; total: number; 
           lineHeight: 1.2,
         }}
       >
-        +{PASS_POINTS} Evidence IQ
+        +{points} Evidence IQ
       </h3>
       <p style={{ fontSize: '13px', color: '#666660', lineHeight: 1.6, marginBottom: '20px', fontWeight: 300 }}>
         You scored {score} of {total}. Knowledge locked in.
