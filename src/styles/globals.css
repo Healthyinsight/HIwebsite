@@ -58,6 +58,7 @@ body {
 .heading-hero {
   font-size: clamp(2rem, 8vw, 3.25rem);
   line-height: 1.08;
+  overflow-wrap: break-word;
 }
 
 .heading-section {
@@ -70,6 +71,10 @@ body {
   display: grid;
   gap: clamp(24px, 6vw, 64px);
   align-items: center;
+}
+
+.grid-hero > * {
+  min-width: 0;
 }
 
 @media (min-width: 641px) {
@@ -338,6 +343,7 @@ body {
   background: rgba(250, 250, 247, 0.94);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(15, 42, 63, 0.08);
+  padding-top: env(safe-area-inset-top);
 }
 
 .site-nav__bar {
@@ -505,7 +511,7 @@ body {
   background: rgba(250, 250, 247, 0.98);
   backdrop-filter: blur(10px);
   border-left: 1px solid rgba(15, 42, 63, 0.08);
-  padding: 20px clamp(16px, 4vw, 24px);
+  padding: max(20px, env(safe-area-inset-top)) clamp(16px, 4vw, 24px) max(20px, env(safe-area-inset-bottom));
   transform: translateX(100%);
   transition: transform 0.2s ease;
   overflow-y: auto;
