@@ -149,12 +149,13 @@ export const trails: Trail[] = [
         quizPoints: 25,
       },
       {
-        slug: '',
+        slug: 'strength-progression-5-steps-to-sustainable-gains',
         level: 2,
-        title: 'Strength Progression: 5 Steps',
-        readingTime: '',
-        beehiivUrl: '',
-        comingSoon: true,
+        title: 'Strength Progression: 5 Steps to Sustainable Gains',
+        readingTime: '14 min',
+        beehiivUrl: 'https://www.healthyinsight.eu/p/strength-progression-5-steps-to-sustainable-gains',
+        evidenceIQPoints: 60,
+        quizPoints: 35,
       },
       {
         slug: 'intermediate-strength-training',

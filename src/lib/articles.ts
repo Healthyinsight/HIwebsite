@@ -182,6 +182,28 @@ export const articles: ArticleMeta[] = [
     ],
   },
   {
+    slug: 'strength-progression-5-steps-to-sustainable-gains',
+    title: 'Strength Progression: 5 Steps to Sustainable Gains',
+    excerpt:
+      'How to progress load, reps, and sets without burning out: one progression lane at a time, RIR on big lifts, simple logging, and proactive deloads.',
+    pillar: 'motion',
+    format: 'guide',
+    level: 2,
+    readingTime: '14 min',
+    publishedAt: '2025-11-18',
+    beehiivUrl: 'https://www.healthyinsight.eu/p/strength-progression-5-steps-to-sustainable-gains',
+    evidenceStrength: 'strong',
+    evidenceNote:
+      'Progressive overload, volume thresholds, and autoregulated effort (RIR) are among the most replicated principles in resistance training research.',
+    tldr: [
+      'Progress one variable at a time: load or reps—not both in the same week.',
+      'On main lifts, leave ~2–4 reps in reserve most of the time for sustainable gains.',
+      'Aim for ~12–20 sets per muscle group per week across 3–4 sessions.',
+      'Deload every 4–6 weeks or when recovery signals slip (~40–50% volume cut or ~30% load reduction).',
+      'Log sets × reps × load (plus RIR) so you know what actually moved the needle.',
+    ],
+  },
+  {
     slug: 'strength-for-runners',
     title: 'Strength for Runners: 5 Exercises for Running Economy and Durability',
     excerpt: 'Strength training makes you a better runner. The evidence on which exercises actually improve running economy and reduce injury risk.',
