@@ -1,4 +1,5 @@
 import ArticleProgressSection from '@/components/ArticleProgressSection'
+import ArticleScrollUI from '@/components/ArticleScrollUI'
 import Footer from '@/components/Footer'
 import { mdxComponents } from '@/components/MdxComponents'
 import { articles } from '@/lib/articles'
@@ -57,6 +58,7 @@ export default async function ArticlePage(
 
   return (
     <>
+      <ArticleScrollUI />
       <main>
         {/* Header */}
         <div className="section-pad" style={{ background: pillarGradients[article.pillar], paddingBottom: 'clamp(48px, 10vw, 84px)', position: 'relative', overflow: 'hidden' }}>
