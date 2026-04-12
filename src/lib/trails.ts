@@ -48,7 +48,7 @@ export const trails: Trail[] = [
         slug: 'sleep-and-recovery-guide-for-athletes',
         level: 2,
         title: 'Sleep and Recovery: A Guide for Athletes',
-        readingTime: '21 min',
+        readingTime: '15 min',
         beehiivUrl: 'https://www.healthyinsight.eu/p/sleep-and-recovery-a-guide-for-athletes',
         evidenceIQPoints: 60,
         quizPoints: 35,
