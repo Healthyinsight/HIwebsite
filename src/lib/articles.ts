@@ -297,6 +297,27 @@ export const articles: ArticleMeta[] = [
     evidenceNote: 'Interval structures are well-studied; optimal periodization sequencing has fewer RCTs and more observational data from elite sport.',
   },
   {
+    slug: 'vo2-max-why-this-number-predicts-longevity',
+    title: 'VO₂ Max: Why This Number Predicts How Long You\'ll Live',
+    excerpt:
+      'What VO₂ max measures, why it tracks longevity and performance, and how to start improving it with simple cardio and one weekly hard session.',
+    pillar: 'motion',
+    format: 'guide',
+    level: 1,
+    readingTime: '9 min',
+    publishedAt: '2025-10-20',
+    evidenceStrength: 'strong',
+    evidenceNote:
+      'Cardiorespiratory fitness and mortality links are supported by very large meta-analyses and cohorts; effect sizes depend on fitness classification and confounding adjustment.',
+    tldr: [
+      'VO₂ max reflects how much oxygen you can use during hard effort — a practical marker of heart–lung–muscle fitness.',
+      'Higher fitness is consistently associated with lower all-cause mortality in population studies.',
+      'Most beginners can raise VO₂ max meaningfully within weeks by combining mostly easy aerobic work with a small dose of hard intervals.',
+      'You can start without lab testing: build a repeatable easy baseline, then add one interval session per week.',
+      'Small improvements add up; consistency matters more than gadget precision.',
+    ],
+  },
+  {
     slug: 'how-to-improve-vo2max-12-week-plan',
     title: 'How to Improve Your VO2 Max: The 12-Week Plan',
     excerpt: 'A structured 12-week plan to meaningfully improve your VO2 max. Built on the evidence for training frequency, intensity distribution, and progression.',

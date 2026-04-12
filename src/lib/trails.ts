@@ -87,11 +87,12 @@ export const trails: Trail[] = [
     badge: { emoji: '🫁', label: 'VO₂ Max Specialist' },
     steps: [
       {
-        slug: '',
+        slug: 'vo2-max-why-this-number-predicts-longevity',
         level: 1,
-        title: 'VO₂ Max: Why This Number?',
-        readingTime: '',
-        comingSoon: true,
+        title: 'VO₂ Max: Why This Number Predicts How Long You\'ll Live',
+        readingTime: '9 min',
+        evidenceIQPoints: 45,
+        quizPoints: 25,
       },
       {
         slug: 'how-to-improve-vo2max-12-week-plan',
