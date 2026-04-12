@@ -54,10 +54,11 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
   }, [completedArticles, isHydrated, trailComplete])
 
   function markComplete(step: TrailStep) {
-    if (step.slug && activeSlugSet.has(step.slug)) {
+    if (!step.slug) return
+    if (activeSlugSet.has(step.slug)) {
       markArticleRead(step.slug)
-      router.push(`/articles/${step.slug}`)
     }
+    router.push(`/articles/${step.slug}`)
   }
 
   function handleStepClick(step: TrailStep) {

@@ -164,6 +164,32 @@ export default async function ArticlePage(
               <article style={{ marginBottom: '36px' }}>
                 <MDXRemote source={mdxBody} components={mdxComponents} />
               </article>
+            ) : article.externalArticleUrl ? (
+              <div style={{ background: 'var(--cream)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px' }}>
+                <p style={{ fontSize: '14px', color: 'var(--navy)', lineHeight: 1.6, margin: '0 0 16px' }}>
+                  The full write-up (including sources and evidence ratings) for this topic is available at the link below. On-site MDX will replace this once migration is complete.
+                </p>
+                <a
+                  href={article.externalArticleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    color: 'white',
+                    background: 'var(--blue-mid)',
+                    textDecoration: 'none',
+                    padding: '12px 22px',
+                    borderRadius: '100px',
+                  }}
+                >
+                  Read full article
+                  <span style={{ fontSize: '12px', opacity: 0.9 }} aria-hidden>↗</span>
+                </a>
+              </div>
             ) : (
               <div style={{ background: 'var(--cream)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px' }}>
                 <p style={{ fontSize: '14px', color: 'var(--navy)', lineHeight: 1.6, margin: 0 }}>

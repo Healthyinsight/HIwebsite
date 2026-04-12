@@ -14,6 +14,8 @@ export interface ArticleMeta {
   tldr?: string[]
   evidenceStrength?: 'strong' | 'mixed' | 'early'
   evidenceNote?: string
+  /** When local MDX is missing, optional URL to the full article (e.g. legacy host). */
+  externalArticleUrl?: string
 }
 
 export const articles: ArticleMeta[] = [
@@ -243,6 +245,7 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '11 min',
     publishedAt: '2025-11-06',
+    externalArticleUrl: 'https://healthyinsight.beehiiv.com/articles/strength-for-runners',
     evidenceStrength: 'strong',
     evidenceNote: 'Heavy strength training improving running economy is well-replicated; the 5 exercises are chosen based on biomechanical specificity to running.',
     tldr: [
