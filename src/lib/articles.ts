@@ -312,6 +312,28 @@ export const articles: ArticleMeta[] = [
       'Test at week 0, 6, and 12 to track progress (time trial or lab test).',
     ],
   },
+  {
+    slug: 'set-goals-that-last-smart-goals-lasting-motivation',
+    title: 'Set Goals That Last: A Guide to SMART Goals and Lasting Motivation',
+    excerpt:
+      'Build sustainable habits with evidence-based goal-setting strategies that work long-term.',
+    pillar: 'mindset',
+    format: 'guide',
+    level: 2,
+    readingTime: '15 min',
+    publishedAt: '2025-10-06',
+    beehiivUrl: 'https://www.healthyinsight.eu/p/set-goals-that-last-smart-goals-lasting-motivation',
+    evidenceStrength: 'strong',
+    evidenceNote:
+      'Implementation intentions and SMART-style specificity are supported by large meta-analyses and goal-setting theory; exact adherence percentages vary by population and measurement.',
+    tldr: [
+      'Pair one outcome goal with two concrete process goals you control day to day.',
+      'Make process goals SMART, then add if–then plans for likely obstacles.',
+      'Track weekly process completion (aim for ~80%+) and review for small tweaks—not wholesale resets.',
+      'Celebrate completed sessions; identity-based framing (“I am a runner”) helps you return after misses.',
+      'Give a new structure at least ~4 weeks before major changes—habits form on a long tail.',
+    ],
+  },
 ]
 
 export function getArticlesByPillar(pillar: Pillar) {

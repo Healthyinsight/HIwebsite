@@ -228,23 +228,24 @@ export const trails: Trail[] = [
     ],
   },
 
-  // ─── 6. Goal Setting Mastery Trail (coming soon) ──────────────────────────
+  // ─── 6. Goal Setting Mastery Trail ────────────────────────────────────────
   {
     id: 'goalSettingMastery',
     pillar: 'mindset',
     name: 'Goal Setting Mastery Trail',
     tagline: 'The psychology of sustainable change',
-    description: 'Evidence-based strategies for setting and achieving goals that actually last. Articles coming soon.',
+    description:
+      'Evidence-based strategies for setting and achieving goals that actually last—SMART structure, implementation intentions, and feedback loops that outlast motivation swings.',
     badge: { emoji: '🧠', label: 'Mental Edge' },
-    comingSoon: true,
     steps: [
       {
-        slug: '',
+        slug: 'set-goals-that-last-smart-goals-lasting-motivation',
         level: 2,
-        title: 'Set Goals That Last',
-        readingTime: '',
-        beehiivUrl: '',
-        comingSoon: true,
+        title: 'Set Goals That Last: A Guide to SMART Goals and Lasting Motivation',
+        readingTime: '15 min',
+        beehiivUrl: 'https://www.healthyinsight.eu/p/set-goals-that-last-smart-goals-lasting-motivation',
+        evidenceIQPoints: 60,
+        quizPoints: 35,
       },
     ],
   },
