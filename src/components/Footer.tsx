@@ -45,9 +45,9 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div>
-            <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: '19px', color: 'var(--navy)', display: 'block', marginBottom: '12px' }}>
+            <Link href="/" style={{ fontFamily: 'DM Serif Display, serif', fontSize: '19px', color: 'var(--navy)', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>
               Healthy Insight
-            </span>
+            </Link>
             <p style={{ fontSize: '14px', lineHeight: 1.7, maxWidth: '265px', color: '#8A8A80', fontWeight: 300, marginBottom: '0' }}>
               Evidence-based health insights for people who want to make better decisions. Grounded in physiology, not marketing.
             </p>
