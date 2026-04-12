@@ -125,7 +125,10 @@ export default function Nav() {
           <ul className="site-nav__links">
             {NAV_ITEMS.map((item) => (
               <li key={item.label} className="site-nav__top">
-                <Link href={item.href}>{item.label}</Link>
+                <Link
+                  href={item.href}
+                  style={item.label === 'Trails' ? { color: 'var(--blue-mid)', fontWeight: 600 } : undefined}
+                >{item.label}</Link>
                 {item.children && (
                   <div className="site-nav__dropdown" role="menu">
                     {item.children.map((child) => (

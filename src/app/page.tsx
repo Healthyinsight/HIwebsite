@@ -3,10 +3,13 @@ import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
 import { getLatestArticles } from '@/lib/articles'
 import NewsletterForm from '@/components/NewsletterForm'
+import TrailCard from '@/components/TrailCard'
+import { getActiveTrails } from '@/lib/trails'
 import Link from 'next/link'
 
 export default function HomePage() {
   const latest = getLatestArticles(6)
+  const featuredTrails = getActiveTrails().slice(0, 3)
 
   return (
     <>
@@ -31,9 +34,9 @@ export default function HomePage() {
               </p>
 
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <Link href="/articles"
+                <Link href="/trails"
                   style={{ background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '14px 30px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
-                  Start here
+                  Start a learning trail
                 </Link>
                 <Link href="/newsletter"
                   style={{ background: 'transparent', color: 'var(--navy)', border: '1px solid rgba(15,42,63,0.25)', borderRadius: '100px', padding: '14px 26px', fontSize: '14px', textDecoration: 'none' }}>
@@ -90,6 +93,29 @@ export default function HomePage() {
             </Fragment>
           ))}
         </div>
+
+        {/* LEARNING TRAILS */}
+        <section style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+          <div className="container">
+            <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              Learning Trails
+              <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
+            </div>
+            <div className="section-heading-row" style={{ marginBottom: '36px' }}>
+              <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', margin: 0 }}>
+                Build your knowledge,<br />step by step.
+              </h2>
+              <Link href="/trails" style={{ fontSize: '14px', color: 'var(--navy)', fontWeight: 500, textDecoration: 'none', flexShrink: 0 }}>
+                View all trails →
+              </Link>
+            </div>
+            <div className="grid-three">
+              {featuredTrails.map(trail => (
+                <TrailCard key={trail.id} trail={trail} />
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* PILLARS */}
         <section style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
