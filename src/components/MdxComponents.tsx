@@ -10,7 +10,7 @@ export const mdxComponents = {
     <h2
       style={{
         fontFamily: 'DM Serif Display, serif',
-        fontSize: '1.75rem',
+        fontSize: 'clamp(1.35rem, 5vw, 1.75rem)',
         fontWeight: 400,
         color: 'var(--navy)',
         lineHeight: 1.25,
@@ -25,7 +25,7 @@ export const mdxComponents = {
     <h3
       style={{
         fontFamily: 'DM Sans, sans-serif',
-        fontSize: '1.25rem',
+        fontSize: 'clamp(1.1rem, 4vw, 1.25rem)',
         fontWeight: 500,
         color: 'var(--navy)',
         lineHeight: 1.4,
@@ -38,7 +38,7 @@ export const mdxComponents = {
   p: (props: ComponentPropsWithoutRef<'p'>) => (
     <p
       style={{
-        fontSize: '17px',
+        fontSize: 'clamp(15px, 4.5vw, 17px)',
         lineHeight: 1.75,
         color: '#444440',
         fontWeight: 300,
@@ -68,7 +68,7 @@ export const mdxComponents = {
   li: (props: ComponentPropsWithoutRef<'li'>) => (
     <li
       style={{
-        fontSize: '16px',
+        fontSize: 'clamp(14px, 4vw, 16px)',
         lineHeight: 1.7,
         color: '#444440',
         fontWeight: 300,
