@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Learning Trails — Healthy Insight',
-  description: 'Structured paths through health and performance science. Progress from fundamentals to advanced research at your own pace, earn Evidence IQ as you go.',
+  description: 'Structured paths through health and performance science. Progress from fundamentals to advanced research at your own pace, earn HiQ points as you go.',
 }
 
 export default function TrailsPage() {
@@ -22,7 +22,7 @@ export default function TrailsPage() {
               Your path through the evidence
             </h1>
             <p style={{ fontSize: 'clamp(15px, 2.5vw, 18px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, fontWeight: 300, maxWidth: '560px', margin: 0 }}>
-              Each trail is a curated sequence of articles that builds from foundations to the research frontier. Read in order, earn Evidence IQ, unlock advanced content.
+              Each trail is a curated sequence of articles that builds from foundations to the research frontier. Read in order, earn HiQ points, unlock advanced content.
             </p>
           </div>
         </section>
@@ -33,7 +33,7 @@ export default function TrailsPage() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '28px 48px' }}>
               {[
                 { icon: '📖', text: 'Click any article step to open it on Healthy Insight — it\'s automatically marked complete.' },
-                { icon: '⚡', text: 'Each article earns Evidence IQ points. Advanced articles earn more.' },
+                { icon: '⚡', text: 'Each quiz earns HiQ points. Advanced articles earn more.' },
                 { icon: '🔒', text: 'Level 4+ articles require a free email unlock — one time, for all trails.' },
               ].map(({ icon, text }) => (
                 <div key={icon} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', maxWidth: '300px' }}>

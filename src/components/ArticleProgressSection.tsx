@@ -86,7 +86,7 @@ export default function ArticleProgressSection({ slug, level, trail }: Props) {
         <EarnedCard
           icon="🧠"
           title="Micro-quiz passed"
-          subtitle={`+${totalPoints} Evidence IQ earned`}
+          subtitle={`+${totalPoints} HiQ points earned`}
           tone="blue"
         />
       ) : (
@@ -206,7 +206,7 @@ function CompactSummary({ totalPoints }: { totalPoints: number }) {
           You&apos;ve mastered this article
         </div>
         <div style={{ fontSize: '16px', color: 'var(--navy)', fontWeight: 500 }}>
-          +{totalPoints} Evidence IQ earned
+          +{totalPoints} HiQ points earned
         </div>
       </div>
     </div>
@@ -282,7 +282,7 @@ function BadgeModal({
             fontWeight: 300,
           }}
         >
-          You completed the {trail.name} trail. Your Evidence IQ is now{' '}
+          You completed the {trail.name} trail. Your Health IQ is now{' '}
           <strong style={{ color: 'var(--blue-pale)' }}>{evidenceIQ}</strong>.
         </p>
         <button

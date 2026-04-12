@@ -311,7 +311,7 @@ function PassView({
           lineHeight: 1.2,
         }}
       >
-        +{points} Evidence IQ
+        +{points} HiQ points
       </h3>
       <p style={{ fontSize: '13px', color: '#666660', lineHeight: 1.6, marginBottom: '20px', fontWeight: 300 }}>
         You scored {score} of {total}. Knowledge locked in.
