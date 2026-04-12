@@ -13,7 +13,6 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
     isHydrated,
     completedArticles,
     evidenceIQ,
-    markArticleRead,
     isArticleRead,
   } = useEvidenceIQ()
 
@@ -32,7 +31,6 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
 
   // Active (non-comingSoon) steps drive completion + counts.
   const activeSteps = trail.steps.filter(s => !s.comingSoon && !!s.slug)
-  const activeSlugSet = new Set(activeSteps.map(s => s.slug))
   const doneCount = activeSteps.filter(s => isArticleRead(s.slug)).length
   const trailComplete = activeSteps.length > 0 && doneCount === activeSteps.length
 
@@ -55,9 +53,6 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
 
   function markComplete(step: TrailStep) {
     if (!step.slug) return
-    if (activeSlugSet.has(step.slug)) {
-      markArticleRead(step.slug)
-    }
     router.push(`/articles/${step.slug}`)
   }
 
