@@ -688,7 +688,7 @@ body {
 }
 
 .site-nav__drawer-group-children a,
-.site-nav__drawer-group-children span {
+.site-nav__drawer-group-children > span {
   display: flex;
   align-items: center;
   gap: 8px;
