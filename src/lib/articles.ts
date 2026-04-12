@@ -10,7 +10,6 @@ export interface ArticleMeta {
   level?: number
   readingTime: string
   publishedAt: string
-  beehiivUrl: string
   featured?: boolean
   tldr?: string[]
   evidenceStrength?: 'strong' | 'mixed' | 'early'
@@ -26,7 +25,6 @@ export const articles: ArticleMeta[] = [
     format: 'guide',
     readingTime: '13 min',
     publishedAt: '2026-03-01',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/fuel-during-training-when-you-need-carbs-and-how-to-avoid-energy-crashes',
     featured: true,
     evidenceStrength: 'strong',
     evidenceNote: 'Multiple RCTs confirm carbohydrate timing benefits for sessions over 60 minutes; shorter sessions show no significant benefit.',
@@ -47,7 +45,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '11 min',
     publishedAt: '2025-12-22',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/fitness-recovery-what-works-vs-what-s-hype',
     evidenceStrength: 'strong',
     evidenceNote: 'Hierarchy of recovery interventions is well-supported; gadget-based tools (ice baths, compression) show modest and inconsistent effects.',
     tldr: [
@@ -67,7 +64,6 @@ export const articles: ArticleMeta[] = [
     level: 3,
     readingTime: '16 min',
     publishedAt: '2025-12-14',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/intermediate-strength-training-optimize-your-training-variables',
     evidenceStrength: 'strong',
     evidenceNote: 'Progressive overload and volume manipulation are among the most replicated findings in strength training research.',
   },
@@ -81,7 +77,6 @@ export const articles: ArticleMeta[] = [
     level: 4,
     readingTime: '11 min',
     publishedAt: '2025-12-19',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/advanced-strength-programming-blocks-fatigue-deloads',
     evidenceStrength: 'mixed',
     evidenceNote:
       'Block structure and deloads are standard in applied strength coaching; optimal sequencing for every individual has less RCT evidence than foundational overload principles.',
@@ -102,7 +97,6 @@ export const articles: ArticleMeta[] = [
     level: 5,
     readingTime: '30 min',
     publishedAt: '2025-12-13',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/sleep-extension-performance-protocols-a-deep-dive',
     evidenceStrength: 'mixed',
     evidenceNote: 'The Stanford basketball study is compelling but small (n=11). Replication across sports and populations is limited.',
     tldr: [
@@ -122,7 +116,6 @@ export const articles: ArticleMeta[] = [
     level: 3,
     readingTime: '13 min',
     publishedAt: '2025-12-11',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/managing-sleep-around-competition-travel',
     evidenceStrength: 'mixed',
     evidenceNote: 'Competition-eve sleep disruption is well-documented; intervention strategies have less rigorous evidence but are widely applied.',
   },
@@ -135,7 +128,6 @@ export const articles: ArticleMeta[] = [
     level: 4,
     readingTime: '19 min',
     publishedAt: '2025-12-07',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/sleep-quality-optimization-beyond-duration',
     evidenceStrength: 'strong',
     evidenceNote: 'Sleep architecture research is robust; interventions like temperature, light, and timing are well-replicated across large cohorts.',
   },
@@ -149,7 +141,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '15 min',
     publishedAt: '2025-12-14',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/sleep-and-recovery-a-guide-for-athletes',
     evidenceStrength: 'mixed',
     evidenceNote:
       'Caffeine timing, light exposure, and training scheduling are well supported; jet lag tactics and wearable/HRV rules blend consensus guidance with smaller or field-based evidence.',
@@ -171,7 +162,6 @@ export const articles: ArticleMeta[] = [
     level: 1,
     readingTime: '13 min',
     publishedAt: '2025-12-03',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/sleep-for-performance',
     evidenceStrength: 'strong',
     evidenceNote: 'The relationship between sleep duration and performance is one of the most robust in sports science.',
     tldr: [
@@ -191,7 +181,6 @@ export const articles: ArticleMeta[] = [
     level: 1,
     readingTime: '20 min',
     publishedAt: '2025-11-12',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/strength-training-for-beginners',
     featured: true,
     evidenceStrength: 'strong',
     evidenceNote: 'Beginner adaptations to resistance training are among the most studied phenomena in exercise science, with very consistent findings.',
@@ -213,7 +202,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '14 min',
     publishedAt: '2025-11-18',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/strength-progression-5-steps-to-sustainable-gains',
     evidenceStrength: 'strong',
     evidenceNote:
       'Progressive overload, volume thresholds, and autoregulated effort (RIR) are among the most replicated principles in resistance training research.',
@@ -235,7 +223,6 @@ export const articles: ArticleMeta[] = [
     level: 1,
     readingTime: '14 min',
     publishedAt: '2025-10-14',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/build-your-running-base-8-12-weeks-to-sustainable-speed',
     evidenceStrength: 'strong',
     evidenceNote:
       'Polarized intensity distribution, conservative volume progression, and heavy strength training for runners are well supported in systematic reviews and cohort data.',
@@ -256,7 +243,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '11 min',
     publishedAt: '2025-11-06',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/strength-for-runners-5-exercises-for-running-economy-and-durability',
     evidenceStrength: 'strong',
     evidenceNote: 'Heavy strength training improving running economy is well-replicated; the 5 exercises are chosen based on biomechanical specificity to running.',
     tldr: [
@@ -276,7 +262,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '8 min',
     publishedAt: '2025-11-05',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/zone-2-reality-check-the-myth-buster-checklist',
     evidenceStrength: 'strong',
     evidenceNote: 'Zone 2 training benefits are well-established; the common misconceptions addressed here are directly contradicted by lactate threshold research.',
     tldr: [
@@ -296,7 +281,6 @@ export const articles: ArticleMeta[] = [
     level: 4,
     readingTime: '22 min',
     publishedAt: '2025-10-29',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/vo2-max-physiological-mechanisms-research-frontiers',
     evidenceStrength: 'strong',
     evidenceNote: 'The central vs. peripheral limitation debate is well-researched; stroke volume and mitochondrial density data are from large, replicated studies.',
   },
@@ -309,7 +293,6 @@ export const articles: ArticleMeta[] = [
     level: 4,
     readingTime: '16 min',
     publishedAt: '2025-10-28',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/vo2-max-training-advanced-protocols-periodization',
     evidenceStrength: 'mixed',
     evidenceNote: 'Interval structures are well-studied; optimal periodization sequencing has fewer RCTs and more observational data from elite sport.',
   },
@@ -322,7 +305,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '11 min',
     publishedAt: '2025-10-20',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/how-to-improve-your-vo2-max-the-12-week-plan-e1ac',
     featured: true,
     evidenceStrength: 'strong',
     evidenceNote: 'VO2 max improvements of 5–15% over 12 weeks are well-documented with the polarized training approach used in this plan.',
@@ -344,7 +326,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '15 min',
     publishedAt: '2025-10-06',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/set-goals-that-last-smart-goals-lasting-motivation',
     evidenceStrength: 'strong',
     evidenceNote:
       'Implementation intentions and SMART-style specificity are supported by large meta-analyses and goal-setting theory; exact adherence percentages vary by population and measurement.',

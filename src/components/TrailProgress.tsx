@@ -1,12 +1,14 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import type { Trail, TrailStep } from '@/lib/trails'
 import { IQ_POINTS } from '@/lib/trails'
 import { useEvidenceIQ } from '@/hooks/useEvidenceIQ'
 import EmailWall from './EmailWall'
 
 export default function TrailProgress({ trail }: { trail: Trail }) {
+  const router = useRouter()
   const {
     isHydrated,
     completedArticles,
@@ -54,9 +56,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
   function markComplete(step: TrailStep) {
     if (step.slug && activeSlugSet.has(step.slug)) {
       markArticleRead(step.slug)
-    }
-    if (step.beehiivUrl) {
-      window.open(step.beehiivUrl, '_blank', 'noopener,noreferrer')
+      router.push(`/articles/${step.slug}`)
     }
   }
 

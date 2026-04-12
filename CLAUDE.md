@@ -10,7 +10,7 @@
 - **Styling:** Inline styles only — no Tailwind, no CSS modules (except `globals.css` for CSS custom properties and font imports)
 - **Fonts:** DM Serif Display (headings) + DM Sans (body) via Google Fonts
 - **Email:** Resend API via `/api/subscribe` route
-- **Content host:** Beehiiv (articles redirect there; no local MDX rendering)
+- **Content:** Article metadata in `src/lib/articles.ts`; article bodies in `content/articles/*.mdx` (rendered with `next-mdx-remote`)
 - **Deployment:** Vercel (auto-deploys from `master`)
 - **Language:** English throughout
 
@@ -54,11 +54,11 @@
 - `'use client'` directive required for any component using `useState` or event handlers
 - `generateStaticParams` + `generateMetadata` for all dynamic routes
 - Server components export `metadata` at the top; only pass data down to client components
-- Article slugs are kebab-case strings; `beehiivUrl` is the external link target
+- Article slugs are kebab-case strings; optional local MDX at `content/articles/{slug}.mdx`
 - `ArticleFormat` values: `'guide' | 'protocol' | 'myth-bust' | 'review' | 'checklist'`
 - `Pillar` values: `'motion' | 'recovery' | 'nutrition' | 'mindset'`
 - All new articles added to `src/lib/articles.ts` `articles` array — this is the single source for article data
-- `next-mdx-remote` is installed but unused; do not add MDX rendering
+- `next-mdx-remote` renders article MDX bodies; do not add MDX rendering via other pipelines without an explicit decision
 
 ## Workflow & session context
 

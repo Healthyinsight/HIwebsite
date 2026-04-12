@@ -32,7 +32,7 @@ export default function TrailsPage() {
           <div className="container">
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '28px 48px' }}>
               {[
-                { icon: '📖', text: 'Click any article step to read it on Beehiiv — it\'s automatically marked complete.' },
+                { icon: '📖', text: 'Click any article step to open it on Healthy Insight — it\'s automatically marked complete.' },
                 { icon: '⚡', text: 'Each article earns Evidence IQ points. Advanced articles earn more.' },
                 { icon: '🔒', text: 'Level 4+ articles require a free email unlock — one time, for all trails.' },
               ].map(({ icon, text }) => (

@@ -38,7 +38,7 @@ export default async function ArticlePage(
 
   const badge = article.evidenceStrength ? evidenceBadgeStyles[article.evidenceStrength] : null
 
-  // ── MDX body (null when no local file exists; falls back to Beehiiv CTA) ─
+  // ── MDX body (null when no local file exists) ─
   const mdxBody = getArticleContent(slug)
 
   // ── Trail context ────────────────────────────────────────────────────────
@@ -159,27 +159,24 @@ export default async function ArticlePage(
               </div>
             )}
 
-            {/* Article body — MDX when available, Beehiiv CTA fallback otherwise */}
+            {/* Article body — MDX when available */}
             {mdxBody ? (
               <article style={{ marginBottom: '36px' }}>
                 <MDXRemote source={mdxBody} components={mdxComponents} />
               </article>
             ) : (
-              <div style={{ background: 'var(--cream)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px', display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-                <span style={{ fontSize: '20px', flexShrink: 0 }}>📖</span>
-                <div>
-                  <div style={{ fontSize: '12px', fontWeight: 500, color: 'var(--blue-mid)', marginBottom: '4px', letterSpacing: '0.5px' }}>FULL ARTICLE</div>
-                  <p style={{ fontSize: '14px', color: 'var(--navy)', lineHeight: 1.6, marginBottom: '12px' }}>
-                    This article was originally published on Beehiiv. Click below to read the full version with all sources and evidence ratings.
-                  </p>
-                  <a
-                    href={article.beehiivUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ display: 'inline-block', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '10px 22px', fontSize: '13px', fontWeight: 500, textDecoration: 'none' }}>
-                    Read full article
-                  </a>
-                </div>
+              <div style={{ background: 'var(--cream)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px' }}>
+                <p style={{ fontSize: '14px', color: 'var(--navy)', lineHeight: 1.6, margin: 0 }}>
+                  Full article text for this page is not available yet. Browse{' '}
+                  <Link href="/articles" style={{ color: 'var(--blue-mid)', fontWeight: 500 }}>
+                    all articles
+                  </Link>
+                  {' '}or return to the{' '}
+                  <Link href="/" style={{ color: 'var(--blue-mid)', fontWeight: 500 }}>
+                    homepage
+                  </Link>
+                  .
+                </p>
               </div>
             )}
 
