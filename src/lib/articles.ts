@@ -226,6 +226,28 @@ export const articles: ArticleMeta[] = [
     ],
   },
   {
+    slug: 'build-your-running-base-8-12-weeks-to-sustainable-speed',
+    title: 'Build Your Running Base: 8–12 Weeks to Sustainable Speed',
+    excerpt:
+      'Build a strong aerobic base in 8–12 weeks with the right mix of low-intensity running, strength work, and recovery.',
+    pillar: 'motion',
+    format: 'guide',
+    level: 1,
+    readingTime: '14 min',
+    publishedAt: '2025-10-14',
+    beehiivUrl: 'https://www.healthyinsight.eu/p/build-your-running-base-8-12-weeks-to-sustainable-speed',
+    evidenceStrength: 'strong',
+    evidenceNote:
+      'Polarized intensity distribution, conservative volume progression, and heavy strength training for runners are well supported in systematic reviews and cohort data.',
+    tldr: [
+      'Keep ~80% of running easy (Zone 1–2); use true quality sparingly for the remaining ~20%.',
+      'Progress total weekly volume by about 10% per week; deload every 4th week (~20–30% less time).',
+      'Two full-body strength sessions weekly support economy and injury resilience.',
+      'After 8–12 weeks, you can shift slightly toward VO₂-style intervals while keeping one long easy run.',
+      'Prioritize 7–9 hours sleep—adaptation happens in recovery, not only in the session.',
+    ],
+  },
+  {
     slug: 'strength-for-runners',
     title: 'Strength for Runners: 5 Exercises for Running Economy and Durability',
     excerpt: 'Strength training makes you a better runner. The evidence on which exercises actually improve running economy and reduce injury risk.',

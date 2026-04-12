@@ -188,12 +188,13 @@ export const trails: Trail[] = [
     badge: { emoji: '🏃', label: 'Running Specialist' },
     steps: [
       {
-        slug: '',
-        level: 2,
-        title: 'Build Your Running Base',
-        readingTime: '',
-        beehiivUrl: '',
-        comingSoon: true,
+        slug: 'build-your-running-base-8-12-weeks-to-sustainable-speed',
+        level: 1,
+        title: 'Build Your Running Base: 8–12 Weeks to Sustainable Speed',
+        readingTime: '14 min',
+        beehiivUrl: 'https://www.healthyinsight.eu/p/build-your-running-base-8-12-weeks-to-sustainable-speed',
+        evidenceIQPoints: 50,
+        quizPoints: 25,
       },
       {
         slug: 'strength-for-runners',
