@@ -76,7 +76,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
 
   return (
     <>
-      {/* Evidence IQ bar */}
+      {/* Health IQ bar */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -91,7 +91,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
         </div>
         <div>
           <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '2px' }}>
-            Evidence IQ
+            Health IQ
           </div>
           <div style={{ fontSize: '13px', color: '#444440', fontWeight: 300 }}>
             {doneCount} of {activeSteps.length} articles read
@@ -179,7 +179,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
                 </div>
                 <div style={{ fontSize: '12px', color: '#8A8A80', display: 'flex', gap: '10px' }}>
                   {step.readingTime && <span>{step.readingTime}</span>}
-                  {!isComing && <span>+{iqPoints} IQ</span>}
+                  {!isComing && <span>+{iqPoints} HiQ</span>}
                 </div>
               </div>
 
@@ -212,7 +212,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
               {trail.badge.label}
             </h3>
             <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, marginBottom: '28px', fontWeight: 300 }}>
-              You completed the {trail.name} trail. Your Evidence IQ is now <strong style={{ color: 'var(--blue-pale)' }}>{evidenceIQ}</strong>.
+              You completed the {trail.name} trail. Your Health IQ is now <strong style={{ color: 'var(--blue-pale)' }}>{evidenceIQ}</strong>.
             </p>
             <button
               onClick={() => setShowBadge(false)}

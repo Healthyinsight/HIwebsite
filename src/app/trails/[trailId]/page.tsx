@@ -53,7 +53,7 @@ export default async function TrailPage(
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
               <span style={{ fontSize: '32px', lineHeight: 1 }}>{trail.badge.emoji}</span>
               <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>
-                {trail.pillar} trail · {activeStepCount} articles · up to {totalIQ} IQ
+                {trail.pillar} trail · {activeStepCount} articles · up to {totalIQ} HiQ
               </span>
             </div>
             <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'white', letterSpacing: '-0.5px', marginBottom: '12px' }}>
