@@ -166,6 +166,15 @@ export const trails: Trail[] = [
         evidenceIQPoints: 75,
         quizPoints: 50,
       },
+      {
+        slug: 'advanced-strength-programming-blocks-fatigue-deloads',
+        level: 4,
+        title: 'Advanced Strength Programming: Blocks, Fatigue, and Deloads',
+        readingTime: '11 min',
+        beehiivUrl: 'https://www.healthyinsight.eu/p/advanced-strength-programming-blocks-fatigue-deloads',
+        evidenceIQPoints: 90,
+        quizPoints: 60,
+      },
     ],
   },
 

@@ -72,6 +72,28 @@ export const articles: ArticleMeta[] = [
     evidenceNote: 'Progressive overload and volume manipulation are among the most replicated findings in strength training research.',
   },
   {
+    slug: 'advanced-strength-programming-blocks-fatigue-deloads',
+    title: 'Advanced Strength Programming: Blocks, Fatigue, and Deloads',
+    excerpt:
+      'Block periodization, fatigue signals, and proactive deloads: how to organize training so volume builds capacity, intensity expresses strength, and you peak instead of burning out.',
+    pillar: 'motion',
+    format: 'guide',
+    level: 4,
+    readingTime: '11 min',
+    publishedAt: '2025-12-19',
+    beehiivUrl: 'https://www.healthyinsight.eu/p/advanced-strength-programming-blocks-fatigue-deloads',
+    evidenceStrength: 'mixed',
+    evidenceNote:
+      'Block structure and deloads are standard in applied strength coaching; optimal sequencing for every individual has less RCT evidence than foundational overload principles.',
+    tldr: [
+      'Match exercise selection to the competition lift and your weakest link—then protect quality on those lifts.',
+      'Run accumulation → intensification → realization blocks, each with one primary job.',
+      'Track a few fatigue signals (performance, bar speed, soreness, sleep, readiness)—when several drift, adjust.',
+      'Deload proactively (~40–50% fewer sets or reduced load) before performance collapses.',
+      'Progress one variable per block (load, reps, or sets) so you know what worked.',
+    ],
+  },
+  {
     slug: 'sleep-extension-performance-protocols',
     title: 'Sleep Extension and Performance Protocols: A Deep Dive',
     excerpt: 'The science of sleep extension for athletes. What the Stanford basketball study actually showed and how to apply it.',
