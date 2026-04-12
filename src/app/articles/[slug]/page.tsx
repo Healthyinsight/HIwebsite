@@ -161,7 +161,7 @@ export default async function ArticlePage(
 
             {/* Article body — MDX when available */}
             {mdxBody ? (
-              <article style={{ marginBottom: '36px' }}>
+              <article style={{ marginBottom: '36px', maxWidth: '68ch' }}>
                 <MDXRemote source={mdxBody} components={mdxComponents} />
               </article>
             ) : article.externalArticleUrl ? (
@@ -227,14 +227,50 @@ export default async function ArticlePage(
               </div>
             )}
 
-            {/* Phase 6: Interactive progress — mark read + micro-quiz.
-                Sleep-for-performance only for now; Phase 7 rolls out broadly. */}
-            {slug === 'sleep-for-performance' && (
+            {/* Interactive progress — mark read + micro-quiz for all trail articles */}
+            {trail !== null && (
               <ArticleProgressSection
                 slug={slug}
                 level={article.level ?? 1}
                 trail={trail}
               />
+            )}
+
+            {/* Continue learning CTA — shown before the separator for trail articles */}
+            {trail !== null && (
+              <div style={{ background: 'var(--navy)', borderRadius: '20px', padding: 'clamp(22px, 5vw, 32px)', marginBottom: '36px' }}>
+                {nextStep ? (
+                  <>
+                    <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '10px' }}>
+                      Continue learning — {trail.name} · Level {article.level ?? 1}
+                    </div>
+                    <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
+                      {nextStep.title}
+                    </div>
+                    <Link
+                      href={`/articles/${nextStep.slug}`}
+                      style={{ display: 'inline-block', background: 'var(--blue-mid)', color: 'white', borderRadius: '100px', padding: '12px 26px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}
+                    >
+                      Next article →
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '10px' }}>
+                      Trail complete — {trail.name}
+                    </div>
+                    <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
+                      You&apos;ve finished every article in this trail.
+                    </div>
+                    <Link
+                      href={`/trails/${trail.id}`}
+                      style={{ display: 'inline-block', background: 'var(--blue-mid)', color: 'white', borderRadius: '100px', padding: '12px 26px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}
+                    >
+                      Back to trail →
+                    </Link>
+                  </>
+                )}
+              </div>
             )}
 
             <hr style={{ border: 'none', borderTop: '1px solid var(--sand)', margin: '48px 0' }} />
@@ -265,14 +301,14 @@ export default async function ArticlePage(
                 </div>
               </div>
             ) : (
-              /* Solo article navigation */
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              /* Solo article — trails discovery CTA */
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
                 <Link href="/articles" style={{ fontSize: '14px', color: 'var(--navy)', fontWeight: 500, textDecoration: 'none' }}>
                   ← All articles
                 </Link>
-                <span style={{ fontSize: '13px', color: '#8A8A80', fontStyle: 'italic' }}>
-                  By Filip Berggren, founder of Healthy Insight
-                </span>
+                <Link href="/trails" style={{ fontSize: '14px', color: 'var(--blue-mid)', fontWeight: 500, textDecoration: 'none' }}>
+                  Discover a learning trail →
+                </Link>
               </div>
             )}
           </div>
