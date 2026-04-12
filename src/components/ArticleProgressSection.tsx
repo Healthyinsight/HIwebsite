@@ -7,24 +7,16 @@ import type { Trail } from '@/lib/trails'
 import { IQ_POINTS, QUIZ_POINTS } from '@/lib/trails'
 
 /**
- * ArticleProgressSection — Phase 6 interactive footer for the article page.
+ * ArticleProgressSection — interactive footer for the article page.
  *
- * Owns three pieces of state, all driven by `useEvidenceIQ`:
- *  1. "Mark as read" button / "Article marked as read" confirmation
- *     → calls `markArticleRead(slug)` on click, awards +{IQ_POINTS[level]}
- *  2. `<MicroQuiz>` / "Micro-quiz passed" confirmation
- *     → `onPass` calls `markQuizPassed(slug)`, awards +{QUIZ_POINTS[level]}
- *  3. Trail completion badge modal
- *     → fires once when the user transitions from "trail incomplete" to
- *       "trail complete" during a session (i.e. marks the last step read)
+ * Points are awarded ONLY when the user passes the micro-quiz:
+ *  - `onPass` calls both `markArticleRead(slug)` and `markQuizPassed(slug)`,
+ *    awarding IQ_POINTS[level] + QUIZ_POINTS[level] in a single action.
  *
- * Returning users whose localStorage already shows BOTH read+quiz-passed get
- * a compact "+75 IQ earned" summary instead of the active prompts. Users who
- * transition to both-done during the session see the two earned cards side
- * by side (celebration), not the compact summary.
+ * Returning users whose localStorage already shows quiz-passed get a compact
+ * summary instead of the active quiz prompt.
  *
- * SSR-safe: renders a min-height placeholder until `isHydrated` flips true,
- * so the server-rendered HTML and the first client pass don't conflict.
+ * SSR-safe: renders nothing until `isHydrated` flips true.
  */
 
 interface Props {
@@ -43,17 +35,17 @@ export default function ArticleProgressSection({ slug, level, trail }: Props) {
     markQuizPassed,
   } = useEvidenceIQ()
 
-  // "Page load" snapshot: compact summary only for returning users.
-  const [initialBothDone, setInitialBothDone] = useState(false)
+  // Compact summary for returning users who already passed the quiz.
+  const [initialQuizDone, setInitialQuizDone] = useState(false)
   const initializedRef = useRef(false)
 
   useEffect(() => {
     if (!isHydrated || initializedRef.current) return
     initializedRef.current = true
-    if (completedArticles.includes(slug) && passedQuizzes.includes(slug)) {
-      setInitialBothDone(true)
+    if (passedQuizzes.includes(slug)) {
+      setInitialQuizDone(true)
     }
-  }, [isHydrated, slug, completedArticles, passedQuizzes])
+  }, [isHydrated, slug, passedQuizzes])
 
   // Trail completion badge: fire exactly once on incomplete → complete transition.
   const [showBadge, setShowBadge] = useState(false)
@@ -76,44 +68,29 @@ export default function ArticleProgressSection({ slug, level, trail }: Props) {
     wasCompleteRef.current = isComplete
   }, [completedArticles, isHydrated, trail])
 
-  // SSR and first client render use the default ("not yet interacted") state so
-  // React hydration matches. After `useEffect` flips `isHydrated`, we switch to
-  // the real localStorage-backed state — returning users see a brief flash of
-  // the prompt before the earned cards take over, which we accept in exchange
-  // for a clean server-rendered HTML payload.
-  const articleRead = isHydrated && completedArticles.includes(slug)
   const quizPassed = isHydrated && passedQuizzes.includes(slug)
   const readPoints = IQ_POINTS[level] ?? 50
   const quizPoints = QUIZ_POINTS[level] ?? 25
+  const totalPoints = readPoints + quizPoints
+
+  function handleQuizPass() {
+    markArticleRead(slug)
+    markQuizPassed(slug)
+  }
 
   return (
     <div style={{ marginBottom: '36px' }}>
-      {initialBothDone ? (
-        <CompactSummary totalPoints={readPoints + quizPoints} />
+      {initialQuizDone ? (
+        <CompactSummary totalPoints={totalPoints} />
+      ) : quizPassed ? (
+        <EarnedCard
+          icon="🧠"
+          title="Micro-quiz passed"
+          subtitle={`+${totalPoints} Evidence IQ earned`}
+          tone="blue"
+        />
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {articleRead ? (
-            <EarnedCard
-              icon="✓"
-              title="Article marked as read"
-              subtitle={`+${readPoints} Evidence IQ earned`}
-              tone="green"
-            />
-          ) : (
-            <MarkReadButton points={readPoints} onClick={() => markArticleRead(slug)} />
-          )}
-
-          {quizPassed ? (
-            <EarnedCard
-              icon="🧠"
-              title="Micro-quiz passed"
-              subtitle={`+${quizPoints} Evidence IQ earned`}
-              tone="blue"
-            />
-          ) : (
-            <MicroQuiz onPass={() => markQuizPassed(slug)} points={quizPoints} />
-          )}
-        </div>
+        <MicroQuiz onPass={handleQuizPass} points={totalPoints} />
       )}
 
       {showBadge && trail && (
@@ -124,72 +101,6 @@ export default function ArticleProgressSection({ slug, level, trail }: Props) {
 }
 
 // ── Subcomponents ────────────────────────────────────────────────────────────
-
-function MarkReadButton({ points, onClick }: { points: number; onClick: () => void }) {
-  return (
-    <div
-      style={{
-        background: 'var(--navy)',
-        borderRadius: '16px',
-        padding: '22px 26px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '16px',
-        flexWrap: 'wrap',
-      }}
-    >
-      <div style={{ minWidth: 0, flex: 1 }}>
-        <div
-          style={{
-            fontSize: '10px',
-            fontWeight: 700,
-            letterSpacing: '1.5px',
-            textTransform: 'uppercase',
-            color: 'var(--blue-pale)',
-            marginBottom: '5px',
-          }}
-        >
-          Read IQ · +{points}
-        </div>
-        <div
-          style={{
-            fontFamily: 'DM Serif Display, serif',
-            fontSize: '22px',
-            fontWeight: 400,
-            color: 'white',
-            lineHeight: 1.2,
-            marginBottom: '3px',
-          }}
-        >
-          Finished reading?
-        </div>
-        <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)', fontWeight: 300 }}>
-          Mark this article complete to earn +{points} Evidence IQ.
-        </div>
-      </div>
-      <button
-        type="button"
-        onClick={onClick}
-        style={{
-          background: 'white',
-          color: 'var(--navy)',
-          border: 'none',
-          borderRadius: '100px',
-          padding: '12px 26px',
-          fontSize: '14px',
-          fontWeight: 500,
-          cursor: 'pointer',
-          fontFamily: 'DM Sans, sans-serif',
-          whiteSpace: 'nowrap',
-          flexShrink: 0,
-        }}
-      >
-        Mark as read
-      </button>
-    </div>
-  )
-}
 
 function EarnedCard({
   icon,

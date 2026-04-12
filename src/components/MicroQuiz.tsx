@@ -59,7 +59,7 @@ const QUESTIONS: Question[] = [
 ]
 
 const DEFAULT_PASS_POINTS = 25
-const PASS_THRESHOLD = 0.7
+const PASS_THRESHOLD = 1.0
 
 interface MicroQuizProps {
   /** Called once when the user clicks "Continue learning" on the pass screen.
