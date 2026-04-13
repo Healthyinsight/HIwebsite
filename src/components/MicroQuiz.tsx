@@ -1,67 +1,36 @@
 'use client'
 
 import { useState, type CSSProperties } from 'react'
+import type { Question } from '@/lib/quizzes'
 
 /**
- * MicroQuiz — sleep-themed dummy quiz with optional Phase 6 wiring.
+ * MicroQuiz — article quiz component.
  *
- * Standalone mode (no props): self-contained, "Continue learning" on the pass
- * screen resets the quiz. Used for isolated visual verification.
+ * Requires a `questions` prop (from QUIZ_BY_SLUG in @/lib/quizzes) so each
+ * article shows its own question set. The parent should pass `key={slug}` to
+ * ensure state resets when navigating between articles.
  *
- * Wired mode (`onPass` provided): when the user reaches the pass screen and
- * clicks "Continue learning", `onPass()` is invoked instead of resetting.
- * The parent is expected to persist the pass, unmount the quiz, and render a
- * locked confirmation in its place.
+ * Standalone mode (no onPass/questions): uses a fallback empty array and
+ * resets on "Continue learning". Used for isolated visual verification.
+ *
+ * Wired mode (`onPass` provided): invokes `onPass()` on the pass screen CTA.
+ * The parent persists the pass and unmounts the quiz in response.
  *
  * Behaviour:
  * - One question at a time
  * - First click locks the answer and reveals feedback
  * - "Next question" advances after the user has seen the feedback
  * - On the last question, "See result" reveals pass/fail
- * - Pass = ≥70% (so 2 of 3 here). Pass screen shows "+{points} Evidence IQ"
+ * - Pass = 100% correct. Pass screen shows "+{points} HiQ points"
  * - Fail screen has "Try again" → always resets internally
  */
-
-type Question = {
-  question: string
-  options: string[]
-  correctIndex: number
-  explanation: string
-}
-
-const QUESTIONS: Question[] = [
-  {
-    question: 'How many hours of sleep does the international consensus recommend for adult athletes?',
-    options: ['5–6 hours', '6–7 hours', '7–9 hours', '10+ hours'],
-    correctIndex: 2,
-    explanation:
-      'A panel of 24 sleep researchers reviewed over 1,000 studies and recommends 7–9 hours per night for adult athletes — with most needing the upper end.',
-  },
-  {
-    question: 'In the Stanford basketball sleep extension study, how much did sprint times improve when players slept 10 hours per night?',
-    options: ['No change', 'About 0.7 seconds', 'About 2 seconds', 'About 5 seconds'],
-    correctIndex: 1,
-    explanation:
-      'When Stanford basketball players extended sleep to 10 hours/night for 5–7 weeks, sprint times improved by 0.7 seconds and shooting accuracy went up by 9%.',
-  },
-  {
-    question: 'Why should you cut caffeine after roughly 2 PM if you want quality sleep?',
-    options: [
-      'Caffeine increases REM sleep',
-      'Caffeine has a 5–6 hour half-life, so it is still active at bedtime',
-      'Caffeine raises melatonin too early',
-      'Caffeine blocks growth hormone release',
-    ],
-    correctIndex: 1,
-    explanation:
-      'Caffeine has a 5–6 hour half-life. A 4 PM coffee leaves roughly half the dose active at 10 PM, reducing deep sleep quality even if you fall asleep fine.',
-  },
-]
 
 const DEFAULT_PASS_POINTS = 25
 const PASS_THRESHOLD = 1.0
 
 interface MicroQuizProps {
+  /** Article-specific questions from QUIZ_BY_SLUG. */
+  questions: Question[]
   /** Called once when the user clicks "Continue learning" on the pass screen.
    *  When provided, replaces the default reset behaviour — the parent should
    *  persist the pass and unmount the quiz in response. */
@@ -70,14 +39,14 @@ interface MicroQuizProps {
   points?: number
 }
 
-export default function MicroQuiz({ onPass, points = DEFAULT_PASS_POINTS }: MicroQuizProps = {}) {
+export default function MicroQuiz({ questions, onPass, points = DEFAULT_PASS_POINTS }: MicroQuizProps) {
   const [qIndex, setQIndex] = useState(0)
   const [selected, setSelected] = useState<number | null>(null)
   const [results, setResults] = useState<boolean[]>([])
   const [done, setDone] = useState(false)
 
-  const total = QUESTIONS.length
-  const current = QUESTIONS[qIndex]
+  const total = questions.length
+  const current = questions[qIndex]
   const revealed = selected !== null
   const isCorrect = revealed && selected === current.correctIndex
   const score = results.filter(Boolean).length
