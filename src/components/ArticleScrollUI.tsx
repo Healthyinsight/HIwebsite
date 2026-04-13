@@ -3,12 +3,15 @@
 import { useEffect, useRef, useState } from 'react'
 
 /**
- * ArticleScrollUI — scroll progress bar + back-to-top button for article pages.
+ * ArticleScrollUI — bottom scroll progress bar + back-to-top button.
  *
- * Progress bar: updates via direct DOM mutation (barRef.current.style.width)
- * on every scroll tick so no React re-render is triggered per frame.
+ * Progress bar: fixed at the bottom of the viewport, above the iOS safe-area
+ * inset. Width is updated via direct DOM mutation inside rAF so no React
+ * re-render fires per scroll frame.
  *
- * Back-to-top: uses React state but is throttled to one RAF update per frame.
+ * Back-to-top button: appears after 400 px of scroll, sits above the bar
+ * (accounts for safe-area + bar height so it's never obscured on notched
+ * devices).
  */
 export default function ArticleScrollUI() {
   const barRef = useRef<HTMLDivElement>(null)
@@ -36,17 +39,22 @@ export default function ArticleScrollUI() {
 
   return (
     <>
-      {/* Scroll progress bar — sits above the nav */}
+      {/*
+        Bottom progress bar.
+        The track sits at `bottom: env(safe-area-inset-bottom, 0px)` so it
+        floats just above the iOS home-indicator / notch. On devices without
+        a safe area this resolves to `bottom: 0`.
+      */}
       <div
         aria-hidden="true"
         style={{
           position: 'fixed',
-          top: 0,
+          bottom: 'env(safe-area-inset-bottom, 0px)',
           left: 0,
           right: 0,
           height: '3px',
           zIndex: 1000,
-          background: 'rgba(0,0,0,0.07)',
+          background: 'rgba(15,42,63,0.08)',
           pointerEvents: 'none',
         }}
       >
@@ -60,7 +68,11 @@ export default function ArticleScrollUI() {
         />
       </div>
 
-      {/* Back to top button */}
+      {/*
+        Back-to-top button.
+        `bottom` = safe-area + 3px bar + 14px gap so the button never
+        overlaps the bar or the iOS home indicator.
+      */}
       {showTop && (
         <button
           type="button"
@@ -68,9 +80,9 @@ export default function ArticleScrollUI() {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           style={{
             position: 'fixed',
-            bottom: '28px',
+            bottom: 'calc(env(safe-area-inset-bottom, 0px) + 3px + 14px)',
             right: '20px',
-            zIndex: 400,
+            zIndex: 1001,
             width: '42px',
             height: '42px',
             borderRadius: '50%',
