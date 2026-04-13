@@ -5,6 +5,7 @@ import { useEvidenceIQ } from '@/hooks/useEvidenceIQ'
 import MicroQuiz from './MicroQuiz'
 import type { Trail } from '@/lib/trails'
 import { IQ_POINTS, QUIZ_POINTS } from '@/lib/trails'
+import { QUIZ_BY_SLUG } from '@/lib/quizzes'
 
 /**
  * ArticleProgressSection — interactive footer for the article page.
@@ -68,6 +69,7 @@ export default function ArticleProgressSection({ slug, level, trail }: Props) {
     wasCompleteRef.current = isComplete
   }, [completedArticles, isHydrated, trail])
 
+  const questions = QUIZ_BY_SLUG[slug] ?? null
   const quizPassed = isHydrated && passedQuizzes.includes(slug)
   const readPoints = IQ_POINTS[level] ?? 50
   const quizPoints = QUIZ_POINTS[level] ?? 25
@@ -89,8 +91,10 @@ export default function ArticleProgressSection({ slug, level, trail }: Props) {
           subtitle={`+${totalPoints} HiQ points earned`}
           tone="blue"
         />
+      ) : questions ? (
+        <MicroQuiz key={slug} questions={questions} onPass={handleQuizPass} points={totalPoints} />
       ) : (
-        <MicroQuiz onPass={handleQuizPass} points={totalPoints} />
+        <QuizComingSoon />
       )}
 
       {showBadge && trail && (
@@ -207,6 +211,32 @@ function CompactSummary({ totalPoints }: { totalPoints: number }) {
         </div>
         <div style={{ fontSize: '16px', color: 'var(--navy)', fontWeight: 500 }}>
           +{totalPoints} HiQ points earned
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function QuizComingSoon() {
+  return (
+    <div
+      style={{
+        background: 'var(--cream)',
+        border: '1px solid var(--sand)',
+        borderRadius: '14px',
+        padding: '18px 22px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '14px',
+      }}
+    >
+      <div style={{ fontSize: '22px', flexShrink: 0 }}>🧠</div>
+      <div>
+        <div style={{ fontSize: '13px', fontWeight: 500, color: 'var(--navy)', marginBottom: '2px' }}>
+          Quiz coming soon
+        </div>
+        <div style={{ fontSize: '12px', color: '#8A8A80', fontWeight: 300 }}>
+          Questions for this article are being written. Check back soon.
         </div>
       </div>
     </div>
