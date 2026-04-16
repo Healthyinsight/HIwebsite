@@ -1,37 +1,81 @@
-import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
 
+const SUBSCRIBE_SOURCES = new Set(['website', 'quiz', 'article', 'unknown'])
+
+function normalizeSubscribeSource(raw: unknown): 'website' | 'quiz' | 'article' | 'unknown' {
+  if (raw === undefined || raw === null || raw === '') {
+    return 'website'
+  }
+  const s = String(raw).trim().toLowerCase()
+  if (SUBSCRIBE_SOURCES.has(s)) {
+    return s as 'website' | 'quiz' | 'article' | 'unknown'
+  }
+  return 'unknown'
+}
+
 export async function POST(req: NextRequest) {
-  if (!process.env.Hi_newsletter_send_api) {
+  const apiKey = process.env.RESEND_API_KEY
+
+  if (!apiKey) {
     return NextResponse.json({ error: 'Email service not configured.' }, { status: 503 })
   }
 
-  const resend = new Resend(process.env.Hi_newsletter_send_api)
-
   try {
-    const { email, firstName } = await req.json()
+    const { email, firstName, source: sourceRaw } = await req.json()
 
     if (!email || !email.includes('@')) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 })
     }
 
-    // Add to Resend audience (optional — only if RESEND_AUDIENCE_ID is configured)
-    if (process.env.RESEND_AUDIENCE_ID) {
-      await resend.contacts.create({
-        audienceId: process.env.RESEND_AUDIENCE_ID,
+    const source = normalizeSubscribeSource(sourceRaw)
+    const createdAtIso = new Date().toISOString()
+
+    const contactRes = await fetch('https://api.resend.com/contacts', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         email,
-        firstName: firstName || '',
+        first_name: firstName || '',
         unsubscribed: false,
-      }).catch(err => console.warn('Audience add failed:', err?.message))
+        properties: {
+          source,
+          created_at_iso: createdAtIso,
+        },
+      }),
+    })
+
+    if (!contactRes.ok) {
+      const errBody = await contactRes.text()
+      const duplicate =
+        contactRes.status === 409 ||
+        /already exists/i.test(errBody)
+      if (!duplicate) {
+        console.error('Resend contact error', { status: contactRes.status, body: errBody })
+        return NextResponse.json({ error: 'Something went wrong. Try again.' }, { status: 502 })
+      }
     }
 
-    // Send welcome email — failure here does not block the subscription response
-    await resend.emails.send({
-      from: 'Filip at Healthy Insight <filip@healthyinsight.eu>',
-      to: [email],
-      subject: 'Welcome to Healthy Insight',
-      html: welcomeEmail(firstName),
-    }).catch(err => console.warn('Welcome email failed:', err?.message))
+    const emailRes = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'Filip at Healthy Insight <filip@healthyinsight.eu>',
+        to: [email],
+        subject: 'Welcome to Healthy Insight',
+        html: welcomeEmail(firstName),
+      }),
+    })
+
+    if (!emailRes.ok) {
+      const errBody = await emailRes.text()
+      console.error('Resend email error', { status: emailRes.status, body: errBody })
+    }
 
     return NextResponse.json({ success: true })
   } catch (err) {
@@ -84,7 +128,7 @@ function welcomeEmail(firstName?: string): string {
     <div class="footer">
       <p>Healthy Insight · healthyinsight.eu<br>
       You're receiving this because you subscribed at healthyinsight.eu.<br>
-      <a href="#">Unsubscribe</a></p>
+      <a href="#">Unsubscribe</a> <!-- TODO: not a real unsubscribe flow yet --></p>
     </div>
   </div>
 </body>
