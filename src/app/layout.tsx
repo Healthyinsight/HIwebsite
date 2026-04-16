@@ -40,9 +40,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen" style={{ background: 'var(--warm)' }}>
         <Nav />
-        <div style={{ paddingTop: 'var(--nav-total-h)' }}>
-          {children}
-        </div>
+        {children}
         <Analytics />
         <SpeedInsights />
       </body>
