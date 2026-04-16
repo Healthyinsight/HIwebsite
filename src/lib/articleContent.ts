@@ -10,5 +10,6 @@ export function getArticleContent(slug: string): string | null {
   if (!fs.existsSync(file)) return null
   const raw = fs.readFileSync(file, 'utf8')
   const { content } = matter(raw)
+  if (!content.trim()) return null
   return content
 }

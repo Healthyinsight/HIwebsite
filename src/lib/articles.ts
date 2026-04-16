@@ -14,11 +14,16 @@ export interface ArticleMeta {
   tldr?: string[]
   evidenceStrength?: 'strong' | 'mixed' | 'early'
   evidenceNote?: string
-  /** When local MDX is missing, optional URL to the full article (e.g. legacy host). */
+  /**
+   * Canonical full article on the publication host. Used when local MDX is missing or empty.
+   * Set explicitly to override the default `https://healthyinsight.beehiiv.com/articles/{slug}`.
+   */
   externalArticleUrl?: string
 }
 
-export const articles: ArticleMeta[] = [
+const PUBLICATION_ARCHIVE_BASE = 'https://healthyinsight.beehiiv.com/articles' as const
+
+const articleSeeds: ArticleMeta[] = [
   {
     slug: 'fuel-during-training',
     title: 'Fuel During Training: When You Need Carbs and How to Avoid Energy Crashes',
@@ -245,7 +250,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '11 min',
     publishedAt: '2025-11-06',
-    externalArticleUrl: 'https://healthyinsight.beehiiv.com/articles/strength-for-runners',
     evidenceStrength: 'strong',
     evidenceNote: 'Heavy strength training improving running economy is well-replicated; the 5 exercises are chosen based on biomechanical specificity to running.',
     tldr: [
@@ -362,6 +366,12 @@ export const articles: ArticleMeta[] = [
     ],
   },
 ]
+
+export const articles: ArticleMeta[] = articleSeeds.map(article => ({
+  ...article,
+  externalArticleUrl:
+    article.externalArticleUrl ?? `${PUBLICATION_ARCHIVE_BASE}/${article.slug}`,
+}))
 
 export function getArticlesByPillar(pillar: Pillar) {
   return articles.filter(a => a.pillar === pillar)
