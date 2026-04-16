@@ -16,7 +16,7 @@ export default function HomePage() {
       <main>
 
         {/* HERO */}
-        <section style={{ background: 'var(--cream)', marginTop: 'calc(-1 * var(--nav-total-h))', paddingTop: 'calc(var(--nav-total-h) + clamp(40px, 10vw, 72px))', paddingBottom: 'clamp(48px, 10vw, 80px)' }}>
+        <section style={{ background: 'var(--cream)', paddingTop: 'clamp(40px, 10vw, 72px)', paddingBottom: 'clamp(48px, 10vw, 80px)' }}>
           <div className="container grid-hero">
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '22px' }}>
