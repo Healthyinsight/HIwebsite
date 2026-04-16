@@ -93,11 +93,22 @@ function DropdownChild({ child, onClick }: { child: NavChild; onClick?: () => vo
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   const close = useCallback(() => setOpen(false), [])
   const toggle = useCallback(() => setOpen(o => !o), [])
 
   useEffect(() => { setMounted(true) }, [])
+
+  useEffect(() => {
+    const onScroll = () => {
+      const next = window.scrollY > 60
+      setScrolled(prev => (prev === next ? prev : next))
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     if (!open) return
@@ -115,7 +126,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="site-nav" aria-label="Main">
+      <nav className={`site-nav${scrolled ? ' site-nav--scrolled' : ''}`} aria-label="Main">
         <div className="container site-nav__bar">
           <Link href="/" className="site-nav__brand">
             <span className="nav-brand-full">Healthy Insight</span>
