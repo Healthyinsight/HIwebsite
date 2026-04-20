@@ -72,6 +72,56 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* HOW IT WORKS */}
+        <section style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+          <div className="container">
+            <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              Getting started
+              <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
+            </div>
+            <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '48px' }}>
+              How it works
+            </h2>
+            <div className="grid-three">
+              {[
+                {
+                  step: 'Step 1',
+                  icon: '📖',
+                  title: 'Learn',
+                  desc: 'Follow a Learning Trail built around peer-reviewed research. Motion, nutrition, recovery, or mindset — pick where you want to start.',
+                },
+                {
+                  step: 'Step 2',
+                  icon: '⚡',
+                  title: 'Earn HiQ points',
+                  desc: 'Every article you complete builds your Health IQ. Track your progress and unlock deeper levels as you go.',
+                },
+                {
+                  step: 'Step 3',
+                  icon: '🎯',
+                  title: 'Apply',
+                  desc: "Put it into practice. When you're ready for a personalised programme, HI Programs meet you exactly where you are.",
+                },
+              ].map(({ step, icon, title, desc }) => (
+                <div key={step} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)' }}>
+                    {step}
+                  </div>
+                  <div style={{ width: '42px', height: '42px', borderRadius: '12px', background: 'var(--sky)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '19px' }}>
+                    {icon}
+                  </div>
+                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', margin: 0 }}>
+                    {title}
+                  </h3>
+                  <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, fontWeight: 300, margin: 0 }}>
+                    {desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* TRUST STRIP */}
         <div className="trust-strip">
           {[
