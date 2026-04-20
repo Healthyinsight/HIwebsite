@@ -25,21 +25,20 @@ export default function HomePage() {
               </div>
 
               <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
-                Evidence-based strategies for a healthier,
-                stronger <em style={{ fontStyle: 'italic', color: 'var(--blue-mid)' }}>life.</em>
+                Healthy Insight turns health research into habits that actually work.
               </h1>
 
               <p style={{ fontSize: '17px', lineHeight: 1.75, color: '#444440', maxWidth: '440px', marginBottom: '34px', fontWeight: 300 }}>
-                Peer-reviewed research translated into practical guidance for motion, nutrition, recovery, and mindset. No hype. No marketing. Just evidence.
+                HI is built around evidence-based Learning Trails — short, free paths from &lsquo;what does the research say?&rsquo; to &lsquo;what should I do today?&rsquo;. When you&rsquo;re ready for more personalised support, HI Programs are waiting.
               </p>
 
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <Link href="/trails"
-                  style={{ background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '14px 30px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
+                  style={{ display: 'inline-block', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '14px 30px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
                   Start a learning trail
                 </Link>
                 <Link href="/quiz"
-                  style={{ background: 'transparent', color: 'var(--navy)', border: '1px solid rgba(15,42,63,0.25)', borderRadius: '100px', padding: '14px 26px', fontSize: '14px', textDecoration: 'none' }}>
+                  style={{ display: 'inline-block', background: 'transparent', color: 'var(--navy)', border: '1px solid rgba(15,42,63,0.25)', borderRadius: '100px', padding: '14px 26px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
                   Take the Health IQ quiz
                 </Link>
               </div>
