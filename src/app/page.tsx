@@ -38,9 +38,9 @@ export default function HomePage() {
                   style={{ background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '14px 30px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
                   Start a learning trail
                 </Link>
-                <Link href="/newsletter"
+                <Link href="/quiz"
                   style={{ background: 'transparent', color: 'var(--navy)', border: '1px solid rgba(15,42,63,0.25)', borderRadius: '100px', padding: '14px 26px', fontSize: '14px', textDecoration: 'none' }}>
-                  Get the newsletter
+                  Take the Health IQ quiz
                 </Link>
               </div>
 
