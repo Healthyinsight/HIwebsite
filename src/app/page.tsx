@@ -25,7 +25,7 @@ export default function HomePage() {
               </div>
 
               <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
-                Healthy Insight turns health research into habits that actually work.
+                Turn health research into habits that stick.
               </h1>
 
               <p style={{ fontSize: '17px', lineHeight: 1.75, color: '#444440', maxWidth: '440px', marginBottom: '34px', fontWeight: 300 }}>
