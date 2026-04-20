@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
         from: 'Filip at Healthy Insight <filip@healthyinsight.eu>',
         to: [email],
         subject: 'Welcome to Healthy Insight',
-        html: welcomeEmail(firstName),
+        html: welcomeEmail(email, firstName),
       }),
     })
 
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-function welcomeEmail(firstName?: string): string {
+function welcomeEmail(email: string, firstName?: string): string {
   const name = firstName ? `, ${firstName}` : ''
   return `
 <!DOCTYPE html>
@@ -128,7 +128,7 @@ function welcomeEmail(firstName?: string): string {
     <div class="footer">
       <p>Healthy Insight · healthyinsight.eu<br>
       You're receiving this because you subscribed at healthyinsight.eu.<br>
-      <a href="#">Unsubscribe</a> <!-- TODO: not a real unsubscribe flow yet --></p>
+      <a href="https://healthyinsight.eu/api/unsubscribe?email=${encodeURIComponent(email)}">Unsubscribe</a></p>
     </div>
   </div>
 </body>
