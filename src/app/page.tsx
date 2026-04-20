@@ -25,21 +25,20 @@ export default function HomePage() {
               </div>
 
               <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
-                Evidence-based strategies for a healthier,
-                stronger <em style={{ fontStyle: 'italic', color: 'var(--blue-mid)' }}>life.</em>
+                Turn health research into habits that stick.
               </h1>
 
               <p style={{ fontSize: '17px', lineHeight: 1.75, color: '#444440', maxWidth: '440px', marginBottom: '34px', fontWeight: 300 }}>
-                Peer-reviewed research translated into practical guidance for motion, nutrition, recovery, and mindset. No hype. No marketing. Just evidence.
+                HI is built around evidence-based Learning Trails — short, free paths from &lsquo;what does the research say?&rsquo; to &lsquo;what should I do today?&rsquo;. When you&rsquo;re ready for more personalised support, HI Programs are waiting.
               </p>
 
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <Link href="/trails"
-                  style={{ background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '14px 30px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
+                  style={{ display: 'inline-block', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '14px 30px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
                   Start a learning trail
                 </Link>
                 <Link href="/quiz"
-                  style={{ background: 'transparent', color: 'var(--navy)', border: '1px solid rgba(15,42,63,0.25)', borderRadius: '100px', padding: '14px 26px', fontSize: '14px', textDecoration: 'none' }}>
+                  style={{ display: 'inline-block', background: 'transparent', color: 'var(--navy)', border: '1px solid rgba(15,42,63,0.25)', borderRadius: '100px', padding: '14px 26px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
                   Take the Health IQ quiz
                 </Link>
               </div>
@@ -68,6 +67,56 @@ export default function HomePage() {
                 level={2}
                 paddingRight="20px"
               />
+            </div>
+          </div>
+        </section>
+
+        {/* HOW IT WORKS */}
+        <section style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+          <div className="container">
+            <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              Getting started
+              <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
+            </div>
+            <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '48px' }}>
+              How it works
+            </h2>
+            <div className="grid-three">
+              {[
+                {
+                  step: 'Step 1',
+                  icon: '📖',
+                  title: 'Learn',
+                  desc: 'Follow a Learning Trail built around peer-reviewed research. Motion, nutrition, recovery, or mindset — pick where you want to start.',
+                },
+                {
+                  step: 'Step 2',
+                  icon: '⚡',
+                  title: 'Earn HiQ points',
+                  desc: 'Every article you complete builds your Health IQ. Track your progress and unlock deeper levels as you go.',
+                },
+                {
+                  step: 'Step 3',
+                  icon: '🎯',
+                  title: 'Apply',
+                  desc: "Put it into practice. When you're ready for a personalised programme, HI Programs meet you exactly where you are.",
+                },
+              ].map(({ step, icon, title, desc }) => (
+                <div key={step} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)' }}>
+                    {step}
+                  </div>
+                  <div style={{ width: '42px', height: '42px', borderRadius: '12px', background: 'var(--sky)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '19px' }}>
+                    {icon}
+                  </div>
+                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', margin: 0 }}>
+                    {title}
+                  </h3>
+                  <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, fontWeight: 300, margin: 0 }}>
+                    {desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
