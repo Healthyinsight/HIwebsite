@@ -6,6 +6,7 @@ import NewsletterForm from '@/components/NewsletterForm'
 import TrailCard from '@/components/TrailCard'
 import { getActiveTrails } from '@/lib/trails'
 import Link from 'next/link'
+import HiGuideChat from '@/components/HiGuideChat'
 
 export default function HomePage() {
   const latest = getLatestArticles(6)
@@ -48,26 +49,8 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Hero cards */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', minWidth: 0 }}>
-              <HeroIllustrationCard />
-              <HeroArticleCard
-                pillar="Recovery"
-                dotColor="var(--blue-light)"
-                title="Fitness Recovery: What Works vs Hype"
-                excerpt="Sleep. Fuel. Load. Stress. Tools. That order matters more than any gadget."
-                level={2}
-                indent="20px"
-              />
-              <HeroArticleCard
-                pillar="Motion"
-                dotColor="var(--blue-mid)"
-                title="Build Your Running Base"
-                excerpt="Zone 2 and why 80% of your training should be easy."
-                level={2}
-                paddingRight="20px"
-              />
-            </div>
+            {/* Hero chat */}
+            <HiGuideChat />
           </div>
         </section>
 
@@ -409,57 +392,3 @@ export default function HomePage() {
   )
 }
 
-function HeroIllustrationCard() {
-  return (
-    <div className="hero-card hero-card-shift" style={{ background: 'var(--warm)', borderRadius: '20px', padding: '24px', border: '1px solid rgba(15,42,63,0.07)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-      <div style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1.6px', textTransform: 'uppercase', color: 'var(--blue-mid)' }}>Motion</div>
-      <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: '17px', color: 'var(--navy)', textAlign: 'center' }}>VO₂ Max — Understanding the Basics</div>
-      <div style={{ fontSize: '12px', color: '#8A8A80', textAlign: 'center' }}>An evidence-based guide to aerobic capacity</div>
-      <svg width="200" height="118" viewBox="0 0 200 118" fill="none">
-        <line x1="100" y1="6" x2="100" y2="48" stroke="#1A4D6E" strokeWidth="3" strokeLinecap="round"/>
-        <line x1="100" y1="48" x2="66" y2="70" stroke="#2D7DA8" strokeWidth="2.5" strokeLinecap="round"/>
-        <line x1="100" y1="48" x2="134" y2="70" stroke="#2D7DA8" strokeWidth="2.5" strokeLinecap="round"/>
-        <line x1="66" y1="70" x2="46" y2="90" stroke="#5095AC" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="66" y1="70" x2="74" y2="95" stroke="#5095AC" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="134" y1="70" x2="126" y2="95" stroke="#5095AC" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="134" y1="70" x2="154" y2="90" stroke="#5095AC" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="46" y1="90" x2="32" y2="108" stroke="#A8CCE0" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="46" y1="90" x2="50" y2="112" stroke="#A8CCE0" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="74" y1="95" x2="62" y2="112" stroke="#A8CCE0" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="74" y1="95" x2="78" y2="114" stroke="#A8CCE0" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="126" y1="95" x2="122" y2="114" stroke="#A8CCE0" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="126" y1="95" x2="138" y2="112" stroke="#A8CCE0" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="154" y1="90" x2="150" y2="112" stroke="#A8CCE0" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="154" y1="90" x2="168" y2="108" stroke="#A8CCE0" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="32" cy="108" r="3" fill="#A8CCE0"/><circle cx="50" cy="112" r="3" fill="#A8CCE0"/>
-        <circle cx="62" cy="112" r="2.5" fill="#A8CCE0"/><circle cx="78" cy="114" r="3" fill="#A8CCE0"/>
-        <circle cx="122" cy="114" r="3" fill="#A8CCE0"/><circle cx="138" cy="112" r="2.5" fill="#A8CCE0"/>
-        <circle cx="150" cy="112" r="3" fill="#A8CCE0"/><circle cx="168" cy="108" r="3" fill="#A8CCE0"/>
-        <path d="M68 48 Q54 36 44 24 Q36 14 44 6 Q52 0 64 8 Q72 14 68 26" stroke="#2D7DA8" strokeWidth="1.5" fill="rgba(80,149,172,0.08)" strokeLinecap="round"/>
-        <path d="M132 48 Q146 36 156 24 Q164 14 156 6 Q148 0 136 8 Q128 14 132 26" stroke="#2D7DA8" strokeWidth="1.5" fill="rgba(80,149,172,0.08)" strokeLinecap="round"/>
-        <circle cx="100" cy="5" r="4" fill="#1A4D6E"/>
-      </svg>
-      <span style={{ display: 'inline-flex', alignItems: 'center', background: 'var(--sky)', color: 'var(--blue)', fontSize: '10px', fontWeight: 500, letterSpacing: '0.8px', textTransform: 'uppercase', padding: '4px 12px', borderRadius: '100px' }}>
-        Level 1 · Beginner
-      </span>
-    </div>
-  )
-}
-
-function HeroArticleCard({ pillar, dotColor, title, excerpt, level, indent, paddingRight }: {
-  pillar: string; dotColor: string; title: string; excerpt: string; level: number; indent?: string; paddingRight?: string;
-}) {
-  return (
-    <div className="hero-card-shift" style={{ background: 'var(--warm)', borderRadius: '18px', padding: '18px 22px', border: '1px solid rgba(15,42,63,0.07)', marginLeft: indent, marginRight: paddingRight }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-        <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: dotColor, display: 'inline-block' }} />
-        <span style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#8A8A80' }}>{pillar}</span>
-      </div>
-      <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '17px', fontWeight: 400, color: 'var(--navy)', lineHeight: 1.3, marginBottom: '6px' }}>{title}</h3>
-      <p style={{ fontSize: '13px', color: '#8A8A80', lineHeight: 1.55 }}>{excerpt}</p>
-      <span style={{ display: 'inline-flex', alignItems: 'center', background: 'var(--sky)', color: 'var(--blue)', fontSize: '10px', fontWeight: 500, letterSpacing: '0.8px', textTransform: 'uppercase', padding: '4px 12px', borderRadius: '100px', marginTop: '10px' }}>
-        Level {level} · Intermediate
-      </span>
-    </div>
-  )
-}
