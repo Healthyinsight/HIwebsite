@@ -7,6 +7,7 @@ import TrailCard from '@/components/TrailCard'
 import { getActiveTrails } from '@/lib/trails'
 import Link from 'next/link'
 import HiGuideChat from '@/components/HiGuideChat'
+import HomeScrollUI from '@/components/HomeScrollUI'
 
 export default function HomePage() {
   const latest = getLatestArticles(6)
@@ -127,7 +128,7 @@ export default function HomePage() {
         </div>
 
         {/* LEARNING TRAILS */}
-        <section style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+        <section id="trails" style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)', scrollMarginTop: '112px' }}>
           <div className="container">
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
               Learning Trails
@@ -150,7 +151,7 @@ export default function HomePage() {
         </section>
 
         {/* PILLARS */}
-        <section style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+        <section id="pillars" style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)', scrollMarginTop: '112px' }}>
           <div className="container">
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
               Four pillars
@@ -212,7 +213,7 @@ export default function HomePage() {
         </section>
 
         {/* ACTION-FIRST BLOCK */}
-        <section style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+        <section id="protocols" style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)', scrollMarginTop: '112px' }}>
           <div className="container">
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
               This week&apos;s protocol
@@ -289,7 +290,7 @@ export default function HomePage() {
         </section>
 
         {/* ARTICLES */}
-        <section style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
+        <section id="articles" style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)', scrollMarginTop: '112px' }}>
           <div className="container">
             <div className="section-heading-row" style={{ marginBottom: '44px' }}>
               <div>
@@ -360,7 +361,7 @@ export default function HomePage() {
         </section>
 
         {/* NEWSLETTER */}
-        <section style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)', display: 'flex', justifyContent: 'center' }}>
+        <section id="newsletter" style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)', display: 'flex', justifyContent: 'center', scrollMarginTop: '112px' }}>
           <div className="container newsletter-panel">
             <div>
               <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '34px', fontWeight: 400, color: 'white', lineHeight: 1.2, letterSpacing: '-0.3px', marginBottom: '13px' }}>
@@ -388,6 +389,7 @@ export default function HomePage() {
 
       </main>
       <Footer />
+      <HomeScrollUI />
     </>
   )
 }
