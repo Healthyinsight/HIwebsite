@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer'
 import ArticleFilters from '@/components/ArticleFilters'
-import { articles } from '@/lib/articles'
+import { articles, TOTAL_SOURCES } from '@/lib/articles'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -12,8 +12,6 @@ export default function ArticlesPage() {
   const sorted = [...articles].sort((a, b) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   )
-  const totalSources = sorted.reduce((sum, a) => sum + (a.sources ?? 0), 0)
-
   return (
     <>
       <main>
@@ -27,7 +25,7 @@ export default function ArticlesPage() {
               Turn research into your daily edge
             </h1>
             <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, maxWidth: '520px', fontWeight: 300 }}>
-              {sorted.length} articles across motion, nutrition, recovery, and mindset. Backed by {totalSources} peer-reviewed sources. Every claim cited.
+              {sorted.length} articles across motion, nutrition, recovery, and mindset. Backed by {TOTAL_SOURCES} peer-reviewed sources. Every claim cited.
             </p>
           </div>
         </section>
