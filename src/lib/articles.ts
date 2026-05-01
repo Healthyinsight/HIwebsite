@@ -19,6 +19,7 @@ export interface ArticleMeta {
    * Set explicitly to override the default `https://healthyinsight.beehiiv.com/articles/{slug}`.
    */
   externalArticleUrl?: string
+  sources?: number
 }
 
 const PUBLICATION_ARCHIVE_BASE = 'https://healthyinsight.beehiiv.com/articles' as const
