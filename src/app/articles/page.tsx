@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer'
 import ArticleFilters from '@/components/ArticleFilters'
-import { articles } from '@/lib/articles'
+import { articles, TOTAL_SOURCES } from '@/lib/articles'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -12,7 +12,6 @@ export default function ArticlesPage() {
   const sorted = [...articles].sort((a, b) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   )
-
   return (
     <>
       <main>
@@ -23,10 +22,10 @@ export default function ArticlesPage() {
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)', minWidth: 0 }} />
             </div>
             <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '14px', letterSpacing: '-0.5px' }}>
-              Research into action
+              Turn research into your daily edge
             </h1>
             <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, maxWidth: '520px', fontWeight: 300 }}>
-              {sorted.length} articles on motion, nutrition, recovery, and mindset. Every claim sourced. Every article evidence-based.
+              {sorted.length} articles across motion, nutrition, recovery, and mindset. Backed by {TOTAL_SOURCES} peer-reviewed sources. Every claim cited.
             </p>
           </div>
         </section>
