@@ -536,7 +536,6 @@ body {
   color: #444440;
   text-decoration: none;
   font-weight: 400;
-  border-bottom: 1px solid var(--sand);
 }
 
 .site-nav__drawer-secondary {
@@ -673,7 +672,7 @@ body {
   border-bottom: 1px solid var(--sand);
 }
 
-.site-nav__drawer-group-title {
+.site-nav__drawer-group .site-nav__drawer-group-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
