@@ -22,7 +22,14 @@ export default function HomeScrollUI() {
     reducedMotion.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const nav = document.querySelector('.site-nav')
-    if (nav) setNavH(nav.getBoundingClientRect().height)
+    let ro: ResizeObserver | null = null
+    if (nav) {
+      setNavH(nav.getBoundingClientRect().height)
+      ro = new ResizeObserver(() => {
+        setNavH(nav.getBoundingClientRect().height)
+      })
+      ro.observe(nav)
+    }
 
     function onScroll() {
       if (rafRef.current !== null) return
@@ -46,6 +53,7 @@ export default function HomeScrollUI() {
 
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
+      ro?.disconnect()
       window.removeEventListener('scroll', onScroll)
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
     }
