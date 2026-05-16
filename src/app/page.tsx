@@ -6,7 +6,6 @@ import NewsletterForm from '@/components/NewsletterForm'
 import TrailCard from '@/components/TrailCard'
 import { getActiveTrails } from '@/lib/trails'
 import Link from 'next/link'
-import HiGuideChat from '@/components/HiGuideChat'
 import HomeScrollUI from '@/components/HomeScrollUI'
 
 export default function HomePage() {
@@ -19,41 +18,47 @@ export default function HomePage() {
 
         {/* HERO */}
         <section style={{ background: 'var(--cream)', paddingTop: 'clamp(40px, 10vw, 72px)', paddingBottom: 'clamp(48px, 10vw, 80px)' }}>
-          <div className="container grid-hero">
-            <div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '22px' }}>
-                <span style={{ display: 'inline-block', width: '24px', height: '1px', background: 'var(--blue-mid)' }} />
-                For runners & triathletes
-              </div>
-
-              <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
-                Your first half marathon, marathon, or 70.3 deserves better than conflicting advice.
-              </h1>
-
-              <p style={{ fontSize: '17px', lineHeight: 1.75, color: '#444440', maxWidth: '440px', marginBottom: '34px', fontWeight: 300 }}>
-                HI is the evidence-based training guide built for endurance athletes, covering Zone 2 basics to race-week fueling. Learn what the research actually says, apply it to your training, and arrive at the start line prepared.
-              </p>
-
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <Link href="/trails"
-                  style={{ display: 'inline-block', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '14px 30px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
-                  Start your race prep trail
-                </Link>
-                <Link href="/quiz"
-                  style={{ display: 'inline-block', background: 'transparent', color: 'var(--navy)', border: '1px solid rgba(15,42,63,0.25)', borderRadius: '100px', padding: '14px 26px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
-                  Take the Health IQ quiz
-                </Link>
-              </div>
-
-              <p style={{ fontSize: '12px', color: '#8A8A80', marginTop: '14px', fontWeight: 300 }}>
-                Always peer-reviewed · 0 affiliate links · Built for your race
-              </p>
+          <div className="container" style={{ maxWidth: '620px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '22px' }}>
+              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: 'var(--blue-mid)' }} />
+              For runners &amp; triathletes
             </div>
 
-            {/* Hero chat */}
-            <HiGuideChat />
+            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '10px', letterSpacing: '-0.8px' }}>
+              Train smarter. Race stronger.
+            </h1>
+            <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', fontWeight: 400, color: 'var(--blue-mid)', marginBottom: '22px', lineHeight: 1.3 }}>
+              Built on science, made for real athletes with real goals.
+            </p>
+
+            <p style={{ fontSize: '17px', lineHeight: 1.75, color: '#444440', marginBottom: '34px', fontWeight: 300 }}>
+              HI is the evidence-based guide for first-timer half marathon, marathon, and 70.3 athletes. From Zone 2 basics to race-week fueling — learn what the research actually says and arrive at the start line prepared.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
+              <Link href="/trails"
+                style={{ display: 'block', textAlign: 'center', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '0 30px', fontSize: '16px', fontWeight: 500, textDecoration: 'none', minHeight: '54px', lineHeight: '54px' }}>
+                Start your race prep trail
+              </Link>
+              <Link href="/quiz"
+                style={{ display: 'block', textAlign: 'center', color: 'var(--blue-mid)', fontSize: '15px', fontWeight: 500, textDecoration: 'none', minHeight: '48px', lineHeight: '48px' }}>
+                Take the Health IQ quiz →
+              </Link>
+            </div>
+
+            <p style={{ fontSize: '12px', color: '#8A8A80', fontWeight: 300, textAlign: 'center' }}>
+              Always peer-reviewed · 0 affiliate links · Built for your race
+            </p>
           </div>
         </section>
+
+        {/* TRUST PROOF POINTS */}
+        <div style={{ background: 'var(--warm)', borderTop: '1px solid var(--sand)', borderBottom: '1px solid var(--sand)', padding: '18px clamp(16px, 4vw, 52px)' }}>
+          <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '640px', margin: '0 auto' }}>
+            <span style={{ fontSize: '14px', color: '#444440', fontWeight: 400 }}>📚 Evidence-based protocols</span>
+            <span style={{ fontSize: '14px', color: '#444440', fontWeight: 400 }}>🔬 Trusted sources, no hype</span>
+          </div>
+        </div>
 
         {/* HOW IT WORKS */}
         <section style={{ background: 'var(--warm)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
