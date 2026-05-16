@@ -23,21 +23,21 @@ export default function HomePage() {
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '22px' }}>
                 <span style={{ display: 'inline-block', width: '24px', height: '1px', background: 'var(--blue-mid)' }} />
-                Evidence-based health
+                For runners & triathletes
               </div>
 
               <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
-                Turn health research into habits that stick.
+                Your first half marathon, marathon, or 70.3 deserves better than conflicting advice.
               </h1>
 
               <p style={{ fontSize: '17px', lineHeight: 1.75, color: '#444440', maxWidth: '440px', marginBottom: '34px', fontWeight: 300 }}>
-                HI is built around evidence-based Learning Trails — short, free paths from &lsquo;what does the research say?&rsquo; to &lsquo;what should I do today?&rsquo;. When you&rsquo;re ready for more personalised support, HI Programs are waiting.
+                HI is the evidence-based training guide built for endurance athletes, covering Zone 2 basics to race-week fueling. Learn what the research actually says, apply it to your training, and arrive at the start line prepared.
               </p>
 
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <Link href="/trails"
                   style={{ display: 'inline-block', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '14px 30px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
-                  Start a learning trail
+                  Start your race prep trail
                 </Link>
                 <Link href="/quiz"
                   style={{ display: 'inline-block', background: 'transparent', color: 'var(--navy)', border: '1px solid rgba(15,42,63,0.25)', borderRadius: '100px', padding: '14px 26px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>
@@ -46,7 +46,7 @@ export default function HomePage() {
               </div>
 
               <p style={{ fontSize: '12px', color: '#8A8A80', marginTop: '14px', fontWeight: 300 }}>
-                1 email/week · Always sourced · Always practical
+                Always peer-reviewed · 0 affiliate links · Built for your race
               </p>
             </div>
 
@@ -63,7 +63,7 @@ export default function HomePage() {
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
             </div>
             <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '48px' }}>
-              How it works
+              From information overload to race-day clarity.
             </h2>
             <div className="grid-three">
               {[
@@ -71,19 +71,19 @@ export default function HomePage() {
                   step: 'Step 1',
                   icon: '📖',
                   title: 'Learn',
-                  desc: 'Follow a Learning Trail built around peer-reviewed research. Motion, nutrition, recovery, or mindset — pick where you want to start.',
+                  desc: 'Follow a Learning Trail built for endurance athletes. Zone 2, periodization, sleep for performance, race fueling: each trail takes you from first principles to race-day application, level by level.',
                 },
                 {
                   step: 'Step 2',
                   icon: '⚡',
-                  title: 'Earn HiQ points',
-                  desc: 'Every article you complete builds your Health IQ. Track your progress and unlock deeper levels as you go.',
+                  title: 'Build your Health IQ',
+                  desc: "Every article you complete deepens your understanding and builds your Health IQ score. Track your progress through the levels and know exactly what you've mastered.",
                 },
                 {
                   step: 'Step 3',
                   icon: '🎯',
                   title: 'Apply',
-                  desc: "Put it into practice. When you're ready for a personalised programme, HI Programs meet you exactly where you are.",
+                  desc: "Turn evidence into your actual race plan. When you're ready for personalised support, HI Programs meet you exactly at your training stage.",
                 },
               ].map(({ step, icon, title, desc }) => (
                 <div key={step} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -158,35 +158,35 @@ export default function HomePage() {
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
             </div>
             <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '12px' }}>
-              Every article.<br />One framework.
+              Four areas that determine your race result.
             </h2>
             <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, maxWidth: '490px', marginBottom: '52px', fontWeight: 300 }}>
-              Motion, nutrition, recovery, mindset. The fundamentals of human health and performance, grounded in peer-reviewed evidence.
+              The evidence base for your training, recovery, nutrition, and mindset. Organised around what actually moves the needle on race day.
             </p>
 
             <div className="grid-pillars">
               {[
                 {
                   href: '/motion',    icon: '🏃', label: 'Motion',    bg: 'var(--sky)',
-                  desc: 'Training, VO₂ max, strength, and endurance grounded in exercise physiology.',
+                  desc: 'Zone 2 training, VO₂ max, periodization, and race-specific strength work. The training science that separates a strong finish from a survival march.',
                   startHref: '/articles/strength-training-for-beginners',
                   startLabel: 'Strength Training for Beginners',
                 },
                 {
                   href: '/nutrition', icon: '🥗', label: 'Nutrition', bg: '#EDE8DC',
-                  desc: 'Fueling, supplements, and metabolic health. What the research actually supports.',
+                  desc: 'Fueling for long training blocks and race day: carbohydrate periodization, protein timing, and what the research says about race-week eating.',
                   startHref: '/articles/fuel-during-training',
                   startLabel: 'Fuel During Training',
                 },
                 {
                   href: '/recovery',  icon: '😴', label: 'Recovery',  bg: 'var(--sky)',
-                  desc: 'Sleep, stress management, and active recovery. The fundamentals that move the needle.',
+                  desc: 'Sleep quality, HRV, and active recovery protocols. The half of training most first-timers underestimate, and the one with the biggest performance upside.',
                   startHref: '/articles/sleep-for-performance',
                   startLabel: 'Sleep for Performance',
                 },
                 {
                   href: '/mindset',   icon: '🧠', label: 'Mindset',   bg: '#E8E3D8',
-                  desc: 'Goal-setting, habits, and motivation. Behavioral science applied to health.',
+                  desc: 'Pre-race anxiety, motivation through hard training blocks, and the psychology of crossing your first finish line.',
                   startHref: '/articles',
                   startLabel: 'Browse all articles',
                 },
@@ -365,16 +365,16 @@ export default function HomePage() {
           <div className="container newsletter-panel">
             <div>
               <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '34px', fontWeight: 400, color: 'white', lineHeight: 1.2, letterSpacing: '-0.3px', marginBottom: '13px' }}>
-                Stay evidence-based.
+                One evidence-based insight. Every week. For your race.
               </h2>
               <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: '16px', fontWeight: 300 }}>
-                Research breakdowns, practical guides, and no-hype health insights straight to your inbox.
+                Built for runners and triathletes training for their first big event. No fluff, no affiliate links, just the research that matters for your training week, delivered every Sunday.
               </p>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {[
-                  '1 email per week',
-                  'Every claim sourced',
-                  'Always practical, never preachy',
+                  'Always sourced',
+                  '0 affiliate links',
+                  'Unsubscribe anytime',
                 ].map(item => (
                   <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: 'rgba(255,255,255,0.45)', marginBottom: '6px', fontWeight: 300 }}>
                     <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--blue-pale)', display: 'inline-block', flexShrink: 0 }} />
