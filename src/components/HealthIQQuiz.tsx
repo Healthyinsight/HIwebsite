@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 const questions = [
   {
@@ -149,7 +150,7 @@ export default function HealthIQQuiz() {
   }
 
   return (
-    <div style={{ maxWidth: '560px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '560px', margin: '0 auto', width: '100%', minWidth: 0 }}>
       {/* Quiz in progress */}
       {!showResult && (
         <>
@@ -284,14 +285,22 @@ export default function HealthIQQuiz() {
             Your results are on their way.
           </h3>
           <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, marginBottom: '28px', fontWeight: 300 }}>
-            Check your inbox for your personalised reading list. In the meantime, start with your top recommendation.
+            Check your inbox for your personalised reading list. Ready to go deeper? Start a Learning Trail to build structured knowledge and earn HiQ points.
           </p>
-          <a
-            href={`/articles/${result.recommendedArticles[0]}`}
-            style={{ display: 'inline-block', background: '#0F2A3F', color: 'white', borderRadius: '100px', padding: '13px 28px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}
-          >
-            Start reading
-          </a>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
+            <Link
+              href="/trails"
+              style={{ display: 'inline-block', background: '#0F2A3F', color: 'white', borderRadius: '100px', padding: '13px 28px', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}
+            >
+              Explore Learning Trails
+            </Link>
+            <a
+              href={`/articles/${result.recommendedArticles[0]}`}
+              style={{ display: 'inline-block', fontSize: '14px', color: '#2D7DA8', textDecoration: 'underline', fontWeight: 400 }}
+            >
+              Or start reading your top recommendation
+            </a>
+          </div>
         </div>
       )}
     </div>

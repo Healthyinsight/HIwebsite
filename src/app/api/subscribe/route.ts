@@ -1,72 +1,90 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY
-const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID // Create one in Resend dashboard
+const SUBSCRIBE_SOURCES = new Set(['website', 'quiz', 'article', 'unknown'])
+
+function normalizeSubscribeSource(raw: unknown): 'website' | 'quiz' | 'article' | 'unknown' {
+  if (raw === undefined || raw === null || raw === '') {
+    return 'website'
+  }
+  const s = String(raw).trim().toLowerCase()
+  if (SUBSCRIBE_SOURCES.has(s)) {
+    return s as 'website' | 'quiz' | 'article' | 'unknown'
+  }
+  return 'unknown'
+}
 
 export async function POST(req: NextRequest) {
+  const apiKey = process.env.RESEND_API_KEY
+
+  if (!apiKey) {
+    return NextResponse.json({ error: 'Email service not configured.' }, { status: 503 })
+  }
+
   try {
-    const { email, firstName } = await req.json()
+    const { email, firstName, source: sourceRaw } = await req.json()
 
     if (!email || !email.includes('@')) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 })
     }
 
-    if (!RESEND_API_KEY) {
-      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
-    }
+    const source = normalizeSubscribeSource(sourceRaw)
+    const createdAtIso = new Date().toISOString()
 
-    // 1. Add contact to Resend Audience
-    if (RESEND_AUDIENCE_ID) {
-      const audienceRes = await fetch(
-        `https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`,
-        {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${RESEND_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email,
-            first_name: firstName || '',
-            unsubscribed: false,
-          }),
-        }
-      )
+    const contactRes = await fetch('https://api.resend.com/contacts', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        first_name: firstName || '',
+        unsubscribed: false,
+        properties: {
+          source,
+          created_at_iso: createdAtIso,
+        },
+      }),
+    })
 
-      if (!audienceRes.ok && audienceRes.status !== 409) {
-        // 409 = already subscribed, that's fine
-        console.error('Resend audience error', { status: audienceRes.status })
+    if (!contactRes.ok) {
+      const errBody = await contactRes.text()
+      const duplicate =
+        contactRes.status === 409 ||
+        /already exists/i.test(errBody)
+      if (!duplicate) {
+        console.error('Resend contact error', { status: contactRes.status, body: errBody })
+        return NextResponse.json({ error: 'Something went wrong. Try again.' }, { status: 502 })
       }
     }
 
-    // 2. Send welcome email
     const emailRes = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         from: 'Filip at Healthy Insight <filip@healthyinsight.eu>',
         to: [email],
         subject: 'Welcome to Healthy Insight',
-        html: welcomeEmail(firstName),
+        html: welcomeEmail(email, firstName),
       }),
     })
 
     if (!emailRes.ok) {
-      console.error('Resend email error', { status: emailRes.status })
-      // Still return success — contact was added even if welcome email failed
+      const errBody = await emailRes.text()
+      console.error('Resend email error', { status: emailRes.status, body: errBody })
     }
 
     return NextResponse.json({ success: true })
-  } catch (error) {
-    console.error('Subscribe error')
-    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
+  } catch (err) {
+    console.error('Subscribe error:', err)
+    return NextResponse.json({ error: 'Something went wrong. Try again.' }, { status: 500 })
   }
 }
 
-function welcomeEmail(firstName?: string): string {
+function welcomeEmail(email: string, firstName?: string): string {
   const name = firstName ? `, ${firstName}` : ''
   return `
 <!DOCTYPE html>
@@ -92,7 +110,7 @@ function welcomeEmail(firstName?: string): string {
   <div class="container">
     <div class="header">
       <h1>Healthy Insight</h1>
-      <p>Science Made Simple, Action Made Fun</p>
+      <p>Evidence-based health, straight to your inbox</p>
     </div>
     <div class="body">
       <p>Hey${name},</p>
@@ -110,7 +128,7 @@ function welcomeEmail(firstName?: string): string {
     <div class="footer">
       <p>Healthy Insight · healthyinsight.eu<br>
       You're receiving this because you subscribed at healthyinsight.eu.<br>
-      <a href="#">Unsubscribe</a></p>
+      <a href="https://healthyinsight.eu/api/unsubscribe?email=${encodeURIComponent(email)}">Unsubscribe</a></p>
     </div>
   </div>
 </body>

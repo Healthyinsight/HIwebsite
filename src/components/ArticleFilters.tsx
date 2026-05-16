@@ -165,7 +165,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
           </button>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+        <div className="grid-three">
           {filtered.map(article => (
             <ArticleCard key={article.slug} {...article} />
           ))}

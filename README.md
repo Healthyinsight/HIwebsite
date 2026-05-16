@@ -31,7 +31,6 @@ npm run dev
   level: 2,               // 1-5 (optional)
   readingTime: '12 min',
   publishedAt: '2026-04-01',
-  beehiivUrl: 'https://...',
 }
 ```
 
@@ -44,7 +43,6 @@ npm run dev
 Deployed automatically on Vercel when merged to `main`.
 
 **DNS:** Point `healthyinsight.eu` CNAME to Vercel.
-Remove Beehiiv CNAME when ready to switch.
 
 ## Content approval workflow
 

@@ -1,0 +1,369 @@
+import type { Pillar } from './articles'
+
+export interface TrailStep {
+  slug: string              // empty string '' for comingSoon steps
+  level: number
+  title: string
+  readingTime: string       // empty string '' for comingSoon steps
+  comingSoon?: boolean
+  evidenceIQPoints?: number // read IQ earned on completion
+  quizPoints?: number       // quiz IQ earned on passing
+}
+
+export interface Trail {
+  id: string
+  pillar: Pillar
+  name: string
+  tagline: string
+  description: string
+  steps: TrailStep[]
+  badge: {
+    emoji: string
+    label: string
+  }
+  comingSoon?: boolean
+}
+
+export const trails: Trail[] = [
+  // ─── 1. Sleep Science Trail ───────────────────────────────────────────────
+  {
+    id: 'sleepScience',
+    pillar: 'recovery',
+    name: 'Sleep Science Trail',
+    tagline: 'From sleep basics to elite recovery protocols',
+    description: 'Sleep is the highest-leverage intervention in all of health and performance. This trail takes you from the fundamentals of sleep science to the advanced protocols used by elite athletes.',
+    badge: { emoji: '🛌', label: 'Sleep Scientist' },
+    steps: [
+      {
+        slug: 'sleep-for-performance',
+        level: 1,
+        title: 'Sleep for Performance',
+        readingTime: '13 min',
+        evidenceIQPoints: 50,
+        quizPoints: 25,
+      },
+      {
+        slug: 'sleep-and-recovery-guide-for-athletes',
+        level: 2,
+        title: 'Sleep and Recovery: A Guide for Athletes',
+        readingTime: '15 min',
+        evidenceIQPoints: 60,
+        quizPoints: 35,
+      },
+      {
+        slug: 'sleep-quality-optimization',
+        level: 3,
+        title: 'Sleep Quality Optimization: Beyond Duration',
+        readingTime: '19 min',
+        evidenceIQPoints: 75,
+        quizPoints: 50,
+      },
+      {
+        slug: 'managing-sleep-around-competition',
+        level: 4,
+        title: 'Managing Sleep Around Competition and Travel',
+        readingTime: '13 min',
+        evidenceIQPoints: 90,
+        quizPoints: 60,
+      },
+      {
+        slug: 'sleep-extension-performance-protocols',
+        level: 5,
+        title: 'Sleep Extension and Performance Protocols',
+        readingTime: '30 min',
+        evidenceIQPoints: 100,
+        quizPoints: 75,
+      },
+    ],
+  },
+
+  // ─── 2. VO₂ Max Mastery Trail ─────────────────────────────────────────────
+  {
+    id: 'vo2maxMastery',
+    pillar: 'motion',
+    name: 'VO₂ Max Mastery Trail',
+    tagline: 'Understand and improve your aerobic ceiling',
+    description: 'VO₂ max is the single best predictor of both endurance performance and long-term health. This trail goes from the foundational why to advanced training protocols that move the needle.',
+    badge: { emoji: '🫁', label: 'VO₂ Max Specialist' },
+    steps: [
+      {
+        slug: 'vo2-max-why-this-number-predicts-longevity',
+        level: 1,
+        title: 'VO₂ Max: Why This Number Predicts How Long You\'ll Live',
+        readingTime: '9 min',
+        evidenceIQPoints: 45,
+        quizPoints: 25,
+      },
+      {
+        slug: 'how-to-improve-vo2max-12-week-plan',
+        level: 2,
+        title: 'How to Improve Your VO₂ Max: The 12-Week Plan',
+        readingTime: '11 min',
+        evidenceIQPoints: 60,
+        quizPoints: 35,
+      },
+      {
+        slug: 'vo2max-training-advanced-protocols',
+        level: 3,
+        title: 'VO₂ Max Training: Advanced Protocols and Periodization',
+        readingTime: '16 min',
+        evidenceIQPoints: 75,
+        quizPoints: 50,
+      },
+      {
+        slug: 'vo2max-physiological-mechanisms',
+        level: 4,
+        title: 'VO₂ Max: Physiological Mechanisms',
+        readingTime: '22 min',
+        evidenceIQPoints: 90,
+        quizPoints: 60,
+      },
+    ],
+  },
+
+  // ─── 3. Strength Mastery Trail ────────────────────────────────────────────
+  {
+    id: 'strengthMastery',
+    pillar: 'motion',
+    name: 'Strength Mastery Trail',
+    tagline: 'Build strength the right way, from day one',
+    description: 'Strength training is the most evidence-backed intervention for performance, longevity, and body composition. This trail builds your foundation then teaches you how to keep progressing.',
+    badge: { emoji: '💪', label: 'Strength Specialist' },
+    steps: [
+      {
+        slug: 'strength-training-for-beginners',
+        level: 1,
+        title: 'Strength Training for Beginners',
+        readingTime: '20 min',
+        evidenceIQPoints: 50,
+        quizPoints: 25,
+      },
+      {
+        slug: 'strength-progression-5-steps-to-sustainable-gains',
+        level: 2,
+        title: 'Strength Progression: 5 Steps to Sustainable Gains',
+        readingTime: '14 min',
+        evidenceIQPoints: 60,
+        quizPoints: 35,
+      },
+      {
+        slug: 'intermediate-strength-training',
+        level: 3,
+        title: 'Intermediate Strength Training: Optimize Your Training Variables',
+        readingTime: '16 min',
+        evidenceIQPoints: 75,
+        quizPoints: 50,
+      },
+      {
+        slug: 'advanced-strength-programming-blocks-fatigue-deloads',
+        level: 4,
+        title: 'Advanced Strength Programming: Blocks, Fatigue, and Deloads',
+        readingTime: '11 min',
+        evidenceIQPoints: 90,
+        quizPoints: 60,
+      },
+    ],
+  },
+
+  // ─── 4. Running Progression Trail ────────────────────────────────────────
+  {
+    id: 'runningProgression',
+    pillar: 'motion',
+    name: 'Running Progression Trail',
+    tagline: 'Build durability and speed the right way',
+    description: 'Running is one of the most accessible and effective forms of exercise — but injury rates are high. This trail gives you the evidence on building a durable running base and supporting it with strength.',
+    badge: { emoji: '🏃', label: 'Running Specialist' },
+    steps: [
+      {
+        slug: 'build-your-running-base-8-12-weeks-to-sustainable-speed',
+        level: 1,
+        title: 'Build Your Running Base: 8–12 Weeks to Sustainable Speed',
+        readingTime: '14 min',
+        evidenceIQPoints: 50,
+        quizPoints: 25,
+      },
+      {
+        slug: 'strength-for-runners',
+        level: 2,
+        title: 'Strength for Runners: 5 Exercises for Running Economy and Durability',
+        readingTime: '11 min',
+        evidenceIQPoints: 60,
+        quizPoints: 35,
+      },
+    ],
+  },
+
+  // ─── 5. Fueling Mastery Trail ─────────────────────────────────────────────
+  {
+    id: 'fuelingMastery',
+    pillar: 'nutrition',
+    name: 'Fueling Mastery Trail',
+    tagline: 'Evidence-based nutrition for performance',
+    description: 'What you eat — and when — has a measurable impact on performance, recovery, and body composition. This trail cuts through the noise with evidence-based guidance on fueling for sport.',
+    badge: { emoji: '🥗', label: 'Nutrition Strategist' },
+    steps: [
+      {
+        slug: 'fuel-during-training',
+        level: 1,
+        title: 'Fuel During Training: When You Need Carbs and How to Avoid Energy Crashes',
+        readingTime: '13 min',
+        evidenceIQPoints: 50,
+        quizPoints: 25,
+      },
+    ],
+  },
+
+  // ─── 6. Goal Setting Mastery Trail ────────────────────────────────────────
+  {
+    id: 'goalSettingMastery',
+    pillar: 'mindset',
+    name: 'Goal Setting Mastery Trail',
+    tagline: 'The psychology of sustainable change',
+    description:
+      'Evidence-based strategies for setting and achieving goals that actually last—SMART structure, implementation intentions, and feedback loops that outlast motivation swings.',
+    badge: { emoji: '🧠', label: 'Mental Edge' },
+    steps: [
+      {
+        slug: 'set-goals-that-last-smart-goals-lasting-motivation',
+        level: 2,
+        title: 'Set Goals That Last: A Guide to SMART Goals and Lasting Motivation',
+        readingTime: '15 min',
+        evidenceIQPoints: 60,
+        quizPoints: 35,
+      },
+    ],
+  },
+]
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+export function getTrailById(id: string): Trail | undefined {
+  return trails.find(t => t.id === id)
+}
+
+export function getActiveTrails(): Trail[] {
+  return trails.filter(t => !t.comingSoon)
+}
+
+/** Returns the trail and step index for a given article slug, or undefined if not in a trail. */
+export function getTrailForArticle(slug: string): { trail: Trail; stepIndex: number } | undefined {
+  for (const trail of trails) {
+    const index = trail.steps.findIndex(s => s.slug === slug && !s.comingSoon)
+    if (index !== -1) return { trail, stepIndex: index }
+  }
+  return undefined
+}
+
+// ─── Evidence IQ point scale ─────────────────────────────────────────────────
+
+/** Read IQ points awarded per article level */
+export const IQ_POINTS: Record<number, number> = {
+  1: 50,
+  2: 60,
+  3: 75,
+  4: 90,
+  5: 100,
+}
+
+/** Quiz IQ points awarded per article level (on ≥70% pass) */
+export const QUIZ_POINTS: Record<number, number> = {
+  1: 25,
+  2: 35,
+  3: 50,
+  4: 60,
+  5: 75,
+}
+
+export const TRAIL_COMPLETE_BONUS = 200
+export const MASTERBADGE_BONUS = 500
+
+/**
+ * Calculates total Evidence IQ from completed article slugs and (optionally)
+ * passed quiz slugs. Uses step.evidenceIQPoints / step.quizPoints when set,
+ * else falls back to IQ_POINTS / QUIZ_POINTS by level.
+ *
+ * Bonuses applied:
+ *  - +TRAIL_COMPLETE_BONUS once per fully-read trail (all active steps in readSlugs)
+ *  - +MASTERBADGE_BONUS when every active (non-comingSoon) trail is fully read
+ */
+export function calcEvidenceIQ(readSlugs: string[], quizSlugs: string[] = []): number {
+  const readSet = new Set(readSlugs)
+  const quizSet = new Set(quizSlugs)
+  const countedRead = new Set<string>()
+  const countedQuiz = new Set<string>()
+  let total = 0
+
+  // Per-article points (skip comingSoon placeholder steps)
+  for (const trail of trails) {
+    for (const step of trail.steps) {
+      if (!step.slug || step.comingSoon) continue
+      if (readSet.has(step.slug) && !countedRead.has(step.slug)) {
+        total += step.evidenceIQPoints ?? IQ_POINTS[step.level] ?? 50
+        countedRead.add(step.slug)
+      }
+      if (quizSet.has(step.slug) && !countedQuiz.has(step.slug)) {
+        total += step.quizPoints ?? QUIZ_POINTS[step.level] ?? 25
+        countedQuiz.add(step.slug)
+      }
+    }
+  }
+
+  // Trail completion bonuses — only when all active steps are read
+  const completedTrailIds = getCompletedTrails(readSlugs)
+  total += completedTrailIds.length * TRAIL_COMPLETE_BONUS
+
+  // Masterbadge — every active trail completed
+  if (hasMasterBadge(completedTrailIds)) {
+    total += MASTERBADGE_BONUS
+  }
+
+  return total
+}
+
+/**
+ * Returns the IDs of every active (non-comingSoon) trail whose active steps
+ * are all present in `readSlugs`.
+ */
+export function getCompletedTrails(readSlugs: string[]): string[] {
+  const readSet = new Set(readSlugs)
+  const completed: string[] = []
+  for (const trail of trails) {
+    if (trail.comingSoon) continue
+    const activeSteps = trail.steps.filter(s => !s.comingSoon && s.slug)
+    if (activeSteps.length === 0) continue
+    if (activeSteps.every(s => readSet.has(s.slug))) {
+      completed.push(trail.id)
+    }
+  }
+  return completed
+}
+
+/**
+ * Returns true when every active (non-comingSoon) trail has been completed.
+ * Phase 5 uses the simplest interpretation of "all pillar trails";
+ * the masterbadge semantics can be tightened later without touching consumers.
+ */
+export function hasMasterBadge(completedTrailIds: string[]): boolean {
+  const completedSet = new Set(completedTrailIds)
+  const activeIds = trails.filter(t => !t.comingSoon).map(t => t.id)
+  if (activeIds.length === 0) return false
+  return activeIds.every(id => completedSet.has(id))
+}
+
+/**
+ * Maximum Evidence IQ achievable in a single trail = sum of read points +
+ * sum of quiz points + the trail completion bonus (when the trail has any
+ * active steps). Used by the trail page hero "up to N IQ" label.
+ */
+export function calcMaxTrailIQ(trail: Trail): number {
+  let total = 0
+  let hasActiveSteps = false
+  for (const step of trail.steps) {
+    if (step.comingSoon || !step.slug) continue
+    hasActiveSteps = true
+    total += step.evidenceIQPoints ?? IQ_POINTS[step.level] ?? 50
+    total += step.quizPoints ?? QUIZ_POINTS[step.level] ?? 25
+  }
+  if (hasActiveSteps) total += TRAIL_COMPLETE_BONUS
+  return total
+}

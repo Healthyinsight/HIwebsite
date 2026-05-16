@@ -10,14 +10,23 @@ export interface ArticleMeta {
   level?: number
   readingTime: string
   publishedAt: string
-  beehiivUrl: string
   featured?: boolean
   tldr?: string[]
   evidenceStrength?: 'strong' | 'mixed' | 'early'
   evidenceNote?: string
+  /**
+   * Canonical full article on the publication host. Used when local MDX is missing or empty.
+   * Set explicitly to override the default `https://healthyinsight.beehiiv.com/articles/{slug}`.
+   */
+  externalArticleUrl?: string
 }
 
-export const articles: ArticleMeta[] = [
+// TODO (Fas 4): Pull automatically from Notion Research Library DB via API
+export const TOTAL_SOURCES = 75 // Manually synced from Notion Research Library DB. Update when new sources are added.
+
+const PUBLICATION_ARCHIVE_BASE = 'https://healthyinsight.beehiiv.com/articles' as const
+
+const articleSeeds: ArticleMeta[] = [
   {
     slug: 'fuel-during-training',
     title: 'Fuel During Training: When You Need Carbs and How to Avoid Energy Crashes',
@@ -26,7 +35,6 @@ export const articles: ArticleMeta[] = [
     format: 'guide',
     readingTime: '13 min',
     publishedAt: '2026-03-01',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/fuel-during-training-when-you-need-carbs-and-how-to-avoid-energy-crashes',
     featured: true,
     evidenceStrength: 'strong',
     evidenceNote: 'Multiple RCTs confirm carbohydrate timing benefits for sessions over 60 minutes; shorter sessions show no significant benefit.',
@@ -47,7 +55,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '11 min',
     publishedAt: '2025-12-22',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/fitness-recovery-what-works-vs-what-s-hype',
     evidenceStrength: 'strong',
     evidenceNote: 'Hierarchy of recovery interventions is well-supported; gadget-based tools (ice baths, compression) show modest and inconsistent effects.',
     tldr: [
@@ -67,9 +74,29 @@ export const articles: ArticleMeta[] = [
     level: 3,
     readingTime: '16 min',
     publishedAt: '2025-12-14',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/intermediate-strength-training-optimize-your-training-variables',
     evidenceStrength: 'strong',
     evidenceNote: 'Progressive overload and volume manipulation are among the most replicated findings in strength training research.',
+  },
+  {
+    slug: 'advanced-strength-programming-blocks-fatigue-deloads',
+    title: 'Advanced Strength Programming: Blocks, Fatigue, and Deloads',
+    excerpt:
+      'Block periodization, fatigue signals, and proactive deloads: how to organize training so volume builds capacity, intensity expresses strength, and you peak instead of burning out.',
+    pillar: 'motion',
+    format: 'guide',
+    level: 4,
+    readingTime: '11 min',
+    publishedAt: '2025-12-19',
+    evidenceStrength: 'mixed',
+    evidenceNote:
+      'Block structure and deloads are standard in applied strength coaching; optimal sequencing for every individual has less RCT evidence than foundational overload principles.',
+    tldr: [
+      'Match exercise selection to the competition lift and your weakest link—then protect quality on those lifts.',
+      'Run accumulation → intensification → realization blocks, each with one primary job.',
+      'Track a few fatigue signals (performance, bar speed, soreness, sleep, readiness)—when several drift, adjust.',
+      'Deload proactively (~40–50% fewer sets or reduced load) before performance collapses.',
+      'Progress one variable per block (load, reps, or sets) so you know what worked.',
+    ],
   },
   {
     slug: 'sleep-extension-performance-protocols',
@@ -80,7 +107,6 @@ export const articles: ArticleMeta[] = [
     level: 5,
     readingTime: '30 min',
     publishedAt: '2025-12-13',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/sleep-extension-performance-protocols-a-deep-dive',
     evidenceStrength: 'mixed',
     evidenceNote: 'The Stanford basketball study is compelling but small (n=11). Replication across sports and populations is limited.',
     tldr: [
@@ -100,7 +126,6 @@ export const articles: ArticleMeta[] = [
     level: 3,
     readingTime: '13 min',
     publishedAt: '2025-12-11',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/managing-sleep-around-competition-travel',
     evidenceStrength: 'mixed',
     evidenceNote: 'Competition-eve sleep disruption is well-documented; intervention strategies have less rigorous evidence but are widely applied.',
   },
@@ -113,29 +138,29 @@ export const articles: ArticleMeta[] = [
     level: 4,
     readingTime: '19 min',
     publishedAt: '2025-12-07',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/sleep-quality-optimization-beyond-duration',
     evidenceStrength: 'strong',
     evidenceNote: 'Sleep architecture research is robust; interventions like temperature, light, and timing are well-replicated across large cohorts.',
   },
   {
     slug: 'sleep-and-recovery-guide-for-athletes',
     title: 'Sleep and Recovery: A Guide for Athletes',
-    excerpt: 'A comprehensive guide to the relationship between sleep and athletic recovery. What changes during sleep, and why it matters for performance.',
+    excerpt:
+      'Practical sleep strategies for athletes: managing training schedules, travel, competition stress, and recovery monitoring.',
     pillar: 'recovery',
     format: 'guide',
     level: 2,
-    readingTime: '21 min',
-    publishedAt: '2025-12-03',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/sleep-and-recovery-a-guide-for-athletes',
-    featured: true,
-    evidenceStrength: 'strong',
-    evidenceNote: 'Sleep\'s role in muscle protein synthesis and HGH release is among the most replicated findings in sports science.',
+    readingTime: '15 min',
+    publishedAt: '2025-12-14',
+    evidenceStrength: 'mixed',
+    evidenceNote:
+      'Caffeine timing, light exposure, and training scheduling are well supported; jet lag tactics and wearable/HRV rules blend consensus guidance with smaller or field-based evidence.',
     tldr: [
-      'Slow-wave sleep is when 70% of daily growth hormone is released — critical for muscle repair.',
-      'Sleep deprivation increases cortisol and decreases testosterone measurably.',
-      'Athletes need 8–10 hours; recreational exercisers benefit from at least 7–8.',
-      'REM sleep consolidates motor skill learning — especially relevant after learning new movements.',
-      'Alcohol disrupts REM sleep even when it doesn\'t shorten total sleep time.',
+      'Set a caffeine cutoff about 8–9 hours before bed and watch hidden caffeine in pre-workouts.',
+      'Protect sleep by avoiding late high-intensity sessions when you can; midday training often pairs best with sleep quality.',
+      'For travel, shift sleep gradually pre-flight and use morning vs evening light strategically after arrival.',
+      'Pre-competition: keep the week stable; sleep quality across the prior 2–3 nights matters more than only the night before.',
+      'Use overnight HRV as a trend against a rolling baseline — not nightly tracker perfectionism.',
+      'When napping, ~20 minutes is usually the safest default; the 30–60 minute window is often the groggiest.',
     ],
   },
   {
@@ -147,7 +172,6 @@ export const articles: ArticleMeta[] = [
     level: 1,
     readingTime: '13 min',
     publishedAt: '2025-12-03',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/sleep-for-performance',
     evidenceStrength: 'strong',
     evidenceNote: 'The relationship between sleep duration and performance is one of the most robust in sports science.',
     tldr: [
@@ -167,7 +191,6 @@ export const articles: ArticleMeta[] = [
     level: 1,
     readingTime: '20 min',
     publishedAt: '2025-11-12',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/strength-training-for-beginners',
     featured: true,
     evidenceStrength: 'strong',
     evidenceNote: 'Beginner adaptations to resistance training are among the most studied phenomena in exercise science, with very consistent findings.',
@@ -180,6 +203,48 @@ export const articles: ArticleMeta[] = [
     ],
   },
   {
+    slug: 'strength-progression-5-steps-to-sustainable-gains',
+    title: 'Strength Progression: 5 Steps to Sustainable Gains',
+    excerpt:
+      'How to progress load, reps, and sets without burning out: one progression lane at a time, RIR on big lifts, simple logging, and proactive deloads.',
+    pillar: 'motion',
+    format: 'guide',
+    level: 2,
+    readingTime: '14 min',
+    publishedAt: '2025-11-18',
+    evidenceStrength: 'strong',
+    evidenceNote:
+      'Progressive overload, volume thresholds, and autoregulated effort (RIR) are among the most replicated principles in resistance training research.',
+    tldr: [
+      'Progress one variable at a time: load or reps—not both in the same week.',
+      'On main lifts, leave ~2–4 reps in reserve most of the time for sustainable gains.',
+      'Aim for ~12–20 sets per muscle group per week across 3–4 sessions.',
+      'Deload every 4–6 weeks or when recovery signals slip (~40–50% volume cut or ~30% load reduction).',
+      'Log sets × reps × load (plus RIR) so you know what actually moved the needle.',
+    ],
+  },
+  {
+    slug: 'build-your-running-base-8-12-weeks-to-sustainable-speed',
+    title: 'Build Your Running Base: 8–12 Weeks to Sustainable Speed',
+    excerpt:
+      'Build a strong aerobic base in 8–12 weeks with the right mix of low-intensity running, strength work, and recovery.',
+    pillar: 'motion',
+    format: 'guide',
+    level: 1,
+    readingTime: '14 min',
+    publishedAt: '2025-10-14',
+    evidenceStrength: 'strong',
+    evidenceNote:
+      'Polarized intensity distribution, conservative volume progression, and heavy strength training for runners are well supported in systematic reviews and cohort data.',
+    tldr: [
+      'Keep ~80% of running easy (Zone 1–2); use true quality sparingly for the remaining ~20%.',
+      'Progress total weekly volume by about 10% per week; deload every 4th week (~20–30% less time).',
+      'Two full-body strength sessions weekly support economy and injury resilience.',
+      'After 8–12 weeks, you can shift slightly toward VO₂-style intervals while keeping one long easy run.',
+      'Prioritize 7–9 hours sleep—adaptation happens in recovery, not only in the session.',
+    ],
+  },
+  {
     slug: 'strength-for-runners',
     title: 'Strength for Runners: 5 Exercises for Running Economy and Durability',
     excerpt: 'Strength training makes you a better runner. The evidence on which exercises actually improve running economy and reduce injury risk.',
@@ -188,7 +253,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '11 min',
     publishedAt: '2025-11-06',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/strength-for-runners-5-exercises-for-running-economy-and-durability',
     evidenceStrength: 'strong',
     evidenceNote: 'Heavy strength training improving running economy is well-replicated; the 5 exercises are chosen based on biomechanical specificity to running.',
     tldr: [
@@ -208,7 +272,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '8 min',
     publishedAt: '2025-11-05',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/zone-2-reality-check-the-myth-buster-checklist',
     evidenceStrength: 'strong',
     evidenceNote: 'Zone 2 training benefits are well-established; the common misconceptions addressed here are directly contradicted by lactate threshold research.',
     tldr: [
@@ -228,7 +291,6 @@ export const articles: ArticleMeta[] = [
     level: 4,
     readingTime: '22 min',
     publishedAt: '2025-10-29',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/vo2-max-physiological-mechanisms-research-frontiers',
     evidenceStrength: 'strong',
     evidenceNote: 'The central vs. peripheral limitation debate is well-researched; stroke volume and mitochondrial density data are from large, replicated studies.',
   },
@@ -241,9 +303,29 @@ export const articles: ArticleMeta[] = [
     level: 4,
     readingTime: '16 min',
     publishedAt: '2025-10-28',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/vo2-max-training-advanced-protocols-periodization',
     evidenceStrength: 'mixed',
     evidenceNote: 'Interval structures are well-studied; optimal periodization sequencing has fewer RCTs and more observational data from elite sport.',
+  },
+  {
+    slug: 'vo2-max-why-this-number-predicts-longevity',
+    title: 'VO₂ Max: Why This Number Predicts How Long You\'ll Live',
+    excerpt:
+      'What VO₂ max measures, why it tracks longevity and performance, and how to start improving it with simple cardio and one weekly hard session.',
+    pillar: 'motion',
+    format: 'guide',
+    level: 1,
+    readingTime: '9 min',
+    publishedAt: '2025-10-20',
+    evidenceStrength: 'strong',
+    evidenceNote:
+      'Cardiorespiratory fitness and mortality links are supported by very large meta-analyses and cohorts; effect sizes depend on fitness classification and confounding adjustment.',
+    tldr: [
+      'VO₂ max reflects how much oxygen you can use during hard effort — a practical marker of heart–lung–muscle fitness.',
+      'Higher fitness is consistently associated with lower all-cause mortality in population studies.',
+      'Most beginners can raise VO₂ max meaningfully within weeks by combining mostly easy aerobic work with a small dose of hard intervals.',
+      'You can start without lab testing: build a repeatable easy baseline, then add one interval session per week.',
+      'Small improvements add up; consistency matters more than gadget precision.',
+    ],
   },
   {
     slug: 'how-to-improve-vo2max-12-week-plan',
@@ -254,7 +336,6 @@ export const articles: ArticleMeta[] = [
     level: 2,
     readingTime: '11 min',
     publishedAt: '2025-10-20',
-    beehiivUrl: 'https://www.healthyinsight.eu/p/how-to-improve-your-vo2-max-the-12-week-plan-e1ac',
     featured: true,
     evidenceStrength: 'strong',
     evidenceNote: 'VO2 max improvements of 5–15% over 12 weeks are well-documented with the polarized training approach used in this plan.',
@@ -266,7 +347,34 @@ export const articles: ArticleMeta[] = [
       'Test at week 0, 6, and 12 to track progress (time trial or lab test).',
     ],
   },
+  {
+    slug: 'set-goals-that-last-smart-goals-lasting-motivation',
+    title: 'Set Goals That Last: A Guide to SMART Goals and Lasting Motivation',
+    excerpt:
+      'Build sustainable habits with evidence-based goal-setting strategies that work long-term.',
+    pillar: 'mindset',
+    format: 'guide',
+    level: 2,
+    readingTime: '15 min',
+    publishedAt: '2025-10-06',
+    evidenceStrength: 'strong',
+    evidenceNote:
+      'Implementation intentions and SMART-style specificity are supported by large meta-analyses and goal-setting theory; exact adherence percentages vary by population and measurement.',
+    tldr: [
+      'Pair one outcome goal with two concrete process goals you control day to day.',
+      'Make process goals SMART, then add if–then plans for likely obstacles.',
+      'Track weekly process completion (aim for ~80%+) and review for small tweaks—not wholesale resets.',
+      'Celebrate completed sessions; identity-based framing (“I am a runner”) helps you return after misses.',
+      'Give a new structure at least ~4 weeks before major changes—habits form on a long tail.',
+    ],
+  },
 ]
+
+export const articles: ArticleMeta[] = articleSeeds.map(article => ({
+  ...article,
+  externalArticleUrl:
+    article.externalArticleUrl ?? `${PUBLICATION_ARCHIVE_BASE}/${article.slug}`,
+}))
 
 export function getArticlesByPillar(pillar: Pillar) {
   return articles.filter(a => a.pillar === pillar)

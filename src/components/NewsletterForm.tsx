@@ -5,9 +5,10 @@ import { useState } from 'react'
 interface NewsletterFormProps {
   dark?: boolean // true = white text on dark bg, false = dark text on light bg
   size?: 'sm' | 'lg'
+  onSuccess?: () => void
 }
 
-export default function NewsletterForm({ dark = true, size = 'lg' }: NewsletterFormProps) {
+export default function NewsletterForm({ dark = true, size = 'lg', onSuccess }: NewsletterFormProps) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
@@ -41,9 +42,10 @@ export default function NewsletterForm({ dark = true, size = 'lg' }: NewsletterF
       if (res.ok) {
         setStatus('success')
         setEmail('')
+        onSuccess?.()
       } else {
-        const data = await res.json()
-        setErrorMsg(data.error || 'Something went wrong. Try again.')
+        const data = await res.json().catch(() => null)
+        setErrorMsg(data?.error || 'Something went wrong. Try again.')
         setStatus('error')
       }
     } catch {

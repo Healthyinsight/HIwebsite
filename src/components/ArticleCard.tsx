@@ -10,7 +10,6 @@ interface ArticleCardProps {
   level?: number
   readingTime?: string
   publishedAt?: string
-  beehiivUrl?: string
   large?: boolean
 }
 

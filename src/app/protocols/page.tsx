@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
 import NewsletterForm from '@/components/NewsletterForm'
@@ -16,18 +15,17 @@ export default function ProtocolsPage() {
 
   return (
     <>
-      <Nav />
       <main>
 
         {/* HEADER */}
-        <section style={{ background: 'var(--cream)', padding: '80px 52px' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <section className="section-pad" style={{ background: 'var(--cream)' }}>
+          <div className="container">
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '20px' }}>
               Protocols & Guides
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'end' }}>
+            <div className="grid-two-equal">
               <div>
-                <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '48px', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.8px', lineHeight: 1.1, marginBottom: '20px' }}>
+                <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.8px', lineHeight: 1.1, marginBottom: '20px' }}>
                   Put the research<br />
                   <em style={{ fontStyle: 'italic', color: 'var(--blue-mid)' }}>into practice.</em>
                 </h1>
@@ -35,7 +33,7 @@ export default function ProtocolsPage() {
                   Protocols are structured, actionable frameworks built directly from the evidence. Guides provide comprehensive context and understanding. Both are designed to close the gap between knowing and doing.
                 </p>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="grid-stats">
                 {[
                   { num: protocols.length.toString(), label: 'step-by-step\nprotocols' },
                   { num: guides.length.toString(), label: 'comprehensive\nguides' },
@@ -53,12 +51,12 @@ export default function ProtocolsPage() {
         </section>
 
         {/* PROTOCOLS */}
-        <section style={{ padding: '80px 52px', background: 'var(--warm)' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <section className="section-pad" style={{ background: 'var(--warm)' }}>
+          <div className="container">
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '40px' }}>
               <div>
                 <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '8px' }}>Step-by-step</div>
-                <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '32px', fontWeight: 400, color: 'var(--navy)', lineHeight: 1.2 }}>
+                <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 400, color: 'var(--navy)', lineHeight: 1.2 }}>
                   Protocols
                 </h2>
               </div>
@@ -66,7 +64,7 @@ export default function ProtocolsPage() {
             <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, maxWidth: '560px', marginBottom: '40px', fontWeight: 300 }}>
               Structured programs with specific variables, progressions, and timelines. Build these into your week directly.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '20px' }}>
+            <div className="grid-three">
               {protocols.map(article => (
                 <ArticleCard key={article.slug} {...article} />
               ))}
@@ -75,18 +73,18 @@ export default function ProtocolsPage() {
         </section>
 
         {/* GUIDES */}
-        <section style={{ padding: '80px 52px', background: 'var(--cream)' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <section className="section-pad" style={{ background: 'var(--cream)' }}>
+          <div className="container">
             <div style={{ marginBottom: '40px' }}>
               <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '8px' }}>Comprehensive</div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '32px', fontWeight: 400, color: 'var(--navy)', lineHeight: 1.2 }}>
+              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 400, color: 'var(--navy)', lineHeight: 1.2 }}>
                 Guides
               </h2>
             </div>
             <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, maxWidth: '560px', marginBottom: '40px', fontWeight: 300 }}>
               Deep dives into the evidence, mechanisms, and frameworks. Start here to build a strong conceptual foundation.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '20px' }}>
+            <div className="grid-three">
               {guides.map(article => (
                 <ArticleCard key={article.slug} {...article} />
               ))}
@@ -95,10 +93,10 @@ export default function ProtocolsPage() {
         </section>
 
         {/* NEWSLETTER */}
-        <section style={{ padding: '84px 52px', background: 'var(--warm)', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ background: 'var(--blue)', borderRadius: '26px', padding: '60px 68px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center', maxWidth: '900px', width: '100%' }}>
+        <section className="section-pad" style={{ background: 'var(--warm)', display: 'flex', justifyContent: 'center' }}>
+          <div className="container newsletter-panel">
             <div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '34px', fontWeight: 400, color: 'white', lineHeight: 1.2, letterSpacing: '-0.3px', marginBottom: '13px' }}>
+              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'white', lineHeight: 1.2, letterSpacing: '-0.3px', marginBottom: '13px' }}>
                 New protocols weekly.
               </h2>
               <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, fontWeight: 300 }}>
