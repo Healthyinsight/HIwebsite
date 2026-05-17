@@ -27,7 +27,7 @@ export default function HomePage() {
             <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
               Train smarter. Race stronger.
             </h1>
-            <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '34px', lineHeight: 1.5 }}>
+            <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', fontWeight: 400, color: '#444440', marginBottom: '34px', lineHeight: 1.5 }}>
               The personal training app that actually gets to know you.
               Empowers you with personal health insights every day — then coaches you
               based on your body, your schedule, and what is proven to work.
