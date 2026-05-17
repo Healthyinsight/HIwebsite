@@ -21,13 +21,13 @@ export default function HomePage() {
           <div className="container" style={{ maxWidth: '620px' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '22px' }}>
               <span style={{ display: 'inline-block', width: '24px', height: '1px', background: 'var(--blue-mid)' }} />
-              Half marathon, marathon, 70.3 — you name it.
+              Built for professional amateurs, by professional amateurs.
             </div>
 
             <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
               Train smarter. Race stronger.
             </h1>
-            <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', fontWeight: 400, color: 'var(--blue-mid)', marginBottom: '34px', lineHeight: 1.5 }}>
+            <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '34px', lineHeight: 1.5 }}>
               The personal training app that actually gets to know you.
               Empowers you with personal health insights every day — then coaches you
               based on your body, your schedule, and what is proven to work.
