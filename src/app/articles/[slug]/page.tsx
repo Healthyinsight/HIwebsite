@@ -3,13 +3,15 @@ import ArticleScrollUI from '@/components/ArticleScrollUI'
 import Footer from '@/components/Footer'
 import { mdxComponents } from '@/components/MdxComponents'
 import { articles } from '@/lib/articles'
-import { getArticleContent } from '@/lib/articleContent'
+import { compileMDX } from 'next-mdx-remote/rsc'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import { pillarGradients } from '@/lib/pillars'
 import { getTrailForArticle } from '@/lib/trails'
 import Link from 'next/link'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import type { ReactElement } from 'react'
 
 export async function generateStaticParams() {
   return articles.map(a => ({ slug: a.slug }))
@@ -40,7 +42,19 @@ export default async function ArticlePage(
   const badge = article.evidenceStrength ? evidenceBadgeStyles[article.evidenceStrength] : null
 
   // ── MDX body (null when no local file exists) ─
-  const mdxBody = getArticleContent(slug)
+  const mdxFilePath = path.join(process.cwd(), 'content', 'articles', `${slug}.mdx`)
+  let mdxContent: ReactElement | null = null
+  try {
+    const source = await fs.readFile(mdxFilePath, 'utf8')
+    const { content } = await compileMDX({
+      source,
+      components: mdxComponents,
+      options: { parseFrontmatter: true },
+    })
+    mdxContent = content
+  } catch {
+    mdxContent = null
+  }
 
   // ── Trail context ────────────────────────────────────────────────────────
   const trailContext = getTrailForArticle(slug)
@@ -162,9 +176,9 @@ export default async function ArticlePage(
             )}
 
             {/* Article body — MDX when available */}
-            {mdxBody ? (
+            {mdxContent ? (
               <article style={{ marginBottom: '36px', maxWidth: '68ch' }}>
-                <MDXRemote source={mdxBody} components={mdxComponents} />
+                {mdxContent}
               </article>
             ) : article.externalArticleUrl ? (
               <div style={{ background: 'var(--cream)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px' }}>
