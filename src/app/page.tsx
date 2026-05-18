@@ -7,6 +7,7 @@ import TrailCard from '@/components/TrailCard'
 import { getActiveTrails } from '@/lib/trails'
 import Link from 'next/link'
 import HomeScrollUI from '@/components/HomeScrollUI'
+import { WAITLIST_MODE } from '@/config'
 
 export default function HomePage() {
   const latest = getLatestArticles(6)
@@ -34,9 +35,9 @@ export default function HomePage() {
             </p>
 
             <div style={{ marginBottom: '16px' }}>
-              <Link href="/trails"
+              <Link href={WAITLIST_MODE ? '/waitlist' : 'https://tracker.healthyinsight.eu'}
                 style={{ display: 'block', textAlign: 'center', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '0 30px', fontSize: '16px', fontWeight: 500, textDecoration: 'none', minHeight: '54px', lineHeight: '54px' }}>
-                Get your training plan →
+                {WAITLIST_MODE ? 'Join the waitlist' : 'Start for free'} →
               </Link>
             </div>
 

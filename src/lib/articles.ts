@@ -393,3 +393,13 @@ export function getArticlesByFormat(format: ArticleFormat) {
 export function getFeaturedArticles() {
   return articles.filter(a => a.featured === true)
 }
+
+// ── Dynamic MDX helpers (used by next-mdx-remote v6 integration) ─────────────
+
+export function getAllArticles(): ArticleMeta[] {
+  return articles
+}
+
+export function getArticleBySlug(slug: string): ArticleMeta | undefined {
+  return articles.find(a => a.slug === slug)
+}
