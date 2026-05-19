@@ -77,7 +77,7 @@ function waitlistConfirmationEmail(email: string): string {
   <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">The Path Tracker is coming — you're first in line.&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847;</div>
   <div class="container">
     <div class="header">
-      <img src="https://healthyinsight.eu/logo.png" width="120" height="auto" alt="Healthy Insight" style="display:block;margin:0 auto;">
+      <img src="https://healthyinsight.eu/logo.png" width="120" height="120" alt="Healthy Insight" style="display:block;margin:0 auto;">
     </div>
     <div class="body">
       <h1>You made the list.</h1>
@@ -87,7 +87,6 @@ function waitlistConfirmationEmail(email: string): string {
     <div class="footer">
       <p>healthyinsight.eu<br>
       You're receiving this because you signed up at healthyinsight.eu/waitlist<br>
-      Healthy Insight &middot; Filip Berggren &middot; &#197;by all&eacute; 25, 431 45 M&ouml;lndal, Sverige<br>
       <a href="${unsubUrl}">Unsubscribe</a></p>
     </div>
   </div>
@@ -107,6 +106,5 @@ We're putting the finishing touches on The Path Tracker — a personal health in
 ---
 healthyinsight.eu
 You're receiving this because you signed up at healthyinsight.eu/waitlist
-Healthy Insight · Filip Berggren · Åby allé 25, 431 45 Mölndal, Sverige
 Unsubscribe: ${unsubUrl}`
 }
