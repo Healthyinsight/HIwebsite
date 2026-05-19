@@ -77,7 +77,7 @@ function waitlistConfirmationEmail(email: string): string {
   <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">The Path Tracker is coming — you're first in line.&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847;</div>
   <div class="container">
     <div class="header">
-      <p style="font-family:Georgia,serif;color:#0F2A3F;letter-spacing:0.12em;font-size:13px;text-transform:uppercase;margin:0;font-weight:400;">Healthy Insight</p>
+      <img src="https://healthyinsight.eu/logo.png" width="120" height="120" alt="Healthy Insight" style="display:block;margin:0 auto;">
     </div>
     <div class="body">
       <h1>You made the list.</h1>
