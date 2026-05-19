@@ -87,7 +87,7 @@ function waitlistConfirmationEmail(email: string): string {
     <div class="footer">
       <p>healthyinsight.eu<br>
       You're receiving this because you signed up at healthyinsight.eu/waitlist<br>
-      Healthy Insight &middot; Filip Berggren &middot; [PHYSICAL ADDRESS]<br>
+      Healthy Insight &middot; Filip Berggren &middot; &#197;by all&eacute; 25, 431 45 M&ouml;lndal, Sverige<br>
       <a href="${unsubUrl}">Unsubscribe</a></p>
     </div>
   </div>
@@ -107,6 +107,6 @@ We're putting the finishing touches on The Path Tracker — a personal health in
 ---
 healthyinsight.eu
 You're receiving this because you signed up at healthyinsight.eu/waitlist
-Healthy Insight · Filip Berggren · [PHYSICAL ADDRESS]
+Healthy Insight · Filip Berggren · Åby allé 25, 431 45 Mölndal, Sverige
 Unsubscribe: ${unsubUrl}`
 }
