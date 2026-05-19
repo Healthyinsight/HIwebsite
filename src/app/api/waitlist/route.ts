@@ -35,8 +35,8 @@ export async function POST(req: Request) {
           from: 'Filip at Healthy Insight <filip@healthyinsight.eu>',
           to: [email],
           subject: "You're on the list — Healthy Insight",
-          html: waitlistConfirmationEmail(),
-          text: waitlistConfirmationText(),
+          html: waitlistConfirmationEmail(email),
+          text: waitlistConfirmationText(email),
         }),
       })
       if (!emailRes.ok) {
@@ -51,7 +51,8 @@ export async function POST(req: Request) {
   return NextResponse.json({ ok: true })
 }
 
-function waitlistConfirmationEmail(): string {
+function waitlistConfirmationEmail(email: string): string {
+  const unsubUrl = `https://healthyinsight.eu/api/waitlist-unsubscribe?email=${encodeURIComponent(email)}`
   return `
 <!DOCTYPE html>
 <html>
@@ -59,24 +60,24 @@ function waitlistConfirmationEmail(): string {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: 'DM Sans', Georgia, sans-serif; background: #0F2A3F; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', Georgia, sans-serif; background: #ffffff; margin: 0; padding: 0; }
     .container { max-width: 600px; margin: 0 auto; padding: 48px 24px; }
     .header { text-align: center; margin-bottom: 40px; }
-    .header p { color: rgba(255,255,255,0.45); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin: 0; }
-    .body { background: #162F45; border-radius: 16px; padding: 48px 40px; border: 1px solid rgba(255,255,255,0.08); }
-    .body h1 { color: #FFFFFF; font-family: Georgia, 'DM Serif Display', serif; font-size: 32px; font-weight: 400; margin: 0 0 28px; line-height: 1.2; }
-    .body p { color: rgba(255,255,255,0.75); font-size: 16px; line-height: 1.8; margin: 0 0 20px; }
+    .body { background: #f3f4f6; border-radius: 16px; padding: 48px 40px; border: 1px solid #e5e7eb; }
+    .body h1 { color: #0F2A3F; font-family: Georgia, 'DM Serif Display', serif; font-size: 32px; font-weight: 400; margin: 0 0 28px; line-height: 1.2; }
+    .body p { color: #374151; font-size: 16px; line-height: 1.8; margin: 0 0 20px; }
     .body p:last-child { margin-bottom: 0; }
-    .sig { color: rgba(255,255,255,0.55) !important; font-size: 15px !important; }
+    .sig { color: #6b7280 !important; font-size: 15px !important; }
     .footer { text-align: center; margin-top: 32px; }
-    .footer p { color: rgba(255,255,255,0.3); font-size: 12px; line-height: 1.7; }
-    .footer a { color: rgba(255,255,255,0.45); }
+    .footer p { color: #9ca3af; font-size: 12px; line-height: 1.7; }
+    .footer a { color: #2D7DA8; }
   </style>
 </head>
 <body>
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">The Path Tracker is coming — you're first in line.&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847;</div>
   <div class="container">
     <div class="header">
-      <p>Healthy Insight</p>
+      <img src="https://healthyinsight.eu/logo.png" width="120" height="auto" alt="Healthy Insight" style="display:block;margin:0 auto;">
     </div>
     <div class="body">
       <h1>You made the list.</h1>
@@ -85,7 +86,9 @@ function waitlistConfirmationEmail(): string {
     </div>
     <div class="footer">
       <p>healthyinsight.eu<br>
-      You're receiving this because you signed up at healthyinsight.eu/waitlist</p>
+      You're receiving this because you signed up at healthyinsight.eu/waitlist<br>
+      Healthy Insight &middot; Filip Berggren &middot; &#197;by all&eacute; 25, 431 45 M&ouml;lndal, Sverige<br>
+      <a href="${unsubUrl}">Unsubscribe</a></p>
     </div>
   </div>
 </body>
@@ -93,7 +96,8 @@ function waitlistConfirmationEmail(): string {
   `.trim()
 }
 
-function waitlistConfirmationText(): string {
+function waitlistConfirmationText(email: string): string {
+  const unsubUrl = `https://healthyinsight.eu/api/waitlist-unsubscribe?email=${encodeURIComponent(email)}`
   return `You made the list.
 
 We're putting the finishing touches on The Path Tracker — a personal health intelligence layer built for athletes who want to train smarter and race stronger. We'll reach out personally when it's ready for you.
@@ -102,5 +106,7 @@ We're putting the finishing touches on The Path Tracker — a personal health in
 
 ---
 healthyinsight.eu
-You're receiving this because you signed up at healthyinsight.eu/waitlist`
+You're receiving this because you signed up at healthyinsight.eu/waitlist
+Healthy Insight · Filip Berggren · Åby allé 25, 431 45 Mölndal, Sverige
+Unsubscribe: ${unsubUrl}`
 }
