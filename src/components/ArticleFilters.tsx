@@ -153,7 +153,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
 
       {/* Article grid */}
       {filtered.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '80px 0' }}>
+        <div style={{ textAlign: 'center', padding: 'clamp(40px, 8vw, 80px) 0' }}>
           <p style={{ fontSize: '15px', color: '#8A8A80', marginBottom: '16px', fontWeight: 300 }}>
             No articles match these filters.
           </p>
@@ -165,7 +165,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
           </button>
         </div>
       ) : (
-        <div className="grid-three">
+        <div className="grid-articles">
           {filtered.map(article => (
             <ArticleCard key={article.slug} {...article} />
           ))}

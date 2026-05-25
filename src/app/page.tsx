@@ -364,7 +364,7 @@ export default function HomePage() {
         <section id="newsletter" style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)', display: 'flex', justifyContent: 'center', scrollMarginTop: '112px' }}>
           <div className="container newsletter-panel">
             <div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '34px', fontWeight: 400, color: 'white', lineHeight: 1.2, letterSpacing: '-0.3px', marginBottom: '13px' }}>
+              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4.5vw, 2.125rem)', fontWeight: 400, color: 'white', lineHeight: 1.2, letterSpacing: '-0.3px', marginBottom: '13px' }}>
                 One evidence-based insight. Every week. For your race.
               </h2>
               <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: '16px', fontWeight: 300 }}>
