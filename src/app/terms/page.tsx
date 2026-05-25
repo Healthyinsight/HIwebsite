@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import type { Metadata } from 'next'
 
@@ -10,9 +9,8 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <Nav />
-      <main style={{ padding: '80px 52px 100px', background: 'var(--warm)', minHeight: '50vh' }}>
-        <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+      <main style={{ paddingTop: 'clamp(48px, 10vw, 80px)', paddingBottom: 'clamp(48px, 12vw, 100px)', background: 'var(--warm)', minHeight: '50vh' }}>
+        <div className="container" style={{ maxWidth: '720px' }}>
           <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '36px', fontWeight: 400, color: 'var(--navy)', marginBottom: '24px' }}>
             Terms
           </h1>

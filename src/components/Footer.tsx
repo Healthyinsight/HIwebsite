@@ -12,10 +12,21 @@ export default function Footer() {
       ],
     },
     {
-      heading: 'Company',
+      heading: 'Learn',
       links: [
-        { href: '/about',      label: 'About' },
+        { href: '/trails',    label: 'Learning Trails' },
+        { href: '/quiz',      label: 'Health IQ Quiz' },
+        { href: '/articles',  label: 'All Articles' },
+        { href: '/protocols', label: 'Protocols & Guides' },
         { href: '/newsletter', label: 'Newsletter' },
+      ],
+    },
+    {
+      heading: 'About',
+      links: [
+        { href: '/about',         label: 'About HI' },
+        { href: '/about#method',  label: 'How we work with evidence' },
+        { href: '/about#sources', label: 'Sources & transparency' },
         { href: 'https://tracker.healthyinsight.eu', label: 'The Path Tracker' },
       ],
     },
@@ -30,45 +41,40 @@ export default function Footer() {
   ]
 
   return (
-    <footer style={{ background: 'var(--cream)', borderTop: '1px solid var(--sand)' }}
-      className="px-14 pt-14 pb-10">
-      <div className="grid gap-12 mb-11"
-        style={{ gridTemplateColumns: '2fr 1fr 1fr 1fr' }}>
-        <div>
-          <span className="font-serif text-[19px]" style={{ color: 'var(--navy)' }}>
-            Healthy Insight
-          </span>
-          <p className="text-sm mt-3 leading-relaxed max-w-[265px]"
-            style={{ color: '#8A8A80', fontWeight: 300 }}>
-            Evidence-based health insights for people who want to make better decisions.
-            Grounded in physiology, not marketing.
+    <footer style={{ background: 'var(--cream)', borderTop: '1px solid var(--sand)', paddingTop: 'clamp(40px, 8vw, 56px)', paddingBottom: 'clamp(28px, 6vw, 40px)' }}>
+      <div className="container">
+        <div className="footer-grid">
+          <div>
+            <Link href="/" style={{ fontFamily: 'DM Serif Display, serif', fontSize: '19px', color: 'var(--navy)', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>
+              Healthy Insight
+            </Link>
+            <p style={{ fontSize: '14px', lineHeight: 1.7, maxWidth: '265px', color: '#8A8A80', fontWeight: 300, marginBottom: '0' }}>
+              Evidence-based health insights for people who want to make better decisions. Grounded in physiology, not marketing.
+            </p>
+          </div>
+          {cols.map((col) => (
+            <div key={col.heading}>
+              <h4 style={{ fontSize: '10px', fontWeight: 500, marginBottom: '16px', letterSpacing: '2px', textTransform: 'uppercase', color: '#8A8A80' }}>
+                {col.heading}
+              </h4>
+              {col.links.map(({ href, label }) => (
+                <Link key={href} href={href}
+                  style={{ display: 'block', fontSize: '14px', marginBottom: '10px', textDecoration: 'none', color: '#444440' }}>
+                  {label}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="footer-bottom">
+          <p style={{ fontSize: '13px', color: '#8A8A80', margin: 0 }}>
+            © 2026 Healthy Insight. All rights reserved.
+          </p>
+          <p style={{ fontFamily: 'DM Serif Display, serif', fontStyle: 'italic', fontSize: '14px', color: 'var(--blue-mid)', margin: 0 }}>
+            Science Made Simple, Action Made Fun
           </p>
         </div>
-        {cols.map((col) => (
-          <div key={col.heading}>
-            <h4 className="text-[10px] font-medium mb-4 tracking-widest uppercase"
-              style={{ color: '#8A8A80' }}>
-              {col.heading}
-            </h4>
-            {col.links.map(({ href, label }) => (
-              <Link key={href} href={href}
-                className="block text-sm mb-2.5 no-underline transition-colors hover:text-navy"
-                style={{ color: '#444440' }}>
-                {label}
-              </Link>
-            ))}
-          </div>
-        ))}
-      </div>
-
-      <div className="flex justify-between items-center pt-7"
-        style={{ borderTop: '1px solid var(--sand)' }}>
-        <p className="text-[13px]" style={{ color: '#8A8A80' }}>
-          2026 Healthy Insight. All rights reserved.
-        </p>
-        <p className="font-serif italic text-sm" style={{ color: 'var(--blue-mid)' }}>
-          Science Made Simple, Action Made Fun
-        </p>
       </div>
     </footer>
   )
