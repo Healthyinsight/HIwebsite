@@ -27,7 +27,7 @@ export default function ArticleCard({ slug, title, excerpt, pillar, format, leve
   return (
     <Link href={`/articles/${slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
       <article style={{ background: '#FAFAF7', borderRadius: '22px', overflow: 'hidden', border: '1px solid rgba(15,42,63,0.06)', transition: 'transform 0.2s, box-shadow 0.2s', height: '100%', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ height: large ? '290px' : '165px', background: gradient, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '16px 20px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ aspectRatio: large ? '16 / 9' : '5 / 3', minHeight: large ? '160px' : '110px', background: gradient, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '16px 20px', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', width: '200px', height: '200px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', top: '-40px', right: '-40px' }} />
           <span style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.9)', fontSize: '10px', fontWeight: 500, letterSpacing: '1.2px', textTransform: 'uppercase', padding: '5px 14px', borderRadius: '100px', position: 'relative', zIndex: 1 }}>
             {pillar.charAt(0).toUpperCase() + pillar.slice(1)}{level ? ` · Level ${level}` : ''}
@@ -39,7 +39,7 @@ export default function ArticleCard({ slug, title, excerpt, pillar, format, leve
           )}
         </div>
         <div style={{ padding: '22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: large ? '20px' : '17px', fontWeight: 400, color: '#1A1A17', lineHeight: 1.3, marginBottom: '9px' }}>
+          <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: large ? 'clamp(17px, 2.5vw, 20px)' : 'clamp(14px, 2vw, 17px)', fontWeight: 400, color: '#1A1A17', lineHeight: 1.3, marginBottom: '9px' }}>
             {title}
           </h3>
           <p style={{ fontSize: '14px', color: '#8A8A80', lineHeight: 1.6, marginBottom: '16px', flex: 1 }}>
