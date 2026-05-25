@@ -11,7 +11,8 @@
 - **Fonts:** DM Serif Display (headings) + DM Sans (body) via Google Fonts
 - **Email:** Resend API via `/api/subscribe` route
 - **Content:** Article metadata in `src/lib/articles.ts`; article bodies in `content/articles/*.mdx` (rendered with `next-mdx-remote`)
-- **Deployment:** Vercel (auto-deploys from `master`)
+- **Deployment:** Vercel (auto-deploys from `main`)
+- **Default branch:** `main` — always target `main` when creating PRs, never `master`
 - **Language:** English throughout
 
 ## CSS custom properties (defined in globals.css)
