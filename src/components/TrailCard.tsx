@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Trail } from '@/lib/trails'
 
 const PILLAR_STYLES: Record<string, { bg: string; accent: string }> = {
@@ -9,6 +10,14 @@ const PILLAR_STYLES: Record<string, { bg: string; accent: string }> = {
   motion:   { bg: 'linear-gradient(135deg, #1A3A2A 0%, #1E5C3A 100%)', accent: '#95D5B2' },
   nutrition:{ bg: 'linear-gradient(135deg, #3A2A10 0%, #6B4A1C 100%)', accent: '#D4B896' },
   mindset:  { bg: 'linear-gradient(135deg, #2A1A3A 0%, #4A2D6E 100%)', accent: '#C4B5D5' },
+}
+
+// Shifts logo.png (base hue ~220°) to match each pillar's accent colour
+const PILLAR_LOGO_FILTER: Record<string, string> = {
+  recovery:  'hue-rotate(-20deg) saturate(0.9)  brightness(0.85)',
+  motion:    'hue-rotate(-70deg) saturate(1.5)  brightness(0.85)',
+  nutrition: 'hue-rotate(175deg) saturate(1.8)  brightness(0.85)',
+  mindset:   'hue-rotate(60deg)  saturate(1.4)  brightness(0.85)',
 }
 
 export default function TrailCard({ trail }: { trail: Trail }) {
@@ -36,7 +45,29 @@ export default function TrailCard({ trail }: { trail: Trail }) {
       flexDirection: 'column',
       gap: '14px',
       minHeight: '210px',
+      position: 'relative',
+      overflow: 'hidden',
     }}>
+      {/* Decorative logo watermark — hue-rotated to match the pillar accent */}
+      <Image
+        src="/logo.png"
+        alt=""
+        width={112}
+        height={112}
+        style={{
+          position: 'absolute',
+          top: '6px',
+          right: '-14px',
+          width: '112px',
+          height: '112px',
+          opacity: 0.22,
+          filter: PILLAR_LOGO_FILTER[trail.pillar] ?? '',
+          pointerEvents: 'none',
+          userSelect: 'none',
+          transform: 'rotate(6deg)',
+        }}
+      />
+
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <span style={{ fontSize: '26px', lineHeight: 1 }}>{trail.badge.emoji}</span>

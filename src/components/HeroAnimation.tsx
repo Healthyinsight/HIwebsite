@@ -1,22 +1,11 @@
 'use client'
-import { useRef, useEffect, useState } from 'react'
-import { useRive } from '@rive-app/react-canvas'
-import HeroOrb from './HeroOrb'
+import { useRef, useEffect } from 'react'
+import HeroLogoAnimation from './HeroLogoAnimation'
 
 export default function HeroAnimation() {
   const wrapperRef = useRef<HTMLDivElement>(null)
-  const [riveError, setRiveError] = useState(false)
 
-  const { RiveComponent, rive } = useRive({
-    src: '/animations/hi-hero.riv',
-    stateMachines: 'HeroSM',
-    autoplay: true,
-    onLoadError: () => setRiveError(true),
-  })
-
-  const riveReady = !!rive && !riveError
-
-  // Smooth lerp mouse parallax — moves the whole orb subtly with the cursor
+  // Smooth lerp mouse parallax — moves the whole logo subtly with the cursor
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
@@ -46,23 +35,6 @@ export default function HeroAnimation() {
     }
   }, [])
 
-  // Feed cursor position into Rive state machine inputs when .riv is loaded
-  useEffect(() => {
-    if (!rive || riveError) return
-    const onMove = (e: MouseEvent) => {
-      const inputs = rive.stateMachineInputs('HeroSM')
-      if (!inputs) return
-      const mx = e.clientX / window.innerWidth
-      const my = e.clientY / window.innerHeight
-      const xInput = inputs.find(i => i.name === 'mouseX')
-      const yInput = inputs.find(i => i.name === 'mouseY')
-      if (xInput) xInput.value = mx
-      if (yInput) yInput.value = my
-    }
-    window.addEventListener('mousemove', onMove, { passive: true })
-    return () => window.removeEventListener('mousemove', onMove)
-  }, [rive, riveError])
-
   return (
     <div
       ref={wrapperRef}
@@ -74,28 +46,7 @@ export default function HeroAnimation() {
         willChange: 'transform',
       }}
     >
-      {/* CSS animated orb — always visible, fades out if Rive loads successfully */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        opacity: riveReady ? 0 : 1,
-        transition: 'opacity 0.7s ease',
-        pointerEvents: riveReady ? 'none' : 'auto',
-      }}>
-        <HeroOrb />
-      </div>
-
-      {/* Rive canvas — invisible until the .riv file loads; safe no-op until then */}
-      {!riveError && (
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          opacity: riveReady ? 1 : 0,
-          transition: 'opacity 0.7s ease',
-        }}>
-          <RiveComponent style={{ width: '100%', height: '100%' }} />
-        </div>
-      )}
+      <HeroLogoAnimation />
     </div>
   )
 }
