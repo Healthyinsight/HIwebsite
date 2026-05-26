@@ -252,7 +252,7 @@ export default function HealthIQQuiz() {
                 placeholder="First name (optional)"
                 value={name}
                 onChange={e => setName(e.target.value)}
-                style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '14px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
+                style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
               />
               <input
                 type="email"
@@ -260,7 +260,7 @@ export default function HealthIQQuiz() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '14px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
+                style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
               />
               <button
                 type="submit"
