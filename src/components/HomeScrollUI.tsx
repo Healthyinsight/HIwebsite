@@ -11,7 +11,6 @@ const NAV_LINKS = [
 ]
 
 export default function HomeScrollUI() {
-  const [navH, setNavH] = useState(62)
   const [showNav, setShowNav] = useState(false)
   const [showTop, setShowTop] = useState(false)
   const rafRef = useRef<number | null>(null)
@@ -20,16 +19,6 @@ export default function HomeScrollUI() {
 
   useEffect(() => {
     reducedMotion.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    const nav = document.querySelector('.site-nav')
-    let ro: ResizeObserver | null = null
-    if (nav) {
-      setNavH(nav.getBoundingClientRect().height)
-      ro = new ResizeObserver(() => {
-        setNavH(nav.getBoundingClientRect().height)
-      })
-      ro.observe(nav)
-    }
 
     function onScroll() {
       if (rafRef.current !== null) return
@@ -53,7 +42,6 @@ export default function HomeScrollUI() {
 
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
-      ro?.disconnect()
       window.removeEventListener('scroll', onScroll)
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
     }
@@ -75,55 +63,59 @@ export default function HomeScrollUI() {
 
   return (
     <>
-      {/* Sticky mini-nav */}
+      {/* Sticky mini-nav — sits at top: 0, overlays the main nav via z-index */}
       <nav
         aria-label="Page sections"
         aria-hidden={!showNav}
         className="home-sticky-nav"
         style={{
           position: 'fixed',
-          top: navH,
+          top: 0,
           left: 0,
           right: 0,
-          zIndex: 99,
+          zIndex: 101,
           background: 'rgba(250,250,247,0.96)',
           backdropFilter: 'blur(8px)',
           WebkitBackdropFilter: 'blur(8px)',
           borderBottom: '1px solid rgba(15,42,63,0.07)',
-          display: 'flex',
-          alignItems: 'center',
-          overflowX: 'auto',
-          height: '40px',
-          paddingInline: 'clamp(16px,4vw,52px)',
+          paddingTop: 'env(safe-area-inset-top)',
           transition,
           transform: showNav ? 'translateY(0)' : 'translateY(-110%)',
           opacity: showNav ? 1 : 0,
           pointerEvents: showNav ? 'auto' : 'none',
         }}
       >
-        {NAV_LINKS.map(({ id, label }) => (
-          <a
-            key={id}
-            href={`#${id}`}
-            tabIndex={showNav ? 0 : -1}
-            onClick={(e) => scrollToSection(id, e)}
-            style={{
-              flexShrink: 0,
-              padding: '0 16px',
-              fontSize: '13px',
-              fontWeight: 500,
-              color: 'var(--navy)',
-              textDecoration: 'none',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              whiteSpace: 'nowrap',
-              opacity: 0.72,
-            }}
-          >
-            {label}
-          </a>
-        ))}
+        <div style={{
+          height: '40px',
+          display: 'flex',
+          alignItems: 'center',
+          overflowX: 'auto',
+          paddingInline: 'clamp(16px,4vw,52px)',
+        }}>
+          {NAV_LINKS.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              tabIndex={showNav ? 0 : -1}
+              onClick={(e) => scrollToSection(id, e)}
+              style={{
+                flexShrink: 0,
+                padding: '0 16px',
+                fontSize: '13px',
+                fontWeight: 500,
+                color: 'var(--navy)',
+                textDecoration: 'none',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                whiteSpace: 'nowrap',
+                opacity: 0.72,
+              }}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
       </nav>
 
       {/* Back-to-top */}
