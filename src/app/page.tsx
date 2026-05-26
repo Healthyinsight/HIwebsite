@@ -8,6 +8,7 @@ import { getActiveTrails } from '@/lib/trails'
 import Link from 'next/link'
 import HomeScrollUI from '@/components/HomeScrollUI'
 import { WAITLIST_MODE } from '@/config'
+import HeroAnimation from '@/components/HeroAnimationLoader'
 
 export default function HomePage() {
   const latest = getLatestArticles(6)
@@ -19,31 +20,39 @@ export default function HomePage() {
 
         {/* HERO */}
         <section style={{ background: 'var(--cream)', paddingTop: 'clamp(40px, 10vw, 72px)', paddingBottom: 'clamp(48px, 10vw, 80px)' }}>
-          <div className="container" style={{ maxWidth: '620px' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '22px' }}>
-              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: 'var(--blue-mid)' }} />
-              Built for professional amateurs.
+          <div className="container grid-hero">
+            {/* Text column */}
+            <div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '22px' }}>
+                <span style={{ display: 'inline-block', width: '24px', height: '1px', background: 'var(--blue-mid)' }} />
+                Built for professional amateurs.
+              </div>
+
+              <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
+                Train smarter. Race stronger.
+              </h1>
+              <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', fontWeight: 400, color: '#444440', marginBottom: '34px', lineHeight: 1.5 }}>
+                The personal training app that actually gets to know you.
+                Empowers you with personal health insights every day — then coaches you
+                based on your body, your schedule, and what is proven to work.
+              </p>
+
+              <div style={{ marginBottom: '16px' }}>
+                <Link href={WAITLIST_MODE ? '/waitlist' : 'https://tracker.healthyinsight.eu'}
+                  style={{ display: 'block', textAlign: 'center', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '0 30px', fontSize: '16px', fontWeight: 500, textDecoration: 'none', minHeight: '54px', lineHeight: '54px' }}>
+                  {WAITLIST_MODE ? 'Join the waitlist' : 'Start for free'} →
+                </Link>
+              </div>
+
+              <p style={{ fontSize: '14px', color: '#8A8A80', fontWeight: 400, textAlign: 'center' }}>
+                Let&apos;s stop the guesswork.
+              </p>
             </div>
 
-            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
-              Train smarter. Race stronger.
-            </h1>
-            <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', fontWeight: 400, color: '#444440', marginBottom: '34px', lineHeight: 1.5 }}>
-              The personal training app that actually gets to know you.
-              Empowers you with personal health insights every day — then coaches you
-              based on your body, your schedule, and what is proven to work.
-            </p>
-
-            <div style={{ marginBottom: '16px' }}>
-              <Link href={WAITLIST_MODE ? '/waitlist' : 'https://tracker.healthyinsight.eu'}
-                style={{ display: 'block', textAlign: 'center', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '0 30px', fontSize: '16px', fontWeight: 500, textDecoration: 'none', minHeight: '54px', lineHeight: '54px' }}>
-                {WAITLIST_MODE ? 'Join the waitlist' : 'Start for free'} →
-              </Link>
+            {/* Animation column — hidden on mobile via .hero-anim-col */}
+            <div className="hero-anim-col">
+              <HeroAnimation />
             </div>
-
-            <p style={{ fontSize: '14px', color: '#8A8A80', fontWeight: 400, textAlign: 'center' }}>
-              Let&apos;s stop the guesswork.
-            </p>
           </div>
         </section>
 
