@@ -729,6 +729,19 @@ body {
   display: none;
 }
 
+/* —— Hero animation column (hidden on mobile, flex on desktop) —— */
+.hero-anim-col {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 641px) {
+  .hero-anim-col {
+    display: flex;
+  }
+}
+
 /* —— Trail card grid —— */
 .grid-trails {
   display: grid;
