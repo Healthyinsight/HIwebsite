@@ -348,6 +348,25 @@ const articleSeeds: ArticleMeta[] = [
     ],
   },
   {
+    slug: 'advanced-fueling-glucose-fructose',
+    title: 'Advanced Fueling: Glucose-Fructose Ratios and Gut Training',
+    excerpt: 'Combine glucose and fructose to unlock 90g/h carbohydrate absorption — and train your gut over 4–8 weeks to handle it without GI distress.',
+    pillar: 'nutrition',
+    format: 'guide',
+    level: 3,
+    readingTime: '11 min',
+    publishedAt: '2025-12-24',
+    evidenceStrength: 'strong',
+    evidenceNote: 'Dual-transporter carbohydrate absorption is mechanistically well-established; Podlogar & Wallis (2022) and O\'Brien & Rowlands (2013) are controlled trials on ratio optimization.',
+    tldr: [
+      'Combining glucose and fructose unlocks 90g/h absorption via two separate intestinal transporters (SGLT1 + GLUT5).',
+      'Classic ratio is 2:1 glucose:fructose; newer evidence suggests 1:0.8 may optimize oxidation in gut-trained athletes.',
+      'Gut training over 4–8 weeks increases transporter capacity: start at 30g/h and progress by 10–15g every 2 weeks.',
+      'GI symptoms (bloating, nausea, cramping) have specific causes and specific fixes — not all mean "eat less".',
+      'Never try a new fueling protocol or product for the first time on race day.',
+    ],
+  },
+  {
     slug: 'set-goals-that-last-smart-goals-lasting-motivation',
     title: 'Set Goals That Last: A Guide to SMART Goals and Lasting Motivation',
     excerpt:
