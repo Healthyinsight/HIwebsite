@@ -1,0 +1,106 @@
+name: Publish Article from Notion
+
+# Triggered by n8n when an article is set to "Published" in Notion.
+# Also runnable manually from the GitHub Actions UI.
+#
+# Required secrets (set in repo Settings → Secrets → Actions):
+#   NOTION_API_KEY  – Notion integration token
+#
+# The GITHUB_TOKEN secret is provided automatically by GitHub.
+
+on:
+  workflow_dispatch:
+    inputs:
+      notion_page_id:
+        description: 'Notion page ID (source of article body blocks)'
+        required: true
+        type: string
+      article_json:
+        description: 'Article metadata as a JSON string'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      # ── 2. Git identity ──────────────────────────────────────────────────────
+      - name: Configure git
+        run: |
+          git config user.name  "HI Content Bot"
+          git config user.email "content-bot@healthyinsight.eu"
+
+      # ── 3. Validate inputs ───────────────────────────────────────────────────
+      - name: Validate article_json
+        run: |
+          echo '${{ inputs.article_json }}' | python3 -c "
+          import sys, json
+          try:
+              data = json.load(sys.stdin)
+              required = ['slug', 'title', 'pillar']
+              for key in required:
+                  assert key in data, f'Missing required field: {key}'
+              print(f'Valid metadata for slug: {data[\"slug\"]}')
+          except Exception as e:
+              print(f'ERROR: {e}', file=sys.stderr)
+              sys.exit(1)
+          "
+
+      # ── 4. Run publish script ────────────────────────────────────────────────
+      - name: Fetch from Notion and write files
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_PAGE_ID: ${{ inputs.notion_page_id }}
+          ARTICLE_JSON:   ${{ inputs.article_json }}
+        run: python3 scripts/publish_article.py
+
+      # ── 5. Detect changes ────────────────────────────────────────────────────
+      - name: Stage and detect changes
+        id: stage
+        run: |
+          git add content/articles/ src/lib/articles.ts
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No file changes – article already published or slug conflict."
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            git diff --staged --stat
+          fi
+
+      # ── 6. Commit ────────────────────────────────────────────────────────────
+      - name: Commit
+        if: steps.stage.outputs.has_changes == 'true'
+        run: |
+          SLUG=$(echo '${{ inputs.article_json }}' \
+            | python3 -c "import sys,json; print(json.load(sys.stdin)['slug'])")
+          git commit -m "content: publish '${SLUG}' from Notion"
+
+      # ── 7. Push with rebase + retry ──────────────────────────────────────────
+      - name: Push (with rebase retry)
+        if: steps.stage.outputs.has_changes == 'true'
+        run: |
+          for attempt in 1 2 3; do
+            echo "Push attempt ${attempt}..."
+            if git pull --rebase origin main && git push origin main; then
+              echo "✅ Push succeeded on attempt ${attempt}"
+              exit 0
+            fi
+            if [ "${attempt}" -lt 3 ]; then
+              echo "Retrying in 10s..."
+              sleep 10
+            fi
+          done
+          echo "❌ All push attempts failed" >&2
+          exit 1
