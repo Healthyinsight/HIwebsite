@@ -15,7 +15,7 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess }: 
 
   const inputPad = size === 'lg' ? '13px 20px' : '10px 16px'
   const btnPad = size === 'lg' ? '13px' : '10px'
-  const fontSize = size === 'lg' ? '14px' : '13px'
+  const fontSize = '16px'
 
   const textColor = dark ? 'white' : '#0F2A3F'
   const inputBg = dark ? 'rgba(255,255,255,0.09)' : 'white'

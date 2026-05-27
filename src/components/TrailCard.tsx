@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import type { Trail } from '@/lib/trails'
+import TrailCardAnimation, { type TrailTheme } from './TrailCardAnimation'
 
 const PILLAR_STYLES: Record<string, { bg: string; accent: string }> = {
   recovery: { bg: 'linear-gradient(135deg, #0F2A3F 0%, #1A4D6E 100%)', accent: '#A8CCE0' },
@@ -11,12 +12,21 @@ const PILLAR_STYLES: Record<string, { bg: string; accent: string }> = {
   mindset:  { bg: 'linear-gradient(135deg, #2A1A3A 0%, #4A2D6E 100%)', accent: '#C4B5D5' },
 }
 
+function getTrailTheme(trailId: string, pillar: string): TrailTheme {
+  if (trailId === 'sleepScience')    return 'sleep'
+  if (trailId === 'vo2maxMastery')   return 'vo2max'
+  if (trailId === 'strengthMastery') return 'strength'
+  if (pillar === 'nutrition')        return 'nutrition'
+  if (pillar === 'mindset')          return 'mindset'
+  return 'sleep'
+}
+
 export default function TrailCard({ trail }: { trail: Trail }) {
   const [completedCount, setCompletedCount] = useState(0)
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hi_completed_slugs')
+      const raw = localStorage.getItem('hi_completed_articles')
       if (!raw) return
       const completed: string[] = JSON.parse(raw)
       const slugSet = new Set(completed)
@@ -36,7 +46,14 @@ export default function TrailCard({ trail }: { trail: Trail }) {
       flexDirection: 'column',
       gap: '14px',
       minHeight: '210px',
+      position: 'relative',
+      overflow: 'hidden',
     }}>
+      {/* Decorative animation — Rive when available, logo.png fallback */}
+      <div style={{ position: 'absolute', top: '6px', right: '-14px', pointerEvents: 'none', userSelect: 'none' }}>
+        <TrailCardAnimation theme={getTrailTheme(trail.id, trail.pillar)} />
+      </div>
+
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <span style={{ fontSize: '26px', lineHeight: 1 }}>{trail.badge.emoji}</span>

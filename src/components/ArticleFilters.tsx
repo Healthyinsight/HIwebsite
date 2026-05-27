@@ -96,7 +96,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
             style={{
               padding: '7px 14px',
               borderRadius: '100px',
-              fontSize: '13px',
+              fontSize: '16px',
               border: '1px solid var(--sand)',
               background: 'var(--warm)',
               color: '#444440',

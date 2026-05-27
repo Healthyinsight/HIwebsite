@@ -1,4 +1,5 @@
 import ArticleProgressSection from '@/components/ArticleProgressSection'
+import ArticleEmailGate from '@/components/ArticleEmailGate'
 import ArticleScrollUI from '@/components/ArticleScrollUI'
 import Footer from '@/components/Footer'
 import { mdxComponents } from '@/components/MdxComponents'
@@ -61,6 +62,7 @@ export default async function ArticlePage(
   const trail = trailContext?.trail ?? null
   const stepIndex = trailContext?.stepIndex ?? -1
   const currentStep = trail ? trail.steps[stepIndex] : null
+  const gateLevel = currentStep?.level ?? 0
   const activeSteps = trail
     ? trail.steps.filter(s => !s.comingSoon && !!s.slug)
     : []
@@ -149,6 +151,7 @@ export default async function ArticlePage(
           </div>
         </div>
 
+        <ArticleEmailGate level={gateLevel}>
         <section className="section-pad" style={{ background: 'var(--warm)' }}>
           <div className="container" style={{ maxWidth: '720px' }}>
 
@@ -329,6 +332,7 @@ export default async function ArticlePage(
             )}
           </div>
         </section>
+        </ArticleEmailGate>
       </main>
       <Footer />
     </>

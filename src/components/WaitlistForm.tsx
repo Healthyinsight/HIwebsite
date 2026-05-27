@@ -56,7 +56,7 @@ export default function WaitlistForm() {
             borderRadius: '100px',
             border: '1.5px solid var(--sand)',
             background: 'white',
-            fontSize: '15px',
+            fontSize: '16px',
             color: 'var(--navy)',
             outline: 'none',
             fontFamily: 'DM Sans, sans-serif',

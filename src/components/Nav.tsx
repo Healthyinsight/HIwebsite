@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { createPortal } from 'react-dom'
 import { useCallback, useEffect, useState } from 'react'
+import { useEvidenceIQ } from '@/hooks/useEvidenceIQ'
 
 type NavChild = {
   href: string
@@ -93,6 +94,7 @@ function DropdownChild({ child, onClick }: { child: NavChild; onClick?: () => vo
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const { evidenceIQ, isHydrated } = useEvidenceIQ()
 
   const close = useCallback(() => setOpen(false), [])
   const toggle = useCallback(() => setOpen(o => !o), [])
@@ -140,6 +142,28 @@ export default function Nav() {
             ))}
           </ul>
 
+          {isHydrated && evidenceIQ > 0 && (
+            <Link
+              href="/quiz"
+              className="site-nav__cta--desktop"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px',
+                background: 'var(--sky)',
+                color: 'var(--navy)',
+                borderRadius: '100px',
+                padding: '6px 12px',
+                fontSize: '12px',
+                fontWeight: 700,
+                textDecoration: 'none',
+                flexShrink: 0,
+              }}
+            >
+              ⚡ {evidenceIQ} HiQ
+            </Link>
+          )}
+
           <Link href="/newsletter" className="site-nav__cta site-nav__cta--desktop">
             Newsletter
           </Link>
@@ -176,6 +200,28 @@ export default function Nav() {
           >
             <div className="site-nav__drawer-header">
               <Link href="/" className="site-nav__brand" onClick={close}>HI</Link>
+              {isHydrated && evidenceIQ > 0 && (
+                <Link
+                  href="/quiz"
+                  onClick={close}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    background: 'var(--sky)',
+                    color: 'var(--navy)',
+                    borderRadius: '100px',
+                    padding: '4px 10px',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    marginLeft: 'auto',
+                    marginRight: '10px',
+                  }}
+                >
+                  ⚡ {evidenceIQ} HiQ
+                </Link>
+              )}
               <button
                 type="button"
                 className="site-nav__drawer-close"

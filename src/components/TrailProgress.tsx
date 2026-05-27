@@ -6,6 +6,7 @@ import type { Trail, TrailStep } from '@/lib/trails'
 import { IQ_POINTS } from '@/lib/trails'
 import { useEvidenceIQ } from '@/hooks/useEvidenceIQ'
 import EmailWall from './EmailWall'
+import ProgramPreview from './ProgramPreview'
 
 export default function TrailProgress({ trail }: { trail: Trail }) {
   const router = useRouter()
@@ -194,6 +195,11 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
         })}
       </div>
 
+      {/* Program Preview — shown persistently once trail is complete */}
+      {trailComplete && isHydrated && (
+        <ProgramPreview trail={trail} />
+      )}
+
       {/* Badge modal */}
       {showBadge && (
         <div
@@ -214,11 +220,18 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
             <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, marginBottom: '28px', fontWeight: 300 }}>
               You completed the {trail.name} trail. Your Health IQ is now <strong style={{ color: 'var(--blue-pale)' }}>{evidenceIQ}</strong>.
             </p>
+            <a
+              href={'/waitlist'}
+              onClick={() => setShowBadge(false)}
+              style={{ display: 'block', background: 'white', color: 'var(--navy)', borderRadius: '100px', padding: '12px 28px', fontSize: '14px', fontWeight: 500, textDecoration: 'none', textAlign: 'center', marginBottom: '10px' }}
+            >
+              Get HI Programs →
+            </a>
             <button
               onClick={() => setShowBadge(false)}
-              style={{ background: 'white', color: 'var(--navy)', border: 'none', borderRadius: '100px', padding: '12px 28px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'DM Sans, sans-serif' }}
+              style={{ background: 'transparent', color: 'rgba(255,255,255,0.45)', border: 'none', borderRadius: '100px', padding: '8px 16px', fontSize: '13px', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif', display: 'block', margin: '0 auto' }}
             >
-              Continue learning
+              Keep exploring
             </button>
           </div>
         </div>
