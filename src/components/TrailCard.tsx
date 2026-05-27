@@ -25,7 +25,7 @@ export default function TrailCard({ trail }: { trail: Trail }) {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hi_completed_slugs')
+      const raw = localStorage.getItem('hi_completed_articles')
       if (!raw) return
       const completed: string[] = JSON.parse(raw)
       const slugSet = new Set(completed)
