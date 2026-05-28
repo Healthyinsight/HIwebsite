@@ -28,6 +28,18 @@ const PUBLICATION_ARCHIVE_BASE = 'https://healthyinsight.beehiiv.com/articles' a
 
 const articleSeeds: ArticleMeta[] = [
   {
+    slug: 'test-action-2026-05-28',
+    title: 'Test Article',
+    excerpt: 'Test.',
+    pillar: 'motion',
+    format: 'guide',
+    level: 1,
+    readingTime: '5 min',
+    publishedAt: '2026-05-28',
+    evidenceStrength: 'mixed',
+    evidenceNote: 'Test only',
+  },
+  {
     slug: 'fuel-during-training',
     title: 'Fuel During Training: When You Need Carbs and How to Avoid Energy Crashes',
     excerpt: 'The evidence on intra-workout nutrition. When carbohydrates actually matter, and when they don\'t.',
