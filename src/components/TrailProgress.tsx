@@ -50,7 +50,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
     }
     wasCompleteRef.current = trailComplete
     // Only re-evaluate when underlying read state changes; trailComplete is derived from it.
-  }, [completedArticles, isHydrated, trailComplete])
+  }, [completedArticles, isHydrated])
 
   function markComplete(step: TrailStep) {
     if (!step.slug) return

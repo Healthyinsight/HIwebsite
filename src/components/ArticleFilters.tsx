@@ -143,6 +143,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
         </span>
         {hasActiveFilters && (
           <button
+            type="button"
             onClick={reset}
             style={{ fontSize: '13px', color: 'var(--blue-mid)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 500, fontFamily: 'DM Sans, sans-serif', padding: 0 }}
           >
@@ -158,6 +159,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
             No articles match these filters.
           </p>
           <button
+            type="button"
             onClick={reset}
             style={{ background: 'var(--navy)', color: 'white', border: 'none', borderRadius: '100px', padding: '10px 24px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'DM Sans, sans-serif' }}
           >

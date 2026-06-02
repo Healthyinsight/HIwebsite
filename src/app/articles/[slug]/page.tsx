@@ -53,7 +53,10 @@ export default async function ArticlePage(
       options: { parseFrontmatter: true },
     })
     mdxContent = content
-  } catch {
+  } catch (err) {
+    if ((err as { code?: string }).code !== 'ENOENT') {
+      console.error('[MDX] Failed to load article', slug, err)
+    }
     mdxContent = null
   }
 
@@ -104,7 +107,7 @@ export default async function ArticlePage(
             <div style={{ display: 'flex', gap: '8px', marginBottom: '20px', flexWrap: 'wrap' }}>
               {trail && currentStep ? (
                 <span style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.18)', color: 'rgba(255,255,255,0.95)', fontSize: '10px', fontWeight: 600, letterSpacing: '1.2px', textTransform: 'uppercase', padding: '5px 14px', borderRadius: '100px' }}>
-                  {trail.name} · Level {currentStep.level} of {trail.steps.length}
+                  {trail.name} · Level {currentStep.level} of {activeSteps.length}
                 </span>
               ) : article.level ? (
                 <span style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.9)', fontSize: '10px', fontWeight: 500, letterSpacing: '1.2px', textTransform: 'uppercase', padding: '5px 14px', borderRadius: '100px' }}>
