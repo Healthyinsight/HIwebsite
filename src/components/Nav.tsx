@@ -25,8 +25,8 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { href: '/trails/sleepScience', label: 'The Sleep Stack' },
       { href: '/trails/vo2maxMastery', label: 'Build Your Engine' },
-      { href: '/trails/nutrition', label: 'Fuel the Machine', comingSoon: true },
-      { href: '/trails/mindset', label: 'The Performance Mind', comingSoon: true },
+      { href: '/trails/fuelingMastery', label: 'Fuel the Machine', comingSoon: true },
+      { href: '/trails/goalSettingMastery', label: 'The Performance Mind', comingSoon: true },
     ],
   },
   {

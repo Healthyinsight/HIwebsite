@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react'
 import EmailWall from './EmailWall'
 
 export default function ArticleEmailGate({
-  level,
+  level = 0,
   children,
 }: {
-  level: number
+  level?: number
   children: React.ReactNode
 }) {
   const [showWall, setShowWall] = useState(false)
