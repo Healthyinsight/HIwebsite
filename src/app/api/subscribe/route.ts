@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { logger } from '@/lib/logger'
 
 const SUBSCRIBE_SOURCES = new Set(['website', 'quiz', 'article', 'unknown'])
 
@@ -53,7 +54,7 @@ export async function POST(req: NextRequest) {
         contactRes.status === 409 ||
         /already exists/i.test(errBody)
       if (!duplicate) {
-        console.error('Resend contact error', { status: contactRes.status, body: errBody })
+        logger.error('Resend contact creation failed', { route: '/api/subscribe', service: 'resend', status: contactRes.status, body: errBody })
         return NextResponse.json({ error: 'Something went wrong. Try again.' }, { status: 502 })
       }
     }
@@ -74,12 +75,14 @@ export async function POST(req: NextRequest) {
 
     if (!emailRes.ok) {
       const errBody = await emailRes.text()
-      console.error('Resend email error', { status: emailRes.status, body: errBody })
+      logger.warn('Resend welcome email failed', { route: '/api/subscribe', service: 'resend', status: emailRes.status, body: errBody })
+    } else {
+      logger.info('Subscriber added', { route: '/api/subscribe', source })
     }
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error('Subscribe error:', err)
+    logger.error('Unhandled subscribe error', { route: '/api/subscribe', err: String(err) })
     return NextResponse.json({ error: 'Something went wrong. Try again.' }, { status: 500 })
   }
 }

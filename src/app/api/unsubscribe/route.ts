@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { logger } from '@/lib/logger'
 
 export async function GET(req: NextRequest) {
   const email = req.nextUrl.searchParams.get('email')
@@ -21,7 +22,7 @@ export async function GET(req: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, unsubscribed: true }),
-    }).catch((err) => console.error('Resend unsubscribe error:', err))
+    }).catch((err) => logger.error('Resend unsubscribe failed', { route: '/api/unsubscribe', service: 'resend', err: String(err) }))
   }
 
   return new NextResponse(

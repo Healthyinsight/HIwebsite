@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
+import { logger } from '@/lib/logger'
 
 export async function POST(req: Request) {
   const { email } = await req.json()
@@ -41,10 +42,12 @@ export async function POST(req: Request) {
       })
       if (!emailRes.ok) {
         const errBody = await emailRes.text()
-        console.error('Waitlist confirmation email error', { status: emailRes.status, body: errBody })
+        logger.warn('Waitlist confirmation email failed', { route: '/api/waitlist', service: 'resend', status: emailRes.status, body: errBody })
+      } else {
+        logger.info('Waitlist entry added', { route: '/api/waitlist' })
       }
     } catch (err) {
-      console.error('Waitlist confirmation email send failed:', err)
+      logger.error('Waitlist confirmation email send threw', { route: '/api/waitlist', service: 'resend', err: String(err) })
     }
   }
 

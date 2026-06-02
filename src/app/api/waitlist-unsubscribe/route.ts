@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextRequest, NextResponse } from 'next/server'
+import { logger } from '@/lib/logger'
 
 export async function GET(req: NextRequest) {
   const email = req.nextUrl.searchParams.get('email')
@@ -22,7 +23,7 @@ export async function GET(req: NextRequest) {
     .eq('email', email.toLowerCase().trim())
 
   if (error) {
-    console.error('Waitlist unsubscribe error:', error)
+    logger.error('Waitlist unsubscribe failed', { route: '/api/waitlist-unsubscribe', service: 'supabase', err: String(error) })
     return new NextResponse(
       resultPage('Something went wrong', 'We couldn\'t process your request. Please try again or contact us at filipb@healthyinsight.eu.'),
       { status: 500, headers: { 'Content-Type': 'text/html' } }
