@@ -7,26 +7,20 @@ import {
   getCompletedTrails,
   hasMasterBadge as calcHasMasterBadge,
 } from '@/lib/trails'
+import { supabase } from '@/lib/supabase-client'
+import { logger } from '@/lib/logger'
 
 /**
- * useEvidenceIQ — client hook for tracking gamification progress in localStorage.
+ * useEvidenceIQ — client hook for tracking gamification progress.
  *
  * Storage keys (all prefixed `hi_`):
  *  - `hi_completed_articles`  string[]   — slugs the user has read
  *  - `hi_passed_quizzes`      string[]   — slugs whose micro-quiz the user passed
- *  - `hi_completed_slugs`     string[]   — LEGACY (Phase 1 single-arg storage). On first
- *                                          mount we copy this into hi_completed_articles
- *                                          if the new key is empty, then leave the legacy
- *                                          key in place for safety.
+ *  - `hi_completed_slugs`     string[]   — LEGACY (Phase 1). Migrated on first mount.
  *
- * Derived values (recomputed every render — cheap, single-pass over `trails`):
- *  - `evidenceIQ`        — total points via `calcEvidenceIQ(reads, quizzes)`
- *  - `completedTrailIds` — IDs of trails whose active steps are all read
- *  - `earnedBadges`      — badge objects for completed trails (for trophy displays)
- *  - `hasMasterBadge`    — true when every active trail is completed
- *
- * Cross-tab sync: listens to `storage` events so opening the trail page in a second tab
- * after marking a quiz passed in the first tab reflects the new IQ immediately.
+ * Offline-first: localStorage is updated synchronously for instant UI feedback.
+ * Supabase anonymous auth syncs progress to the cloud in the background so
+ * progress survives localStorage clears and enables future cross-device sync.
  */
 
 const KEY_ARTICLES = 'hi_completed_articles'
@@ -48,23 +42,24 @@ function safeWrite(key: string, value: string[]): void {
   try {
     window.localStorage.setItem(key, JSON.stringify(value))
   } catch {
-    // localStorage may be unavailable (private mode, quota, SSR) — fail silent
+    // localStorage may be unavailable (private mode, quota) — fail silent
   }
 }
 
-/** One-time legacy → new key migration. Runs on first mount. */
 function migrateLegacy(): void {
   if (typeof window === 'undefined') return
   try {
     const legacy = window.localStorage.getItem(KEY_LEGACY_SLUGS)
     if (legacy === null) return
     const existing = window.localStorage.getItem(KEY_ARTICLES)
-    if (existing !== null) return // already migrated or new key already populated
+    if (existing !== null) return
     window.localStorage.setItem(KEY_ARTICLES, legacy)
   } catch {
     // ignore
   }
 }
+
+type ProgressRow = { article_slug: string; quiz_passed: boolean }
 
 export interface EarnedBadge {
   trailId: string
@@ -77,6 +72,8 @@ export function useEvidenceIQ() {
   const [passedQuizzes, setPassedQuizzes] = useState<string[]>([])
   const [isHydrated, setIsHydrated] = useState(false)
   const didMigrateRef = useRef(false)
+  const userIdRef = useRef<string | null>(null)
+  const didSyncRef = useRef(false)
 
   // Hydrate from localStorage on first mount (SSR-safe).
   useEffect(() => {
@@ -93,35 +90,107 @@ export function useEvidenceIQ() {
     setIsHydrated(true)
   }, [])
 
-  // Cross-tab sync via storage events.
+  // DB sync: anonymous auth + merge cloud progress after local hydration.
   useEffect(() => {
-    function onStorage(e: StorageEvent) {
-      if (e.key === KEY_ARTICLES) {
-        setCompletedArticles(safeParse(e.newValue))
-      } else if (e.key === KEY_QUIZZES) {
-        setPassedQuizzes(safeParse(e.newValue))
+    if (!isHydrated || didSyncRef.current) return
+    didSyncRef.current = true
+
+    async function syncWithDB() {
+      try {
+        let { data: { session } } = await supabase.auth.getSession()
+        if (!session) {
+          const { data } = await supabase.auth.signInAnonymously()
+          session = data.session
+        }
+        if (!session?.user) return
+        userIdRef.current = session.user.id
+
+        const { data, error } = await supabase
+          .from('user_progress')
+          .select('article_slug, quiz_passed')
+
+        if (error) {
+          logger.warn('Failed to fetch DB progress', { err: String(error) })
+          return
+        }
+
+        const rows = (data ?? []) as ProgressRow[]
+
+        if (rows.length === 0) {
+          // First DB session for this user — push any existing localStorage data up.
+          const localArticles = safeParse(window.localStorage.getItem(KEY_ARTICLES))
+          const localQuizzes  = safeParse(window.localStorage.getItem(KEY_QUIZZES))
+          if (localArticles.length === 0) return
+          const upsertRows = localArticles.map(slug => ({
+            user_id: session!.user.id,
+            article_slug: slug,
+            quiz_passed: localQuizzes.includes(slug),
+            ...(localQuizzes.includes(slug) ? { quiz_passed_at: new Date().toISOString() } : {}),
+          }))
+          const { error: upsertErr } = await supabase.from('user_progress').upsert(upsertRows)
+          if (upsertErr) logger.warn('Initial localStorage→DB sync failed', { err: String(upsertErr) })
+          return
+        }
+
+        // Merge DB + localStorage (union — take the most permissive).
+        const dbSlugs   = rows.map(r => r.article_slug)
+        const dbQuizzes = rows.filter(r => r.quiz_passed).map(r => r.article_slug)
+
+        setCompletedArticles((prev: string[]) => {
+          const merged = Array.from(new Set([...prev, ...dbSlugs]))
+          if (merged.length !== prev.length) safeWrite(KEY_ARTICLES, merged)
+          return merged
+        })
+        setPassedQuizzes((prev: string[]) => {
+          const merged = Array.from(new Set([...prev, ...dbQuizzes]))
+          if (merged.length !== prev.length) safeWrite(KEY_QUIZZES, merged)
+          return merged
+        })
+      } catch (err) {
+        logger.warn('DB sync threw unexpectedly', { err: String(err) })
       }
     }
-    window.addEventListener('storage', onStorage)
-    return () => window.removeEventListener('storage', onStorage)
-  }, [])
+
+    syncWithDB()
+  }, [isHydrated])
 
   const markArticleRead = useCallback((slug: string) => {
     if (!slug) return
-    setCompletedArticles(prev => {
+    setCompletedArticles((prev: string[]) => {
       if (prev.includes(slug)) return prev
       const next = [...prev, slug]
       safeWrite(KEY_ARTICLES, next)
+      if (userIdRef.current) {
+        supabase
+          .from('user_progress')
+          .upsert({ user_id: userIdRef.current, article_slug: slug })
+          .then(({ error }: { error: unknown }) => {
+            if (error) logger.warn('DB upsert article_read failed', { slug, err: String(error) })
+          })
+      }
       return next
     })
   }, [])
 
   const markQuizPassed = useCallback((slug: string) => {
     if (!slug) return
-    setPassedQuizzes(prev => {
+    setPassedQuizzes((prev: string[]) => {
       if (prev.includes(slug)) return prev
       const next = [...prev, slug]
       safeWrite(KEY_QUIZZES, next)
+      if (userIdRef.current) {
+        supabase
+          .from('user_progress')
+          .upsert({
+            user_id: userIdRef.current,
+            article_slug: slug,
+            quiz_passed: true,
+            quiz_passed_at: new Date().toISOString(),
+          })
+          .then(({ error }: { error: unknown }) => {
+            if (error) logger.warn('DB upsert quiz_passed failed', { slug, err: String(error) })
+          })
+      }
       return next
     })
   }, [])
@@ -147,7 +216,6 @@ export function useEvidenceIQ() {
     .map(t => ({ trailId: t.id, emoji: t.badge.emoji, label: t.badge.label }))
   const hasMasterBadge = calcHasMasterBadge(completedTrailIds)
 
-  // ── Predicates (closed over current state, stable enough for render-time use) ──
   const isArticleRead = (slug: string) => completedArticles.includes(slug)
   const isQuizPassed = (slug: string) => passedQuizzes.includes(slug)
   const isTrailCompleted = (trailId: string) => completedTrailIdSet.has(trailId)
