@@ -96,6 +96,7 @@ export function useEvidenceIQ() {
     didSyncRef.current = true
 
     async function syncWithDB() {
+      if (!supabase) return
       try {
         let { data: { session } } = await supabase.auth.getSession()
         if (!session) {
@@ -160,7 +161,7 @@ export function useEvidenceIQ() {
       if (prev.includes(slug)) return prev
       const next = [...prev, slug]
       safeWrite(KEY_ARTICLES, next)
-      if (userIdRef.current) {
+      if (supabase && userIdRef.current) {
         supabase
           .from('user_progress')
           .upsert({ user_id: userIdRef.current, article_slug: slug })
@@ -178,7 +179,7 @@ export function useEvidenceIQ() {
       if (prev.includes(slug)) return prev
       const next = [...prev, slug]
       safeWrite(KEY_QUIZZES, next)
-      if (userIdRef.current) {
+      if (supabase && userIdRef.current) {
         supabase
           .from('user_progress')
           .upsert({
