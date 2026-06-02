@@ -8,6 +8,7 @@ import { compileMDX } from 'next-mdx-remote/rsc'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { pillarGradients } from '@/lib/pillars'
+import { logger } from '@/lib/logger'
 import { getTrailForArticle } from '@/lib/trails'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -55,7 +56,7 @@ export default async function ArticlePage(
     mdxContent = content
   } catch (err) {
     if ((err as { code?: string }).code !== 'ENOENT') {
-      console.error('[MDX] Failed to load article', slug, err)
+      logger.error('MDX compilation failed', { slug, err: String(err) })
     }
     mdxContent = null
   }
