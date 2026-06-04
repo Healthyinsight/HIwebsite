@@ -1,6 +1,8 @@
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
-import { getArticlesByPillar } from '@/lib/articles'
+import { getArticlesByPillarAsync } from '@/lib/articles'
+
+export const revalidate = 60
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -8,8 +10,8 @@ export const metadata: Metadata = {
   description: 'Evidence-based guides on goal-setting, habits, and motivation. Behavioral science applied to health.',
 }
 
-export default function MindsetPage() {
-  const articles = getArticlesByPillar('mindset')
+export default async function MindsetPage() {
+  const articles = await getArticlesByPillarAsync('mindset')
 
   return (
     <>

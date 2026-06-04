@@ -1,6 +1,8 @@
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
-import { getArticlesByPillar } from '@/lib/articles'
+import { getArticlesByPillarAsync } from '@/lib/articles'
+
+export const revalidate = 60
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
@@ -9,8 +11,8 @@ export const metadata: Metadata = {
   description: 'Evidence-based guides on sleep, stress management, and active recovery. The fundamentals that move the needle most.',
 }
 
-export default function RecoveryPage() {
-  const articles = getArticlesByPillar('recovery')
+export default async function RecoveryPage() {
+  const articles = await getArticlesByPillarAsync('recovery')
   const starterArticle = articles.find(a => a.level === 1) ?? articles[articles.length - 1]
   const rest = articles.filter(a => a.slug !== starterArticle.slug)
 

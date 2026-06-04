@@ -1,6 +1,8 @@
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
-import { getArticlesByPillar } from '@/lib/articles'
+import { getArticlesByPillarAsync } from '@/lib/articles'
+
+export const revalidate = 60
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
@@ -9,8 +11,8 @@ export const metadata: Metadata = {
   description: 'Evidence-based guides on training, VO2 max, strength, and endurance. Grounded in exercise physiology.',
 }
 
-export default function MotionPage() {
-  const articles = getArticlesByPillar('motion')
+export default async function MotionPage() {
+  const articles = await getArticlesByPillarAsync('motion')
   const starterArticle = articles.find(a => a.level === 1) ?? articles[articles.length - 1]
   const rest = articles.filter(a => a.slug !== starterArticle.slug)
 

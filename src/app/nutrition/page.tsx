@@ -1,6 +1,8 @@
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
-import { getArticlesByPillar } from '@/lib/articles'
+import { getArticlesByPillarAsync } from '@/lib/articles'
+
+export const revalidate = 60
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
@@ -9,8 +11,8 @@ export const metadata: Metadata = {
   description: 'Evidence-based guides on fueling, supplements, and metabolic health.',
 }
 
-export default function NutritionPage() {
-  const articles = getArticlesByPillar('nutrition')
+export default async function NutritionPage() {
+  const articles = await getArticlesByPillarAsync('nutrition')
   const starterArticle = articles.find(a => a.level === 1) ?? articles[0]
   const rest = starterArticle ? articles.filter(a => a.slug !== starterArticle.slug) : articles
 

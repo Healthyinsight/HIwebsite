@@ -3,7 +3,7 @@ import ArticleEmailGate from '@/components/ArticleEmailGate'
 import ArticleScrollUI from '@/components/ArticleScrollUI'
 import Footer from '@/components/Footer'
 import { mdxComponents } from '@/components/MdxComponents'
-import { articles } from '@/lib/articles'
+import { getArticles } from '@/lib/articles'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -15,15 +15,20 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import type { ReactElement } from 'react'
 
+export const revalidate = 60
+export const dynamicParams = true
+
 export async function generateStaticParams() {
-  return articles.map(a => ({ slug: a.slug }))
+  const allArticles = await getArticles()
+  return allArticles.map(a => ({ slug: a.slug }))
 }
 
 export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
   const { slug } = await params
-  const article = articles.find(a => a.slug === slug)
+  const allArticles = await getArticles()
+  const article = allArticles.find(a => a.slug === slug)
   if (!article) return {}
   return { title: article.title, description: article.excerpt }
 }
@@ -38,7 +43,8 @@ export default async function ArticlePage(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params
-  const article = articles.find(a => a.slug === slug)
+  const allArticles = await getArticles()
+  const article = allArticles.find(a => a.slug === slug)
   if (!article) notFound()
 
   const badge = article.evidenceStrength ? evidenceBadgeStyles[article.evidenceStrength] : null

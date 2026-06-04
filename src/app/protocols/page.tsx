@@ -1,7 +1,9 @@
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
 import NewsletterForm from '@/components/NewsletterForm'
-import { getArticlesByFormat } from '@/lib/articles'
+import { getArticlesByFormatAsync } from '@/lib/articles'
+
+export const revalidate = 60
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -9,9 +11,9 @@ export const metadata: Metadata = {
   description: 'Evidence-based protocols and practical guides for motion, nutrition, recovery, and mindset. Step-by-step frameworks built on peer-reviewed research.',
 }
 
-export default function ProtocolsPage() {
-  const protocols = getArticlesByFormat('protocol')
-  const guides = getArticlesByFormat('guide')
+export default async function ProtocolsPage() {
+  const protocols = await getArticlesByFormatAsync('protocol')
+  const guides = await getArticlesByFormatAsync('guide')
 
   return (
     <>
