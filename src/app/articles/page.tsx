@@ -1,15 +1,18 @@
 import Footer from '@/components/Footer'
 import ArticleFilters from '@/components/ArticleFilters'
-import { articles, TOTAL_SOURCES } from '@/lib/articles'
+import { getArticles, TOTAL_SOURCES } from '@/lib/articles'
 import type { Metadata } from 'next'
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'All Articles',
   description: 'Evidence-based articles on motion, nutrition, recovery, and mindset. Peer-reviewed research translated into practical guidance.',
 }
 
-export default function ArticlesPage() {
-  const sorted = [...articles].sort((a, b) =>
+export default async function ArticlesPage() {
+  const allArticles = await getArticles()
+  const sorted = [...allArticles].sort((a, b) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   )
   return (

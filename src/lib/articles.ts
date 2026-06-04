@@ -21,7 +21,6 @@ export interface ArticleMeta {
   externalArticleUrl?: string
 }
 
-// TODO (Fas 4): Pull automatically from Notion Research Library DB via API
 export const TOTAL_SOURCES = 75 // Manually synced from Notion Research Library DB. Update when new sources are added.
 
 const PUBLICATION_ARCHIVE_BASE = 'https://healthyinsight.beehiiv.com/articles' as const
@@ -478,4 +477,37 @@ export function getAllArticles(): ArticleMeta[] {
 
 export function getArticleBySlug(slug: string): ArticleMeta | undefined {
   return articles.find(a => a.slug === slug)
+}
+
+// ── Async helpers (Notion-backed, falls back to seeds) ───────────────────────
+
+import { cache } from 'react'
+import { fetchNotionArticles } from './articles-notion'
+
+export const getArticles = cache(async (): Promise<ArticleMeta[]> => {
+  const notionArticles = await fetchNotionArticles()
+  if (notionArticles.length === 0) return articles
+  const notionSlugs = new Set(notionArticles.map(a => a.slug))
+  const seedsOnly   = articles.filter(a => !notionSlugs.has(a.slug))
+  return [
+    ...notionArticles.map(a => ({
+      ...a,
+      externalArticleUrl: a.externalArticleUrl ?? `${PUBLICATION_ARCHIVE_BASE}/${a.slug}`,
+    })),
+    ...seedsOnly,
+  ]
+})
+
+export async function getArticlesByPillarAsync(pillar: Pillar): Promise<ArticleMeta[]> {
+  return (await getArticles()).filter(a => a.pillar === pillar)
+}
+
+export async function getLatestArticlesAsync(count = 6): Promise<ArticleMeta[]> {
+  return (await getArticles())
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .slice(0, count)
+}
+
+export async function getArticlesByFormatAsync(format: ArticleFormat): Promise<ArticleMeta[]> {
+  return (await getArticles()).filter(a => a.format === format)
 }

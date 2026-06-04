@@ -1,7 +1,9 @@
 import { Fragment } from 'react'
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
-import { getLatestArticles } from '@/lib/articles'
+import { getLatestArticlesAsync } from '@/lib/articles'
+
+export const revalidate = 60
 import NewsletterForm from '@/components/NewsletterForm'
 import TrailCard from '@/components/TrailCard'
 import { getActiveTrails } from '@/lib/trails'
@@ -10,8 +12,8 @@ import HomeScrollUI from '@/components/HomeScrollUI'
 import { WAITLIST_MODE } from '@/config'
 import HeroAnimation from '@/components/HeroAnimationLoader'
 
-export default function HomePage() {
-  const latest = getLatestArticles(6)
+export default async function HomePage() {
+  const latest = await getLatestArticlesAsync(6)
   const featuredTrails = getActiveTrails().slice(0, 3)
 
   return (
