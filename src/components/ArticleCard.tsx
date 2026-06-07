@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { pillarGradients } from '@/lib/pillars'
+import Badge from '@/components/Badge'
 
 interface ArticleCardProps {
   slug: string
@@ -29,13 +30,34 @@ export default function ArticleCard({ slug, title, excerpt, pillar, format, leve
       <article style={{ background: '#FAFAF7', borderRadius: '22px', overflow: 'hidden', border: '1px solid rgba(15,42,63,0.06)', transition: 'transform 0.2s, box-shadow 0.2s', height: '100%', display: 'flex', flexDirection: 'column' }}>
         <div style={{ aspectRatio: large ? '16 / 9' : '5 / 3', minHeight: large ? '160px' : '110px', background: gradient, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '16px 20px', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', width: '200px', height: '200px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', top: '-40px', right: '-40px' }} />
-          <span style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.9)', fontSize: '10px', fontWeight: 500, letterSpacing: '1.2px', textTransform: 'uppercase', padding: '5px 14px', borderRadius: '100px', position: 'relative', zIndex: 1 }}>
-            {pillar.charAt(0).toUpperCase() + pillar.slice(1)}{level ? ` · Level ${level}` : ''}
-          </span>
+          <div style={{ position: 'relative', zIndex: 1, display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+            <Badge
+              label={pillar.charAt(0).toUpperCase() + pillar.slice(1)}
+              variant="pillar"
+              size="sm"
+              bg="rgba(255,255,255,0.15)"
+              color="rgba(255,255,255,0.9)"
+            />
+            {level && (
+              <Badge
+                label={`Level ${level}`}
+                variant="level"
+                size="sm"
+                bg="rgba(255,255,255,0.1)"
+                color="rgba(255,255,255,0.8)"
+              />
+            )}
+          </div>
           {format && formatLabels[format] && (
-            <span style={{ background: 'rgba(255,255,255,0.18)', color: 'rgba(255,255,255,0.85)', fontSize: '10px', fontWeight: 500, letterSpacing: '0.8px', padding: '5px 12px', borderRadius: '100px', position: 'relative', zIndex: 1 }}>
-              {formatLabels[format]}
-            </span>
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <Badge
+                label={formatLabels[format]}
+                variant="format"
+                size="sm"
+                bg="rgba(255,255,255,0.18)"
+                color="rgba(255,255,255,0.85)"
+              />
+            </div>
           )}
         </div>
         <div style={{ padding: '22px', display: 'flex', flexDirection: 'column', flex: 1 }}>

@@ -3,6 +3,7 @@ import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Nav from '@/components/Nav'
+import { ToastProvider } from '@/components/Toast'
 import '../styles/globals.css'
 
 export const viewport: Viewport = {
@@ -53,7 +54,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen" style={{ background: 'var(--warm)' }}>
         <Nav />
-        {children}
+        <ToastProvider>
+          {children}
+        </ToastProvider>
         <Analytics />
         <SpeedInsights />
       </body>

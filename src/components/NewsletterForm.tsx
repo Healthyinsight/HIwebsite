@@ -1,9 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import Button from '@/components/Button'
+import { useToast } from '@/hooks/useToast'
 
 interface NewsletterFormProps {
-  dark?: boolean // true = white text on dark bg, false = dark text on light bg
+  dark?: boolean
   size?: 'sm' | 'lg'
   onSuccess?: () => void
 }
@@ -12,9 +14,9 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess }: 
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  const { toast } = useToast()
 
   const inputPad = size === 'lg' ? '13px 20px' : '10px 16px'
-  const btnPad = size === 'lg' ? '13px' : '10px'
   const fontSize = '16px'
 
   const textColor = dark ? 'white' : '#0F2A3F'
@@ -42,10 +44,16 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess }: 
       if (res.ok) {
         setStatus('success')
         setEmail('')
+        toast({
+          type: 'success',
+          title: 'You are in.',
+          message: 'Check your inbox for a welcome email.',
+        })
         onSuccess?.()
       } else {
         const data = await res.json().catch(() => null)
-        setErrorMsg(data?.error || 'Something went wrong. Try again.')
+        const msg = data?.error || 'Something went wrong. Try again.'
+        setErrorMsg(msg)
         setStatus('error')
       }
     } catch {
@@ -63,7 +71,7 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess }: 
         textAlign: 'center',
       }}>
         <div style={{ fontSize: '28px', marginBottom: '8px' }}>✓</div>
-        <p style={{ color: textColor, fontSize: fontSize, fontWeight: 500, margin: '0 0 4px' }}>
+        <p style={{ color: textColor, fontSize, fontWeight: 500, margin: '0 0 4px' }}>
           You are in.
         </p>
         <p style={{ color: dark ? 'rgba(255,255,255,0.55)' : '#444440', fontSize: '13px', margin: 0 }}>
@@ -87,32 +95,26 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess }: 
           borderRadius: '100px',
           padding: inputPad,
           color: textColor,
-          fontSize: fontSize,
+          fontSize,
           fontFamily: 'DM Sans, sans-serif',
           outline: 'none',
           opacity: status === 'loading' ? 0.7 : 1,
         }}
       />
 
-      <button
+      <Button
         type="submit"
-        disabled={status === 'loading'}
-        style={{
-          background: dark ? 'white' : '#0F2A3F',
-          color: dark ? '#0F2A3F' : 'white',
-          border: 'none',
-          borderRadius: '100px',
-          padding: btnPad,
-          fontSize: fontSize,
-          fontWeight: 500,
-          cursor: status === 'loading' ? 'not-allowed' : 'pointer',
-          fontFamily: 'DM Sans, sans-serif',
-          opacity: status === 'loading' ? 0.7 : 1,
-          transition: 'opacity 0.2s',
-        }}
+        loading={status === 'loading'}
+        fullWidth
+        size={size === 'lg' ? 'lg' : 'md'}
+        style={
+          dark
+            ? { background: 'white', color: '#0F2A3F', fontSize }
+            : { background: '#0F2A3F', color: 'white', fontSize }
+        }
       >
-        {status === 'loading' ? 'Subscribing...' : 'Get the newsletter'}
-      </button>
+        Get the newsletter
+      </Button>
 
       {status === 'error' && (
         <p style={{ color: '#ff6b6b', fontSize: '13px', textAlign: 'center', margin: 0 }}>
