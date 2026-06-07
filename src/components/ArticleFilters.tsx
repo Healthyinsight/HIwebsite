@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import ArticleCard from '@/components/ArticleCard'
+import EmptyState from '@/components/EmptyState'
 import type { ArticleMeta, Pillar, ArticleFormat } from '@/lib/articles'
 
 interface ArticleFiltersProps {
@@ -154,18 +155,12 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
 
       {/* Article grid */}
       {filtered.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: 'clamp(40px, 8vw, 80px) 0' }}>
-          <p style={{ fontSize: '15px', color: '#8A8A80', marginBottom: '16px', fontWeight: 300 }}>
-            No articles match these filters.
-          </p>
-          <button
-            type="button"
-            onClick={reset}
-            style={{ background: 'var(--navy)', color: 'white', border: 'none', borderRadius: '100px', padding: '10px 24px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'DM Sans, sans-serif' }}
-          >
-            Reset filters
-          </button>
-        </div>
+        <EmptyState
+          heading="No articles match these filters."
+          message="Try a different pillar or format combination."
+          action={{ label: 'Reset filters', onClick: reset }}
+          icon="🔍"
+        />
       ) : (
         <div className="grid-articles">
           {filtered.map(article => (

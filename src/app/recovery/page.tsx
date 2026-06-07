@@ -1,6 +1,8 @@
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
+import HeroBanner from '@/components/HeroBanner'
 import { getArticlesByPillarAsync } from '@/lib/articles'
+import { pillarGradients } from '@/lib/pillars'
 
 export const revalidate = 60
 import Link from 'next/link'
@@ -19,19 +21,12 @@ export default async function RecoveryPage() {
   return (
     <>
       <main>
-        <section className="section-pad" style={{ background: 'linear-gradient(150deg, #0F2A3F 0%, #2D7DA8 100%)' }}>
-          <div className="container">
-            <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '20px', opacity: 0.7 }}>
-              Pillar
-            </div>
-            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'white', letterSpacing: '-0.8px', lineHeight: 1.1, marginBottom: '20px' }}>
-              Recovery
-            </h1>
-            <p style={{ fontSize: 'clamp(15px, 2.5vw, 18px)', color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, maxWidth: '520px', fontWeight: 300 }}>
-              Sleep, stress management, and active recovery. The fundamentals that move the needle most — grounded in peer-reviewed evidence.
-            </p>
-          </div>
-        </section>
+        <HeroBanner
+          gradient={pillarGradients.recovery}
+          eyebrow="Pillar"
+          title="Recovery"
+          subtitle="Sleep, stress management, and active recovery. The fundamentals that move the needle most — grounded in peer-reviewed evidence."
+        />
 
         <section className="section-pad" style={{ background: 'var(--warm)' }}>
           <div className="container">

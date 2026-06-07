@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Button from '@/components/Button'
 
 export default function WaitlistForm() {
   const [email, setEmail] = useState('')
@@ -62,25 +63,15 @@ export default function WaitlistForm() {
             fontFamily: 'DM Sans, sans-serif',
           }}
         />
-        <button
+        <Button
           type="submit"
-          disabled={status === 'loading'}
-          style={{
-            width: '100%',
-            height: '52px',
-            borderRadius: '100px',
-            background: 'var(--navy)',
-            color: 'white',
-            border: 'none',
-            fontSize: '16px',
-            fontWeight: 500,
-            cursor: status === 'loading' ? 'not-allowed' : 'pointer',
-            opacity: status === 'loading' ? 0.6 : 1,
-            fontFamily: 'DM Sans, sans-serif',
-          }}
+          loading={status === 'loading'}
+          fullWidth
+          size="lg"
+          style={{ height: '52px', fontSize: '16px' }}
         >
-          {status === 'loading' ? 'Sending…' : 'Notify me'}
-        </button>
+          Notify me
+        </Button>
       </div>
 
       {status === 'duplicate' && (

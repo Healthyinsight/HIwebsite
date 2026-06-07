@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import Modal from '@/components/Modal'
+import Button from '@/components/Button'
 
 interface EmailWallProps {
   onSuccess: () => void
@@ -35,114 +37,54 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
   }
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 500,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '16px',
-        background: 'rgba(15, 42, 63, 0.6)',
-        backdropFilter: 'blur(4px)',
-      }}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
-    >
-      <div
-        style={{
-          background: 'var(--cream)',
-          borderRadius: '24px',
-          padding: 'clamp(28px, 6vw, 40px)',
-          maxWidth: '400px',
-          width: '100%',
-          position: 'relative',
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '16px',
-            right: '16px',
-            background: 'transparent',
-            border: 'none',
-            fontSize: '18px',
-            cursor: 'pointer',
-            color: '#8A8A80',
-            padding: '4px',
-            lineHeight: 1,
-            fontFamily: 'inherit',
-          }}
-          aria-label="Close"
-        >
-          ✕
-        </button>
+    <Modal open={true} onClose={onClose} size="sm">
+      <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+        <div style={{ fontSize: '36px', marginBottom: '12px' }}>🔒</div>
+        <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '22px', fontWeight: 400, color: 'var(--navy)', marginBottom: '8px', lineHeight: 1.25 }}>
+          Advanced level content
+        </h3>
+        <p style={{ fontSize: '14px', color: '#444440', lineHeight: 1.65, fontWeight: 300, margin: 0 }}>
+          This article is part of the advanced tier. Enter your email to unlock it and get the full Healthy Insight newsletter.
+        </p>
+      </div>
 
-        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-          <div style={{ fontSize: '36px', marginBottom: '12px' }}>🔒</div>
-          <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '22px', fontWeight: 400, color: 'var(--navy)', marginBottom: '8px', lineHeight: 1.25 }}>
-            Advanced level content
-          </h3>
-          <p style={{ fontSize: '14px', color: '#444440', lineHeight: 1.65, fontWeight: 300, margin: 0 }}>
-            This article is part of the advanced tier. Enter your email to unlock it and get the full Healthy Insight newsletter.
+      {status === 'success' ? (
+        <div style={{ textAlign: 'center', padding: '16px 0' }}>
+          <div style={{ fontSize: '36px', marginBottom: '8px' }}>✓</div>
+          <p style={{ fontSize: '15px', fontWeight: 500, color: 'var(--navy)', margin: 0 }}>
+            Unlocked. Opening article…
           </p>
         </div>
-
-        {status === 'success' ? (
-          <div style={{ textAlign: 'center', padding: '16px 0' }}>
-            <div style={{ fontSize: '36px', marginBottom: '8px' }}>✓</div>
-            <p style={{ fontSize: '15px', fontWeight: 500, color: 'var(--navy)', margin: 0 }}>
-              Unlocked. Opening article…
+      ) : (
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <input
+            type="text"
+            placeholder="First name (optional)"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
+          />
+          <input
+            type="email"
+            placeholder="Your email address"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+            style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
+          />
+          <Button type="submit" loading={status === 'loading'} fullWidth size="lg">
+            Unlock this article
+          </Button>
+          {status === 'error' && (
+            <p style={{ color: '#ff6b6b', fontSize: '13px', textAlign: 'center', margin: 0 }}>
+              Something went wrong. Try again.
             </p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <input
-              type="text"
-              placeholder="First name (optional)"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
-            />
-            <input
-              type="email"
-              placeholder="Your email address"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-              style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
-            />
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              style={{
-                background: 'var(--navy)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '100px',
-                padding: '13px',
-                fontSize: '14px',
-                fontWeight: 500,
-                cursor: status === 'loading' ? 'not-allowed' : 'pointer',
-                fontFamily: 'DM Sans, sans-serif',
-                opacity: status === 'loading' ? 0.7 : 1,
-              }}
-            >
-              {status === 'loading' ? 'Unlocking…' : 'Unlock this article'}
-            </button>
-            {status === 'error' && (
-              <p style={{ color: '#ff6b6b', fontSize: '13px', textAlign: 'center', margin: 0 }}>
-                Something went wrong. Try again.
-              </p>
-            )}
-            <p style={{ fontSize: '11px', color: '#8A8A80', textAlign: 'center', margin: 0 }}>
-              No spam. Unsubscribe any time.
-            </p>
-          </form>
-        )}
-      </div>
-    </div>
+          )}
+          <p style={{ fontSize: '11px', color: '#8A8A80', textAlign: 'center', margin: 0 }}>
+            No spam. Unsubscribe any time.
+          </p>
+        </form>
+      )}
+    </Modal>
   )
 }
