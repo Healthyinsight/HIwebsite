@@ -210,6 +210,14 @@ export const trails: Trail[] = [
         evidenceIQPoints: 50,
         quizPoints: 25,
       },
+      {
+        slug: 'race-day-nutrition',
+        level: 2,
+        title: 'Race Day Nutrition: What the Research Recommends',
+        readingTime: '7 min',
+        evidenceIQPoints: 60,
+        quizPoints: 35,
+      },
     ],
   },
 
