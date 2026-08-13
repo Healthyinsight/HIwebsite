@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { Trail, TrailStep } from '@/lib/trails'
 import { IQ_POINTS } from '@/lib/trails'
-import { useEvidenceIQ } from '@/hooks/useEvidenceIQ'
+import { useEvidenceIQ } from '@/components/EvidenceIQProvider'
 import EmailWall from './EmailWall'
 import ProgramPreview from './ProgramPreview'
 

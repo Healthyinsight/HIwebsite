@@ -1,14 +1,11 @@
 'use client'
-import { useRef, useEffect, useState } from 'react'
-import { useRive, Layout, Fit, Alignment } from '@rive-app/react-canvas'
+import { useRef, useEffect } from 'react'
 import HeroLogoAnimation from './HeroLogoAnimation'
 
 export default function HeroAnimation() {
   const wrapperRef = useRef<HTMLDivElement>(null)
-  const [riveReady, setRiveReady] = useState(false)
-  const [riveError, setRiveError] = useState(false)
 
-  // ── Smooth lerp mouse parallax (unchanged) ──────────────────────────────
+  // ── Smooth lerp mouse parallax ──────────────────────────────────────────
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     let raf: number
@@ -33,18 +30,6 @@ export default function HeroAnimation() {
     }
   }, [])
 
-  // ── Rive canvas ─────────────────────────────────────────────────────────
-  // Expects /public/animations/hi-hero.riv with an animation named "HeroAnim".
-  // Falls back to HeroLogoAnimation (CSS) while loading or on any load error.
-  const { RiveComponent } = useRive({
-    src: '/animations/hi-hero.riv',
-    animations: 'HeroAnim',
-    autoplay: true,
-    onLoad: () => setRiveReady(true),
-    onLoadError: () => setRiveError(true),
-    layout: new Layout({ fit: Fit.Contain, alignment: Alignment.Center }),
-  })
-
   return (
     <div
       ref={wrapperRef}
@@ -56,32 +41,7 @@ export default function HeroAnimation() {
         willChange: 'transform',
       }}
     >
-      {/* CSS fallback — fades out once Rive has loaded */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          opacity: riveReady ? 0 : 1,
-          transition: 'opacity 0.4s ease',
-          pointerEvents: 'none',
-        }}
-      >
-        <HeroLogoAnimation />
-      </div>
-
-      {/* Rive canvas — fades in on load; not rendered on error */}
-      {!riveError && (
-        <RiveComponent
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            opacity: riveReady ? 1 : 0,
-            transition: 'opacity 0.4s ease',
-          }}
-        />
-      )}
+      <HeroLogoAnimation />
     </div>
   )
 }
