@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { useEvidenceIQ } from '@/hooks/useEvidenceIQ'
+import { useEvidenceIQ } from '@/components/EvidenceIQProvider'
 import MicroQuiz from './MicroQuiz'
 import type { Trail } from '@/lib/trails'
 import { IQ_POINTS, QUIZ_POINTS } from '@/lib/trails'

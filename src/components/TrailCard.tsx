@@ -49,7 +49,7 @@ export default function TrailCard({ trail }: { trail: Trail }) {
       position: 'relative',
       overflow: 'hidden',
     }}>
-      {/* Decorative animation — Rive when available, logo.png fallback */}
+      {/* Decorative logo.png watermark, hue-rotated per trail theme */}
       <div style={{ position: 'absolute', top: '6px', right: '-14px', pointerEvents: 'none', userSelect: 'none' }}>
         <TrailCardAnimation theme={getTrailTheme(trail.id, trail.pillar)} />
       </div>

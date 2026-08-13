@@ -3,6 +3,7 @@ import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Nav from '@/components/Nav'
+import { EvidenceIQProvider } from '@/components/EvidenceIQProvider'
 import { ToastProvider } from '@/components/Toast'
 import '../styles/globals.css'
 
@@ -53,10 +54,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen" style={{ background: 'var(--warm)' }}>
-        <Nav />
-        <ToastProvider>
-          {children}
-        </ToastProvider>
+        <EvidenceIQProvider>
+          <Nav />
+          <ToastProvider>
+            {children}
+          </ToastProvider>
+        </EvidenceIQProvider>
         <Analytics />
         <SpeedInsights />
       </body>

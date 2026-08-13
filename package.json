@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",
-    "@rive-app/react-canvas": "^4.28.6",
     "@supabase/supabase-js": "^2.106.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",

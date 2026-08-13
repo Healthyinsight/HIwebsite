@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { createPortal } from 'react-dom'
 import { useCallback, useEffect, useState } from 'react'
-import { useEvidenceIQ } from '@/hooks/useEvidenceIQ'
+import { useEvidenceIQ } from '@/components/EvidenceIQProvider'
 
 type NavChild = {
   href: string
