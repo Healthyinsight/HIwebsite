@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+import { colors } from '@/lib/designTokens'
 
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
@@ -15,12 +16,12 @@ export default function Image() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          background: '#0F2A3F',
+          background: colors.navy,
           padding: '72px',
           color: 'white',
         }}
       >
-        <div style={{ display: 'flex', fontSize: 30, letterSpacing: '3px', textTransform: 'uppercase', color: '#A8CCE0', marginBottom: 28 }}>
+        <div style={{ display: 'flex', fontSize: 30, letterSpacing: '3px', textTransform: 'uppercase', color: colors.bluePale, marginBottom: 28 }}>
           Healthy Insight
         </div>
         <div style={{ display: 'flex', fontSize: 68, lineHeight: 1.15, letterSpacing: '-1.5px', marginBottom: 28 }}>
