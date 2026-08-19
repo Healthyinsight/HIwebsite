@@ -41,15 +41,26 @@ export default async function HomePage() {
                 based on your body, your schedule, and what is proven to work.
               </p>
 
-              <div style={{ marginBottom: '16px' }}>
-                <Link href={WAITLIST_MODE ? '/waitlist' : 'https://tracker.healthyinsight.eu'}
+              {/* The content is the thing that exists today. The Path Tracker is
+                  not shipped and /programs has no prices, so the waitlist is a
+                  secondary link rather than the one dominant action. */}
+              <div style={{ marginBottom: '14px' }}>
+                <Link href="/protocols"
                   style={{ display: 'block', textAlign: 'center', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '0 30px', fontSize: '16px', fontWeight: 500, textDecoration: 'none', minHeight: '54px', lineHeight: '54px' }}>
-                  {WAITLIST_MODE ? 'Join the waitlist' : 'Start for free'} →
+                  Start with this week&apos;s protocol →
                 </Link>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#8A8A80', fontWeight: 400, textAlign: 'center' }}>
-                Let&apos;s stop the guesswork.
+              <p style={{ fontSize: '14px', color: 'var(--muted)', fontWeight: 400, textAlign: 'center', marginBottom: '10px' }}>
+                Free to read. Every claim sourced.
+              </p>
+
+              <p style={{ fontSize: '14px', color: 'var(--muted)', fontWeight: 400, textAlign: 'center' }}>
+                Building The Path Tracker.{' '}
+                <Link href={WAITLIST_MODE ? '/waitlist' : 'https://tracker.healthyinsight.eu'}
+                  style={{ color: 'var(--blue-mid)', fontWeight: 500, textDecoration: 'none' }}>
+                  {WAITLIST_MODE ? 'Join the waitlist' : 'Start for free'} →
+                </Link>
               </p>
             </div>
 
