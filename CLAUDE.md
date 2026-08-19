@@ -2,15 +2,16 @@
 
 ## Project overview
 
-**Healthy Insight (HI)** is an evidence-based health and fitness publication at healthyinsight.eu. It covers four pillars: motion, recovery, nutrition, mindset. The site is deployed on Vercel, source on GitHub at `filipmathiasberggren-revops/HIweb2`.
+**Healthy Insight (HI)** is an evidence-based health and fitness publication at healthyinsight.eu. It covers four pillars: motion, recovery, nutrition, mindset. The site is deployed on Vercel (project `hiweb`), source on GitHub at `Healthyinsight/HIwebsite`.
 
 ## Stack
 
 - **Framework:** Next.js 15 (App Router), TypeScript strict mode
 - **Styling:** Inline styles only — no Tailwind, no CSS modules (except `globals.css` for CSS custom properties and font imports)
-- **Fonts:** DM Serif Display (headings) + DM Sans (body) via Google Fonts
+- **Fonts:** DM Serif Display (headings) + DM Sans (body), self-hosted via `next/font`. Reference them as `var(--font-serif)` / `var(--font-sans)`, never by literal family name
 - **Email:** Resend API via `/api/subscribe` route
 - **Content:** Article metadata in `src/lib/articles.ts`; article bodies in `content/articles/*.mdx` (rendered with `next-mdx-remote`)
+- **Sources:** `hi-sources.json`, generated from Notion by `npm run sync:sources`. Never hand-edit it
 - **Deployment:** Vercel (auto-deploys from `main`)
 - **Default branch:** `main` — always target `main` when creating PRs, never `master`
 - **Language:** English throughout
@@ -27,13 +28,22 @@
 --cream      #F5F2EC    (warm off-white)
 --warm       #EDE8DF    (warm background)
 --sand       #E8E2D8    (border/subtle)
+--muted      #63635E    (muted foreground, WCAG AA on all light grounds)
 ```
+
+Mirrored in `src/lib/designTokens.ts` for code that cannot use `var()` (the OG
+image generator). `globals.css` stays the runtime source of truth.
 
 ## Key files
 
 | File | Purpose |
 |---|---|
 | `src/lib/articles.ts` | All article metadata, `ArticleMeta` type, helper functions |
+| `src/lib/sources.ts` | Research Library lookups, backed by `hi-sources.json` |
+| `src/lib/siteStats.ts` | Every self-reported figure, derived. Never hardcode a count |
+| `src/lib/schema.ts` | JSON-LD builders (Article, Organization, Person, Breadcrumb) |
+| `src/lib/levels.ts` | What the Level 1-5 badges mean |
+| `src/components/References.tsx` | Reference list plus the inline `<Cite />` marker |
 | `src/lib/pillars.ts` | Shared pillar gradient map |
 | `src/components/Nav.tsx` | Two-tier navigation (primary + transparency links) |
 | `src/components/ArticleCard.tsx` | Reusable card with format badge |
@@ -50,6 +60,22 @@
 | `src/app/newsletter/page.tsx` | Newsletter signup page |
 | `src/app/quiz/page.tsx` | Health IQ Quiz page |
 
+## Build-time guards
+
+`npm run build` runs three checks first. All three fail the build.
+
+| Script | Enforces |
+|---|---|
+| `check-citations.mjs` | No research claim with an empty `sources` array; every `<Cite />` resolves |
+| `check-contrast.mjs` | Muted foregrounds clear WCAG AA on every light background |
+| `check-copy.mjs` | No em-dash in user-facing copy; exact product-name spelling |
+
+`npm run report:citations` is informational: it lists articles missing sources
+and URLs cited on the site but absent from the Research Library.
+
+`check-citations.mjs` holds an `UNCITED_BACKLOG` of nine articles that shipped
+before the rule existed. Shrink it, never add to it.
+
 ## Conventions
 
 - `'use client'` directive required for any component using `useState` or event handlers
@@ -58,7 +84,10 @@
 - Article slugs are kebab-case strings; optional local MDX at `content/articles/{slug}.mdx`
 - `ArticleFormat` values: `'guide' | 'protocol' | 'myth-bust' | 'review' | 'checklist'`
 - `Pillar` values: `'motion' | 'recovery' | 'nutrition' | 'mindset'`
-- All new articles added to `src/lib/articles.ts` `articles` array — this is the single source for article data
+- All new articles added to `src/lib/articles.ts` `articles` array. This is the single source for article data
+- Reading time is computed from the MDX body, never hand-entered
+- Article counts, source counts and protocol counts come from `getSiteStats()`, never a literal
+- No em-dashes in user-facing copy. Product names exactly: HI Programs, The Path Tracker, Health IQ, Learning Trails
 - `next-mdx-remote` renders article MDX bodies; do not add MDX rendering via other pipelines without an explicit decision
 
 ## Workflow & session context
