@@ -187,23 +187,6 @@ export default async function ArticlePage(
               {article.title}
             </h1>
 
-            {/* Skills preview */}
-            {article.tldr && article.tldr.length > 0 && (
-              <div style={{ marginBottom: '20px' }}>
-                <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '8px' }}>
-                  What you&apos;ll learn
-                </p>
-                <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                  {article.tldr.slice(0, 3).map((item, i) => (
-                    <li key={i} style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.5, display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <span style={{ color: 'rgba(255,255,255,0.3)', flexShrink: 0, marginTop: '1px' }}>→</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             <div style={{ display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap' }}>
               <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>
                 {new Date(article.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}

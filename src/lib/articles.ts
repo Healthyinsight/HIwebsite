@@ -23,6 +23,8 @@ export interface ArticleMeta {
   externalArticleUrl?: string
 }
 
+import { resolveReadingTime } from './readingTime'
+
 const PUBLICATION_ARCHIVE_BASE = 'https://healthyinsight.beehiiv.com/articles' as const
 
 const articleSeeds: ArticleMeta[] = [
@@ -471,6 +473,8 @@ const articleSeeds: ArticleMeta[] = [
 
 export const articles: ArticleMeta[] = articleSeeds.map(article => ({
   ...article,
+  // Reading time comes from the body, never from the stored field. See M4.
+  readingTime: resolveReadingTime(article.slug, article.readingTime),
   externalArticleUrl:
     article.externalArticleUrl ?? `${PUBLICATION_ARCHIVE_BASE}/${article.slug}`,
 }))
@@ -516,6 +520,7 @@ export const getArticles = cache(async (): Promise<ArticleMeta[]> => {
   return [
     ...notionArticles.map(a => ({
       ...a,
+      readingTime: resolveReadingTime(a.slug, a.readingTime),
       externalArticleUrl: a.externalArticleUrl ?? `${PUBLICATION_ARCHIVE_BASE}/${a.slug}`,
     })),
     ...seedsOnly,
