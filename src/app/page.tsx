@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
 import { getLatestArticlesAsync } from '@/lib/articles'
+import { getSiteStats } from '@/lib/siteStats'
 
 export const revalidate = 60
 import NewsletterForm from '@/components/NewsletterForm'
@@ -14,6 +15,7 @@ import HeroAnimation from '@/components/HeroAnimationLoader'
 
 export default async function HomePage() {
   const latest = await getLatestArticlesAsync(6)
+  const stats = await getSiteStats()
   const featuredTrails = getActiveTrails().slice(0, 3)
 
   return (
@@ -39,15 +41,26 @@ export default async function HomePage() {
                 based on your body, your schedule, and what is proven to work.
               </p>
 
-              <div style={{ marginBottom: '16px' }}>
-                <Link href={WAITLIST_MODE ? '/waitlist' : 'https://tracker.healthyinsight.eu'}
+              {/* The content is the thing that exists today. The Path Tracker is
+                  not shipped and /programs has no prices, so the waitlist is a
+                  secondary link rather than the one dominant action. */}
+              <div style={{ marginBottom: '14px' }}>
+                <Link href="/protocols"
                   style={{ display: 'block', textAlign: 'center', background: 'var(--navy)', color: 'white', borderRadius: '100px', padding: '0 30px', fontSize: '16px', fontWeight: 500, textDecoration: 'none', minHeight: '54px', lineHeight: '54px' }}>
-                  {WAITLIST_MODE ? 'Join the waitlist' : 'Start for free'} →
+                  Start with this week&apos;s protocol →
                 </Link>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#8A8A80', fontWeight: 400, textAlign: 'center' }}>
-                Let&apos;s stop the guesswork.
+              <p style={{ fontSize: '14px', color: 'var(--muted)', fontWeight: 400, textAlign: 'center', marginBottom: '10px' }}>
+                Free to read. Every claim sourced.
+              </p>
+
+              <p style={{ fontSize: '14px', color: 'var(--muted)', fontWeight: 400, textAlign: 'center' }}>
+                Building The Path Tracker.{' '}
+                <Link href={WAITLIST_MODE ? '/waitlist' : 'https://tracker.healthyinsight.eu'}
+                  style={{ color: 'var(--blue-mid)', fontWeight: 500, textDecoration: 'none' }}>
+                  {WAITLIST_MODE ? 'Join the waitlist' : 'Start for free'} →
+                </Link>
               </p>
             </div>
 
@@ -119,7 +132,7 @@ export default async function HomePage() {
         {/* TRUST STRIP */}
         <div className="trust-strip">
           {[
-            { num: '30–50', label: 'studies per\ndeep-dive article' },
+            { num: String(stats.librarySize), label: 'sources in the\nresearch library' },
             { num: '5y', label: 'preferred recency\nof cited research' },
             { num: '0', label: 'affiliate links\never' },
             { num: '4', label: 'evidence-based\npillars' },

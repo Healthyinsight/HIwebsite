@@ -3,14 +3,17 @@
 import { useState } from 'react'
 import Button from '@/components/Button'
 import { useToast } from '@/hooks/useToast'
+import { EMAIL_PROMISE } from '@/lib/emailCapture'
 
 interface NewsletterFormProps {
   dark?: boolean
   size?: 'sm' | 'lg'
   onSuccess?: () => void
+  /** Entry point tag recorded on the subscriber. See /api/subscribe. */
+  source?: string
 }
 
-export default function NewsletterForm({ dark = true, size = 'lg', onSuccess }: NewsletterFormProps) {
+export default function NewsletterForm({ dark = true, size = 'lg', onSuccess, source = 'newsletter' }: NewsletterFormProps) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
@@ -38,7 +41,7 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess }: 
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source }),
       })
 
       if (res.ok) {
@@ -123,7 +126,7 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess }: 
       )}
 
       <p style={{ fontSize: '11px', color: dark ? 'rgba(255,255,255,0.28)' : '#8A8A80', textAlign: 'center', margin: 0 }}>
-        No spam. Unsubscribe any time. We never share your data.
+        {EMAIL_PROMISE}
       </p>
     </form>
   )

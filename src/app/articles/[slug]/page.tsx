@@ -4,6 +4,11 @@ import ArticleScrollUI from '@/components/ArticleScrollUI'
 import Footer from '@/components/Footer'
 import { mdxComponents } from '@/components/MdxComponents'
 import { getArticles } from '@/lib/articles'
+import References, { makeCite } from '@/components/References'
+import AuthorCard from '@/components/AuthorCard'
+import RelatedArticles from '@/components/RelatedArticles'
+import ArticleNewsletterBlock from '@/components/ArticleNewsletterBlock'
+import { getSourcesForSlug } from '@/lib/sources'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -30,13 +35,41 @@ export async function generateMetadata(
   const allArticles = await getArticles()
   const article = allArticles.find(a => a.slug === slug)
   if (!article) return {}
-  return { title: article.title, description: article.excerpt }
+  return {
+    title: article.title,
+    description: article.excerpt,
+    alternates: { canonical: `/articles/${slug}` },
+    openGraph: {
+      type: 'article',
+      title: article.title,
+      description: article.excerpt,
+      url: `/articles/${slug}`,
+      publishedTime: article.publishedAt,
+      modifiedTime: article.lastReviewed ?? article.publishedAt,
+      authors: ['Filip Berggren'],
+    },
+  }
 }
 
 const evidenceBadgeStyles: Record<string, { background: string; color: string; border: string; label: string }> = {
   strong: { background: 'var(--sky)', color: 'var(--blue)', border: '1px solid var(--blue-pale)', label: 'Strong evidence' },
   mixed:  { background: 'var(--sand)', color: 'var(--navy)', border: '1px solid var(--sand)', label: 'Mixed evidence' },
   early:  { background: '#F5F0E8', color: '#6B5E4A', border: '1px solid var(--sand)', label: 'Early-stage evidence' },
+}
+
+/**
+ * Splits an MDX body at the heading that follows "Here's what to do".
+ * Returns [head, tail]; tail is null when the heading is absent or is the last
+ * section, so the caller renders one uninterrupted body.
+ */
+function splitAfterProtocolSection(source: string): [string, string | null] {
+  const start = source.search(/^##\s+Here's what to do\s*$/im)
+  if (start === -1) return [source, null]
+  const after = source.slice(start)
+  const nextHeading = after.search(/\n##\s+(?!#)/)
+  if (nextHeading === -1) return [source, null]
+  const cut = start + nextHeading
+  return [source.slice(0, cut), source.slice(cut)]
 }
 
 export default async function ArticlePage(
@@ -49,22 +82,30 @@ export default async function ArticlePage(
 
   const badge = article.evidenceStrength ? evidenceBadgeStyles[article.evidenceStrength] : null
 
+  // ── Reference list, and the <Cite /> marker bound to it ─
+  const sources = getSourcesForSlug(slug)
+
   // ── MDX body (null when no local file exists) ─
+  // Split after the "Here's what to do" section so a newsletter block can sit
+  // mid-article, at the point a reader has just got the protocol. Falls back to
+  // a single block when the article does not use that heading.
   const mdxFilePath = path.join(process.cwd(), 'content', 'articles', `${slug}.mdx`)
   let mdxContent: ReactElement | null = null
+  let mdxRest: ReactElement | null = null
   try {
     const source = await fs.readFile(mdxFilePath, 'utf8')
-    const { content } = await compileMDX({
-      source,
-      components: mdxComponents,
-      options: { parseFrontmatter: true },
-    })
-    mdxContent = content
+    const components = { ...mdxComponents, Cite: makeCite(sources) }
+    const options = { parseFrontmatter: true }
+    const [head, tail] = splitAfterProtocolSection(source)
+
+    mdxContent = (await compileMDX({ source: head, components, options })).content
+    mdxRest = tail ? (await compileMDX({ source: tail, components, options })).content : null
   } catch (err) {
     if ((err as { code?: string }).code !== 'ENOENT') {
       logger.error('MDX compilation failed', { slug, err: String(err) })
     }
     mdxContent = null
+    mdxRest = null
   }
 
   // ── Trail context ────────────────────────────────────────────────────────
@@ -81,6 +122,20 @@ export default async function ArticlePage(
   const nextStep = activeIndex !== -1 && activeIndex < activeSteps.length - 1
     ? activeSteps[activeIndex + 1]
     : null
+
+  // ── Related reading: the rest of the trail, else the same pillar ─────────
+  const bySlug = new Map(allArticles.map(a => [a.slug, a]))
+  const trailRelated = activeSteps
+    .filter(step => step.slug !== slug)
+    .map(step => bySlug.get(step.slug))
+    .filter((a): a is NonNullable<typeof a> => a !== undefined)
+  const related = (trailRelated.length > 0
+    ? trailRelated
+    : allArticles.filter(a => a.pillar === article.pillar && a.slug !== slug)
+  ).slice(0, 3)
+  const relatedHeading = trailRelated.length > 0
+    ? `More in ${trail?.name ?? 'this trail'}`
+    : `More on ${article.pillar}`
 
   return (
     <>
@@ -190,9 +245,19 @@ export default async function ArticlePage(
 
             {/* Article body — MDX when available */}
             {mdxContent ? (
-              <article style={{ marginBottom: '36px', maxWidth: '68ch' }}>
-                {mdxContent}
-              </article>
+              <>
+                <article style={{ marginBottom: mdxRest ? 0 : '36px', maxWidth: '68ch' }}>
+                  {mdxContent}
+                </article>
+                {mdxRest && (
+                  <>
+                    <ArticleNewsletterBlock variant="mid" source="newsletter" />
+                    <article style={{ marginBottom: '36px', maxWidth: '68ch' }}>
+                      {mdxRest}
+                    </article>
+                  </>
+                )}
+              </>
             ) : article.externalArticleUrl ? (
               <div style={{ background: 'var(--cream)', borderRadius: '14px', padding: '20px 24px', marginBottom: '36px' }}>
                 <p style={{ fontSize: '14px', color: 'var(--navy)', lineHeight: 1.6, margin: '0 0 16px' }}>
@@ -255,6 +320,15 @@ export default async function ArticlePage(
                 )}
               </div>
             )}
+
+            {/* References — renders nothing when the article has no sources */}
+            <References sources={sources} />
+
+            <AuthorCard lastReviewed={article.lastReviewed} publishedAt={article.publishedAt} />
+
+            <RelatedArticles articles={related} heading={relatedHeading} />
+
+            <ArticleNewsletterBlock source="newsletter" />
 
             {/* Interactive progress — mark read + micro-quiz for all trail articles */}
             {trail !== null && (

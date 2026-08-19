@@ -1,17 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { logger } from '@/lib/logger'
 
-const SUBSCRIBE_SOURCES = new Set(['website', 'quiz', 'article', 'unknown'])
+/**
+ * Entry points into the single subscriber list. Every capture on the site posts
+ * here with one of these tags, so the list stays one list and we can still tell
+ * where someone came from. Before the 2026-08 audit there were four competing
+ * captures and two different backends.
+ */
+const SUBSCRIBE_SOURCES = [
+  'newsletter',         // the newsletter block, wherever it appears
+  'tracker_waitlist',   // The Path Tracker waitlist
+  'programs_waitlist',  // HI Programs waitlist
+  'trail_unlock',       // Level 4+ article unlock
+  'quiz',               // Health IQ quiz result capture
+  'unknown',
+] as const
 
-function normalizeSubscribeSource(raw: unknown): 'website' | 'quiz' | 'article' | 'unknown' {
-  if (raw === undefined || raw === null || raw === '') {
-    return 'website'
-  }
+export type SubscribeSource = (typeof SUBSCRIBE_SOURCES)[number]
+
+const KNOWN = new Set<string>(SUBSCRIBE_SOURCES)
+
+/** Legacy tags from before the entry points were consolidated. */
+const LEGACY_ALIASES: Record<string, SubscribeSource> = {
+  website: 'newsletter',
+  article: 'newsletter',
+}
+
+function normalizeSubscribeSource(raw: unknown): SubscribeSource {
+  if (raw === undefined || raw === null || raw === '') return 'newsletter'
   const s = String(raw).trim().toLowerCase()
-  if (SUBSCRIBE_SOURCES.has(s)) {
-    return s as 'website' | 'quiz' | 'article' | 'unknown'
-  }
-  return 'unknown'
+  if (KNOWN.has(s)) return s as SubscribeSource
+  return LEGACY_ALIASES[s] ?? 'unknown'
 }
 
 export async function POST(req: NextRequest) {

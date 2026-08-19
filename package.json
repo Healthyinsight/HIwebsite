@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync:sources": "node scripts/sync-sources.mjs",
+    "check:citations": "node scripts/check-citations.mjs",
+    "prebuild": "node scripts/check-citations.mjs"
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",

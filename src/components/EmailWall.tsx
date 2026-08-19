@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Modal from '@/components/Modal'
 import Button from '@/components/Button'
+import { EMAIL_PROMISE } from '@/lib/emailCapture'
 
 interface EmailWallProps {
   onSuccess: () => void
@@ -22,7 +23,7 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, firstName: name }),
+        body: JSON.stringify({ email, firstName: name, source: 'trail_unlock' }),
       })
       if (res.ok) {
         try { localStorage.setItem('hi_email_unlocked', 'true') } catch {}
@@ -81,7 +82,7 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
             </p>
           )}
           <p style={{ fontSize: '11px', color: '#8A8A80', textAlign: 'center', margin: 0 }}>
-            No spam. Unsubscribe any time.
+            {EMAIL_PROMISE}
           </p>
         </form>
       )}

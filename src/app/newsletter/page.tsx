@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import NewsletterForm from '@/components/NewsletterForm'
+import { getSiteStats } from '@/lib/siteStats'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
   description: 'Evidence-based health insights straight to your inbox. 1 email per week — always sourced, always practical.',
 }
 
-export default function NewsletterPage() {
+export default async function NewsletterPage() {
+  const stats = await getSiteStats()
+
   return (
     <>
       <main>
@@ -48,7 +51,7 @@ export default function NewsletterPage() {
 
             <div className="newsletter-stats" style={{ marginTop: '56px', paddingTop: '40px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
               {[
-                { num: '14', label: 'articles published' },
+                { num: String(stats.articleCount), label: 'articles published' },
                 { num: '4', label: 'evidence pillars' },
                 { num: '0', label: 'affiliate links' },
               ].map(({ num, label }) => (

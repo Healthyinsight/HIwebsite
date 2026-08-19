@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import Button from '@/components/Button'
+import { EMAIL_PROMISE } from '@/lib/emailCapture'
 
-export default function WaitlistForm() {
+export default function WaitlistForm({ source = 'tracker_waitlist' }: { source?: string } = {}) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'duplicate' | 'error'>('idle')
 
@@ -16,7 +17,7 @@ export default function WaitlistForm() {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source }),
       })
       if (res.status === 409) {
         setStatus('duplicate')
@@ -86,7 +87,7 @@ export default function WaitlistForm() {
       )}
 
       <p style={{ marginTop: '12px', fontSize: '13px', color: '#8A8A80', textAlign: 'center', fontWeight: 300 }}>
-        No spam. Unsubscribe any time.
+        {EMAIL_PROMISE}
       </p>
     </form>
   )

@@ -2,12 +2,16 @@ import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 import { logger } from '@/lib/logger'
 
+const WAITLIST_SOURCES = new Set(['tracker_waitlist', 'programs_waitlist'])
+
 export async function POST(req: Request) {
-  const { email } = await req.json()
+  const { email, source: sourceRaw } = await req.json()
 
   if (!email || !email.includes('@')) {
     return NextResponse.json({ error: 'invalid_email' }, { status: 400 })
   }
+
+  const source = WAITLIST_SOURCES.has(String(sourceRaw)) ? String(sourceRaw) : 'tracker_waitlist'
 
   const supabase = createClient(
     process.env.SUPABASE_URL!,
@@ -25,6 +29,32 @@ export async function POST(req: Request) {
 
   const apiKey = process.env.RESEND_API_KEY
   if (apiKey) {
+    // The waitlist is a Supabase record, but the subscriber belongs on the same
+    // Resend list as every other entry point, tagged with where they came from.
+    try {
+      const contactRes = await fetch('https://api.resend.com/contacts', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          unsubscribed: false,
+          properties: { source, created_at_iso: new Date().toISOString() },
+        }),
+      })
+      if (!contactRes.ok) {
+        const errBody = await contactRes.text()
+        const duplicate = contactRes.status === 409 || /already exists/i.test(errBody)
+        if (!duplicate) {
+          logger.warn('Waitlist contact sync failed', { route: '/api/waitlist', service: 'resend', status: contactRes.status, body: errBody })
+        }
+      }
+    } catch (err) {
+      logger.error('Waitlist contact sync threw', { route: '/api/waitlist', service: 'resend', err: String(err) })
+    }
+
     try {
       const emailRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',

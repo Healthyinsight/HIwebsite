@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer'
 import ArticleFilters from '@/components/ArticleFilters'
-import { getArticles, TOTAL_SOURCES } from '@/lib/articles'
+import { getArticles } from '@/lib/articles'
+import { getSiteStats } from '@/lib/siteStats'
 import type { Metadata } from 'next'
 
 export const revalidate = 60
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 
 export default async function ArticlesPage() {
   const allArticles = await getArticles()
+  const stats = await getSiteStats()
   const sorted = [...allArticles].sort((a, b) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   )
@@ -28,7 +30,7 @@ export default async function ArticlesPage() {
               Turn research into your daily edge
             </h1>
             <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, maxWidth: '520px', fontWeight: 300 }}>
-              {sorted.length} articles across motion, nutrition, recovery, and mindset. Backed by {TOTAL_SOURCES} peer-reviewed sources. Every claim cited.
+              {stats.articleCount} articles across motion, nutrition, recovery, and mindset. {stats.articlesWithSources} carry a full reference list, drawn from {stats.citedSourceCount} peer-reviewed sources.
             </p>
           </div>
         </section>

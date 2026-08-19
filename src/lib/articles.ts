@@ -10,6 +10,8 @@ export interface ArticleMeta {
   level?: number
   readingTime: string
   publishedAt: string
+  /** CMS `Last Reviewed Date`. Absent when the article has not been re-reviewed since publication. */
+  lastReviewed?: string
   featured?: boolean
   tldr?: string[]
   evidenceStrength?: 'strong' | 'mixed' | 'early'
@@ -20,8 +22,6 @@ export interface ArticleMeta {
    */
   externalArticleUrl?: string
 }
-
-export const TOTAL_SOURCES = 75 // Manually synced from Notion Research Library DB. Update when new sources are added.
 
 const PUBLICATION_ARCHIVE_BASE = 'https://healthyinsight.beehiiv.com/articles' as const
 
@@ -73,6 +73,7 @@ const articleSeeds: ArticleMeta[] = [
     level: 2,
     readingTime: '11 min',
     publishedAt: '2025-12-22',
+    lastReviewed: '2025-12-22',
     evidenceStrength: 'strong',
     evidenceNote: 'Hierarchy of recovery interventions is well-supported; gadget-based tools (ice baths, compression) show modest and inconsistent effects.',
     tldr: [
@@ -230,6 +231,7 @@ const articleSeeds: ArticleMeta[] = [
     level: 2,
     readingTime: '14 min',
     publishedAt: '2025-11-18',
+    lastReviewed: '2025-10-22',
     evidenceStrength: 'strong',
     evidenceNote:
       'Progressive overload, volume thresholds, and autoregulated effort (RIR) are among the most replicated principles in resistance training research.',
@@ -251,6 +253,7 @@ const articleSeeds: ArticleMeta[] = [
     level: 1,
     readingTime: '14 min',
     publishedAt: '2025-10-14',
+    lastReviewed: '2025-10-22',
     evidenceStrength: 'strong',
     evidenceNote:
       'Polarized intensity distribution, conservative volume progression, and heavy strength training for runners are well supported in systematic reviews and cohort data.',
@@ -334,6 +337,7 @@ const articleSeeds: ArticleMeta[] = [
     level: 1,
     readingTime: '9 min',
     publishedAt: '2025-10-20',
+    lastReviewed: '2025-10-22',
     evidenceStrength: 'strong',
     evidenceNote:
       'Cardiorespiratory fitness and mortality links are supported by very large meta-analyses and cohorts; effect sizes depend on fitness classification and confounding adjustment.',
@@ -354,6 +358,7 @@ const articleSeeds: ArticleMeta[] = [
     level: 2,
     readingTime: '11 min',
     publishedAt: '2025-10-20',
+    lastReviewed: '2025-10-22',
     featured: true,
     evidenceStrength: 'strong',
     evidenceNote: 'VO2 max improvements of 5–15% over 12 weeks are well-documented with the polarized training approach used in this plan.',

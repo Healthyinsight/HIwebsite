@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { EMAIL_PROMISE } from '@/lib/emailCapture'
 
 const questions = [
   {
@@ -129,7 +130,7 @@ export default function HealthIQQuiz() {
       await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, firstName: name }),
+        body: JSON.stringify({ email, firstName: name, source: 'quiz' }),
       })
     } catch {}
 
@@ -270,7 +271,7 @@ export default function HealthIQQuiz() {
                 {submitting ? 'Sending...' : 'Unlock my results'}
               </button>
               <p style={{ fontSize: '11px', color: '#8A8A80', textAlign: 'center', margin: 0 }}>
-                No spam. Unsubscribe any time.
+                {EMAIL_PROMISE}
               </p>
             </form>
           </div>
