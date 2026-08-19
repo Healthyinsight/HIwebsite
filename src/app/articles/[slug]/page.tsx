@@ -16,6 +16,7 @@ import { pillarGradients } from '@/lib/pillars'
 import { logger } from '@/lib/logger'
 import { getTrailForArticle } from '@/lib/trails'
 import { levelDescription, levelLabel } from '@/lib/levels'
+import { articleSchema, breadcrumbSchema, jsonLd } from '@/lib/schema'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -138,8 +139,20 @@ export default async function ArticlePage(
     ? `More in ${trail?.name ?? 'this trail'}`
     : `More on ${article.pillar}`
 
+  const breadcrumb = breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    ...(trail
+      ? [{ name: trail.name, url: `/trails/${trail.id}` }]
+      : [{ name: 'Articles', url: '/articles' }]),
+    { name: article.title, url: `/articles/${slug}` },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd([articleSchema(article, sources), breadcrumb])}
+      />
       <ArticleScrollUI />
       <main>
         {/* Header */}

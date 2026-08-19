@@ -3,6 +3,7 @@ import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Nav from '@/components/Nav'
+import { organizationSchema, personSchema, websiteSchema, jsonLd } from '@/lib/schema'
 import { EvidenceIQProvider } from '@/components/EvidenceIQProvider'
 import { ToastProvider } from '@/components/Toast'
 import '../styles/globals.css'
@@ -53,6 +54,10 @@ export default function RootLayout({
             gtag('config', 'G-CWFTWXK09E');
           `}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLd([organizationSchema(), websiteSchema(), personSchema()])}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
