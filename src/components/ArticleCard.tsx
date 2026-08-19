@@ -47,6 +47,17 @@ export default function ArticleCard({ slug, title, excerpt, pillar, format, leve
                 color="rgba(255,255,255,0.8)"
               />
             )}
+            {/* The Level 4+ email unlock was disclosed only in small text on
+                /trails. Surface it on the cards it actually gates. */}
+            {level !== undefined && level >= 4 && (
+              <Badge
+                label="🔒 Free email unlock"
+                variant="level"
+                size="sm"
+                bg="rgba(255,255,255,0.22)"
+                color="rgba(255,255,255,0.95)"
+              />
+            )}
           </div>
           {format && formatLabels[format] && (
             <div style={{ position: 'relative', zIndex: 1 }}>
