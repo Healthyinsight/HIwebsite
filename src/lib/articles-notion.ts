@@ -73,6 +73,7 @@ export async function fetchNotionArticles(): Promise<ArticleMeta[]> {
       const readingTime  = txt(p['Reading Time'] as RichTextProp) || '5 min'
       const publishedAt  = (p['Web Published Date'] as DateProp)?.date?.start
                         ?? new Date().toISOString().slice(0, 10)
+      const lastReviewed = (p['Last Reviewed Date'] as DateProp)?.date?.start ?? undefined
       const featured     = (p['Featured'] as CheckboxProp)?.checkbox ?? false
       const evidenceStrength = (p['Evidence Strength'] as SelectProp)?.select?.name as ArticleMeta['evidenceStrength'] | undefined
       const evidenceNote = txt(p['Evidence Note'] as RichTextProp) || undefined
@@ -88,6 +89,7 @@ export async function fetchNotionArticles(): Promise<ArticleMeta[]> {
         format,
         readingTime,
         publishedAt,
+        ...(lastReviewed ? { lastReviewed } : {}),
         ...(level !== undefined ? { level } : {}),
         ...(featured ? { featured: true } : {}),
         ...(evidenceStrength ? { evidenceStrength } : {}),
