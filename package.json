@@ -11,7 +11,8 @@
     "check:citations": "node scripts/check-citations.mjs",
     "prebuild": "node scripts/check-citations.mjs && node scripts/check-contrast.mjs && node scripts/check-copy.mjs",
     "check:contrast": "node scripts/check-contrast.mjs",
-    "check:copy": "node scripts/check-copy.mjs"
+    "check:copy": "node scripts/check-copy.mjs",
+    "report:citations": "node scripts/report-citation-gaps.mjs"
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",
