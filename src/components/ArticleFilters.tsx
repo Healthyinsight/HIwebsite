@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import ArticleCard from '@/components/ArticleCard'
 import EmptyState from '@/components/EmptyState'
+import LoadMoreGrid from '@/components/LoadMoreGrid'
+import BackToTop from '@/components/BackToTop'
 import type { ArticleMeta, Pillar, ArticleFormat } from '@/lib/articles'
 
 interface ArticleFiltersProps {
@@ -30,6 +31,9 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
   const [selectedPillar, setSelectedPillar] = useState<Pillar | 'all'>('all')
   const [selectedFormat, setSelectedFormat] = useState<ArticleFormat | 'all'>('all')
   const [sortBy, setSortBy] = useState<'newest' | 'editors'>('newest')
+  // Collapsed by default on mobile only. CSS forces the panel open on desktop,
+  // where 13 chips plus a sort control fit without burying the first article.
+  const [filtersOpen, setFiltersOpen] = useState(false)
 
   const filtered = useMemo(() => {
     let result = [...articles]
@@ -65,8 +69,42 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
 
   return (
     <div>
+      <BackToTop />
+
+      {/* Sticky bar: result count, and the filter toggle on mobile */}
+      <div className="listing-stickybar">
+        <span style={{ fontSize: '13px', color: 'var(--muted)' }}>
+          Showing {filtered.length} of {articles.length} articles
+        </span>
+        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          {hasActiveFilters && (
+            <button
+              type="button"
+              onClick={reset}
+              style={{ fontSize: '13px', color: 'var(--blue-mid)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 500, fontFamily: 'DM Sans, sans-serif', padding: 0 }}
+            >
+              Reset
+            </button>
+          )}
+          <button
+            type="button"
+            className="listing-stickybar__toggle"
+            aria-expanded={filtersOpen}
+            aria-controls="article-filters"
+            onClick={() => setFiltersOpen(o => !o)}
+          >
+            Filters{hasActiveFilters ? ' ·' : ''}
+            <span aria-hidden style={{ marginLeft: '6px' }}>{filtersOpen ? '▲' : '▼'}</span>
+          </button>
+        </div>
+      </div>
+
       {/* Filter controls */}
-      <div style={{ marginBottom: '32px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <div
+        id="article-filters"
+        className={`listing-filters${filtersOpen ? ' is-open' : ''}`}
+        style={{ marginBottom: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}
+      >
         {/* Pillar row + sort */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
@@ -137,22 +175,6 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
         </div>
       </div>
 
-      {/* Result count */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-        <span style={{ fontSize: '13px', color: 'var(--muted)', fontWeight: 300 }}>
-          Showing {filtered.length} of {articles.length} articles
-        </span>
-        {hasActiveFilters && (
-          <button
-            type="button"
-            onClick={reset}
-            style={{ fontSize: '13px', color: 'var(--blue-mid)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 500, fontFamily: 'DM Sans, sans-serif', padding: 0 }}
-          >
-            Reset filters
-          </button>
-        )}
-      </div>
-
       {/* Article grid */}
       {filtered.length === 0 ? (
         <EmptyState
@@ -162,11 +184,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
           icon="🔍"
         />
       ) : (
-        <div className="grid-articles">
-          {filtered.map(article => (
-            <ArticleCard key={article.slug} {...article} />
-          ))}
-        </div>
+        <LoadMoreGrid articles={filtered} pageSize={9} />
       )}
     </div>
   )

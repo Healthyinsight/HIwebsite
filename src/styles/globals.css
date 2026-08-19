@@ -753,3 +753,83 @@ body {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ── Listing pages: sticky bar, collapsible filters, compact mobile list ──
+   /articles measured 11,872px on a 390px viewport and /protocols 11,167px,
+   with no sticky element anywhere and roughly 500px of empty gradient above
+   the first article title. (M5, M9) */
+
+.listing-stickybar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  margin-bottom: 12px;
+  background: var(--warm);
+  border-bottom: 1px solid var(--sand);
+}
+
+.listing-stickybar__toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--sand);
+  background: var(--cream);
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+}
+
+/* The toggle is a mobile affordance; the panel is always open on desktop. */
+@media (min-width: 641px) {
+  .listing-stickybar__toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .listing-filters {
+    display: none !important;
+  }
+
+  .listing-filters.is-open {
+    display: flex !important;
+  }
+
+  /* Compact list: the gradient block carried no real image, so on a phone it
+     was ~500px of decoration between the reader and the first title. */
+  .article-card__media {
+    display: none;
+  }
+
+  .article-card__body {
+    padding: 14px 16px;
+  }
+
+  .grid-articles {
+    gap: 10px;
+  }
+}
+
+/* Badge row repeated inside the card body, shown only where the media block
+   (and the badges it contains) is hidden. */
+.article-card__badges-compact {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .article-card__badges-compact {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+}

@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer'
-import ArticleCard from '@/components/ArticleCard'
 import LevelLegend from '@/components/LevelLegend'
+import LoadMoreGrid from '@/components/LoadMoreGrid'
+import BackToTop from '@/components/BackToTop'
 import NewsletterForm from '@/components/NewsletterForm'
 import { getArticlesByFormatAsync } from '@/lib/articles'
 
@@ -19,6 +20,7 @@ export default async function ProtocolsPage() {
   return (
     <>
       <main>
+        <BackToTop />
 
         {/* HEADER */}
         <section className="section-pad" style={{ background: 'var(--cream)' }}>
@@ -68,11 +70,7 @@ export default async function ProtocolsPage() {
               Structured programs with specific variables, progressions, and timelines. Build these into your week directly.
             </p>
             <LevelLegend />
-            <div className="grid-three">
-              {protocols.map(article => (
-                <ArticleCard key={article.slug} {...article} />
-              ))}
-            </div>
+            <LoadMoreGrid articles={protocols} pageSize={9} label="protocols" />
           </div>
         </section>
 
@@ -88,11 +86,7 @@ export default async function ProtocolsPage() {
             <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, maxWidth: '560px', marginBottom: '40px', fontWeight: 300 }}>
               Deep dives into the evidence, mechanisms, and frameworks. Start here to build a strong conceptual foundation.
             </p>
-            <div className="grid-three">
-              {guides.map(article => (
-                <ArticleCard key={article.slug} {...article} />
-              ))}
-            </div>
+            <LoadMoreGrid articles={guides} pageSize={9} label="guides" />
           </div>
         </section>
 
