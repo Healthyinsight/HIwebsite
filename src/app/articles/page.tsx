@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import ArticleFilters from '@/components/ArticleFilters'
+import LevelLegend from '@/components/LevelLegend'
 import { getArticles } from '@/lib/articles'
 import { getSiteStats } from '@/lib/siteStats'
 import type { Metadata } from 'next'
@@ -26,7 +27,7 @@ export default async function ArticlesPage() {
               All articles
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)', minWidth: 0 }} />
             </div>
-            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '14px', letterSpacing: '-0.5px' }}>
+            <h1 className="heading-hero" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '14px', letterSpacing: '-0.5px' }}>
               Turn research into your daily edge
             </h1>
             <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, maxWidth: '520px', fontWeight: 300 }}>
@@ -37,6 +38,7 @@ export default async function ArticlesPage() {
 
         <section style={{ background: 'var(--warm)', paddingTop: 'clamp(40px, 8vw, 56px)', paddingBottom: 'clamp(48px, 10vw, 56px)' }}>
           <div className="container">
+            <LevelLegend />
             <ArticleFilters articles={sorted} />
           </div>
         </section>

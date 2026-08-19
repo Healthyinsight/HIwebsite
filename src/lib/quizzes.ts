@@ -25,7 +25,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       options: ['5–6 hours', '6–7 hours', '7–9 hours', '10+ hours'],
       correctIndex: 2,
       explanation:
-        'A panel of 24 sleep researchers reviewed over 1,000 studies and recommends 7–9 hours per night for adult athletes — with most needing the upper end.',
+        'A panel of 24 sleep researchers reviewed over 1,000 studies and recommends 7–9 hours per night for adult athletes, with most needing the upper end.',
     },
     {
       question:
@@ -61,7 +61,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       question: 'What is "sleep debt" and why does it matter for athletes?',
       options: [
         'A minor inconvenience that only affects beginners',
-        'Accumulated sleep deficit that impairs reaction time and recovery — even when athletes feel adapted to it',
+        'Accumulated sleep deficit that impairs reaction time and recovery, even when athletes feel adapted to it',
         'Only relevant for endurance athletes',
         'Sleep debt cannot affect performance if nutrition is optimal',
       ],
@@ -144,7 +144,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       ],
       correctIndex: 2,
       explanation:
-        'Large prospective cohort studies (including the Cleveland Clinic data on 122,000 patients) show that the highest-fitness group has roughly 4–5× lower all-cause mortality than the lowest — a larger effect than most clinical risk factors.',
+        'Large prospective cohort studies (including the Cleveland Clinic data on 122,000 patients) show that the highest-fitness group has roughly 4–5× lower all-cause mortality than the lowest, a larger effect than most clinical risk factors.',
     },
     {
       question: 'Which training approach is most effective at raising VO2 max?',
@@ -166,7 +166,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       options: ['Zone 1 (very easy)', 'Zone 2 (moderate, conversational)', 'Zone 4 (threshold)', 'Zone 5 (maximal)'],
       correctIndex: 1,
       explanation:
-        'Zone 2 (roughly 60–70% max HR, where you can hold a full conversation) drives mitochondrial biogenesis and fat oxidation — the aerobic foundation on which higher-intensity work sits.',
+        'Zone 2 (roughly 60–70% max HR, where you can hold a full conversation) drives mitochondrial biogenesis and fat oxidation, the aerobic foundation on which higher-intensity work sits.',
     },
     {
       question: 'What does a 4×4 HIIT interval session involve?',
@@ -212,7 +212,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       ],
       correctIndex: 1,
       explanation:
-        'Eastward travel requires advancing your circadian clock (earlier sleep/wake), which opposes the body\'s natural tendency to drift later. Westward travel requires a phase delay, which aligns with that drift — making it easier to adapt.',
+        'Eastward travel requires advancing your circadian clock (earlier sleep/wake), which opposes the body\'s natural tendency to drift later. Westward travel requires a phase delay, which aligns with that drift, making it easier to adapt.',
     },
     {
       question: 'What is the recommended hotel room temperature for optimal sleep quality?',
@@ -224,7 +224,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       ],
       correctIndex: 2,
       explanation:
-        'The article recommends setting room temperature to ~15–17 °C (60–63 °F). Core body temperature must drop to initiate sleep, and a cool room accelerates this drop — reducing first-night disruption in unfamiliar environments.',
+        'The article recommends setting room temperature to ~15–17 °C (60–63 °F). Core body temperature must drop to initiate sleep, and a cool room accelerates this drop, reducing first-night disruption in unfamiliar environments.',
     },
   ],
 
@@ -234,7 +234,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       options: ['7.5 hours', '8.5 hours', '10 hours', '11 hours'],
       correctIndex: 1,
       explanation:
-        'Stanford basketball players extended sleep to ~8.5 hours/night. This produced measurable improvements in sprint times and skill accuracy — demonstrating that performance gains are possible even when athletes are above the minimum 7-hour threshold.',
+        'Stanford basketball players extended sleep to ~8.5 hours/night. This produced measurable improvements in sprint times and skill accuracy, demonstrating that performance gains are possible even when athletes are above the minimum 7-hour threshold.',
     },
     {
       question: 'What is the optimal window for a short alertness nap that minimises disruption to nighttime sleep?',
@@ -253,12 +253,12 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       options: [
         'Sleeping in is less comfortable',
         'Earlier bedtimes increase melatonin production more than later wake times',
-        'Sleeping later disrupts circadian alignment — which can undermine the other benefits of extension',
+        'Sleeping later disrupts circadian alignment, which can undermine the other benefits of extension',
         'Morning sleep stages are lighter and less restorative than evening stages',
       ],
       correctIndex: 2,
       explanation:
-        'The protocol specifically recommends earlier bedtimes to protect circadian alignment. Sleeping in later shifts your clock forward over time, which can create jet-lag-like misalignment — especially problematic around competitions with fixed start times.',
+        'The protocol specifically recommends earlier bedtimes to protect circadian alignment. Sleeping in later shifts your clock forward over time, which can create jet-lag-like misalignment, especially problematic around competitions with fixed start times.',
     },
   ],
 
@@ -281,7 +281,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       question: 'When running 30-second micro-intervals, why should you run by pace/effort rather than heart rate?',
       options: [
         'Heart rate monitors are unreliable during short bursts',
-        'Heart rate lags significantly — it won\'t reflect true intensity within a 30-second rep',
+        'Heart rate lags significantly, it won\'t reflect true intensity within a 30-second rep',
         'High heart rates indicate overtraining at this duration',
         'Pace and heart rate are equivalent at VO₂ max intensity',
       ],
@@ -293,13 +293,13 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       question: 'What is the main reason to include a dedicated recovery week in a periodized VO₂ max block?',
       options: [
         'Recovery weeks provide psychological rest from training monotony',
-        'The body needs reduced training stress to supercompensate — adaptation happens during recovery, not the training itself',
+        'The body needs reduced training stress to supercompensate, adaptation happens during recovery, not the training itself',
         'Recovery weeks increase running volume without adding intensity',
         'Recovery weeks are optional add-ons for cautious athletes',
       ],
       correctIndex: 1,
       explanation:
-        'The article states directly: "The stimulus is training. The gain is recovery." Skipping recovery weeks is listed as one of the four key mistakes — without a clear recovery window, the body cannot supercompensate from the overload block.',
+        'The article states directly: "The stimulus is training. The gain is recovery." Skipping recovery weeks is listed as one of the four key mistakes, without a clear recovery window, the body cannot supercompensate from the overload block.',
     },
   ],
 
@@ -309,7 +309,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       options: [
         'Lung capacity and breathing mechanics',
         'Maximum heart rate output',
-        'Peripheral adaptations in the muscles — mitochondrial density, capillarization, and oxidative enzyme activity',
+        'Peripheral adaptations in the muscles, mitochondrial density, capillarization, and oxidative enzyme activity',
         'Blood oxygen saturation at altitude',
       ],
       correctIndex: 2,
@@ -326,14 +326,14 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       ],
       correctIndex: 1,
       explanation:
-        'Maximum heart rate is largely genetic and declines with age. Stroke volume is the primary trainable cardiac variable — endurance training increases it through structural remodeling (larger chamber), better filling, and improved contractility.',
+        'Maximum heart rate is largely genetic and declines with age. Stroke volume is the primary trainable cardiac variable, endurance training increases it through structural remodeling (larger chamber), better filling, and improved contractility.',
     },
     {
       question: 'What is the most practical implication of being a "non-responder" to a specific training protocol?',
       options: [
         'You have low genetic potential and should focus on other fitness goals',
         'High-dose supplements can override genetic limitations in non-responders',
-        'Adjusting training variables — intensity distribution, interval structure, frequency, modality, or recovery — often produces a measurable response',
+        'Adjusting training variables, intensity distribution, interval structure, frequency, modality, or recovery, often produces a measurable response',
         'Non-responders should restrict training to Zone 2 only',
       ],
       correctIndex: 2,
@@ -350,7 +350,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       options: ['Muscle hypertrophy', 'Increased testosterone', 'Neural adaptations', 'Mitochondrial growth'],
       correctIndex: 2,
       explanation:
-        'Early strength gains are predominantly neurological: the brain learns to recruit more motor units, coordinate muscles more efficiently, and inhibit protective mechanisms — before any significant muscle growth occurs.',
+        'Early strength gains are predominantly neurological: the brain learns to recruit more motor units, coordinate muscles more efficiently, and inhibit protective mechanisms, before any significant muscle growth occurs.',
     },
     {
       question: 'How many times per week should beginners train each muscle group for optimal strength development?',
@@ -363,7 +363,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       question: 'What is progressive overload in strength training?',
       options: [
         'Training until exhaustion on every set',
-        'Systematically increasing the demand placed on muscles over time — through weight, reps, or volume',
+        'Systematically increasing the demand placed on muscles over time, through weight, reps, or volume',
         'Switching exercises every session to confuse muscles',
         'Eating more protein to grow muscles faster',
       ],
@@ -379,7 +379,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       options: [
         'Maximum Repetition Volume',
         'Minimum Recommended Volume',
-        'Maximum Recoverable Volume — the highest weekly training load you can fully recover from',
+        'Maximum Recoverable Volume, the highest weekly training load you can fully recover from',
         'Muscle Recruitment Value',
       ],
       correctIndex: 2,
@@ -408,7 +408,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       ],
       correctIndex: 2,
       explanation:
-        'RPE (Rate of Perceived Exertion) lets you hit the target effort — "hard but clean" — even when sleep, stress, or recovery varies. It anchors training to actual readiness rather than a pre-set number on the bar.',
+        'RPE (Rate of Perceived Exertion) lets you hit the target effort, "hard but clean", even when sleep, stress, or recovery varies. It anchors training to actual readiness rather than a pre-set number on the bar.',
     },
   ],
 
@@ -419,30 +419,30 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
         'To practice new exercises at lower risk',
         'To temporarily reduce training stress so accumulated fatigue drops and adaptation shows up in performance',
         'To signal to the body that more muscle tissue is needed',
-        'Deloads are mainly psychological — the physical benefit is minor',
+        'Deloads are mainly psychological: the physical benefit is minor',
       ],
       correctIndex: 1,
       explanation:
-        'The article is explicit: deloading is a planned reduction in stress to drop fatigue so adaptation can express itself. It\'s not time off — some intensity is maintained to preserve skill. Skipping deloads until performance collapses is listed as a common mistake.',
+        'The article is explicit: deloading is a planned reduction in stress to drop fatigue so adaptation can express itself. It\'s not time off, some intensity is maintained to preserve skill. Skipping deloads until performance collapses is listed as a common mistake.',
     },
     {
       question: 'How many fatigue signals does the article recommend tracking in advanced programming?',
       options: [
-        'As many as possible — more data always leads to better decisions',
+        'As many as possible, more data always leads to better decisions',
         'Only HRV (heart rate variability)',
         'A small set of 3–5 reliable indicators',
         'Soreness is the only signal that reliably predicts overtraining',
       ],
       correctIndex: 2,
       explanation:
-        'The article recommends tracking 3–5 signals: performance trend, bar speed/rep quality, persistent soreness, sleep quality, and motivation/readiness. If multiple drift the wrong way simultaneously, you adjust — not push through.',
+        'The article recommends tracking 3–5 signals: performance trend, bar speed/rep quality, persistent soreness, sleep quality, and motivation/readiness. If multiple drift the wrong way simultaneously, you adjust, not push through.',
     },
     {
       question: 'Why should you change only one progression variable (load, reps, or sets) per training block?',
       options: [
         'Changing multiple variables simultaneously is physically dangerous',
         'It keeps training fresh and prevents boredom from repetition',
-        'Changing everything at once removes the feedback signal — you can\'t tell what actually drove the change',
+        'Changing everything at once removes the feedback signal, you can\'t tell what actually drove the change',
         'Single-variable progression is required by all major strength methodologies',
       ],
       correctIndex: 2,
@@ -517,7 +517,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
     {
       question: 'How much carbohydrate per hour is recommended for a 90-minute moderate-to-hard training session?',
       options: [
-        '0 g — stored glycogen is sufficient for sessions under 2 hours',
+        '0 g: stored glycogen is sufficient for sessions under 2 hours',
         '30–60 g per hour',
         '60–90 g per hour',
         '100+ g per hour for maximum performance',
@@ -536,7 +536,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       ],
       correctIndex: 2,
       explanation:
-        'The gut can absorb roughly 60 g/hour from glucose alone. Combining glucose with fructose — which uses a different transporter (GLUT5) — allows total absorption to reach 90 g/hour without increasing GI distress. At lower durations, single-source products are fine.',
+        'The gut can absorb roughly 60 g/hour from glucose alone. Combining glucose with fructose, which uses a different transporter (GLUT5), allows total absorption to reach 90 g/hour without increasing GI distress. At lower durations, single-source products are fine.',
     },
     {
       question: 'When should you begin fueling during a session longer than 75 minutes?',
@@ -548,7 +548,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       ],
       correctIndex: 2,
       explanation:
-        'Once glycogen is critically low, you cannot refill fast enough to restore performance — the tank is already dry. Starting within the first 15–20 minutes slows depletion from the outset, which is the entire goal of in-workout fueling.',
+        'Once glycogen is critically low, you cannot refill fast enough to restore performance, the tank is already dry. Starting within the first 15–20 minutes slows depletion from the outset, which is the entire goal of in-workout fueling.',
     },
   ],
 
@@ -566,7 +566,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       question: 'What are implementation intentions and what effect do they have on goal achievement?',
       options: [
         'Long-term vision statements that increase motivation by 2–3×',
-        '"If X then Y" plans that pre-decide your response to obstacles — a meta-analysis of 94 studies found they increase goal achievement by 54% on average',
+        '"If X then Y" plans that pre-decide your response to obstacles, a meta-analysis of 94 studies found they increase goal achievement by 54% on average',
         'Monthly progress check-ins designed to maintain accountability',
         'Habit-stacking techniques that only work for morning routines',
       ],
@@ -579,7 +579,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       options: ['21 days', '30 days', '66 days', 'It varies too much for any meaningful average'],
       correctIndex: 2,
       explanation:
-        'Research shows habit formation takes 18–254 days depending on complexity, with an average of 66 days. The article recommends giving any goal structure at least 4 weeks before making major changes — and not abandoning plans during the "motivation dip" in Weeks 2–4.',
+        'Research shows habit formation takes 18–254 days depending on complexity, with an average of 66 days. The article recommends giving any goal structure at least 4 weeks before making major changes, and not abandoning plans during the "motivation dip" in Weeks 2–4.',
     },
   ],
 
@@ -613,7 +613,7 @@ export const QUIZ_BY_SLUG: Record<string, Question[]> = {
       options: ['1–3 reps', '4–6 reps', '6–30 reps (to or near failure)', '40+ reps'],
       correctIndex: 2,
       explanation:
-        'A landmark 2017 meta-analysis (Schoenfeld et al.) showed that a wide rep range — roughly 6–30 reps, taken close to failure — produces similar hypertrophy. Load is less critical than proximity to failure and sufficient volume.',
+        'A landmark 2017 meta-analysis (Schoenfeld et al.) showed that a wide rep range (roughly 6–30 reps, taken close to failure) produces similar hypertrophy. Load is less critical than proximity to failure and sufficient volume.',
     },
   ],
 }

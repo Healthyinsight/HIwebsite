@@ -121,7 +121,7 @@ export default function HeroOrb() {
             y="210"
             textAnchor="middle"
             fill="#F5F2EC"
-            fontFamily="DM Serif Display, serif"
+            fontFamily="var(--font-serif), Georgia, serif"
             fontSize="26"
             fontWeight="400"
             letterSpacing="4"

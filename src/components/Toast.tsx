@@ -155,7 +155,7 @@ function ToastItemComponent({ item, dismiss }: { item: ToastItem; dismiss: (id: 
           background: 'transparent',
           border: 'none',
           fontSize: '14px',
-          color: '#8A8A80',
+          color: 'var(--muted)',
           cursor: 'pointer',
           padding: '2px 5px',
           lineHeight: 1,

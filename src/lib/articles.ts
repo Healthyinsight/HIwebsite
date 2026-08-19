@@ -23,6 +23,8 @@ export interface ArticleMeta {
   externalArticleUrl?: string
 }
 
+import { resolveReadingTime } from './readingTime'
+
 const PUBLICATION_ARCHIVE_BASE = 'https://healthyinsight.beehiiv.com/articles' as const
 
 const articleSeeds: ArticleMeta[] = [
@@ -32,6 +34,7 @@ const articleSeeds: ArticleMeta[] = [
     excerpt: 'The evidence on intra-workout nutrition. When carbohydrates actually matter, and when they don\'t.',
     pillar: 'nutrition',
     format: 'guide',
+    level: 1, // Notion Articles DB: HI Level = Level 1, Trail = Fueling Mastery.
     readingTime: '13 min',
     publishedAt: '2026-03-01',
     featured: true,
@@ -42,7 +45,7 @@ const articleSeeds: ArticleMeta[] = [
       'For sessions under 60 min, water is sufficient for most people.',
       'Aim for 30–60g of fast-digesting carbs per hour during long efforts.',
       'Protein intake during training does not improve performance but aids recovery.',
-      'Experiment in training — never try new fueling strategies on race day.',
+      'Experiment in training, never try new fueling strategies on race day.',
     ],
   },
   {
@@ -60,7 +63,7 @@ const articleSeeds: ArticleMeta[] = [
       'Carb-load 10-12g of carbohydrate per kg of body weight per day for 36-48 hours before the race.',
       'Eat 100g+ of low-fiber, easily digestible carbs 2-4 hours before the start.',
       'Take in 30-60g of carbs per hour for events of 1-2.5 hours, 60-90g per hour (glucose-fructose mix) beyond that.',
-      'Athletes under-consume their own fueling plan by 16-17% on average — fuel by the clock, not by feel.',
+      'Athletes under-consume their own fueling plan by 16-17% on average, fuel by the clock, not by feel.',
       'Never test new fueling products or strategies on race day; rehearse the full plan in training.',
     ],
   },
@@ -77,10 +80,10 @@ const articleSeeds: ArticleMeta[] = [
     evidenceStrength: 'strong',
     evidenceNote: 'Hierarchy of recovery interventions is well-supported; gadget-based tools (ice baths, compression) show modest and inconsistent effects.',
     tldr: [
-      'Sleep is the single highest-leverage recovery tool — no gadget comes close.',
+      'Sleep is the single highest-leverage recovery tool, no gadget comes close.',
       'Fueling within 2 hours post-session meaningfully accelerates muscle repair.',
       'Training load management prevents the fatigue that recovery tools try to fix.',
-      'Ice baths blunt adaptation when used after strength sessions — use sparingly.',
+      'Ice baths blunt adaptation when used after strength sessions, use sparingly.',
       'Most recovery gadgets are tier-4 tools, not tier-1.',
     ],
   },
@@ -110,9 +113,9 @@ const articleSeeds: ArticleMeta[] = [
     evidenceNote:
       'Block structure and deloads are standard in applied strength coaching; optimal sequencing for every individual has less RCT evidence than foundational overload principles.',
     tldr: [
-      'Match exercise selection to the competition lift and your weakest link—then protect quality on those lifts.',
+      'Match exercise selection to the competition lift and your weakest link: then protect quality on those lifts.',
       'Run accumulation → intensification → realization blocks, each with one primary job.',
-      'Track a few fatigue signals (performance, bar speed, soreness, sleep, readiness)—when several drift, adjust.',
+      'Track a few fatigue signals (performance, bar speed, soreness, sleep, readiness), when several drift, adjust.',
       'Deload proactively (~40–50% fewer sets or reduced load) before performance collapses.',
       'Progress one variable per block (load, reps, or sets) so you know what worked.',
     ],
@@ -178,7 +181,7 @@ const articleSeeds: ArticleMeta[] = [
       'Protect sleep by avoiding late high-intensity sessions when you can; midday training often pairs best with sleep quality.',
       'For travel, shift sleep gradually pre-flight and use morning vs evening light strategically after arrival.',
       'Pre-competition: keep the week stable; sleep quality across the prior 2–3 nights matters more than only the night before.',
-      'Use overnight HRV as a trend against a rolling baseline — not nightly tracker perfectionism.',
+      'Use overnight HRV as a trend against a rolling baseline, not nightly tracker perfectionism.',
       'When napping, ~20 minutes is usually the safest default; the 30–60 minute window is often the groggiest.',
     ],
   },
@@ -195,16 +198,16 @@ const articleSeeds: ArticleMeta[] = [
     evidenceNote: 'The relationship between sleep duration and performance is one of the most robust in sports science.',
     tldr: [
       '7–9 hours is the evidence-based target for most adults; athletes likely need the upper end.',
-      'Sleep debt accumulates — you cannot fully recover from a week of short nights in one weekend.',
+      'Sleep debt accumulates, you cannot fully recover from a week of short nights in one weekend.',
       'Consistent wake time is more important than consistent bedtime.',
       'Cool, dark, and quiet: the three environmental factors with the most evidence.',
-      'Avoid caffeine within 6 hours of sleep — its half-life is longer than most people think.',
+      'Avoid caffeine within 6 hours of sleep. Its half-life is longer than most people think.',
     ],
   },
   {
     slug: 'strength-training-for-beginners',
     title: 'Strength Training for Beginners',
-    excerpt: 'Evidence-based foundations for building strength. Volume, intensity, frequency, and progression — what the research actually shows for beginners.',
+    excerpt: 'Evidence-based foundations for building strength. Volume, intensity, frequency, and progression, what the research actually shows for beginners.',
     pillar: 'motion',
     format: 'guide',
     level: 1,
@@ -214,10 +217,10 @@ const articleSeeds: ArticleMeta[] = [
     evidenceStrength: 'strong',
     evidenceNote: 'Beginner adaptations to resistance training are among the most studied phenomena in exercise science, with very consistent findings.',
     tldr: [
-      'Beginners gain strength faster than anyone else — the "newbie gains" are real and well-documented.',
+      'Beginners gain strength faster than anyone else: the "newbie gains" are real and well-documented.',
       '2–3 sessions per week is optimal for beginners; more doesn\'t mean faster progress.',
       'Focus on compound movements (squat, deadlift, press, row) for maximum return on time.',
-      'Progressive overload — adding reps or weight over time — is the only mechanism that drives continued gains.',
+      'Progressive overload, adding reps or weight over time: it is the only mechanism that drives continued gains.',
       'Technique first: a lighter weight with good form builds strength faster than heavy weight with poor form.',
     ],
   },
@@ -236,7 +239,7 @@ const articleSeeds: ArticleMeta[] = [
     evidenceNote:
       'Progressive overload, volume thresholds, and autoregulated effort (RIR) are among the most replicated principles in resistance training research.',
     tldr: [
-      'Progress one variable at a time: load or reps—not both in the same week.',
+      'Progress one variable at a time: load or reps: not both in the same week.',
       'On main lifts, leave ~2–4 reps in reserve most of the time for sustainable gains.',
       'Aim for ~12–20 sets per muscle group per week across 3–4 sessions.',
       'Deload every 4–6 weeks or when recovery signals slip (~40–50% volume cut or ~30% load reduction).',
@@ -262,7 +265,7 @@ const articleSeeds: ArticleMeta[] = [
       'Progress total weekly volume by about 10% per week; deload every 4th week (~20–30% less time).',
       'Two full-body strength sessions weekly support economy and injury resilience.',
       'After 8–12 weeks, you can shift slightly toward VO₂-style intervals while keeping one long easy run.',
-      'Prioritize 7–9 hours sleep—adaptation happens in recovery, not only in the session.',
+      'Prioritize 7–9 hours sleep: adaptation happens in recovery, not only in the session.',
     ],
   },
   {
@@ -279,7 +282,7 @@ const articleSeeds: ArticleMeta[] = [
     tldr: [
       'Heavy strength training (≥80% 1RM) improves running economy by 2–8% in trained runners.',
       'The 5 key exercises: single-leg press, Romanian deadlift, hip thrust, calf raise, step-up.',
-      '2× per week is sufficient — more does not produce additional running economy gains.',
+      '2× per week is sufficient, more does not produce additional running economy gains.',
       'Plyometric work (box jumps, bounding) complements heavy lifting for stiffness and speed.',
       'Gains appear within 6–10 weeks; most studies run 8–12 weeks to show significant effects.',
     ],
@@ -296,9 +299,9 @@ const articleSeeds: ArticleMeta[] = [
     evidenceStrength: 'strong',
     evidenceNote: 'Zone 2 training benefits are well-established; the common misconceptions addressed here are directly contradicted by lactate threshold research.',
     tldr: [
-      'True Zone 2 is harder than most people think — many train at Zone 3 while believing it\'s Zone 2.',
+      'True Zone 2 is harder than most people think, many train at Zone 3 while believing it\'s Zone 2.',
       'The "talk test" (full sentences, slightly labored) is a reliable low-tech Zone 2 marker.',
-      'Heart rate zones vary by individual — generic %HRmax formulas are imprecise.',
+      'Heart rate zones vary by individual: generic %HRmax formulas are imprecise.',
       '80% of your training volume should be Zone 2 (polarized model) for endurance athletes.',
       'Zone 2 is not slow: it\'s specific. Pace is irrelevant; metabolic state is what matters.',
     ],
@@ -342,7 +345,7 @@ const articleSeeds: ArticleMeta[] = [
     evidenceNote:
       'Cardiorespiratory fitness and mortality links are supported by very large meta-analyses and cohorts; effect sizes depend on fitness classification and confounding adjustment.',
     tldr: [
-      'VO₂ max reflects how much oxygen you can use during hard effort — a practical marker of heart–lung–muscle fitness.',
+      'VO₂ max reflects how much oxygen you can use during hard effort, a practical marker of heart–lung–muscle fitness.',
       'Higher fitness is consistently associated with lower all-cause mortality in population studies.',
       'Most beginners can raise VO₂ max meaningfully within weeks by combining mostly easy aerobic work with a small dose of hard intervals.',
       'You can start without lab testing: build a repeatable easy baseline, then add one interval session per week.',
@@ -366,7 +369,7 @@ const articleSeeds: ArticleMeta[] = [
       'VO2 max can improve 5–15% in 12 weeks with the right training structure.',
       'Use 80/20: 80% easy aerobic work (Zone 2), 20% high-intensity intervals (Zone 4–5).',
       'The key interval session: 4–6 × 4 minutes at 90–95% HRmax with equal recovery.',
-      'Consistency beats intensity — missing sessions loses more than reducing intensity.',
+      'Consistency beats intensity, missing sessions loses more than reducing intensity.',
       'Test at week 0, 6, and 12 to track progress (time trial or lab test).',
     ],
   },
@@ -383,10 +386,10 @@ const articleSeeds: ArticleMeta[] = [
     evidenceNote: 'The 4x4 interval protocol is among the most replicated HIIT structures in exercise science, with consistent VO₂ max improvements of 5–10% over 8-week blocks.',
     tldr: [
       'The 4x4 protocol (4 min work / 3 min recovery × 4 rounds) is the gold standard for raising VO₂ max.',
-      'Work intervals must reach 90–95% max HR — below that, the cardiac stimulus is insufficient.',
+      'Work intervals must reach 90–95% max HR. Below that, the cardiac stimulus is insufficient.',
       'Active (not passive) recovery keeps lactate clearing and prepares you for the next round.',
       'Stroke volume adaptation is the primary mechanism, not muscular changes.',
-      'Run 4x4 blocks for 4–6 weeks, then return to base training — do not run them year-round.',
+      'Run 4x4 blocks for 4–6 weeks, then return to base training, do not run them year-round.',
     ],
   },
   {
@@ -401,11 +404,11 @@ const articleSeeds: ArticleMeta[] = [
     evidenceStrength: 'strong',
     evidenceNote: 'Progressive overload is one of the most replicated principles in resistance training research; RPE-based autoregulation is well-validated across experience levels.',
     tldr: [
-      'Progress reps before weight — only add load when you can complete the full rep range cleanly.',
+      'Progress reps before weight, only add load when you can complete the full rep range cleanly.',
       'Use micro-loading (0.5 kg increments) for sustainable, injury-free progression.',
       'Autoregulate with RPE 7–8 to match training intensity to your daily readiness.',
-      'Volume (sets × reps) is as important as load — adding a set counts as overload.',
-      'Advanced lifters cannot progress every session — think in weeks, not workouts.',
+      'Volume (sets × reps) is as important as load: adding a set counts as overload.',
+      'Advanced lifters cannot progress every session, think in weeks, not workouts.',
     ],
   },
   {
@@ -420,17 +423,17 @@ const articleSeeds: ArticleMeta[] = [
     evidenceStrength: 'mixed',
     evidenceNote: 'Social facilitation effects on endurance are well-documented; individual variation is high and most studies are short-term or lab-based.',
     tldr: [
-      'Running with others lowers your Rate of Perceived Exertion — the same pace feels easier.',
+      'Running with others lowers your Rate of Perceived Exertion, the same pace feels easier.',
       'Both passive presence (someone nearby) and active encouragement improve performance.',
       'Use group runs for hard or long sessions; keep recovery runs solo to avoid pace drift.',
       'Offloading pacing decisions to a pacer saves cognitive energy, which directly reduces fatigue.',
-      'Never skip water stops or gels to keep up with the group — fuel your own race.',
+      'Never skip water stops or gels to keep up with the group, fuel your own race.',
     ],
   },
   {
     slug: 'advanced-fueling-glucose-fructose-gut-training',
     title: 'Advanced Fueling: Glucose-Fructose Ratios and Gut Training',
-    excerpt: 'Why your gut limits carbohydrate absorption to 60g/hr on glucose alone — and how combining fructose and gut training unlocks 90–120g/hr without GI distress.',
+    excerpt: 'Why your gut limits carbohydrate absorption to 60g/hr on glucose alone, and how combining fructose and gut training unlocks 90–120g/hr without GI distress.',
     pillar: 'nutrition',
     format: 'guide',
     level: 3,
@@ -439,10 +442,10 @@ const articleSeeds: ArticleMeta[] = [
     evidenceStrength: 'strong',
     evidenceNote: 'Glucose-fructose co-ingestion and intestinal transporter saturation are well-established; gut training evidence is newer but consistent across studies.',
     tldr: [
-      'Glucose alone maxes out SGLT1 transporters at ~60g/hr — beyond that, GI distress follows.',
+      'Glucose alone maxes out SGLT1 transporters at ~60g/hr, beyond that, GI distress follows.',
       'Adding fructose activates a second pathway (GLUT5), allowing 90–120g/hr absorption.',
       'The 2:1 glucose-to-fructose ratio works for most events; 1:0.8 is optimal for 3+ hour efforts.',
-      'Gut training — practicing high carb intake in training — physically increases transporter density.',
+      'Gut training, practicing high carb intake in training, physically increases transporter density.',
       'Start at 50g/hr 6–8 weeks out and build by 10g/week; never test new fueling on race day.',
     ],
   },
@@ -462,15 +465,17 @@ const articleSeeds: ArticleMeta[] = [
     tldr: [
       'Pair one outcome goal with two concrete process goals you control day to day.',
       'Make process goals SMART, then add if–then plans for likely obstacles.',
-      'Track weekly process completion (aim for ~80%+) and review for small tweaks—not wholesale resets.',
+      'Track weekly process completion (aim for ~80%+) and review for small tweaks: not wholesale resets.',
       'Celebrate completed sessions; identity-based framing (“I am a runner”) helps you return after misses.',
-      'Give a new structure at least ~4 weeks before major changes—habits form on a long tail.',
+      'Give a new structure at least ~4 weeks before major changes: habits form on a long tail.',
     ],
   },
 ]
 
 export const articles: ArticleMeta[] = articleSeeds.map(article => ({
   ...article,
+  // Reading time comes from the body, never from the stored field. See M4.
+  readingTime: resolveReadingTime(article.slug, article.readingTime),
   externalArticleUrl:
     article.externalArticleUrl ?? `${PUBLICATION_ARCHIVE_BASE}/${article.slug}`,
 }))
@@ -508,16 +513,50 @@ export function getArticleBySlug(slug: string): ArticleMeta | undefined {
 import { cache } from 'react'
 import { fetchNotionArticles } from './articles-notion'
 
+/** True for a value the CMS simply has not filled in. */
+function isEmpty(value: unknown): boolean {
+  if (value === undefined || value === null) return true
+  if (typeof value === 'string') return value.trim() === ''
+  if (Array.isArray(value)) return value.length === 0
+  return false
+}
+
+/**
+ * Overlays a Notion row on its seed, field by field.
+ *
+ * A wholesale replace would let an unfilled CMS field blank out real content:
+ * most rows in the Articles DB have no Description, TL;DR or Evidence Note, so
+ * the moment `Slug` gets filled in, those articles would lose their excerpt and
+ * TL;DR on the site. Notion wins only where Notion actually has a value.
+ */
+function mergeOverSeed(notion: ArticleMeta, seed: ArticleMeta | undefined): ArticleMeta {
+  if (!seed) return notion
+  const merged = { ...seed }
+  for (const [key, value] of Object.entries(notion)) {
+    if (!isEmpty(value)) {
+      (merged as Record<string, unknown>)[key] = value
+    }
+  }
+  return merged
+}
+
 export const getArticles = cache(async (): Promise<ArticleMeta[]> => {
   const notionArticles = await fetchNotionArticles()
   if (notionArticles.length === 0) return articles
+
+  const seedBySlug  = new Map(articleSeeds.map(a => [a.slug, a]))
   const notionSlugs = new Set(notionArticles.map(a => a.slug))
   const seedsOnly   = articles.filter(a => !notionSlugs.has(a.slug))
+
   return [
-    ...notionArticles.map(a => ({
-      ...a,
-      externalArticleUrl: a.externalArticleUrl ?? `${PUBLICATION_ARCHIVE_BASE}/${a.slug}`,
-    })),
+    ...notionArticles.map(a => {
+      const merged = mergeOverSeed(a, seedBySlug.get(a.slug))
+      return {
+        ...merged,
+        readingTime: resolveReadingTime(merged.slug, merged.readingTime),
+        externalArticleUrl: merged.externalArticleUrl ?? `${PUBLICATION_ARCHIVE_BASE}/${merged.slug}`,
+      }
+    }),
     ...seedsOnly,
   ]
 })

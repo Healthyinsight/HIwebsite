@@ -22,7 +22,7 @@ type ChatState = 'chat' | 'loading' | 'choose_path'
 const GREETING: Message = {
   role: 'assistant',
   content:
-    "Hi! I'm the HI Guide. What health goal are you working on right now — running, sleep, strength, nutrition, or something else?",
+    "Hi! I'm the HI Guide. What health goal are you working on right now, running, sleep, strength, nutrition, or something else?",
 }
 
 function mergeCtas(existing: CTA[], incoming: CTA[]): CTA[] {
@@ -129,7 +129,7 @@ function AssistantMessage({ msg }: { msg: Message }) {
         <p
           style={{
             fontSize: '11.5px',
-            color: '#8A8A80',
+            color: 'var(--muted)',
             fontStyle: 'italic',
             margin: 0,
             paddingLeft: '2px',
@@ -275,7 +275,7 @@ function ChoosePath({
           border: 'none',
           padding: '6px 0',
           fontSize: '12px',
-          color: '#8A8A80',
+          color: 'var(--muted)',
           cursor: 'pointer',
           textAlign: 'left',
           fontFamily: 'inherit',

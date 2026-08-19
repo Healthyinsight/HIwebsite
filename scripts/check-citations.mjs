@@ -10,9 +10,10 @@
  * the promises on /about ("every claim links to research"), /newsletter
  * ("sources always linked") and /articles ("every claim cited") true.
  *
- * Also enforces two things that would otherwise rot silently:
+ * Also enforces, so it cannot rot silently:
  *   - every <Cite id="..." /> marker resolves to a source on that article
- *   - no em-dash in an article body (HI brand rule, en-dash in ranges is fine)
+ *
+ * The em-dash and product-name rules live in scripts/check-copy.mjs.
  */
 
 import fs from 'node:fs'
@@ -58,7 +59,6 @@ const library = sourcesFile.sources
 const uncited = []
 const knownUncited = []
 const badMarkers = []
-const emDashes = []
 const staleBacklog = []
 
 for (const file of fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.mdx')).sort()) {
@@ -82,10 +82,6 @@ for (const file of fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.mdx')).s
     else if (!ids.has(id)) badMarkers.push({ slug, id, why: 'not among this article\'s sources' })
   }
 
-  if (body.includes('—')) {
-    const line = body.split('\n').findIndex(l => l.includes('—')) + 1
-    emDashes.push({ slug, line })
-  }
 }
 
 let failed = false
@@ -114,13 +110,6 @@ if (staleBacklog.length > 0) {
   console.error('  Remove them from scripts/check-citations.mjs:\n')
   for (const slug of staleBacklog) console.error(`    ${slug}`)
   console.error('')
-}
-
-// Staged to an error by L2, once the existing bodies have been swept.
-if (emDashes.length > 0) {
-  console.warn(`\n! ${emDashes.length} article(s) contain an em-dash (HI brand rule: use a period, colon or comma):`)
-  for (const { slug, line } of emDashes) console.warn(`    ${slug}:${line}`)
-  console.warn('')
 }
 
 if (knownUncited.length > 0) {

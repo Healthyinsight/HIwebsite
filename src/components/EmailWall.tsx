@@ -3,7 +3,9 @@
 import { useState } from 'react'
 import Modal from '@/components/Modal'
 import Button from '@/components/Button'
-import { EMAIL_PROMISE } from '@/lib/emailCapture'
+import Link from 'next/link'
+import { useId } from 'react'
+import { EMAIL_PROMISE, VISUALLY_HIDDEN } from '@/lib/emailCapture'
 
 interface EmailWallProps {
   onSuccess: () => void
@@ -14,6 +16,8 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const nameId = useId()
+  const emailId = useId()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -41,7 +45,7 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
     <Modal open={true} onClose={onClose} size="sm">
       <div style={{ textAlign: 'center', marginBottom: '24px' }}>
         <div style={{ fontSize: '36px', marginBottom: '12px' }}>🔒</div>
-        <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '22px', fontWeight: 400, color: 'var(--navy)', marginBottom: '8px', lineHeight: 1.25 }}>
+        <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '22px', fontWeight: 400, color: 'var(--navy)', marginBottom: '8px', lineHeight: 1.25 }}>
           Advanced level content
         </h3>
         <p style={{ fontSize: '14px', color: '#444440', lineHeight: 1.65, fontWeight: 300, margin: 0 }}>
@@ -58,20 +62,26 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
         </div>
       ) : (
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <label htmlFor={nameId} style={VISUALLY_HIDDEN}>First name (optional)</label>
           <input
+            id={nameId}
+            autoComplete="given-name"
             type="text"
             placeholder="First name (optional)"
             value={name}
             onChange={e => setName(e.target.value)}
-            style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
+            style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'var(--font-sans), system-ui, sans-serif', outline: 'none' }}
           />
+          <label htmlFor={emailId} style={VISUALLY_HIDDEN}>Your email address</label>
           <input
+            id={emailId}
+            autoComplete="email"
             type="email"
             placeholder="Your email address"
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
-            style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
+            style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'var(--font-sans), system-ui, sans-serif', outline: 'none' }}
           />
           <Button type="submit" loading={status === 'loading'} fullWidth size="lg">
             Unlock this article
@@ -81,8 +91,11 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
               Something went wrong. Try again.
             </p>
           )}
-          <p style={{ fontSize: '11px', color: '#8A8A80', textAlign: 'center', margin: 0 }}>
-            {EMAIL_PROMISE}
+          <p style={{ fontSize: '11px', color: 'var(--muted)', textAlign: 'center', margin: 0 }}>
+            {EMAIL_PROMISE}{' '}
+            <Link href="/privacy" style={{ color: 'var(--blue-mid)', textDecoration: 'underline' }}>
+              Privacy policy
+            </Link>
           </p>
         </form>
       )}

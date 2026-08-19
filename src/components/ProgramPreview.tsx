@@ -32,7 +32,7 @@ export default function ProgramPreview({ trail }: { trail: Trail }) {
       </div>
 
       <h3 style={{
-        fontFamily: 'DM Serif Display, serif',
+        fontFamily: 'var(--font-serif), Georgia, serif',
         fontSize: 'clamp(20px, 4vw, 24px)',
         fontWeight: 400,
         color: 'white',

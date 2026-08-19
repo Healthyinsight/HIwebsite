@@ -25,7 +25,7 @@ export default async function RecoveryPage() {
           gradient={pillarGradients.recovery}
           eyebrow="Pillar"
           title="Recovery"
-          subtitle="Sleep, stress management, and active recovery. The fundamentals that move the needle most — grounded in peer-reviewed evidence."
+          subtitle="Sleep, stress management, and active recovery. The fundamentals that move the needle most, grounded in peer-reviewed evidence."
         />
 
         <section className="section-pad" style={{ background: 'var(--warm)' }}>
@@ -35,7 +35,7 @@ export default async function RecoveryPage() {
             <div className="pillar-start-callout">
               <div>
                 <div style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '8px' }}>Start here</div>
-                <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '6px' }}>
+                <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '6px' }}>
                   {starterArticle.title}
                 </h3>
                 <p style={{ fontSize: '14px', color: '#444440', lineHeight: 1.6, maxWidth: '560px', fontWeight: 300 }}>
@@ -48,7 +48,7 @@ export default async function RecoveryPage() {
               </Link>
             </div>
 
-            <p style={{ fontSize: '14px', color: '#8A8A80', marginBottom: '32px', fontWeight: 300 }}>
+            <p style={{ fontSize: '14px', color: 'var(--muted)', marginBottom: '32px', fontWeight: 300 }}>
               {articles.length} articles
             </p>
             <div className="grid-three">

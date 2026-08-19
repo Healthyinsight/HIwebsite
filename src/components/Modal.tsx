@@ -167,7 +167,7 @@ export default function Modal({
                 border: 'none',
                 fontSize: '18px',
                 cursor: 'pointer',
-                color: '#8A8A80',
+                color: 'var(--muted)',
                 padding: '4px 8px',
                 lineHeight: 1,
                 fontFamily: 'inherit',
@@ -182,7 +182,7 @@ export default function Modal({
             <h2
               id={titleId}
               style={{
-                fontFamily: 'DM Serif Display, serif',
+                fontFamily: 'var(--font-serif), Georgia, serif',
                 fontSize: '22px',
                 fontWeight: 400,
                 color: 'var(--navy)',

@@ -171,7 +171,7 @@ export const trails: Trail[] = [
     pillar: 'motion',
     name: 'Running Progression Trail',
     tagline: 'Build durability and speed the right way',
-    description: 'Running is one of the most accessible and effective forms of exercise — but injury rates are high. This trail gives you the evidence on building a durable running base and supporting it with strength.',
+    description: 'Running is one of the most accessible and effective forms of exercise, but injury rates are high. This trail gives you the evidence on building a durable running base and supporting it with strength.',
     badge: { emoji: '🏃', label: 'Running Specialist' },
     steps: [
       {
@@ -199,7 +199,7 @@ export const trails: Trail[] = [
     pillar: 'nutrition',
     name: 'Fueling Mastery Trail',
     tagline: 'Evidence-based nutrition for performance',
-    description: 'What you eat — and when — has a measurable impact on performance, recovery, and body composition. This trail cuts through the noise with evidence-based guidance on fueling for sport.',
+    description: 'What you eat, and when, has a measurable impact on performance, recovery, and body composition. This trail cuts through the noise with evidence-based guidance on fueling for sport.',
     badge: { emoji: '🥗', label: 'Nutrition Strategist' },
     steps: [
       {
@@ -228,7 +228,7 @@ export const trails: Trail[] = [
     name: 'Goal Setting Mastery Trail',
     tagline: 'The psychology of sustainable change',
     description:
-      'Evidence-based strategies for setting and achieving goals that actually last—SMART structure, implementation intentions, and feedback loops that outlast motivation swings.',
+      'Evidence-based strategies for setting and achieving goals that actually last: SMART structure, implementation intentions, and feedback loops that outlast motivation swings.',
     badge: { emoji: '🧠', label: 'Mental Edge' },
     steps: [
       {

@@ -2,11 +2,14 @@
 
 import { useState } from 'react'
 import Button from '@/components/Button'
-import { EMAIL_PROMISE } from '@/lib/emailCapture'
+import Link from 'next/link'
+import { useId } from 'react'
+import { EMAIL_PROMISE, VISUALLY_HIDDEN } from '@/lib/emailCapture'
 
 export default function WaitlistForm({ source = 'tracker_waitlist' }: { source?: string } = {}) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'duplicate' | 'error'>('idle')
+  const inputId = useId()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -44,12 +47,17 @@ export default function WaitlistForm({ source = 'tracker_waitlist' }: { source?:
   return (
     <form onSubmit={handleSubmit}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <label htmlFor={inputId} style={VISUALLY_HIDDEN}>
+          Your email address
+        </label>
         <input
+          id={inputId}
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
           placeholder="Your email address"
           required
+          autoComplete="email"
           style={{
             width: '100%',
             boxSizing: 'border-box',
@@ -61,7 +69,7 @@ export default function WaitlistForm({ source = 'tracker_waitlist' }: { source?:
             fontSize: '16px',
             color: 'var(--navy)',
             outline: 'none',
-            fontFamily: 'DM Sans, sans-serif',
+            fontFamily: 'var(--font-sans), system-ui, sans-serif',
           }}
         />
         <Button
@@ -86,8 +94,11 @@ export default function WaitlistForm({ source = 'tracker_waitlist' }: { source?:
         </p>
       )}
 
-      <p style={{ marginTop: '12px', fontSize: '13px', color: '#8A8A80', textAlign: 'center', fontWeight: 300 }}>
-        {EMAIL_PROMISE}
+      <p style={{ marginTop: '12px', fontSize: '13px', color: 'var(--muted)', textAlign: 'center', fontWeight: 300 }}>
+        {EMAIL_PROMISE}{' '}
+        <Link href="/privacy" style={{ color: 'var(--blue-mid)', textDecoration: 'underline' }}>
+          Privacy policy
+        </Link>
       </p>
     </form>
   )

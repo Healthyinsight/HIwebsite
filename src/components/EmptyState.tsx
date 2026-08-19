@@ -61,7 +61,7 @@ export default function EmptyState({
   }
 
   const headingStyle: CSSProperties = {
-    fontFamily: 'DM Serif Display, serif',
+    fontFamily: 'var(--font-serif), Georgia, serif',
     fontWeight: 400,
     color: 'var(--navy)',
     fontSize: SIZE_HEADING[size],
@@ -71,7 +71,7 @@ export default function EmptyState({
 
   const messageStyle: CSSProperties = {
     fontSize: '14px',
-    color: '#8A8A80',
+    color: 'var(--muted)',
     fontWeight: 300,
     lineHeight: 1.6,
     margin: 0,
@@ -90,7 +90,7 @@ export default function EmptyState({
     fontSize: '14px',
     fontWeight: 500,
     cursor: 'pointer',
-    fontFamily: 'DM Sans, sans-serif',
+    fontFamily: 'var(--font-sans), system-ui, sans-serif',
     textDecoration: 'none',
     marginTop: '4px',
   }

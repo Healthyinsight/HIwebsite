@@ -32,12 +32,12 @@ export default async function HomePage() {
                 Built for professional amateurs.
               </div>
 
-              <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
+              <h1 className="heading-hero" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '22px', letterSpacing: '-0.8px' }}>
                 Train smarter. Race stronger.
               </h1>
-              <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', fontWeight: 400, color: '#444440', marginBottom: '34px', lineHeight: 1.5 }}>
+              <p style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', fontWeight: 400, color: '#444440', marginBottom: '34px', lineHeight: 1.5 }}>
                 The personal training app that actually gets to know you.
-                Empowers you with personal health insights every day — then coaches you
+                Empowers you with personal health insights every day, then coaches you
                 based on your body, your schedule, and what is proven to work.
               </p>
 
@@ -86,7 +86,7 @@ export default async function HomePage() {
               Getting started
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
             </div>
-            <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '48px' }}>
+            <h2 className="heading-section" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '48px' }}>
               From information overload to race-day clarity.
             </h2>
             <div className="grid-three">
@@ -117,7 +117,7 @@ export default async function HomePage() {
                   <div style={{ width: '42px', height: '42px', borderRadius: '12px', background: 'var(--sky)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '19px' }}>
                     {icon}
                   </div>
-                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', margin: 0 }}>
+                  <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', margin: 0 }}>
                     {title}
                   </h3>
                   <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, fontWeight: 300, margin: 0 }}>
@@ -139,7 +139,7 @@ export default async function HomePage() {
           ].map((item, i, arr) => (
             <Fragment key={item.num}>
               <div className="trust-strip__item">
-                <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: '30px', color: 'var(--blue-pale)', fontWeight: 400 }}>
+                <span style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '30px', color: 'var(--blue-pale)', fontWeight: 400 }}>
                   {item.num}
                 </span>
                 <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', textAlign: 'center', lineHeight: 1.4, whiteSpace: 'pre-line' }}>
@@ -159,7 +159,7 @@ export default async function HomePage() {
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
             </div>
             <div className="section-heading-row" style={{ marginBottom: '36px' }}>
-              <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', margin: 0 }}>
+              <h2 className="heading-section" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', margin: 0 }}>
                 Build your knowledge,<br />step by step.
               </h2>
               <Link href="/trails" style={{ fontSize: '14px', color: 'var(--navy)', fontWeight: 500, textDecoration: 'none', flexShrink: 0 }}>
@@ -181,7 +181,7 @@ export default async function HomePage() {
               Four pillars
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
             </div>
-            <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '12px' }}>
+            <h2 className="heading-section" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '12px' }}>
               Four areas that determine your race result.
             </h2>
             <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, maxWidth: '490px', marginBottom: '52px', fontWeight: 300 }}>
@@ -220,12 +220,12 @@ export default async function HomePage() {
                     <div style={{ width: '42px', height: '42px', borderRadius: '12px', background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '18px', fontSize: '19px' }}>
                       {icon}
                     </div>
-                    <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '9px' }}>{label}</h3>
+                    <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '9px' }}>{label}</h3>
                     <p style={{ fontSize: '13px', color: '#444440', lineHeight: 1.65, marginBottom: '14px' }}>{desc}</p>
                     <span style={{ display: 'inline-block', fontSize: '13px', color: 'var(--blue-mid)', fontWeight: 500 }}>Explore →</span>
                   </Link>
                   <div style={{ marginTop: '18px', paddingTop: '16px', borderTop: '1px solid var(--sand)' }}>
-                    <div style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1px', textTransform: 'uppercase', color: '#8A8A80', marginBottom: '5px' }}>Start with</div>
+                    <div style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '5px' }}>Start with</div>
                     <Link href={startHref} style={{ fontSize: '12px', color: 'var(--navy)', textDecoration: 'none', lineHeight: 1.4 }}>
                       {startLabel} →
                     </Link>
@@ -244,7 +244,7 @@ export default async function HomePage() {
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
             </div>
             <div className="section-heading-row">
-              <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', margin: 0 }}>
+              <h2 className="heading-section" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', margin: 0 }}>
                 3 things you can do<br />this week.
               </h2>
               <Link href="/protocols" style={{ fontSize: '14px', color: 'var(--navy)', fontWeight: 500, textDecoration: 'none', flexShrink: 0 }}>
@@ -258,7 +258,7 @@ export default async function HomePage() {
                   num: '01',
                   pillar: 'Recovery',
                   title: 'Sleep 8 hours, 3 nights in a row',
-                  why: 'Sleep extension produces measurable performance gains within 72 hours — reaction time, sprint speed, and mood all improve.',
+                  why: 'Sleep extension produces measurable performance gains within 72 hours: reaction time, sprint speed, and mood all improve.',
                   evidence: 'strong',
                   href: '/articles/sleep-extension-performance-protocols',
                   source: 'Sleep Extension Protocols',
@@ -267,7 +267,7 @@ export default async function HomePage() {
                   num: '02',
                   pillar: 'Motion',
                   title: 'Do one Zone 2 session this week (30–45 min)',
-                  why: 'Zone 2 training builds your aerobic base — the foundation for all other fitness. Most people skip it because it feels too easy.',
+                  why: 'Zone 2 training builds your aerobic base, the foundation for all other fitness. Most people skip it because it feels too easy.',
                   evidence: 'strong',
                   href: '/articles/zone-2-reality-check',
                   source: 'Zone 2 Reality Check',
@@ -284,10 +284,10 @@ export default async function HomePage() {
               ].map(({ num, pillar, title, why, evidence, href, source }) => (
                 <div key={num} style={{ background: 'var(--warm)', borderRadius: '22px', padding: '28px', border: '1px solid rgba(15,42,63,0.06)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-                    <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: '28px', color: 'var(--blue-pale)', fontWeight: 400 }}>{num}</span>
+                    <span style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '28px', color: 'var(--blue-pale)', fontWeight: 400 }}>{num}</span>
                     <span style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1.2px', textTransform: 'uppercase', color: 'var(--blue-mid)', background: 'var(--sky)', padding: '4px 12px', borderRadius: '100px' }}>{pillar}</span>
                   </div>
-                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '19px', fontWeight: 400, color: 'var(--navy)', lineHeight: 1.3, marginBottom: '12px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '19px', fontWeight: 400, color: 'var(--navy)', lineHeight: 1.3, marginBottom: '12px' }}>
                     {title}
                   </h3>
                   <p style={{ fontSize: '13px', color: '#444440', lineHeight: 1.65, marginBottom: '20px', fontWeight: 300 }}>
@@ -322,7 +322,7 @@ export default async function HomePage() {
                   Latest articles
                   <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
                 </div>
-                <h2 className="heading-section" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', margin: 0 }}>
+                <h2 className="heading-section" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', margin: 0 }}>
                   Research into action
                 </h2>
               </div>
@@ -353,7 +353,7 @@ export default async function HomePage() {
         <section style={{ background: 'var(--navy)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)' }}>
           <div className="container grid-two">
           <div style={{ maxWidth: '440px' }}>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.75rem, 5vw, 2.375rem)', fontWeight: 400, color: 'white', letterSpacing: '-0.4px', lineHeight: 1.2, marginBottom: '18px' }}>
+            <h2 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(1.75rem, 5vw, 2.375rem)', fontWeight: 400, color: 'white', letterSpacing: '-0.4px', lineHeight: 1.2, marginBottom: '18px' }}>
               How we read the research
             </h2>
             <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, marginBottom: '28px', fontWeight: 300 }}>
@@ -373,7 +373,7 @@ export default async function HomePage() {
               { num: '04', title: 'Show the sources', body: 'Every claim links to research. Limitations stated clearly. Always.' },
             ].map(({ num, title, body }, i, arr) => (
               <div key={num} style={{ display: 'flex', gap: '18px', alignItems: 'flex-start', padding: '20px 0', borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none' }}>
-                <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: '26px', color: 'var(--blue-pale)', opacity: 0.5, lineHeight: 1, flexShrink: 0, width: '34px' }}>{num}</span>
+                <span style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '26px', color: 'var(--blue-pale)', opacity: 0.5, lineHeight: 1, flexShrink: 0, width: '34px' }}>{num}</span>
                 <div>
                   <h4 style={{ fontSize: '14px', fontWeight: 500, color: 'white', marginBottom: '3px' }}>{title}</h4>
                   <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.44)', lineHeight: 1.6 }}>{body}</p>
@@ -388,7 +388,7 @@ export default async function HomePage() {
         <section id="newsletter" style={{ background: 'var(--cream)', paddingTop: 'clamp(48px, 10vw, 84px)', paddingBottom: 'clamp(48px, 10vw, 84px)', display: 'flex', justifyContent: 'center', scrollMarginTop: '112px' }}>
           <div className="container newsletter-panel">
             <div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4.5vw, 2.125rem)', fontWeight: 400, color: 'white', lineHeight: 1.2, letterSpacing: '-0.3px', marginBottom: '13px' }}>
+              <h2 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(1.5rem, 4.5vw, 2.125rem)', fontWeight: 400, color: 'white', lineHeight: 1.2, letterSpacing: '-0.3px', marginBottom: '13px' }}>
                 One evidence-based insight. Every week. For your race.
               </h2>
               <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: '16px', fontWeight: 300 }}>

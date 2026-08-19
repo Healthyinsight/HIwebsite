@@ -16,7 +16,7 @@ export default function QuizPage() {
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px' }}>
               5 questions
             </div>
-            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', lineHeight: 1.1, letterSpacing: '-0.5px', marginBottom: '16px' }}>
+            <h1 className="heading-hero" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'var(--navy)', lineHeight: 1.1, letterSpacing: '-0.5px', marginBottom: '16px' }}>
               What is your Health IQ?
             </h1>
             <p style={{ fontSize: '17px', color: '#444440', lineHeight: 1.75, maxWidth: '420px', margin: '0 auto 48px', fontWeight: 300 }}>

@@ -55,7 +55,7 @@ export default function HeroBanner({
   }
 
   const titleStyle: CSSProperties = {
-    fontFamily: 'DM Serif Display, serif',
+    fontFamily: 'var(--font-serif), Georgia, serif',
     fontWeight: 400,
     color: 'white',
     letterSpacing: '-0.8px',
@@ -88,7 +88,7 @@ export default function HeroBanner({
     color: 'white',
     fontSize: '14px',
     fontWeight: 500,
-    fontFamily: 'DM Sans, sans-serif',
+    fontFamily: 'var(--font-sans), system-ui, sans-serif',
     textDecoration: 'none',
     transition: 'background 0.15s ease',
   }

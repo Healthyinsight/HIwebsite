@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Newsletter',
-  description: 'Evidence-based health insights straight to your inbox. 1 email per week — always sourced, always practical.',
+  description: 'Evidence-based health insights straight to your inbox. 1 email per week, always sourced, always practical.',
 }
 
 export default async function NewsletterPage() {
@@ -20,7 +20,7 @@ export default async function NewsletterPage() {
               <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '24px', opacity: 0.7 }}>
                 Newsletter
               </div>
-              <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'white', lineHeight: 1.1, letterSpacing: '-0.8px', marginBottom: '20px' }}>
+              <h1 className="heading-hero" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'white', lineHeight: 1.1, letterSpacing: '-0.8px', marginBottom: '20px' }}>
                 Stay evidence-based.
               </h1>
               <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, fontWeight: 300, maxWidth: '440px', margin: '0 auto' }}>
@@ -34,9 +34,9 @@ export default async function NewsletterPage() {
               </div>
               <div className="newsletter-expect-grid">
                 {[
-                  { icon: '📊', text: 'Research breakdowns — the key findings, explained clearly' },
-                  { icon: '🎯', text: 'Practical protocols — what to actually do with the evidence' },
-                  { icon: '🔍', text: 'Sources always linked — judge for yourself' },
+                  { icon: '📊', text: 'Research breakdowns, the key findings, explained clearly' },
+                  { icon: '🎯', text: 'Practical protocols, what to actually do with the evidence' },
+                  { icon: '🔍', text: 'Sources always linked, judge for yourself' },
                   { icon: '🚫', text: 'Zero affiliate links, zero supplement promotion' },
                 ].map(({ icon, text }) => (
                   <div key={text} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', minWidth: 0 }}>
@@ -56,7 +56,7 @@ export default async function NewsletterPage() {
                 { num: '0', label: 'affiliate links' },
               ].map(({ num, label }) => (
                 <div key={label} style={{ textAlign: 'center', minWidth: 0 }}>
-                  <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: '28px', color: 'var(--blue-pale)', fontWeight: 400 }}>{num}</div>
+                  <div style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '28px', color: 'var(--blue-pale)', fontWeight: 400 }}>{num}</div>
                   <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginTop: '4px' }}>{label}</div>
                 </div>
               ))}

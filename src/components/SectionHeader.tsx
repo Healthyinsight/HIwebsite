@@ -70,7 +70,7 @@ export default function SectionHeader({
   }
 
   const headingStyle: CSSProperties = {
-    fontFamily: 'DM Serif Display, serif',
+    fontFamily: 'var(--font-serif), Georgia, serif',
     fontWeight: 400,
     color: 'var(--navy)',
     letterSpacing: SIZE_TRACKING[size],

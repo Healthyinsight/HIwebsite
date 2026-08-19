@@ -15,6 +15,8 @@ import path from 'node:path'
 import { pillarGradients } from '@/lib/pillars'
 import { logger } from '@/lib/logger'
 import { getTrailForArticle } from '@/lib/trails'
+import { levelDescription, levelLabel } from '@/lib/levels'
+import { articleSchema, breadcrumbSchema, jsonLd } from '@/lib/schema'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -137,8 +139,20 @@ export default async function ArticlePage(
     ? `More in ${trail?.name ?? 'this trail'}`
     : `More on ${article.pillar}`
 
+  const breadcrumb = breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    ...(trail
+      ? [{ name: trail.name, url: `/trails/${trail.id}` }]
+      : [{ name: 'Articles', url: '/articles' }]),
+    { name: article.title, url: `/articles/${slug}` },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd([articleSchema(article, sources), breadcrumb])}
+      />
       <ArticleScrollUI />
       <main>
         {/* Header */}
@@ -172,7 +186,7 @@ export default async function ArticlePage(
                   {trail.name} · Level {currentStep.level} of {activeSteps.length}
                 </span>
               ) : article.level ? (
-                <span style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.9)', fontSize: '10px', fontWeight: 500, letterSpacing: '1.2px', textTransform: 'uppercase', padding: '5px 14px', borderRadius: '100px' }}>
+                <span title={levelDescription(article.level)} style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.9)', fontSize: '10px', fontWeight: 500, letterSpacing: '1.2px', textTransform: 'uppercase', padding: '5px 14px', borderRadius: '100px' }}>
                   Level {article.level}
                 </span>
               ) : null}
@@ -183,26 +197,15 @@ export default async function ArticlePage(
               )}
             </div>
 
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.75rem, 6vw, 2.75rem)', fontWeight: 400, color: 'white', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '20px' }}>
+            {article.level !== undefined && (
+              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.55)', margin: '0 0 18px' }}>
+                Level {article.level} of 5: {levelLabel(article.level).toLowerCase()}. {levelDescription(article.level)}
+              </p>
+            )}
+
+            <h1 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(1.75rem, 6vw, 2.75rem)', fontWeight: 400, color: 'white', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '20px' }}>
               {article.title}
             </h1>
-
-            {/* Skills preview */}
-            {article.tldr && article.tldr.length > 0 && (
-              <div style={{ marginBottom: '20px' }}>
-                <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '8px' }}>
-                  What you&apos;ll learn
-                </p>
-                <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                  {article.tldr.slice(0, 3).map((item, i) => (
-                    <li key={i} style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.5, display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <span style={{ color: 'rgba(255,255,255,0.3)', flexShrink: 0, marginTop: '1px' }}>→</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
 
             <div style={{ display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap' }}>
               <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>
@@ -230,7 +233,7 @@ export default async function ArticlePage(
               <div style={{ background: 'var(--sky)', borderLeft: '3px solid var(--blue-mid)', borderRadius: '14px', padding: '22px 26px', marginBottom: '36px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
                   <span style={{ fontSize: '16px' }}>📋</span>
-                  <span style={{ fontSize: '12px', fontWeight: 500, color: 'var(--navy)', letterSpacing: '1px', textTransform: 'uppercase' }}>TL;DR — Key takeaways</span>
+                  <span style={{ fontSize: '12px', fontWeight: 500, color: 'var(--navy)', letterSpacing: '1px', textTransform: 'uppercase' }}>TL;DR: Key takeaways</span>
                 </div>
                 <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
                   {article.tldr.map((bullet, i) => (
@@ -345,9 +348,9 @@ export default async function ArticlePage(
                 {nextStep ? (
                   <>
                     <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '10px' }}>
-                      Continue learning — {trail.name} · Level {article.level ?? 1}
+                      Continue learning: {trail.name} · Level {article.level ?? 1}
                     </div>
-                    <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
+                    <div style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
                       {nextStep.title}
                     </div>
                     <Link
@@ -360,9 +363,9 @@ export default async function ArticlePage(
                 ) : (
                   <>
                     <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '10px' }}>
-                      Trail complete — {trail.name}
+                      Trail complete: {trail.name}
                     </div>
-                    <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
+                    <div style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
                       You&apos;ve finished every article in this trail.
                     </div>
                     <Link
@@ -385,7 +388,7 @@ export default async function ArticlePage(
                 <div>
                   {prevStep ? (
                     <Link href={`/articles/${prevStep.slug}`} style={{ fontSize: '14px', color: 'var(--navy)', fontWeight: 500, textDecoration: 'none', display: 'flex', flexDirection: 'column', gap: '3px' }}>
-                      <span style={{ fontSize: '11px', color: '#8A8A80', fontWeight: 400, letterSpacing: '0.5px', textTransform: 'uppercase' }}>← Previous</span>
+                      <span style={{ fontSize: '11px', color: 'var(--muted)', fontWeight: 400, letterSpacing: '0.5px', textTransform: 'uppercase' }}>← Previous</span>
                       <span>{prevStep.title}</span>
                     </Link>
                   ) : (
@@ -397,7 +400,7 @@ export default async function ArticlePage(
                 <div style={{ textAlign: 'right' }}>
                   {nextStep && (
                     <Link href={`/articles/${nextStep.slug}`} style={{ fontSize: '14px', color: 'var(--navy)', fontWeight: 500, textDecoration: 'none', display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'flex-end' }}>
-                      <span style={{ fontSize: '11px', color: '#8A8A80', fontWeight: 400, letterSpacing: '0.5px', textTransform: 'uppercase' }}>Next →</span>
+                      <span style={{ fontSize: '11px', color: 'var(--muted)', fontWeight: 400, letterSpacing: '0.5px', textTransform: 'uppercase' }}>Next →</span>
                       <span>{nextStep.title}</span>
                     </Link>
                   )}

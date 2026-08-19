@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import Link from 'next/link'
-import { EMAIL_PROMISE } from '@/lib/emailCapture'
+import { EMAIL_PROMISE, VISUALLY_HIDDEN } from '@/lib/emailCapture'
 
 const questions = [
   {
@@ -98,6 +98,7 @@ function getResult(score: number): Result {
 }
 
 export default function HealthIQQuiz() {
+  const quizIds = useId()
   const [current, setCurrent] = useState(0)
   const [answers, setAnswers] = useState<number[]>([])
   const [email, setEmail] = useState('')
@@ -158,7 +159,7 @@ export default function HealthIQQuiz() {
           {/* Progress bar */}
           <div style={{ marginBottom: '32px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span style={{ fontSize: '12px', color: '#8A8A80', fontWeight: 500 }}>
+              <span style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: 500 }}>
                 Question {current + 1} of {questions.length}
               </span>
               <span style={{ fontSize: '12px', color: '#2D7DA8', fontWeight: 500 }}>
@@ -170,7 +171,7 @@ export default function HealthIQQuiz() {
             </div>
           </div>
 
-          <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '24px', fontWeight: 400, color: '#0F2A3F', lineHeight: 1.3, marginBottom: '28px' }}>
+          <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '24px', fontWeight: 400, color: '#0F2A3F', lineHeight: 1.3, marginBottom: '28px' }}>
             {questions[current].question}
           </h3>
 
@@ -188,7 +189,7 @@ export default function HealthIQQuiz() {
                   color: '#1A1A17',
                   cursor: 'pointer',
                   textAlign: 'left',
-                  fontFamily: 'DM Sans, sans-serif',
+                  fontFamily: 'var(--font-sans), system-ui, sans-serif',
                   fontWeight: 300,
                   transition: 'border-color 0.15s, background 0.15s',
                 }}
@@ -215,7 +216,7 @@ export default function HealthIQQuiz() {
             <div style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: '12px' }}>
               Your Health IQ
             </div>
-            <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: '56px', color: '#A8CCE0', fontWeight: 400, lineHeight: 1, marginBottom: '8px' }}>
+            <div style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '56px', color: '#A8CCE0', fontWeight: 400, lineHeight: 1, marginBottom: '8px' }}>
               {Math.round((totalScore / (questions.length * 3)) * 100)}
             </div>
             <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginBottom: '16px' }}>out of 100</div>
@@ -241,37 +242,46 @@ export default function HealthIQQuiz() {
           </div>
 
           <div style={{ background: '#F5F2EC', borderRadius: '16px', padding: '28px' }}>
-            <h4 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '20px', fontWeight: 400, color: '#0F2A3F', marginBottom: '8px' }}>
+            <h4 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '20px', fontWeight: 400, color: '#0F2A3F', marginBottom: '8px' }}>
               Get your full results and reading list
             </h4>
             <p style={{ fontSize: '14px', color: '#444440', marginBottom: '20px', fontWeight: 300, lineHeight: 1.65 }}>
               Enter your email to unlock your personalised article recommendations and get the Healthy Insight newsletter.
             </p>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <label htmlFor={`${quizIds}-name`} style={VISUALLY_HIDDEN}>First name (optional)</label>
               <input
+                id={`${quizIds}-name`}
+                autoComplete="given-name"
                 type="text"
                 placeholder="First name (optional)"
                 value={name}
                 onChange={e => setName(e.target.value)}
-                style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
+                style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'var(--font-sans), system-ui, sans-serif', outline: 'none' }}
               />
+              <label htmlFor={`${quizIds}-email`} style={VISUALLY_HIDDEN}>Your email address</label>
               <input
+                id={`${quizIds}-email`}
+                autoComplete="email"
                 type="email"
                 placeholder="Your email address"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
+                style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'var(--font-sans), system-ui, sans-serif', outline: 'none' }}
               />
               <button
                 type="submit"
                 disabled={submitting}
-                style={{ background: '#0F2A3F', color: 'white', border: 'none', borderRadius: '100px', padding: '13px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'DM Sans, sans-serif' }}
+                style={{ background: '#0F2A3F', color: 'white', border: 'none', borderRadius: '100px', padding: '13px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'var(--font-sans), system-ui, sans-serif' }}
               >
                 {submitting ? 'Sending...' : 'Unlock my results'}
               </button>
-              <p style={{ fontSize: '11px', color: '#8A8A80', textAlign: 'center', margin: 0 }}>
-                {EMAIL_PROMISE}
+              <p style={{ fontSize: '11px', color: 'var(--muted)', textAlign: 'center', margin: 0 }}>
+                {EMAIL_PROMISE}{' '}
+                <Link href="/privacy" style={{ color: 'var(--blue-mid)', textDecoration: 'underline' }}>
+                  Privacy policy
+                </Link>
               </p>
             </form>
           </div>
@@ -282,7 +292,7 @@ export default function HealthIQQuiz() {
       {submitted && (
         <div style={{ textAlign: 'center', padding: '40px 0' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>✓</div>
-          <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '26px', fontWeight: 400, color: '#0F2A3F', marginBottom: '12px' }}>
+          <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '26px', fontWeight: 400, color: '#0F2A3F', marginBottom: '12px' }}>
             Your results are on their way.
           </h3>
           <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, marginBottom: '28px', fontWeight: 300 }}>

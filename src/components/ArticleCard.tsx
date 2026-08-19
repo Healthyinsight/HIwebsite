@@ -28,7 +28,7 @@ export default function ArticleCard({ slug, title, excerpt, pillar, format, leve
   return (
     <Link href={`/articles/${slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
       <article style={{ background: '#FAFAF7', borderRadius: '22px', overflow: 'hidden', border: '1px solid rgba(15,42,63,0.06)', transition: 'transform 0.2s, box-shadow 0.2s', height: '100%', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ aspectRatio: large ? '16 / 9' : '5 / 3', minHeight: large ? '160px' : '110px', background: gradient, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '16px 20px', position: 'relative', overflow: 'hidden' }}>
+        <div className="article-card__media" style={{ aspectRatio: large ? '16 / 9' : '5 / 3', minHeight: large ? '160px' : '110px', background: gradient, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '16px 20px', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', width: '200px', height: '200px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', top: '-40px', right: '-40px' }} />
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
             <Badge
@@ -71,11 +71,23 @@ export default function ArticleCard({ slug, title, excerpt, pillar, format, leve
             </div>
           )}
         </div>
-        <div style={{ padding: '22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: large ? 'clamp(17px, 2.5vw, 20px)' : 'clamp(14px, 2vw, 17px)', fontWeight: 400, color: '#1A1A17', lineHeight: 1.3, marginBottom: '9px' }}>
+        <div className="article-card__body" style={{ padding: '22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+          {/* The badges live in the media block, which the compact mobile
+              layout hides. Repeat them here for phones only. */}
+          <div className="article-card__badges-compact">
+            <Badge label={pillar.charAt(0).toUpperCase() + pillar.slice(1)} variant="pillar" size="sm" bg="var(--sky)" color="var(--navy)" />
+            {level && <Badge label={`Level ${level}`} variant="level" size="sm" bg="var(--sand)" color="#444440" />}
+            {level !== undefined && level >= 4 && (
+              <Badge label="🔒 Free email unlock" variant="level" size="sm" bg="var(--sand)" color="#444440" />
+            )}
+            {format && formatLabels[format] && (
+              <Badge label={formatLabels[format]} variant="format" size="sm" bg="var(--cream)" color="#444440" />
+            )}
+          </div>
+          <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: large ? 'clamp(17px, 2.5vw, 20px)' : 'clamp(14px, 2vw, 17px)', fontWeight: 400, color: '#1A1A17', lineHeight: 1.3, marginBottom: '9px' }}>
             {title}
           </h3>
-          <p style={{ fontSize: '14px', color: '#8A8A80', lineHeight: 1.6, marginBottom: '16px', flex: 1 }}>
+          <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '16px', flex: 1 }}>
             {excerpt}
           </p>
           <span style={{ fontSize: '13px', fontWeight: 500, color: '#0F2A3F' }}>

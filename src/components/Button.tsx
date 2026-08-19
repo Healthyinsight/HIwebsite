@@ -31,7 +31,7 @@ const BASE: CSSProperties = {
   justifyContent: 'center',
   gap: '8px',
   borderRadius: '100px',
-  fontFamily: 'DM Sans, sans-serif',
+  fontFamily: 'var(--font-sans), system-ui, sans-serif',
   fontWeight: 500,
   cursor: 'pointer',
   textDecoration: 'none',

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'HI Programs — Healthy Insight',
+  title: 'HI Programs, Healthy Insight',
   description: 'Structured 12-week training programs built on evidence-based protocols. Personalised to your race calendar.',
 }
 
@@ -24,12 +24,12 @@ export default function ProgramsPage() {
             <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '20px' }}>
               Coming soon
             </div>
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(2rem, 6vw, 3rem)', fontWeight: 400, color: 'white', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '20px' }}>
+            <h1 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(2rem, 6vw, 3rem)', fontWeight: 400, color: 'white', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '20px' }}>
               HI Programs
             </h1>
             <p style={{ fontSize: 'clamp(15px, 2.5vw, 18px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, fontWeight: 300, marginBottom: '36px' }}>
               Structured 12-week training programs personalised to your race calendar and training week.
-              Built on the same evidence as the Learning Trails — now applied directly to your schedule.
+              Built on the same evidence as the Learning Trails, now applied directly to your schedule.
             </p>
             <Link
               href="/waitlist"
@@ -56,7 +56,7 @@ export default function ProgramsPage() {
               What&apos;s included
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)' }} />
             </div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '40px' }}>
+            <h2 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.4px', marginBottom: '40px' }}>
               All four pillars, in one program.
             </h2>
 
@@ -66,7 +66,7 @@ export default function ProgramsPage() {
                   <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: 'var(--sky)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', marginBottom: '14px' }}>
                     {icon}
                   </div>
-                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '18px', fontWeight: 400, color: 'var(--navy)', marginBottom: '6px' }}>{label}</h3>
+                  <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '18px', fontWeight: 400, color: 'var(--navy)', marginBottom: '6px' }}>{label}</h3>
                   <p style={{ fontSize: '13px', color: '#444440', lineHeight: 1.6, margin: 0, fontWeight: 300 }}>{desc}</p>
                 </div>
               ))}
@@ -89,8 +89,8 @@ export default function ProgramsPage() {
         {/* Back to trails */}
         <section style={{ background: 'var(--cream)', padding: 'clamp(32px, 6vw, 48px) 0', borderTop: '1px solid var(--sand)' }}>
           <div className="container" style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: '14px', color: '#8A8A80', marginBottom: '12px' }}>
-              While you wait — keep building your knowledge base.
+            <p style={{ fontSize: '14px', color: 'var(--muted)', marginBottom: '12px' }}>
+              While you wait, keep building your knowledge base.
             </p>
             <Link href="/trails" style={{ fontSize: '14px', color: 'var(--blue-mid)', fontWeight: 500, textDecoration: 'none' }}>
               Explore Learning Trails →

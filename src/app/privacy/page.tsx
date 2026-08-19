@@ -10,7 +10,7 @@ const sections = [
     title: 'What data we collect',
     body: [
       'We collect your email address when you subscribe to our newsletter.',
-      'We may collect basic, anonymised analytics data — such as page views and referral sources — through privacy-respecting tools. We do not use advertising tracking or cross-site tracking.',
+      'We may collect basic, anonymised analytics data, such as page views and referral sources, through privacy-respecting tools. We do not use advertising tracking or cross-site tracking.',
     ],
   },
   {
@@ -66,7 +66,7 @@ export default function PrivacyPage() {
             {/* Page header */}
             <h1
               style={{
-                fontFamily: 'DM Serif Display, serif',
+                fontFamily: 'var(--font-serif), Georgia, serif',
                 fontWeight: 400,
                 fontSize: 'clamp(32px, 6vw, 48px)',
                 color: 'var(--navy)',
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
             <p
               style={{
                 fontSize: '15px',
-                color: '#8A8A80',
+                color: 'var(--muted)',
                 marginBottom: '8px',
               }}
             >
@@ -123,7 +123,7 @@ export default function PrivacyPage() {
               >
                 <h2
                   style={{
-                    fontFamily: 'DM Serif Display, serif',
+                    fontFamily: 'var(--font-serif), Georgia, serif',
                     fontSize: 'clamp(18px, 3vw, 22px)',
                     fontWeight: 400,
                     color: 'var(--navy)',

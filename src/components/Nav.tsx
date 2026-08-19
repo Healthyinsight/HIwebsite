@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { createPortal } from 'react-dom'
+import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import { useEvidenceIQ } from '@/components/EvidenceIQProvider'
 
@@ -52,7 +53,7 @@ const NAV_ITEMS: NavItem[] = [
     label: 'Tools',
     href: '#',
     children: [
-      { href: 'https://tracker.healthyinsight.eu/', label: 'Path Tracker', external: true },
+      { href: 'https://tracker.healthyinsight.eu/', label: 'The Path Tracker', external: true },
       { href: '/waitlist', label: 'Challenges App', comingSoon: true },
     ],
   },
@@ -67,6 +68,23 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
 ]
+
+/**
+ * A top-level nav item is active when the current route is its section. "Trails"
+ * used to be hardcoded active on every page, including the homepage. Items
+ * whose href is "#" are pure dropdown parents and are never active; they match
+ * on their children instead.
+ */
+function isActive(item: NavItem, pathname: string): boolean {
+  const hrefs = item.href === '#'
+    ? (item.children ?? []).filter(c => !c.external).map(c => c.href)
+    : [item.href]
+  return hrefs.some(href => {
+    const base = href.split('#')[0]
+    if (!base.startsWith('/')) return false
+    return pathname === base || pathname.startsWith(`${base}/`)
+  })
+}
 
 function DropdownChild({ child, onClick }: { child: NavChild; onClick?: () => void }) {
   if (child.comingSoon) {
@@ -92,6 +110,7 @@ function DropdownChild({ child, onClick }: { child: NavChild; onClick?: () => vo
 }
 
 export default function Nav() {
+  const pathname = usePathname() ?? '/'
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { evidenceIQ, isHydrated } = useEvidenceIQ()
@@ -129,7 +148,8 @@ export default function Nav() {
               <li key={item.label} className="site-nav__top">
                 <Link
                   href={item.href}
-                  style={item.label === 'Trails' ? { color: 'var(--blue-mid)', fontWeight: 600 } : undefined}
+                  aria-current={isActive(item, pathname) ? 'page' : undefined}
+                  style={isActive(item, pathname) ? { color: 'var(--blue-mid)', fontWeight: 600 } : undefined}
                 >{item.label}</Link>
                 {item.children && (
                   <div className="site-nav__dropdown" role="menu">
