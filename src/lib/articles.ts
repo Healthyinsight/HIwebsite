@@ -513,17 +513,50 @@ export function getArticleBySlug(slug: string): ArticleMeta | undefined {
 import { cache } from 'react'
 import { fetchNotionArticles } from './articles-notion'
 
+/** True for a value the CMS simply has not filled in. */
+function isEmpty(value: unknown): boolean {
+  if (value === undefined || value === null) return true
+  if (typeof value === 'string') return value.trim() === ''
+  if (Array.isArray(value)) return value.length === 0
+  return false
+}
+
+/**
+ * Overlays a Notion row on its seed, field by field.
+ *
+ * A wholesale replace would let an unfilled CMS field blank out real content:
+ * most rows in the Articles DB have no Description, TL;DR or Evidence Note, so
+ * the moment `Slug` gets filled in, those articles would lose their excerpt and
+ * TL;DR on the site. Notion wins only where Notion actually has a value.
+ */
+function mergeOverSeed(notion: ArticleMeta, seed: ArticleMeta | undefined): ArticleMeta {
+  if (!seed) return notion
+  const merged = { ...seed }
+  for (const [key, value] of Object.entries(notion)) {
+    if (!isEmpty(value)) {
+      (merged as Record<string, unknown>)[key] = value
+    }
+  }
+  return merged
+}
+
 export const getArticles = cache(async (): Promise<ArticleMeta[]> => {
   const notionArticles = await fetchNotionArticles()
   if (notionArticles.length === 0) return articles
+
+  const seedBySlug  = new Map(articleSeeds.map(a => [a.slug, a]))
   const notionSlugs = new Set(notionArticles.map(a => a.slug))
   const seedsOnly   = articles.filter(a => !notionSlugs.has(a.slug))
+
   return [
-    ...notionArticles.map(a => ({
-      ...a,
-      readingTime: resolveReadingTime(a.slug, a.readingTime),
-      externalArticleUrl: a.externalArticleUrl ?? `${PUBLICATION_ARCHIVE_BASE}/${a.slug}`,
-    })),
+    ...notionArticles.map(a => {
+      const merged = mergeOverSeed(a, seedBySlug.get(a.slug))
+      return {
+        ...merged,
+        readingTime: resolveReadingTime(merged.slug, merged.readingTime),
+        externalArticleUrl: merged.externalArticleUrl ?? `${PUBLICATION_ARCHIVE_BASE}/${merged.slug}`,
+      }
+    }),
     ...seedsOnly,
   ]
 })
