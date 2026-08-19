@@ -16,7 +16,7 @@ export default function WaitlistPage() {
             <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '20px' }}>
               Coming soon
             </div>
-            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'white', letterSpacing: '-0.5px', marginBottom: '20px' }}>
+            <h1 className="heading-hero" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'white', letterSpacing: '-0.5px', marginBottom: '20px' }}>
               Be the first to know when we launch
             </h1>
             <p style={{ fontSize: 'clamp(15px, 2.5vw, 17px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, fontWeight: 300, margin: 0 }}>

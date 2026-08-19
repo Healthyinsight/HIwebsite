@@ -203,7 +203,7 @@ export default async function ArticlePage(
               </p>
             )}
 
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.75rem, 6vw, 2.75rem)', fontWeight: 400, color: 'white', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '20px' }}>
+            <h1 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(1.75rem, 6vw, 2.75rem)', fontWeight: 400, color: 'white', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '20px' }}>
               {article.title}
             </h1>
 
@@ -350,7 +350,7 @@ export default async function ArticlePage(
                     <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '10px' }}>
                       Continue learning: {trail.name} · Level {article.level ?? 1}
                     </div>
-                    <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
+                    <div style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
                       {nextStep.title}
                     </div>
                     <Link
@@ -365,7 +365,7 @@ export default async function ArticlePage(
                     <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '10px' }}>
                       Trail complete: {trail.name}
                     </div>
-                    <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
+                    <div style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
                       You&apos;ve finished every article in this trail.
                     </div>
                     <Link

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { DM_Sans, DM_Serif_Display } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -8,10 +9,33 @@ import { EvidenceIQProvider } from '@/components/EvidenceIQProvider'
 import { ToastProvider } from '@/components/Toast'
 import '../styles/globals.css'
 
+/**
+ * L3: self-hosted via next/font. The faces used to load from
+ * fonts.googleapis.com, a render-blocking third-party round trip on every page
+ * and a data-transfer question on a .eu domain. next/font serves them from our
+ * own origin and inlines the @font-face rules, so neither applies.
+ */
+const serif = DM_Serif_Display({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-serif',
+})
+
+const sans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  display: 'swap',
+  variable: '--font-sans',
+})
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  // L6: the site sent no theme-color. --navy, matching the header and footer.
+  themeColor: '#0F2A3F',
 }
 
 export const metadata: Metadata = {
@@ -40,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en-GB" className={`${serif.variable} ${sans.variable}`}>
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-CWFTWXK09E"
@@ -58,8 +82,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={jsonLd([organizationSchema(), websiteSchema(), personSchema()])}
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen" style={{ background: 'var(--warm)' }}>
         <EvidenceIQProvider>

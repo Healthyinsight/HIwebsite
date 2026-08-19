@@ -32,7 +32,7 @@ export default async function NutritionPage() {
           <div className="container">
             {articles.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '80px 0' }}>
-                <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: '24px', color: 'var(--navy)', marginBottom: '12px' }}>Coming soon</p>
+                <p style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '24px', color: 'var(--navy)', marginBottom: '12px' }}>Coming soon</p>
                 <p style={{ fontSize: '15px', color: 'var(--muted)' }}>Nutrition articles are in progress. Subscribe to the newsletter to be notified.</p>
               </div>
             ) : (
@@ -41,7 +41,7 @@ export default async function NutritionPage() {
                   <div className="pillar-start-callout">
                     <div>
                       <div style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '8px' }}>Start here</div>
-                      <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '6px' }}>
+                      <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '6px' }}>
                         {starterArticle.title}
                       </h3>
                       <p style={{ fontSize: '14px', color: '#444440', lineHeight: 1.6, maxWidth: '560px', fontWeight: 300 }}>

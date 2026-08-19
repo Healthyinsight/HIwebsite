@@ -159,7 +159,7 @@ export default function MicroQuiz({ questions, onPass, points = DEFAULT_PASS_POI
                 border,
                 color,
                 borderRadius: '12px',
-                fontFamily: 'DM Sans, sans-serif',
+                fontFamily: 'var(--font-sans), system-ui, sans-serif',
                 fontSize: '14px',
                 fontWeight: 400,
                 lineHeight: 1.5,
@@ -232,7 +232,7 @@ export default function MicroQuiz({ questions, onPass, points = DEFAULT_PASS_POI
           fontSize: '14px',
           fontWeight: 500,
           cursor: revealed ? 'pointer' : 'not-allowed',
-          fontFamily: 'DM Sans, sans-serif',
+          fontFamily: 'var(--font-sans), system-ui, sans-serif',
         }}
       >
         {qIndex + 1 < total ? 'Next question →' : 'See result'}
@@ -271,7 +271,7 @@ function PassView({
       </div>
       <h3
         style={{
-          fontFamily: 'DM Serif Display, serif',
+          fontFamily: 'var(--font-serif), Georgia, serif',
           fontSize: '26px',
           fontWeight: 400,
           color: 'var(--navy)',
@@ -297,7 +297,7 @@ function PassView({
           fontSize: '14px',
           fontWeight: 500,
           cursor: 'pointer',
-          fontFamily: 'DM Sans, sans-serif',
+          fontFamily: 'var(--font-sans), system-ui, sans-serif',
         }}
       >
         Continue learning
@@ -334,7 +334,7 @@ function FailView({
       </div>
       <h3
         style={{
-          fontFamily: 'DM Serif Display, serif',
+          fontFamily: 'var(--font-serif), Georgia, serif',
           fontSize: '26px',
           fontWeight: 400,
           color: 'var(--navy)',
@@ -360,7 +360,7 @@ function FailView({
           fontSize: '14px',
           fontWeight: 500,
           cursor: 'pointer',
-          fontFamily: 'DM Sans, sans-serif',
+          fontFamily: 'var(--font-sans), system-ui, sans-serif',
         }}
       >
         Try again
@@ -393,7 +393,7 @@ const progressStyle: CSSProperties = {
 }
 
 const questionStyle: CSSProperties = {
-  fontFamily: 'DM Sans, sans-serif',
+  fontFamily: 'var(--font-sans), system-ui, sans-serif',
   fontSize: '17px',
   fontWeight: 500,
   color: 'var(--navy)',

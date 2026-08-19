@@ -292,7 +292,7 @@ function BadgeModal({
         </div>
         <h3
           style={{
-            fontFamily: 'DM Serif Display, serif',
+            fontFamily: 'var(--font-serif), Georgia, serif',
             fontSize: '26px',
             fontWeight: 400,
             color: 'white',
@@ -327,7 +327,7 @@ function BadgeModal({
             fontSize: '14px',
             fontWeight: 500,
             cursor: 'pointer',
-            fontFamily: 'DM Sans, sans-serif',
+            fontFamily: 'var(--font-sans), system-ui, sans-serif',
           }}
         >
           Continue learning

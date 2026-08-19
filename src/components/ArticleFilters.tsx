@@ -81,7 +81,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
             <button
               type="button"
               onClick={reset}
-              style={{ fontSize: '13px', color: 'var(--blue-mid)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 500, fontFamily: 'DM Sans, sans-serif', padding: 0 }}
+              style={{ fontSize: '13px', color: 'var(--blue-mid)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 500, fontFamily: 'var(--font-sans), system-ui, sans-serif', padding: 0 }}
             >
               Reset
             </button>
@@ -119,7 +119,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
                   fontWeight: 500,
                   cursor: 'pointer',
                   border: 'none',
-                  fontFamily: 'DM Sans, sans-serif',
+                  fontFamily: 'var(--font-sans), system-ui, sans-serif',
                   background: selectedPillar === value ? 'var(--navy)' : 'var(--sand)',
                   color: selectedPillar === value ? 'white' : '#444440',
                   transition: 'background 0.15s, color 0.15s',
@@ -140,7 +140,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
               background: 'var(--warm)',
               color: '#444440',
               cursor: 'pointer',
-              fontFamily: 'DM Sans, sans-serif',
+              fontFamily: 'var(--font-sans), system-ui, sans-serif',
               outline: 'none',
             }}
           >
@@ -162,7 +162,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
                 fontWeight: 500,
                 cursor: 'pointer',
                 border: '1px solid',
-                fontFamily: 'DM Sans, sans-serif',
+                fontFamily: 'var(--font-sans), system-ui, sans-serif',
                 borderColor: selectedFormat === value ? 'var(--navy)' : 'var(--sand)',
                 background: selectedFormat === value ? 'var(--navy)' : 'transparent',
                 color: selectedFormat === value ? 'white' : 'var(--muted)',

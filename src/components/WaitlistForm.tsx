@@ -69,7 +69,7 @@ export default function WaitlistForm({ source = 'tracker_waitlist' }: { source?:
             fontSize: '16px',
             color: 'var(--navy)',
             outline: 'none',
-            fontFamily: 'DM Sans, sans-serif',
+            fontFamily: 'var(--font-sans), system-ui, sans-serif',
           }}
         />
         <Button

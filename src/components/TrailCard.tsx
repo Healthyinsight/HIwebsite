@@ -64,7 +64,7 @@ export default function TrailCard({ trail }: { trail: Trail }) {
 
       {/* Title + tagline */}
       <div style={{ flex: 1 }}>
-        <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(18px, 4vw, 22px)', fontWeight: 400, color: 'white', marginBottom: '6px', lineHeight: 1.2 }}>
+        <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(18px, 4vw, 22px)', fontWeight: 400, color: 'white', marginBottom: '6px', lineHeight: 1.2 }}>
           {trail.name}
         </h3>
         <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.5, margin: 0 }}>

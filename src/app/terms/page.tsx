@@ -11,7 +11,7 @@ export default function TermsPage() {
     <>
       <main style={{ paddingTop: 'clamp(48px, 10vw, 80px)', paddingBottom: 'clamp(48px, 12vw, 100px)', background: 'var(--warm)', minHeight: '50vh' }}>
         <div className="container" style={{ maxWidth: '720px' }}>
-          <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '36px', fontWeight: 400, color: 'var(--navy)', marginBottom: '24px' }}>
+          <h1 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '36px', fontWeight: 400, color: 'var(--navy)', marginBottom: '24px' }}>
             Terms
           </h1>
           <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, fontWeight: 300 }}>

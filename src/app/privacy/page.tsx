@@ -66,7 +66,7 @@ export default function PrivacyPage() {
             {/* Page header */}
             <h1
               style={{
-                fontFamily: 'DM Serif Display, serif',
+                fontFamily: 'var(--font-serif), Georgia, serif',
                 fontWeight: 400,
                 fontSize: 'clamp(32px, 6vw, 48px)',
                 color: 'var(--navy)',
@@ -123,7 +123,7 @@ export default function PrivacyPage() {
               >
                 <h2
                   style={{
-                    fontFamily: 'DM Serif Display, serif',
+                    fontFamily: 'var(--font-serif), Georgia, serif',
                     fontSize: 'clamp(18px, 3vw, 22px)',
                     fontWeight: 400,
                     color: 'var(--navy)',

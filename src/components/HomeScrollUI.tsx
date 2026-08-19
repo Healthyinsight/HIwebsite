@@ -142,7 +142,7 @@ export default function HomeScrollUI() {
             fontSize: '17px',
             lineHeight: 1,
             boxShadow: '0 2px 10px rgba(15,42,63,0.22)',
-            fontFamily: 'DM Sans, sans-serif',
+            fontFamily: 'var(--font-sans), system-ui, sans-serif',
           }}
         >
           ↑

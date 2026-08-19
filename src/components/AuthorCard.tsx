@@ -46,7 +46,7 @@ export default function AuthorCard({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontFamily: 'DM Serif Display, serif',
+            fontFamily: 'var(--font-serif), Georgia, serif',
             fontSize: '17px',
           }}
         >

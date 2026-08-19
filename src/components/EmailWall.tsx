@@ -45,7 +45,7 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
     <Modal open={true} onClose={onClose} size="sm">
       <div style={{ textAlign: 'center', marginBottom: '24px' }}>
         <div style={{ fontSize: '36px', marginBottom: '12px' }}>🔒</div>
-        <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '22px', fontWeight: 400, color: 'var(--navy)', marginBottom: '8px', lineHeight: 1.25 }}>
+        <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '22px', fontWeight: 400, color: 'var(--navy)', marginBottom: '8px', lineHeight: 1.25 }}>
           Advanced level content
         </h3>
         <p style={{ fontSize: '14px', color: '#444440', lineHeight: 1.65, fontWeight: 300, margin: 0 }}>
@@ -70,7 +70,7 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
             placeholder="First name (optional)"
             value={name}
             onChange={e => setName(e.target.value)}
-            style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
+            style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'var(--font-sans), system-ui, sans-serif', outline: 'none' }}
           />
           <label htmlFor={emailId} style={VISUALLY_HIDDEN}>Your email address</label>
           <input
@@ -81,7 +81,7 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
-            style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
+            style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'var(--font-sans), system-ui, sans-serif', outline: 'none' }}
           />
           <Button type="submit" loading={status === 'loading'} fullWidth size="lg">
             Unlock this article

@@ -87,7 +87,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
         padding: '14px 20px',
         marginBottom: '28px',
       }}>
-        <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: '32px', color: 'var(--navy)', lineHeight: 1 }}>
+        <div style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '32px', color: 'var(--navy)', lineHeight: 1 }}>
           {evidenceIQ}
         </div>
         <div>
@@ -126,7 +126,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
                 padding: '15px 16px',
                 cursor: isComing ? 'default' : 'pointer',
                 textAlign: 'left',
-                fontFamily: 'DM Sans, sans-serif',
+                fontFamily: 'var(--font-sans), system-ui, sans-serif',
                 width: '100%',
                 opacity: isComing ? 0.6 : 1,
                 transition: 'border-color 0.15s',
@@ -214,7 +214,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
             <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '8px' }}>
               Trail complete
             </div>
-            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '26px', fontWeight: 400, color: 'white', marginBottom: '8px', lineHeight: 1.2 }}>
+            <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '26px', fontWeight: 400, color: 'white', marginBottom: '8px', lineHeight: 1.2 }}>
               {trail.badge.label}
             </h3>
             <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, marginBottom: '28px', fontWeight: 300 }}>
@@ -229,7 +229,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
             </a>
             <button
               onClick={() => setShowBadge(false)}
-              style={{ background: 'transparent', color: 'rgba(255,255,255,0.45)', border: 'none', borderRadius: '100px', padding: '8px 16px', fontSize: '13px', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif', display: 'block', margin: '0 auto' }}
+              style={{ background: 'transparent', color: 'rgba(255,255,255,0.45)', border: 'none', borderRadius: '100px', padding: '8px 16px', fontSize: '13px', cursor: 'pointer', fontFamily: 'var(--font-sans), system-ui, sans-serif', display: 'block', margin: '0 auto' }}
             >
               Keep exploring
             </button>

@@ -18,7 +18,7 @@ export default function AboutPage() {
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '20px' }}>
               About
             </div>
-            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.8px', lineHeight: 1.1, marginBottom: '28px' }}>
+            <h1 className="heading-hero" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'var(--navy)', letterSpacing: '-0.8px', lineHeight: 1.1, marginBottom: '28px' }}>
               Your source for evidence-based<br />
               <em style={{ fontStyle: 'italic', color: 'var(--blue-mid)' }}>health strategies.</em>
             </h1>
@@ -34,7 +34,7 @@ export default function AboutPage() {
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '20px' }}>
               Why HI exists
             </div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '32px', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '32px', lineHeight: 1.2 }}>
               The health information landscape is broken.
             </h2>
 
@@ -73,7 +73,7 @@ export default function AboutPage() {
               ].map(({ icon, title, items }) => (
                 <div key={title} style={{ background: 'var(--cream)', borderRadius: '18px', padding: '24px' }}>
                   <div style={{ fontSize: '22px', marginBottom: '12px' }}>{icon}</div>
-                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '17px', fontWeight: 400, color: 'var(--navy)', marginBottom: '14px' }}>{title}</h3>
+                  <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '17px', fontWeight: 400, color: 'var(--navy)', marginBottom: '14px' }}>{title}</h3>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     {items.map(item => (
                       <li key={item} style={{ fontSize: '13px', color: '#444440', lineHeight: 1.6, marginBottom: '6px', display: 'flex', gap: '8px' }}>
@@ -101,7 +101,7 @@ export default function AboutPage() {
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '20px' }}>
               The method
             </div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '12px', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '12px', lineHeight: 1.2 }}>
               How HI works
             </h2>
             <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, marginBottom: '40px', fontWeight: 300 }}>
@@ -114,11 +114,11 @@ export default function AboutPage() {
               { n: '4', title: 'Show the sources', body: 'Every claim links to research. When evidence is uncertain or conflicting, that\'s stated clearly, not hidden or glossed over. Epistemic honesty is a feature, not a bug.' },
             ].map(({ n, title, body }) => (
               <div key={n} style={{ display: 'flex', gap: '20px', marginBottom: '28px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--sky)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'DM Serif Display, serif', fontSize: '16px', color: 'var(--navy)' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--sky)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '16px', color: 'var(--navy)' }}>
                   {n}
                 </div>
                 <div>
-                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '6px' }}>{title}</h3>
+                  <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '6px' }}>{title}</h3>
                   <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.7, fontWeight: 300 }}>{body}</p>
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function AboutPage() {
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '20px' }}>
               Transparency
             </div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '28px', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'var(--navy)', marginBottom: '28px', lineHeight: 1.2 }}>
               Sources & transparency
             </h2>
 
@@ -142,7 +142,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '22px', fontWeight: 400, color: 'var(--navy)', marginBottom: '16px' }}>Source criteria</h3>
+            <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '22px', fontWeight: 400, color: 'var(--navy)', marginBottom: '16px' }}>Source criteria</h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0' }}>
               {[
                 { label: 'Peer-reviewed only', desc: 'No blog posts, podcasts, or news articles as primary sources. PubMed, Cochrane, and academic journals are the starting point.' },
@@ -162,7 +162,7 @@ export default function AboutPage() {
             </ul>
 
             <div style={{ background: 'var(--cream)', borderRadius: '16px', padding: '24px 28px' }}>
-              <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '10px' }}>Found an error?</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '20px', fontWeight: 400, color: 'var(--navy)', marginBottom: '10px' }}>Found an error?</h3>
               <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.7, fontWeight: 300, marginBottom: '16px' }}>
                 Science changes. I make mistakes. If you spot an error, a misrepresented study, or a claim that doesn&apos;t hold up, please let me know. Corrections are always welcome and will be published transparently.
               </p>
@@ -180,7 +180,7 @@ export default function AboutPage() {
             <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-pale)', opacity: 0.7, marginBottom: '20px' }}>
               The founder
             </div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'white', marginBottom: '20px', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: 'clamp(1.5rem, 4vw, 2.125rem)', fontWeight: 400, color: 'white', marginBottom: '20px', lineHeight: 1.2 }}>
               About Filip Berggren
             </h2>
             <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, marginBottom: '20px', fontWeight: 300 }}>

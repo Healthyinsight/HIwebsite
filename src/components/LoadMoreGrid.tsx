@@ -45,7 +45,7 @@ export default function LoadMoreGrid({
               fontSize: '14px',
               fontWeight: 500,
               cursor: 'pointer',
-              fontFamily: 'DM Sans, sans-serif',
+              fontFamily: 'var(--font-sans), system-ui, sans-serif',
             }}
           >
             Show {Math.min(pageSize, remaining)} more {label}

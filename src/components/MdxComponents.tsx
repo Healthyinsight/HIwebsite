@@ -9,7 +9,7 @@ export const mdxComponents = {
   h2: (props: ComponentPropsWithoutRef<'h2'>) => (
     <h2
       style={{
-        fontFamily: 'DM Serif Display, serif',
+        fontFamily: 'var(--font-serif), Georgia, serif',
         fontSize: 'clamp(1.35rem, 5vw, 1.75rem)',
         fontWeight: 400,
         color: 'var(--navy)',
@@ -24,7 +24,7 @@ export const mdxComponents = {
   h3: (props: ComponentPropsWithoutRef<'h3'>) => (
     <h3
       style={{
-        fontFamily: 'DM Sans, sans-serif',
+        fontFamily: 'var(--font-sans), system-ui, sans-serif',
         fontSize: 'clamp(1.1rem, 4vw, 1.25rem)',
         fontWeight: 500,
         color: 'var(--navy)',

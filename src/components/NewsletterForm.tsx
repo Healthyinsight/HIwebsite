@@ -108,7 +108,7 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess, so
           padding: inputPad,
           color: textColor,
           fontSize,
-          fontFamily: 'DM Sans, sans-serif',
+          fontFamily: 'var(--font-sans), system-ui, sans-serif',
           outline: 'none',
           opacity: status === 'loading' ? 0.7 : 1,
         }}

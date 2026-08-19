@@ -27,7 +27,7 @@ export default async function ArticlesPage() {
               All articles
               <div style={{ flex: 1, height: '1px', background: 'var(--sand)', minWidth: 0 }} />
             </div>
-            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '14px', letterSpacing: '-0.5px' }}>
+            <h1 className="heading-hero" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'var(--navy)', marginBottom: '14px', letterSpacing: '-0.5px' }}>
               Turn research into your daily edge
             </h1>
             <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, maxWidth: '520px', fontWeight: 300 }}>

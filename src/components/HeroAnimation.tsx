@@ -35,7 +35,7 @@ export default function HeroAnimation() {
       ref={wrapperRef}
       style={{
         width: '100%',
-        maxWidth: '420px',
+        maxWidth: 'min(520px, 100%)',
         aspectRatio: '1',
         position: 'relative',
         willChange: 'transform',

@@ -61,7 +61,7 @@ export default function EmptyState({
   }
 
   const headingStyle: CSSProperties = {
-    fontFamily: 'DM Serif Display, serif',
+    fontFamily: 'var(--font-serif), Georgia, serif',
     fontWeight: 400,
     color: 'var(--navy)',
     fontSize: SIZE_HEADING[size],
@@ -90,7 +90,7 @@ export default function EmptyState({
     fontSize: '14px',
     fontWeight: 500,
     cursor: 'pointer',
-    fontFamily: 'DM Sans, sans-serif',
+    fontFamily: 'var(--font-sans), system-ui, sans-serif',
     textDecoration: 'none',
     marginTop: '4px',
   }

@@ -96,7 +96,7 @@ export default function ArticleScrollUI() {
             fontSize: '18px',
             lineHeight: 1,
             boxShadow: '0 2px 12px rgba(15,42,63,0.22)',
-            fontFamily: 'DM Sans, sans-serif',
+            fontFamily: 'var(--font-sans), system-ui, sans-serif',
           }}
         >
           ↑

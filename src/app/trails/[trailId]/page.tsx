@@ -56,7 +56,7 @@ export default async function TrailPage(
                 {trail.pillar} trail · {activeStepCount} articles · up to {totalIQ} HiQ
               </span>
             </div>
-            <h1 className="heading-hero" style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 400, color: 'white', letterSpacing: '-0.5px', marginBottom: '12px' }}>
+            <h1 className="heading-hero" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontWeight: 400, color: 'white', letterSpacing: '-0.5px', marginBottom: '12px' }}>
               {trail.name}
             </h1>
             <p style={{ fontSize: 'clamp(14px, 2.5vw, 17px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, fontWeight: 300, maxWidth: '520px', margin: 0 }}>

@@ -41,7 +41,7 @@ export default function ArticleNewsletterBlock({
       </div>
       <h2
         style={{
-          fontFamily: 'DM Serif Display, serif',
+          fontFamily: 'var(--font-serif), Georgia, serif',
           fontSize: mid ? 'clamp(1.1rem, 3.5vw, 1.4rem)' : 'clamp(1.3rem, 4vw, 1.75rem)',
           fontWeight: 400,
           color: 'white',

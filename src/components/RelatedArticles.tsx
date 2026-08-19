@@ -47,7 +47,7 @@ export default function RelatedArticles({
               <span
                 style={{
                   display: 'block',
-                  fontFamily: 'DM Serif Display, serif',
+                  fontFamily: 'var(--font-serif), Georgia, serif',
                   fontSize: '16px',
                   fontWeight: 400,
                   color: 'var(--navy)',

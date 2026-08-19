@@ -182,7 +182,7 @@ export default function Modal({
             <h2
               id={titleId}
               style={{
-                fontFamily: 'DM Serif Display, serif',
+                fontFamily: 'var(--font-serif), Georgia, serif',
                 fontSize: '22px',
                 fontWeight: 400,
                 color: 'var(--navy)',

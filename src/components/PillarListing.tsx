@@ -12,7 +12,7 @@ export default function PillarListing({ pillar, title }: { pillar: Pillar; title
           <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--blue-mid)', marginBottom: '16px' }}>
             Pillar
           </div>
-          <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '40px', fontWeight: 400, color: 'var(--navy)', marginBottom: '12px' }}>
+          <h1 style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '40px', fontWeight: 400, color: 'var(--navy)', marginBottom: '12px' }}>
             {title}
           </h1>
           <p style={{ fontSize: '16px', color: 'var(--muted)', marginBottom: '40px', fontWeight: 300, maxWidth: '560px' }}>

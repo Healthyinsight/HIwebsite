@@ -45,7 +45,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div>
-            <Link href="/" style={{ fontFamily: 'DM Serif Display, serif', fontSize: '19px', color: 'var(--navy)', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>
+            <Link href="/" style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '19px', color: 'var(--navy)', display: 'block', marginBottom: '12px', textDecoration: 'none' }}>
               Healthy Insight
             </Link>
             <p style={{ fontSize: '14px', lineHeight: 1.7, maxWidth: '265px', color: 'var(--muted)', fontWeight: 300, marginBottom: '0' }}>
@@ -71,7 +71,7 @@ export default function Footer() {
           <p style={{ fontSize: '13px', color: 'var(--muted)', margin: 0 }}>
             © 2026 Healthy Insight. All rights reserved.
           </p>
-          <p style={{ fontFamily: 'DM Serif Display, serif', fontStyle: 'italic', fontSize: '14px', color: 'var(--blue-mid)', margin: 0 }}>
+          <p style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontStyle: 'italic', fontSize: '14px', color: 'var(--blue-mid)', margin: 0 }}>
             Science Made Simple, Action Made Fun
           </p>
         </div>
