@@ -125,7 +125,7 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess, so
         </p>
       )}
 
-      <p style={{ fontSize: '11px', color: dark ? 'rgba(255,255,255,0.28)' : '#8A8A80', textAlign: 'center', margin: 0 }}>
+      <p style={{ fontSize: '11px', color: dark ? 'rgba(255,255,255,0.28)' : 'var(--muted)', textAlign: 'center', margin: 0 }}>
         {EMAIL_PROMISE}
       </p>
     </form>

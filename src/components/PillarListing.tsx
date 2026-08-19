@@ -15,7 +15,7 @@ export default function PillarListing({ pillar, title }: { pillar: Pillar; title
           <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '40px', fontWeight: 400, color: 'var(--navy)', marginBottom: '12px' }}>
             {title}
           </h1>
-          <p style={{ fontSize: '16px', color: '#8A8A80', marginBottom: '40px', fontWeight: 300, maxWidth: '560px' }}>
+          <p style={{ fontSize: '16px', color: 'var(--muted)', marginBottom: '40px', fontWeight: 300, maxWidth: '560px' }}>
             Evidence-based articles in this category.
           </p>
           {list.length === 0 ? (

@@ -75,7 +75,7 @@ export default function ArticleCard({ slug, title, excerpt, pillar, format, leve
           <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: large ? 'clamp(17px, 2.5vw, 20px)' : 'clamp(14px, 2vw, 17px)', fontWeight: 400, color: '#1A1A17', lineHeight: 1.3, marginBottom: '9px' }}>
             {title}
           </h3>
-          <p style={{ fontSize: '14px', color: '#8A8A80', lineHeight: 1.6, marginBottom: '16px', flex: 1 }}>
+          <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '16px', flex: 1 }}>
             {excerpt}
           </p>
           <span style={{ fontSize: '13px', fontWeight: 500, color: '#0F2A3F' }}>

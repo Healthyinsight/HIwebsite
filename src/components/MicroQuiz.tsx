@@ -136,7 +136,7 @@ export default function MicroQuiz({ questions, onPass, points = DEFAULT_PASS_POI
             } else {
               bg = '#FAF8F4'
               border = '1px solid var(--sand)'
-              color = '#8A8A80'
+              color = 'var(--muted)'
             }
           } else if (isSelectedOpt) {
             bg = 'var(--sky)'
@@ -326,7 +326,7 @@ function FailView({
           fontWeight: 700,
           letterSpacing: '1.5px',
           textTransform: 'uppercase',
-          color: '#8A8A80',
+          color: 'var(--muted)',
           marginBottom: '8px',
         }}
       >
@@ -388,7 +388,7 @@ const eyebrowStyle: CSSProperties = {
 
 const progressStyle: CSSProperties = {
   fontSize: '11px',
-  color: '#8A8A80',
+  color: 'var(--muted)',
   fontWeight: 400,
 }
 

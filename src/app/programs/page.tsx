@@ -89,7 +89,7 @@ export default function ProgramsPage() {
         {/* Back to trails */}
         <section style={{ background: 'var(--cream)', padding: 'clamp(32px, 6vw, 48px) 0', borderTop: '1px solid var(--sand)' }}>
           <div className="container" style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: '14px', color: '#8A8A80', marginBottom: '12px' }}>
+            <p style={{ fontSize: '14px', color: 'var(--muted)', marginBottom: '12px' }}>
               While you wait — keep building your knowledge base.
             </p>
             <Link href="/trails" style={{ fontSize: '14px', color: 'var(--blue-mid)', fontWeight: 500, textDecoration: 'none' }}>

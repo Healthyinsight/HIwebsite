@@ -86,7 +86,7 @@ export default function WaitlistForm({ source = 'tracker_waitlist' }: { source?:
         </p>
       )}
 
-      <p style={{ marginTop: '12px', fontSize: '13px', color: '#8A8A80', textAlign: 'center', fontWeight: 300 }}>
+      <p style={{ marginTop: '12px', fontSize: '13px', color: 'var(--muted)', textAlign: 'center', fontWeight: 300 }}>
         {EMAIL_PROMISE}
       </p>
     </form>

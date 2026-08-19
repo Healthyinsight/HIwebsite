@@ -81,7 +81,7 @@ export default function PrivacyPage() {
             <p
               style={{
                 fontSize: '15px',
-                color: '#8A8A80',
+                color: 'var(--muted)',
                 marginBottom: '8px',
               }}
             >

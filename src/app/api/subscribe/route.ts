@@ -124,7 +124,7 @@ function welcomeEmail(email: string, firstName?: string): string {
     .body p { color: #444440; font-size: 16px; line-height: 1.75; margin: 0 0 20px; }
     .cta { display: inline-block; background: #0F2A3F; color: white; text-decoration: none; border-radius: 100px; padding: 13px 28px; font-size: 14px; font-weight: 500; margin: 8px 0 24px; }
     .footer { text-align: center; margin-top: 32px; }
-    .footer p { color: #8A8A80; font-size: 13px; line-height: 1.6; }
+    .footer p { color: #63635E; font-size: 13px; line-height: 1.6; }
     .footer a { color: #2D7DA8; }
   </style>
 </head>
@@ -145,7 +145,7 @@ function welcomeEmail(email: string, firstName?: string): string {
         <li><a href="https://healthyinsight.eu/articles/fitness-recovery-what-works" style="color: #2D7DA8;">Fitness Recovery: What Works vs Hype</a> (Level 2, 11 min)</li>
       </ul>
       <a href="https://healthyinsight.eu/articles" class="cta">Browse all articles</a>
-      <p style="margin-bottom: 0;">Talk soon,<br><strong>Filip</strong><br><em style="font-size: 14px; color: #8A8A80;">Founder, Healthy Insight</em></p>
+      <p style="margin-bottom: 0;">Talk soon,<br><strong>Filip</strong><br><em style="font-size: 14px; color: #63635E;">Founder, Healthy Insight</em></p>
     </div>
     <div class="footer">
       <p>Healthy Insight · healthyinsight.eu<br>

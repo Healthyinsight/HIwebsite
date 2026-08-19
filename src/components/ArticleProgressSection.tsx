@@ -235,7 +235,7 @@ function QuizComingSoon() {
         <div style={{ fontSize: '13px', fontWeight: 500, color: 'var(--navy)', marginBottom: '2px' }}>
           Quiz coming soon
         </div>
-        <div style={{ fontSize: '12px', color: '#8A8A80', fontWeight: 300 }}>
+        <div style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: 300 }}>
           Questions for this article are being written. Check back soon.
         </div>
       </div>

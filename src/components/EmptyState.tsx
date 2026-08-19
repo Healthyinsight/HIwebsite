@@ -71,7 +71,7 @@ export default function EmptyState({
 
   const messageStyle: CSSProperties = {
     fontSize: '14px',
-    color: '#8A8A80',
+    color: 'var(--muted)',
     fontWeight: 300,
     lineHeight: 1.6,
     margin: 0,

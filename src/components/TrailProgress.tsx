@@ -144,7 +144,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
                 height: '26px',
                 borderRadius: '50%',
                 background: done ? 'var(--blue-mid)' : '#F0EDE8',
-                color: done ? 'white' : '#8A8A80',
+                color: done ? 'white' : 'var(--muted)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -163,12 +163,12 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
                     {step.title}
                   </span>
                   {isComing && (
-                    <span style={{ fontSize: '10px', background: '#F0EDE8', borderRadius: '100px', padding: '2px 8px', color: '#8A8A80', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                    <span style={{ fontSize: '10px', background: '#F0EDE8', borderRadius: '100px', padding: '2px 8px', color: 'var(--muted)', whiteSpace: 'nowrap', flexShrink: 0 }}>
                       Coming soon
                     </span>
                   )}
                   {locked && (
-                    <span style={{ fontSize: '10px', background: '#F0EDE8', borderRadius: '100px', padding: '2px 8px', color: '#8A8A80', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                    <span style={{ fontSize: '10px', background: '#F0EDE8', borderRadius: '100px', padding: '2px 8px', color: 'var(--muted)', whiteSpace: 'nowrap', flexShrink: 0 }}>
                       🔒 L{step.level}
                     </span>
                   )}
@@ -178,7 +178,7 @@ export default function TrailProgress({ trail }: { trail: Trail }) {
                     </span>
                   )}
                 </div>
-                <div style={{ fontSize: '12px', color: '#8A8A80', display: 'flex', gap: '10px' }}>
+                <div style={{ fontSize: '12px', color: 'var(--muted)', display: 'flex', gap: '10px' }}>
                   {step.readingTime && <span>{step.readingTime}</span>}
                   {!isComing && <span>+{iqPoints} HiQ</span>}
                 </div>

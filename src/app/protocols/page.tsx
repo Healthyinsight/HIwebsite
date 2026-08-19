@@ -44,7 +44,7 @@ export default async function ProtocolsPage() {
                 ].map(({ num, label }) => (
                   <div key={label} style={{ background: 'var(--warm)', borderRadius: '16px', padding: '20px', border: '1px solid rgba(15,42,63,0.06)' }}>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: '28px', color: 'var(--navy)', marginBottom: '4px' }}>{num}</div>
-                    <div style={{ fontSize: '12px', color: '#8A8A80', lineHeight: 1.4, whiteSpace: 'pre-line' }}>{label}</div>
+                    <div style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.4, whiteSpace: 'pre-line' }}>{label}</div>
                   </div>
                 ))}
               </div>

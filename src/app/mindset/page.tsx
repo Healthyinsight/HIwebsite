@@ -38,7 +38,7 @@ export default async function MindsetPage() {
               />
             ) : (
               <>
-                <p style={{ fontSize: '14px', color: '#8A8A80', marginBottom: '32px', fontWeight: 300 }}>
+                <p style={{ fontSize: '14px', color: 'var(--muted)', marginBottom: '32px', fontWeight: 300 }}>
                   {articles.length} articles
                 </p>
                 <div className="grid-three">

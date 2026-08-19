@@ -225,7 +225,7 @@ export default async function HomePage() {
                     <span style={{ display: 'inline-block', fontSize: '13px', color: 'var(--blue-mid)', fontWeight: 500 }}>Explore →</span>
                   </Link>
                   <div style={{ marginTop: '18px', paddingTop: '16px', borderTop: '1px solid var(--sand)' }}>
-                    <div style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1px', textTransform: 'uppercase', color: '#8A8A80', marginBottom: '5px' }}>Start with</div>
+                    <div style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '5px' }}>Start with</div>
                     <Link href={startHref} style={{ fontSize: '12px', color: 'var(--navy)', textDecoration: 'none', lineHeight: 1.4 }}>
                       {startLabel} →
                     </Link>

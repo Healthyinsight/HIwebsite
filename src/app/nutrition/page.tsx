@@ -33,7 +33,7 @@ export default async function NutritionPage() {
             {articles.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '80px 0' }}>
                 <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: '24px', color: 'var(--navy)', marginBottom: '12px' }}>Coming soon</p>
-                <p style={{ fontSize: '15px', color: '#8A8A80' }}>Nutrition articles are in progress. Subscribe to the newsletter to be notified.</p>
+                <p style={{ fontSize: '15px', color: 'var(--muted)' }}>Nutrition articles are in progress. Subscribe to the newsletter to be notified.</p>
               </div>
             ) : (
               <>
@@ -54,7 +54,7 @@ export default async function NutritionPage() {
                     </Link>
                   </div>
                 )}
-                <p style={{ fontSize: '14px', color: '#8A8A80', marginBottom: '32px', fontWeight: 300 }}>
+                <p style={{ fontSize: '14px', color: 'var(--muted)', marginBottom: '32px', fontWeight: 300 }}>
                   {articles.length} articles
                 </p>
                 <div className="grid-three">

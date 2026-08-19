@@ -158,7 +158,7 @@ export default function HealthIQQuiz() {
           {/* Progress bar */}
           <div style={{ marginBottom: '32px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span style={{ fontSize: '12px', color: '#8A8A80', fontWeight: 500 }}>
+              <span style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: 500 }}>
                 Question {current + 1} of {questions.length}
               </span>
               <span style={{ fontSize: '12px', color: '#2D7DA8', fontWeight: 500 }}>
@@ -270,7 +270,7 @@ export default function HealthIQQuiz() {
               >
                 {submitting ? 'Sending...' : 'Unlock my results'}
               </button>
-              <p style={{ fontSize: '11px', color: '#8A8A80', textAlign: 'center', margin: 0 }}>
+              <p style={{ fontSize: '11px', color: 'var(--muted)', textAlign: 'center', margin: 0 }}>
                 {EMAIL_PROMISE}
               </p>
             </form>

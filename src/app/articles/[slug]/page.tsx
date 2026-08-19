@@ -385,7 +385,7 @@ export default async function ArticlePage(
                 <div>
                   {prevStep ? (
                     <Link href={`/articles/${prevStep.slug}`} style={{ fontSize: '14px', color: 'var(--navy)', fontWeight: 500, textDecoration: 'none', display: 'flex', flexDirection: 'column', gap: '3px' }}>
-                      <span style={{ fontSize: '11px', color: '#8A8A80', fontWeight: 400, letterSpacing: '0.5px', textTransform: 'uppercase' }}>← Previous</span>
+                      <span style={{ fontSize: '11px', color: 'var(--muted)', fontWeight: 400, letterSpacing: '0.5px', textTransform: 'uppercase' }}>← Previous</span>
                       <span>{prevStep.title}</span>
                     </Link>
                   ) : (
@@ -397,7 +397,7 @@ export default async function ArticlePage(
                 <div style={{ textAlign: 'right' }}>
                   {nextStep && (
                     <Link href={`/articles/${nextStep.slug}`} style={{ fontSize: '14px', color: 'var(--navy)', fontWeight: 500, textDecoration: 'none', display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'flex-end' }}>
-                      <span style={{ fontSize: '11px', color: '#8A8A80', fontWeight: 400, letterSpacing: '0.5px', textTransform: 'uppercase' }}>Next →</span>
+                      <span style={{ fontSize: '11px', color: 'var(--muted)', fontWeight: 400, letterSpacing: '0.5px', textTransform: 'uppercase' }}>Next →</span>
                       <span>{nextStep.title}</span>
                     </Link>
                   )}

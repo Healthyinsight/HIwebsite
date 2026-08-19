@@ -127,7 +127,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
                 fontFamily: 'DM Sans, sans-serif',
                 borderColor: selectedFormat === value ? 'var(--navy)' : 'var(--sand)',
                 background: selectedFormat === value ? 'var(--navy)' : 'transparent',
-                color: selectedFormat === value ? 'white' : '#8A8A80',
+                color: selectedFormat === value ? 'white' : 'var(--muted)',
                 transition: 'background 0.15s, color 0.15s, border-color 0.15s',
               }}
             >
@@ -139,7 +139,7 @@ export default function ArticleFilters({ articles }: ArticleFiltersProps) {
 
       {/* Result count */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-        <span style={{ fontSize: '13px', color: '#8A8A80', fontWeight: 300 }}>
+        <span style={{ fontSize: '13px', color: 'var(--muted)', fontWeight: 300 }}>
           Showing {filtered.length} of {articles.length} articles
         </span>
         {hasActiveFilters && (

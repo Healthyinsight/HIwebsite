@@ -81,7 +81,7 @@ export default function EmailWall({ onSuccess, onClose }: EmailWallProps) {
               Something went wrong. Try again.
             </p>
           )}
-          <p style={{ fontSize: '11px', color: '#8A8A80', textAlign: 'center', margin: 0 }}>
+          <p style={{ fontSize: '11px', color: 'var(--muted)', textAlign: 'center', margin: 0 }}>
             {EMAIL_PROMISE}
           </p>
         </form>
