@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
+import LevelLegend from '@/components/LevelLegend'
 import NewsletterForm from '@/components/NewsletterForm'
 import { getArticlesByFormatAsync } from '@/lib/articles'
 
@@ -63,9 +64,10 @@ export default async function ProtocolsPage() {
                 </h2>
               </div>
             </div>
-            <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, maxWidth: '560px', marginBottom: '40px', fontWeight: 300 }}>
+            <p style={{ fontSize: '15px', color: '#444440', lineHeight: 1.75, maxWidth: '560px', marginBottom: '20px', fontWeight: 300 }}>
               Structured programs with specific variables, progressions, and timelines. Build these into your week directly.
             </p>
+            <LevelLegend />
             <div className="grid-three">
               {protocols.map(article => (
                 <ArticleCard key={article.slug} {...article} />

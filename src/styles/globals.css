@@ -390,6 +390,8 @@ body {
   }
 }
 
+/* M6: the full wordmark at every width. "HI" alone is not a recognisable
+   brand to a first-time visitor arriving from search on a phone. */
 .nav-brand-short {
   display: none;
 }
@@ -398,13 +400,9 @@ body {
   display: inline;
 }
 
-@media (max-width: 640px) {
-  .nav-brand-full {
-    display: none;
-  }
-
-  .nav-brand-short {
-    display: inline;
+@media (max-width: 400px) {
+  .site-nav__brand {
+    font-size: 15px;
   }
 }
 

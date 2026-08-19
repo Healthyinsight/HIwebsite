@@ -34,6 +34,7 @@ const articleSeeds: ArticleMeta[] = [
     excerpt: 'The evidence on intra-workout nutrition. When carbohydrates actually matter, and when they don\'t.',
     pillar: 'nutrition',
     format: 'guide',
+    level: 1, // Notion Articles DB: HI Level = Level 1, Trail = Fueling Mastery.
     readingTime: '13 min',
     publishedAt: '2026-03-01',
     featured: true,

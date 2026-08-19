@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import ArticleFilters from '@/components/ArticleFilters'
+import LevelLegend from '@/components/LevelLegend'
 import { getArticles } from '@/lib/articles'
 import { getSiteStats } from '@/lib/siteStats'
 import type { Metadata } from 'next'
@@ -37,6 +38,7 @@ export default async function ArticlesPage() {
 
         <section style={{ background: 'var(--warm)', paddingTop: 'clamp(40px, 8vw, 56px)', paddingBottom: 'clamp(48px, 10vw, 56px)' }}>
           <div className="container">
+            <LevelLegend />
             <ArticleFilters articles={sorted} />
           </div>
         </section>

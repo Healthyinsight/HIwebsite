@@ -15,6 +15,7 @@ import path from 'node:path'
 import { pillarGradients } from '@/lib/pillars'
 import { logger } from '@/lib/logger'
 import { getTrailForArticle } from '@/lib/trails'
+import { levelDescription, levelLabel } from '@/lib/levels'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -172,7 +173,7 @@ export default async function ArticlePage(
                   {trail.name} · Level {currentStep.level} of {activeSteps.length}
                 </span>
               ) : article.level ? (
-                <span style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.9)', fontSize: '10px', fontWeight: 500, letterSpacing: '1.2px', textTransform: 'uppercase', padding: '5px 14px', borderRadius: '100px' }}>
+                <span title={levelDescription(article.level)} style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.9)', fontSize: '10px', fontWeight: 500, letterSpacing: '1.2px', textTransform: 'uppercase', padding: '5px 14px', borderRadius: '100px' }}>
                   Level {article.level}
                 </span>
               ) : null}
@@ -182,6 +183,12 @@ export default async function ArticlePage(
                 </span>
               )}
             </div>
+
+            {article.level !== undefined && (
+              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.55)', margin: '0 0 18px' }}>
+                Level {article.level} of 5: {levelLabel(article.level).toLowerCase()}. {levelDescription(article.level)}
+              </p>
+            )}
 
             <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.75rem, 6vw, 2.75rem)', fontWeight: 400, color: 'white', lineHeight: 1.15, letterSpacing: '-0.5px', marginBottom: '20px' }}>
               {article.title}
