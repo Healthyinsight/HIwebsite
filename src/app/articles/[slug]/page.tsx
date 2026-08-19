@@ -35,7 +35,20 @@ export async function generateMetadata(
   const allArticles = await getArticles()
   const article = allArticles.find(a => a.slug === slug)
   if (!article) return {}
-  return { title: article.title, description: article.excerpt }
+  return {
+    title: article.title,
+    description: article.excerpt,
+    alternates: { canonical: `/articles/${slug}` },
+    openGraph: {
+      type: 'article',
+      title: article.title,
+      description: article.excerpt,
+      url: `/articles/${slug}`,
+      publishedTime: article.publishedAt,
+      modifiedTime: article.lastReviewed ?? article.publishedAt,
+      authors: ['Filip Berggren'],
+    },
+  }
 }
 
 const evidenceBadgeStyles: Record<string, { background: string; color: string; border: string; label: string }> = {

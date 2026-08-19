@@ -20,10 +20,13 @@ export const metadata: Metadata = {
   },
   description: 'Evidence-based health insights for motion, nutrition, recovery, and mindset. Peer-reviewed research translated into practical guidance.',
   metadataBase: new URL('https://healthyinsight.eu'),
+  alternates: { canonical: '/' },
   openGraph: {
     siteName: 'Healthy Insight',
     type: 'website',
-    locale: 'en_US',
+    // en_GB, not en_US: a .eu domain publishing British-spelled English
+    // ("synthesise", "personalised") to a European audience.
+    locale: 'en_GB',
   },
   twitter: {
     card: 'summary_large_image',
