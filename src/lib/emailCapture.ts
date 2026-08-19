@@ -13,3 +13,16 @@ export const EMAIL_SOURCES = {
   trailUnlock: 'trail_unlock',
   quiz: 'quiz',
 } as const
+
+/** Visually hidden but available to screen readers and voice control. */
+export const VISUALLY_HIDDEN = {
+  position: 'absolute' as const,
+  width: '1px',
+  height: '1px',
+  padding: 0,
+  margin: '-1px',
+  overflow: 'hidden' as const,
+  clip: 'rect(0 0 0 0)',
+  whiteSpace: 'nowrap' as const,
+  border: 0,
+}

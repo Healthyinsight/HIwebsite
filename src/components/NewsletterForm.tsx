@@ -3,7 +3,9 @@
 import { useState } from 'react'
 import Button from '@/components/Button'
 import { useToast } from '@/hooks/useToast'
-import { EMAIL_PROMISE } from '@/lib/emailCapture'
+import Link from 'next/link'
+import { useId } from 'react'
+import { EMAIL_PROMISE, VISUALLY_HIDDEN } from '@/lib/emailCapture'
 
 interface NewsletterFormProps {
   dark?: boolean
@@ -18,6 +20,7 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess, so
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
   const { toast } = useToast()
+  const inputId = useId()
 
   const inputPad = size === 'lg' ? '13px 20px' : '10px 16px'
   const fontSize = '16px'
@@ -86,11 +89,17 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess, so
 
   return (
     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <label htmlFor={inputId} style={VISUALLY_HIDDEN}>
+        Your email address
+      </label>
       <input
+        id={inputId}
         type="email"
         value={email}
         onChange={e => setEmail(e.target.value)}
         placeholder="Your email address"
+        required
+        autoComplete="email"
         disabled={status === 'loading'}
         style={{
           background: inputBg,
@@ -125,8 +134,11 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess, so
         </p>
       )}
 
-      <p style={{ fontSize: '11px', color: dark ? 'rgba(255,255,255,0.28)' : 'var(--muted)', textAlign: 'center', margin: 0 }}>
-        {EMAIL_PROMISE}
+      <p style={{ fontSize: '11px', color: dark ? 'rgba(255,255,255,0.45)' : 'var(--muted)', textAlign: 'center', margin: 0 }}>
+        {EMAIL_PROMISE}{' '}
+        <Link href="/privacy" style={{ color: dark ? 'rgba(255,255,255,0.7)' : 'var(--blue-mid)', textDecoration: 'underline' }}>
+          Privacy policy
+        </Link>
       </p>
     </form>
   )

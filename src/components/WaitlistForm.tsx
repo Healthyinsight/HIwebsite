@@ -2,11 +2,14 @@
 
 import { useState } from 'react'
 import Button from '@/components/Button'
-import { EMAIL_PROMISE } from '@/lib/emailCapture'
+import Link from 'next/link'
+import { useId } from 'react'
+import { EMAIL_PROMISE, VISUALLY_HIDDEN } from '@/lib/emailCapture'
 
 export default function WaitlistForm({ source = 'tracker_waitlist' }: { source?: string } = {}) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'duplicate' | 'error'>('idle')
+  const inputId = useId()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -44,12 +47,17 @@ export default function WaitlistForm({ source = 'tracker_waitlist' }: { source?:
   return (
     <form onSubmit={handleSubmit}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <label htmlFor={inputId} style={VISUALLY_HIDDEN}>
+          Your email address
+        </label>
         <input
+          id={inputId}
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
           placeholder="Your email address"
           required
+          autoComplete="email"
           style={{
             width: '100%',
             boxSizing: 'border-box',
@@ -87,7 +95,10 @@ export default function WaitlistForm({ source = 'tracker_waitlist' }: { source?:
       )}
 
       <p style={{ marginTop: '12px', fontSize: '13px', color: 'var(--muted)', textAlign: 'center', fontWeight: 300 }}>
-        {EMAIL_PROMISE}
+        {EMAIL_PROMISE}{' '}
+        <Link href="/privacy" style={{ color: 'var(--blue-mid)', textDecoration: 'underline' }}>
+          Privacy policy
+        </Link>
       </p>
     </form>
   )

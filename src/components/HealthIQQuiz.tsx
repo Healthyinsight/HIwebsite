@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import Link from 'next/link'
-import { EMAIL_PROMISE } from '@/lib/emailCapture'
+import { EMAIL_PROMISE, VISUALLY_HIDDEN } from '@/lib/emailCapture'
 
 const questions = [
   {
@@ -98,6 +98,7 @@ function getResult(score: number): Result {
 }
 
 export default function HealthIQQuiz() {
+  const quizIds = useId()
   const [current, setCurrent] = useState(0)
   const [answers, setAnswers] = useState<number[]>([])
   const [email, setEmail] = useState('')
@@ -248,14 +249,20 @@ export default function HealthIQQuiz() {
               Enter your email to unlock your personalised article recommendations and get the Healthy Insight newsletter.
             </p>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <label htmlFor={`${quizIds}-name`} style={VISUALLY_HIDDEN}>First name (optional)</label>
               <input
+                id={`${quizIds}-name`}
+                autoComplete="given-name"
                 type="text"
                 placeholder="First name (optional)"
                 value={name}
                 onChange={e => setName(e.target.value)}
                 style={{ background: 'white', border: '1px solid #E8E2D8', borderRadius: '100px', padding: '12px 18px', fontSize: '16px', fontFamily: 'DM Sans, sans-serif', outline: 'none' }}
               />
+              <label htmlFor={`${quizIds}-email`} style={VISUALLY_HIDDEN}>Your email address</label>
               <input
+                id={`${quizIds}-email`}
+                autoComplete="email"
                 type="email"
                 placeholder="Your email address"
                 value={email}
@@ -271,7 +278,10 @@ export default function HealthIQQuiz() {
                 {submitting ? 'Sending...' : 'Unlock my results'}
               </button>
               <p style={{ fontSize: '11px', color: 'var(--muted)', textAlign: 'center', margin: 0 }}>
-                {EMAIL_PROMISE}
+                {EMAIL_PROMISE}{' '}
+                <Link href="/privacy" style={{ color: 'var(--blue-mid)', textDecoration: 'underline' }}>
+                  Privacy policy
+                </Link>
               </p>
             </form>
           </div>
