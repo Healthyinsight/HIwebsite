@@ -37,7 +37,7 @@ export default async function HomePage() {
               </h1>
               <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)', fontWeight: 400, color: '#444440', marginBottom: '34px', lineHeight: 1.5 }}>
                 The personal training app that actually gets to know you.
-                Empowers you with personal health insights every day — then coaches you
+                Empowers you with personal health insights every day, then coaches you
                 based on your body, your schedule, and what is proven to work.
               </p>
 
@@ -258,7 +258,7 @@ export default async function HomePage() {
                   num: '01',
                   pillar: 'Recovery',
                   title: 'Sleep 8 hours, 3 nights in a row',
-                  why: 'Sleep extension produces measurable performance gains within 72 hours — reaction time, sprint speed, and mood all improve.',
+                  why: 'Sleep extension produces measurable performance gains within 72 hours: reaction time, sprint speed, and mood all improve.',
                   evidence: 'strong',
                   href: '/articles/sleep-extension-performance-protocols',
                   source: 'Sleep Extension Protocols',
@@ -267,7 +267,7 @@ export default async function HomePage() {
                   num: '02',
                   pillar: 'Motion',
                   title: 'Do one Zone 2 session this week (30–45 min)',
-                  why: 'Zone 2 training builds your aerobic base — the foundation for all other fitness. Most people skip it because it feels too easy.',
+                  why: 'Zone 2 training builds your aerobic base, the foundation for all other fitness. Most people skip it because it feels too easy.',
                   evidence: 'strong',
                   href: '/articles/zone-2-reality-check',
                   source: 'Zone 2 Reality Check',

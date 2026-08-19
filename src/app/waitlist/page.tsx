@@ -3,7 +3,7 @@ import WaitlistForm from '@/components/WaitlistForm'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Path Tracker Waitlist — Healthy Insight',
+  title: 'The Path Tracker Waitlist',
   description: "Be the first to know when The Path Tracker launches. Drop your email and we'll let you know when it's ready.",
 }
 

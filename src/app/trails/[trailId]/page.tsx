@@ -18,7 +18,7 @@ export async function generateMetadata(
   const trail = getTrailById(trailId)
   if (!trail) return {}
   return {
-    title: `${trail.name} — Learning Trail`,
+    title: `${trail.name}, Learning Trail`,
     description: trail.description,
   }
 }

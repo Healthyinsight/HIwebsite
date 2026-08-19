@@ -25,7 +25,7 @@ export default async function RecoveryPage() {
           gradient={pillarGradients.recovery}
           eyebrow="Pillar"
           title="Recovery"
-          subtitle="Sleep, stress management, and active recovery. The fundamentals that move the needle most — grounded in peer-reviewed evidence."
+          subtitle="Sleep, stress management, and active recovery. The fundamentals that move the needle most, grounded in peer-reviewed evidence."
         />
 
         <section className="section-pad" style={{ background: 'var(--warm)' }}>

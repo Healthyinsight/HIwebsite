@@ -53,7 +53,7 @@ const NAV_ITEMS: NavItem[] = [
     label: 'Tools',
     href: '#',
     children: [
-      { href: 'https://tracker.healthyinsight.eu/', label: 'Path Tracker', external: true },
+      { href: 'https://tracker.healthyinsight.eu/', label: 'The Path Tracker', external: true },
       { href: '/waitlist', label: 'Challenges App', comingSoon: true },
     ],
   },

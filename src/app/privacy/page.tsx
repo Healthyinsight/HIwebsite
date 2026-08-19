@@ -10,7 +10,7 @@ const sections = [
     title: 'What data we collect',
     body: [
       'We collect your email address when you subscribe to our newsletter.',
-      'We may collect basic, anonymised analytics data — such as page views and referral sources — through privacy-respecting tools. We do not use advertising tracking or cross-site tracking.',
+      'We may collect basic, anonymised analytics data, such as page views and referral sources, through privacy-respecting tools. We do not use advertising tracking or cross-site tracking.',
     ],
   },
   {

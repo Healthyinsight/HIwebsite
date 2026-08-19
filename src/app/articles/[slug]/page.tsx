@@ -220,7 +220,7 @@ export default async function ArticlePage(
               <div style={{ background: 'var(--sky)', borderLeft: '3px solid var(--blue-mid)', borderRadius: '14px', padding: '22px 26px', marginBottom: '36px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
                   <span style={{ fontSize: '16px' }}>📋</span>
-                  <span style={{ fontSize: '12px', fontWeight: 500, color: 'var(--navy)', letterSpacing: '1px', textTransform: 'uppercase' }}>TL;DR — Key takeaways</span>
+                  <span style={{ fontSize: '12px', fontWeight: 500, color: 'var(--navy)', letterSpacing: '1px', textTransform: 'uppercase' }}>TL;DR: Key takeaways</span>
                 </div>
                 <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
                   {article.tldr.map((bullet, i) => (
@@ -335,7 +335,7 @@ export default async function ArticlePage(
                 {nextStep ? (
                   <>
                     <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '10px' }}>
-                      Continue learning — {trail.name} · Level {article.level ?? 1}
+                      Continue learning: {trail.name} · Level {article.level ?? 1}
                     </div>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
                       {nextStep.title}
@@ -350,7 +350,7 @@ export default async function ArticlePage(
                 ) : (
                   <>
                     <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--blue-pale)', marginBottom: '10px' }}>
-                      Trail complete — {trail.name}
+                      Trail complete: {trail.name}
                     </div>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: 400, color: 'white', lineHeight: 1.3, marginBottom: '20px' }}>
                       You&apos;ve finished every article in this trail.

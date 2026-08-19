@@ -22,7 +22,7 @@ type ChatState = 'chat' | 'loading' | 'choose_path'
 const GREETING: Message = {
   role: 'assistant',
   content:
-    "Hi! I'm the HI Guide. What health goal are you working on right now — running, sleep, strength, nutrition, or something else?",
+    "Hi! I'm the HI Guide. What health goal are you working on right now, running, sleep, strength, nutrition, or something else?",
 }
 
 function mergeCtas(existing: CTA[], incoming: CTA[]): CTA[] {

@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Newsletter',
-  description: 'Evidence-based health insights straight to your inbox. 1 email per week — always sourced, always practical.',
+  description: 'Evidence-based health insights straight to your inbox. 1 email per week, always sourced, always practical.',
 }
 
 export default async function NewsletterPage() {
@@ -34,9 +34,9 @@ export default async function NewsletterPage() {
               </div>
               <div className="newsletter-expect-grid">
                 {[
-                  { icon: '📊', text: 'Research breakdowns — the key findings, explained clearly' },
-                  { icon: '🎯', text: 'Practical protocols — what to actually do with the evidence' },
-                  { icon: '🔍', text: 'Sources always linked — judge for yourself' },
+                  { icon: '📊', text: 'Research breakdowns, the key findings, explained clearly' },
+                  { icon: '🎯', text: 'Practical protocols, what to actually do with the evidence' },
+                  { icon: '🔍', text: 'Sources always linked, judge for yourself' },
                   { icon: '🚫', text: 'Zero affiliate links, zero supplement promotion' },
                 ].map(({ icon, text }) => (
                   <div key={text} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', minWidth: 0 }}>

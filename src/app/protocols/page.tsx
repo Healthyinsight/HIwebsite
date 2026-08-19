@@ -98,7 +98,7 @@ export default async function ProtocolsPage() {
                 New protocols weekly.
               </h2>
               <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, fontWeight: 300 }}>
-                Get new guides and protocols in your inbox. 1 email per week — always sourced, always practical.
+                Get new guides and protocols in your inbox. 1 email per week, always sourced, always practical.
               </p>
             </div>
             <NewsletterForm />

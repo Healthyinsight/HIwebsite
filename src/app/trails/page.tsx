@@ -4,7 +4,7 @@ import { trails } from '@/lib/trails'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Learning Trails — Healthy Insight',
+  title: 'Learning Trails, Healthy Insight',
   description: 'Structured paths through health and performance science. Progress from fundamentals to advanced research at your own pace, earn HiQ points as you go.',
 }
 
@@ -32,9 +32,9 @@ export default function TrailsPage() {
           <div className="container">
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '28px 48px' }}>
               {[
-                { icon: '📖', text: 'Click any article step to open it on Healthy Insight — it\'s automatically marked complete.' },
+                { icon: '📖', text: 'Click any article step to open it on Healthy Insight. It\'s automatically marked complete.' },
                 { icon: '⚡', text: 'Each quiz earns HiQ points. Advanced articles earn more.' },
-                { icon: '🔒', text: 'Level 4+ articles require a free email unlock — one time, for all trails.' },
+                { icon: '🔒', text: 'Level 4+ articles require a free email unlock. One time, for all trails.' },
               ].map(({ icon, text }) => (
                 <div key={icon} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', maxWidth: '300px' }}>
                   <span style={{ fontSize: '18px', flexShrink: 0, marginTop: '1px' }}>{icon}</span>

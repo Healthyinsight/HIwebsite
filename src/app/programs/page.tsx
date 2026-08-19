@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'HI Programs — Healthy Insight',
+  title: 'HI Programs, Healthy Insight',
   description: 'Structured 12-week training programs built on evidence-based protocols. Personalised to your race calendar.',
 }
 
@@ -29,7 +29,7 @@ export default function ProgramsPage() {
             </h1>
             <p style={{ fontSize: 'clamp(15px, 2.5vw, 18px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, fontWeight: 300, marginBottom: '36px' }}>
               Structured 12-week training programs personalised to your race calendar and training week.
-              Built on the same evidence as the Learning Trails — now applied directly to your schedule.
+              Built on the same evidence as the Learning Trails, now applied directly to your schedule.
             </p>
             <Link
               href="/waitlist"
@@ -90,7 +90,7 @@ export default function ProgramsPage() {
         <section style={{ background: 'var(--cream)', padding: 'clamp(32px, 6vw, 48px) 0', borderTop: '1px solid var(--sand)' }}>
           <div className="container" style={{ textAlign: 'center' }}>
             <p style={{ fontSize: '14px', color: 'var(--muted)', marginBottom: '12px' }}>
-              While you wait — keep building your knowledge base.
+              While you wait, keep building your knowledge base.
             </p>
             <Link href="/trails" style={{ fontSize: '14px', color: 'var(--blue-mid)', fontWeight: 500, textDecoration: 'none' }}>
               Explore Learning Trails →

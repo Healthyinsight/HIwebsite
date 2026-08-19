@@ -111,7 +111,7 @@ export default function AboutPage() {
               { n: '1', title: 'Start with the research', body: 'Recent peer-reviewed studies (5 years preferred), with convergence across multiple findings, not single studies. RCTs and meta-analyses are weighted most heavily.' },
               { n: '2', title: 'Check the quality', body: 'Sample sizes, methodology, and potential conflicts of interest all matter. A study funded by a supplement company gets more scrutiny than an independent university study.' },
               { n: '3', title: 'Translate to practice', body: 'Complex research becomes clear, actionable steps. No jargon, no fluff. The gap between "what studies show" and "what you should do" is where HI lives.' },
-              { n: '4', title: 'Show the sources', body: 'Every claim links to research. When evidence is uncertain or conflicting, that\'s stated clearly — not hidden or glossed over. Epistemic honesty is a feature, not a bug.' },
+              { n: '4', title: 'Show the sources', body: 'Every claim links to research. When evidence is uncertain or conflicting, that\'s stated clearly, not hidden or glossed over. Epistemic honesty is a feature, not a bug.' },
             ].map(({ n, title, body }) => (
               <div key={n} style={{ display: 'flex', gap: '20px', marginBottom: '28px' }}>
                 <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--sky)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'DM Serif Display, serif', fontSize: '16px', color: 'var(--navy)' }}>
@@ -138,7 +138,7 @@ export default function AboutPage() {
 
             <div style={{ background: 'var(--sky)', borderRadius: '16px', padding: '24px 28px', marginBottom: '32px', borderLeft: '3px solid var(--blue-mid)' }}>
               <p style={{ fontSize: '16px', color: 'var(--navy)', lineHeight: 1.7, fontWeight: 400, margin: 0 }}>
-                <strong>Important disclaimer:</strong> I&apos;m not a physician, PhD, or licensed dietitian. I synthesise published, peer-reviewed research and translate it into practical guidance. I&apos;m a careful reader of studies — not a producer of them. Nothing on HI constitutes medical advice.
+                <strong>Important disclaimer:</strong> I&apos;m not a physician, PhD, or licensed dietitian. I synthesise published, peer-reviewed research and translate it into practical guidance. I&apos;m a careful reader of studies, not a producer of them. Nothing on HI constitutes medical advice.
               </p>
             </div>
 
@@ -187,7 +187,7 @@ export default function AboutPage() {
               Filip Berggren is the founder of Healthy Insight. Frustrated by wellness clickbait and influencer trends without evidence, he started HI to translate research into practical action.
             </p>
             <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, marginBottom: '32px', fontWeight: 300 }}>
-              He reads peer-reviewed studies, checks the data, and shares what actually works — grounded in physiology, not marketing. HI is the resource he wished existed when he started.
+              He reads peer-reviewed studies, checks the data, and shares what actually works, grounded in physiology, not marketing. HI is the resource he wished existed when he started.
             </p>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
               <a href="mailto:filipb@healthyinsight.eu"
