@@ -4,6 +4,8 @@ import ArticleScrollUI from '@/components/ArticleScrollUI'
 import Footer from '@/components/Footer'
 import { mdxComponents } from '@/components/MdxComponents'
 import { getArticles } from '@/lib/articles'
+import References, { makeCite } from '@/components/References'
+import { getSourcesForSlug } from '@/lib/sources'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -49,6 +51,9 @@ export default async function ArticlePage(
 
   const badge = article.evidenceStrength ? evidenceBadgeStyles[article.evidenceStrength] : null
 
+  // ── Reference list, and the <Cite /> marker bound to it ─
+  const sources = getSourcesForSlug(slug)
+
   // ── MDX body (null when no local file exists) ─
   const mdxFilePath = path.join(process.cwd(), 'content', 'articles', `${slug}.mdx`)
   let mdxContent: ReactElement | null = null
@@ -56,7 +61,7 @@ export default async function ArticlePage(
     const source = await fs.readFile(mdxFilePath, 'utf8')
     const { content } = await compileMDX({
       source,
-      components: mdxComponents,
+      components: { ...mdxComponents, Cite: makeCite(sources) },
       options: { parseFrontmatter: true },
     })
     mdxContent = content
@@ -255,6 +260,9 @@ export default async function ArticlePage(
                 )}
               </div>
             )}
+
+            {/* References — renders nothing when the article has no sources */}
+            <References sources={sources} />
 
             {/* Interactive progress — mark read + micro-quiz for all trail articles */}
             {trail !== null && (

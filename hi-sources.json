@@ -1,0 +1,768 @@
+{
+  "_comment": "Generated from Notion. Regenerate with: npm run sync:sources. Do not hand-edit.",
+  "generated_at": "2026-08-19",
+  "library_size": 172,
+  "sources": {
+    "03d4283c": {
+      "citation": "Arnal, P. J., et al. (2016). Benefits of sleep extension on sustained attention and sleep pressure. Sleep, 38(12), 1935-1943.",
+      "study_url": "https://journals.lww.com/acsm-msse/Fulltext/2016/08000/Sleep_Extension_before_Sleep_Loss__Effects_on.20.aspx",
+      "study_type": "RCT",
+      "year": 2016,
+      "quality": "High"
+    },
+    "04f61789": {
+      "citation": "Xie, L., et al. (2013). Sleep drives metabolite clearance. Science, 342(6156), 373-377.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/24136970/",
+      "study_type": "RCT",
+      "year": 2013,
+      "quality": "High"
+    },
+    "057610ae": {
+      "citation": "Mandsager, K., et al. (2018). Association Between Cardiorespiratory Fitness and Long-term Mortality. JAMA Network Open.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/30646252/",
+      "study_type": "Observational study",
+      "year": 2018,
+      "quality": "High"
+    },
+    "14d9bcab": {
+      "citation": "Seiler, S. (2010). Performance Adaptations to Training Intensity Distribution. Sports Medicine.",
+      "study_url": "https://journals.humankinetics.com/view/journals/ijspp/5/3/article-p276.xml",
+      "study_type": "Review paper",
+      "year": 2010,
+      "quality": "High"
+    },
+    "14fd5c02": {
+      "citation": "Fullagar, H. H. K., et al. (2025). Caffeine and Sports Performance: The Conflict. Sports Medicine, 55, 1579-1592.",
+      "study_url": "https://link.springer.com/article/10.1007/s40279-025-02245-y",
+      "study_type": "Review paper",
+      "year": 2025,
+      "quality": "High"
+    },
+    "17f01286": {
+      "citation": "Leproult, R., & Van Cauter, E. (2011). Effect of 1 Week of Sleep Restriction on Testosterone Levels. JAMA, 305(21), 2173-2174.",
+      "study_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4445839/",
+      "study_type": "RCT",
+      "year": 2011,
+      "quality": "High"
+    },
+    "1cbd3d42": {
+      "citation": "Hickmott, L. M., et al. (2022). The effect of load and volume autoregulation on muscular strength and hypertrophy. Sports Medicine Open.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/34989935/",
+      "study_type": "Systematic review",
+      "year": 2022,
+      "quality": "High"
+    },
+    "1df6a565": {
+      "citation": "Bacon, A. P., et al. (2013). VO₂max Trainability and HIIT: A Meta-Analysis. PLoS One.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/24066036/",
+      "study_type": "Meta-analysis",
+      "year": 2013,
+      "quality": "High"
+    },
+    "27128e33": {
+      "citation": "Ruple, B. A., et al. (2023). The effects of resistance training to near failure on strength, hypertrophy, and motor unit adaptations. Physiological Reports.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/36698251/",
+      "study_type": "RCT",
+      "year": 2023,
+      "quality": "High"
+    },
+    "29c3e1cc": {
+      "citation": "Chalmers, T., et al. (2022). Associations between Sleep Quality and Heart Rate Variability. International Journal of Environmental Research and Public Health, 19(9), 5770.",
+      "study_url": "https://www.mdpi.com/1660-4601/19/9/5770",
+      "study_type": "Observational study",
+      "year": 2022,
+      "quality": "High"
+    },
+    "2bb80b10": {
+      "citation": "Currier, B. S., et al. (2023). Resistance training prescription for muscle strength and hypertrophy in healthy adults. British Journal of Sports Medicine.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/37068907/",
+      "study_type": "Meta-analysis",
+      "year": 2023,
+      "quality": "High"
+    },
+    "381e989d": {
+      "citation": "Okamoto-Mizuno, K., & Mizuno, K. (2012). Effects of thermal environment on sleep and circadian rhythm. Journal of Physiological Anthropology, 31(1), 14.",
+      "study_url": "https://jphysiolanthropol.biomedcentral.com/articles/10.1186/1880-6805-31-14",
+      "study_type": "Review paper",
+      "year": 2012,
+      "quality": "High"
+    },
+    "387b1052": {
+      "citation": "Balsalobre-Fernández, C., et al. (2016). Effects of Strength Training on Injury Prevention in Runners: A Meta-Analysis. Sports Medicine.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/26694507/",
+      "study_type": "Meta-analysis",
+      "year": 2016,
+      "quality": "High"
+    },
+    "3b347330": {
+      "citation": "Lastella, M., et al. (2021). To nap or not to nap? A systematic review evaluating napping behavior in athletes. Nature and Science of Sleep, 13, 841-862.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/34122458/",
+      "study_type": "Systematic review",
+      "year": 2021,
+      "quality": "High"
+    },
+    "3e66e909": {
+      "citation": "Daaloul, H., et al. (2021). Benefits of Daytime Napping Opportunity in Physically Active Participants. Sports Medicine, 51(10), 2115-2146.",
+      "study_url": "https://link.springer.com/article/10.1007/s40279-021-01482-1",
+      "study_type": "Systematic review",
+      "year": 2021,
+      "quality": "High"
+    },
+    "40c1d5e5": {
+      "citation": "Walker, M. P., & Stickgold, R. (2005). Sleep-dependent memory consolidation. Nature, 437(7063), 1272-1278.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/16251952/",
+      "study_type": "Review paper",
+      "year": 2005,
+      "quality": "High"
+    },
+    "4bbe21cf": {
+      "citation": "Plotkin, D. L., et al. (2022). Progressive overload without progressing load? The effects of load or repetition progression on muscular adaptations. PeerJ.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/35979026/",
+      "study_type": "RCT",
+      "year": 2022,
+      "quality": "High"
+    },
+    "5315f038": {
+      "citation": "Romyn, G., et al. (2016). Sleep, anxiety and electronic device use by athletes. European Journal of Sport Science, 16(3), 301-308.",
+      "study_url": "https://acuresearchbank.acu.edu.au/item/865q5/sleep-anxiety-and-electronic-device-use-by-athletes-in-the-training-and-competition-environments",
+      "study_type": "Observational study",
+      "year": 2016,
+      "quality": "High"
+    },
+    "53c4c43f": {
+      "citation": "Vitale, J. A., & Weydahl, A. (2017). Chronotype, physical activity, and sport performance: A systematic review. Sports Medicine, 47(9), 1859-1868.",
+      "study_url": "https://link.springer.com/article/10.1007/s40279-017-0741-z",
+      "study_type": "Systematic review",
+      "year": 2017,
+      "quality": "High"
+    },
+    "5995c7b6": {
+      "citation": "Craven, J., et al. (2022). Effects of acute sleep loss on physical performance: A systematic and meta-analytical review. Sports Medicine, 52(11), 2669-2690.",
+      "study_url": "https://link.springer.com/article/10.1007/s40279-022-01706-y",
+      "study_type": "Meta-analysis",
+      "year": 2022,
+      "quality": "High"
+    },
+    "59c50c08": {
+      "citation": "Zhang, P., et al. (2025). Effects of post-exercise stretching versus no stretching on lower limb muscle recovery and performance: a meta-analysis. Frontiers in Physiology.",
+      "study_url": "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2025.1674871/full",
+      "study_type": "Meta-analysis",
+      "year": 2025,
+      "quality": "High"
+    },
+    "5bb15fef": {
+      "citation": "Liu, P. Y., & Reddy, R. T. (2022). Sleep, testosterone and cortisol balance, and ageing men. Reviews in Endocrine and Metabolic Disorders, 23(6), 1323-1339.",
+      "study_url": "https://link.springer.com/article/10.1007/s11154-022-09755-4",
+      "study_type": "Review paper",
+      "year": 2022,
+      "quality": "High"
+    },
+    "5c58742e": {
+      "citation": "Juliff, L. E., et al. (2015). Understanding sleep disturbance in athletes prior to important competitions. Journal of Science and Medicine in Sport, 18(1), 13-18.",
+      "study_url": "https://www.jsams.org/article/S1440-2440(14)00021-1/fulltext",
+      "study_type": "Observational study",
+      "year": 2015,
+      "quality": "High"
+    },
+    "5ca7c379": {
+      "citation": "Locke, E. A., & Latham, G. P. (2002). Building a practically useful theory of goal setting and task motivation. American Psychologist, 57(9), 705-717.",
+      "study_url": "https://doi.org/10.1037/0003-066X.57.9.705",
+      "study_type": "Review paper",
+      "year": 2002,
+      "quality": "High"
+    },
+    "65869789": {
+      "citation": "Issa, T., et al. (2025). Neuroendocrine circuit for sleep-dependent growth hormone release. Cell, 188(13), 3412-3426.",
+      "study_url": "https://www.sciencedirect.com/science/article/pii/S0092867425006269",
+      "study_type": "RCT",
+      "year": 2025,
+      "quality": "High"
+    },
+    "6af779cb": {
+      "citation": "Walsh, N. P., et al. (2021). Sleep and the athlete: narrative review and 2021 expert consensus recommendations. British Journal of Sports Medicine, 55(7), 356-368.",
+      "study_url": "https://bjsm.bmj.com/content/55/7/356",
+      "study_type": "Expert consensus",
+      "year": 2021,
+      "quality": "High"
+    },
+    "6f8635cc": {
+      "citation": "Levine, B. D. (2008). VO₂max: What Do We Know, and What Do We Still Need to Know? The Journal of Physiology.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/18006574/",
+      "study_type": "Review paper",
+      "year": 2008,
+      "quality": "High"
+    },
+    "72669372": {
+      "citation": "Laukkanen, J. A., et al. (2022). Objectively Assessed Cardiorespiratory Fitness and All-Cause Mortality Risk. Mayo Clinic Proceedings.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/35562197/",
+      "study_type": "Meta-analysis",
+      "year": 2022,
+      "quality": "High"
+    },
+    "74e962ab": {
+      "citation": "Chang, A. M., et al. (2015). Evening light-emitting eReaders affect sleep. PNAS, 112(4), 1232-1237.",
+      "study_url": "https://www.pnas.org/doi/10.1073/pnas.1418490112",
+      "study_type": "RCT",
+      "year": 2015,
+      "quality": "High"
+    },
+    "7e363855": {
+      "citation": "Singer, A., et al. (2024). Give it a rest: a systematic review with Bayesian meta-analysis on the effect of inter-set rest interval duration on muscle hypertrophy. Frontiers in Sports and Active Living, 6, 1429789.",
+      "study_url": "https://www.frontiersin.org/articles/10.3389/fspor.2024.1429789/full",
+      "study_type": "Meta-analysis",
+      "year": 2024,
+      "quality": "High"
+    },
+    "8114c967": {
+      "citation": "Edinger, J. D., et al. (2021). Behavioral and psychological treatments for chronic insomnia disorder in adults. Journal of Clinical Sleep Medicine, 17(2), 255-262.",
+      "study_url": "https://jcsm.aasm.org/doi/10.5664/jcsm.8986",
+      "study_type": "Systematic review",
+      "year": 2021,
+      "quality": "High"
+    },
+    "813e9f7e": {
+      "citation": "Vandekerckhove, M., & Wang, Y. L. (2018). Emotion regulation and sleep. AIMS Neuroscience, 5(1), 1-17.",
+      "study_url": "https://www.aimspress.com/article/10.3934/Neuroscience.2018.1.1",
+      "study_type": "Review paper",
+      "year": 2018,
+      "quality": "High"
+    },
+    "85364d8b": {
+      "citation": "Eddens, L., van Someren, K., & Howatson, G. (2018). The Role of Intra-Session Exercise Sequence in the Interference Effect: A Systematic Review with Meta-Analysis. Sports Medicine, 48(1), 177-188.",
+      "study_url": "https://link.springer.com/article/10.1007/s40279-017-0784-1",
+      "study_type": "Meta-analysis",
+      "year": 2018,
+      "quality": "High"
+    },
+    "86706ae5": {
+      "citation": "Stöggl, T., & Sperlich, B. (2015). Polarized Training Has Greater Impact on Endurance Performance. Frontiers in Physiology.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/26578968/",
+      "study_type": "RCT",
+      "year": 2015,
+      "quality": "High"
+    },
+    "86759d74": {
+      "citation": "Bouchard, C., et al. (1999). Familial Aggregation of VO₂max Response (HERITAGE). Journal of Applied Physiology.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/10484570/",
+      "study_type": "RCT",
+      "year": 1999,
+      "quality": "High"
+    },
+    "89895049": {
+      "citation": "Dempsey, J. A., et al. (2006). Consequences of Exercise-Induced Respiratory Muscle Work. Respiratory Physiology & Neurobiology.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/16616716/",
+      "study_type": "RCT",
+      "year": 2006,
+      "quality": "High"
+    },
+    "978a1d23": {
+      "citation": "National Strength and Conditioning Association (2021). Programming Framework for Tactical Strength and Conditioning.",
+      "study_url": "https://www.nsca.com/",
+      "study_type": "Expert consensus",
+      "year": 2021,
+      "quality": "High"
+    },
+    "9b48b0a9": {
+      "citation": "Chinoy, E. D., et al. (2021). Performance of seven consumer sleep-tracking devices. Sleep, 44(5), zsaa291.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/33378539/",
+      "study_type": "RCT",
+      "year": 2021,
+      "quality": "High"
+    },
+    "9b7292a4": {
+      "citation": "Cadegiani, F. A., & Kater, C. E. (2017). Hormonal aspects of overtraining syndrome: a systematic review. BMC Sports Science, Medicine and Rehabilitation.",
+      "study_url": "https://bmcsportsscimedrehabil.biomedcentral.com/articles/10.1186/s13102-017-0079-8",
+      "study_type": "Systematic review",
+      "year": 2017,
+      "quality": "Medium"
+    },
+    "9ce37a83": {
+      "citation": "Fullagar, H. H., et al. (2015). Sleep and athletic performance. Sports Medicine, 45(2), 161-186.",
+      "study_url": "https://link.springer.com/article/10.1007/s40279-014-0260-0",
+      "study_type": "Review paper",
+      "year": 2015,
+      "quality": "High"
+    },
+    "9eb8a65c": {
+      "citation": "Prather, A. A., et al. (2015). Behaviorally Assessed Sleep and Susceptibility to the Common Cold. Sleep, 38(9), 1353-1359.",
+      "study_url": "https://academic.oup.com/sleep/article/38/9/1353/2417971",
+      "study_type": "Observational study",
+      "year": 2015,
+      "quality": "High"
+    },
+    "a1cbea5b": {
+      "citation": "Roach, G. D., & Sargent, C. (2019). Interventions to minimize jet lag. Frontiers in Physiology, 10, Article 927.",
+      "study_url": "https://www.frontiersin.org/articles/10.3389/fphys.2019.00927/full",
+      "study_type": "Review paper",
+      "year": 2019,
+      "quality": "High"
+    },
+    "a28d091e": {
+      "citation": "Silva, A., et al. (2021). Sleep extension in athletes: what we know so far. A systematic review. Sleep Medicine, 77, 128-135.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/33264743/",
+      "study_type": "Systematic review",
+      "year": 2021,
+      "quality": "High"
+    },
+    "a485d721": {
+      "citation": "Buchheit, M., & Laursen, P. B. (2013). High-Intensity Interval Training, Solutions to the Programming Puzzle. Sports Medicine.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/23539308",
+      "study_type": "Review paper",
+      "year": 2013,
+      "quality": "High"
+    },
+    "a48e01a6": {
+      "citation": "Boxman-Zeevi, N., et al. (2022). Comparison Between RPE-Based Training and Percentage-Based Training in Novice and Trained Individuals. Frontiers in Sports and Active Living, 4, 858722.",
+      "study_url": "https://www.frontiersin.org/articles/10.3389/fspor.2022.858722/full",
+      "study_type": "RCT",
+      "year": 2022,
+      "quality": "High"
+    },
+    "a84f4abb": {
+      "citation": "Ma, X., et al. (2023). VO₂max (VO₂peak) in Elite Athletes Under HIIT: A Meta-Analysis. Heliyon.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/37346345/",
+      "study_type": "Meta-analysis",
+      "year": 2023,
+      "quality": "High"
+    },
+    "ae33eaf6": {
+      "citation": "Hamarsland, H., et al. (2022). Equal-volume strength training with different training frequencies. Frontiers in Physiology.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/35059033/",
+      "study_type": "RCT",
+      "year": 2022,
+      "quality": "High"
+    },
+    "b0ec64c6": {
+      "citation": "Lally, P., et al. (2010). How are habits formed: Modelling habit formation in the real world. European Journal of Social Psychology, 40(6), 998-1009.",
+      "study_url": "https://doi.org/10.1002/ejsp.674",
+      "study_type": "Observational study",
+      "year": 2010,
+      "quality": "Medium"
+    },
+    "b135b45d": {
+      "citation": "Lauersen, J. B., Andersen, T. E., & Andersen, L. B. (2018). Strength training as superior, dose-dependent and safe prevention of acute and overuse sports injuries: a systematic review, qualitative analysis and meta-analysis. British Journal of Sports Medicine, 52(24), 1557-1563.",
+      "study_url": "https://bjsm.bmj.com/content/52/24/1557",
+      "study_type": "Meta-analysis",
+      "year": 2018,
+      "quality": "High"
+    },
+    "b53863a4": {
+      "citation": "Bernárdez-Vázquez, R., et al. (2022). Resistance Training Variables for Optimization of Muscle Hypertrophy: An Umbrella Review. Frontiers in Sports and Active Living, 4, 949021.",
+      "study_url": "https://www.frontiersin.org/articles/10.3389/fspor.2022.949021/full",
+      "study_type": "Umbrella review",
+      "year": 2022,
+      "quality": "High"
+    },
+    "b7746d02": {
+      "citation": "World Health Organization (2020). Guidelines on Physical Activity and Sedentary Behaviour.",
+      "study_url": "https://www.who.int/publications/i/item/9789240015128",
+      "study_type": "Expert consensus",
+      "year": 2020,
+      "quality": "High"
+    },
+    "b9484618": {
+      "citation": "Grgic, J., et al. (2018). Effect of Resistance Training Frequency on Gains in Muscular Strength: A Systematic Review and Meta-Analysis. Sports Medicine, 48(5), 1207-1220.",
+      "study_url": "https://link.springer.com/article/10.1007/s40279-018-0872-x",
+      "study_type": "Meta-analysis",
+      "year": 2018,
+      "quality": "High"
+    },
+    "c2f39624": {
+      "citation": "van Paridon, K. N., et al. (2017). The anticipatory stress response to sport competition: a systematic review with meta-analysis of cortisol reactivity. BMJ Open Sport & Exercise Medicine.",
+      "study_url": "https://bmjopensem.bmj.com/content/3/1/e000261",
+      "study_type": "Meta-analysis",
+      "year": 2017,
+      "quality": "Medium"
+    },
+    "c700a226": {
+      "citation": "Gollwitzer, P. M., & Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis. Advances in Experimental Social Psychology, 38, 69-119.",
+      "study_url": "https://doi.org/10.1016/S0065-2601(06)38002-1",
+      "study_type": "Meta-analysis",
+      "year": 2006,
+      "quality": "High"
+    },
+    "c7de1aa2": {
+      "citation": "Afonso, J., et al. (2021). The Effectiveness of Post-exercise Stretching in Short-Term and Delayed Recovery of Strength, Range of Motion and Delayed Onset Muscle Soreness: A Systematic Review and Meta-Analysis of RCTs. Frontiers in Physiology.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/34025459/",
+      "study_type": "Systematic review",
+      "year": 2021,
+      "quality": "Medium"
+    },
+    "cad1f8a5": {
+      "citation": "Mountjoy, M., et al. (2024). 2023 International Olympic Committee (IOC) consensus statement on Relative Energy Deficiency in Sport (REDs). British Journal of Sports Medicine.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/37752011/",
+      "study_type": "Expert consensus",
+      "year": 2024,
+      "quality": "High"
+    },
+    "cbb55232": {
+      "citation": "Gallant, T. L., et al. (2024). Low Energy Availability and Relative Energy Deficiency in Sport: A Systematic Review and Meta-analysis. Sports Medicine.",
+      "study_url": "https://link.springer.com/article/10.1007/s40279-024-02130-0",
+      "study_type": "Systematic review",
+      "year": 2024,
+      "quality": "High"
+    },
+    "cbd8360f": {
+      "citation": "Paoli, A., et al. (2017). Resistance Training with Single vs. Multi-joint Exercises at Equal Total Load Volume: Effects on Body Composition, Cardiorespiratory Fitness, and Muscle Strength. Frontiers in Physiology, 8, 1105.",
+      "study_url": "https://www.frontiersin.org/articles/10.3389/fphys.2017.01105/full",
+      "study_type": "RCT",
+      "year": 2017,
+      "quality": "High"
+    },
+    "d1020f01": {
+      "citation": "Scribbans, T. D., et al. (2016). The Effect of Training Intensity on VO₂max: A Meta-Regression. International Journal of Exercise Science.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/27182424/",
+      "study_type": "Meta-analysis",
+      "year": 2016,
+      "quality": "High"
+    },
+    "d60dcee3": {
+      "citation": "Janse van Rensburg, D. C., et al. (2021). Managing Travel Fatigue and Jet Lag in Athletes. Sports Medicine, 51(9), 2029-2050.",
+      "study_url": "https://link.springer.com/article/10.1007/s40279-021-01502-0",
+      "study_type": "Expert consensus",
+      "year": 2021,
+      "quality": "High"
+    },
+    "d64ae8a3": {
+      "citation": "Leota, J., et al. (2025). Dose-response relationship between evening exercise and sleep. Nature Scientific Reports, 15, Article 3463.",
+      "study_url": "https://www.nature.com/articles/s41467-025-58271-x",
+      "study_type": "Observational study",
+      "year": 2025,
+      "quality": "High"
+    },
+    "e3886c92": {
+      "citation": "Lea, J. W. D., et al. (2022). Convergent Validity of Ratings of Perceived Exertion During Resistance Exercise in Healthy Participants: A Systematic Review and Meta-Analysis. Sports Medicine Open, 8(1), 2.",
+      "study_url": "https://sportsmedicine-open.springeropen.com/articles/10.1186/s40798-021-00386-8",
+      "study_type": "Meta-analysis",
+      "year": 2022,
+      "quality": "High"
+    },
+    "e504e6ae": {
+      "citation": "Colrain, I. M., et al. (2014). Alcohol and the sleeping brain. Handbook of Clinical Neurology, 125, 415-431.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/25307589/",
+      "study_type": "Review paper",
+      "year": 2014,
+      "quality": "High"
+    },
+    "e5879669": {
+      "citation": "Van Cauter, E., et al. (2008). Metabolic consequences of sleep loss. Sleep Medicine, 9(Suppl 1), S23-S28.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/18929315/",
+      "study_type": "Review paper",
+      "year": 2008,
+      "quality": "High"
+    },
+    "e83ffb07": {
+      "citation": "Lok, R., et al. (2020). Time-of-day performance variation in Olympic swimmers. Scientific Reports, 10, 18798.",
+      "study_url": "https://www.nature.com/articles/s41598-020-75219-5",
+      "study_type": "Observational study",
+      "year": 2020,
+      "quality": "High"
+    },
+    "e8991184": {
+      "citation": "Mah, C. D., et al. (2011). Sleep extension and athletic performance. SLEEP, 34(7), 943-950.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/21731144/",
+      "study_type": "RCT",
+      "year": 2011,
+      "quality": "High"
+    },
+    "ec1311e1": {
+      "citation": "Stutz, J., et al. (2019). Effects of Evening High-Intensity Exercise on Sleep. Sleep Medicine Reviews, 44, 82-93.",
+      "study_url": "https://www.sciencedirect.com/science/article/abs/pii/S1087079221001209",
+      "study_type": "Meta-analysis",
+      "year": 2019,
+      "quality": "High"
+    },
+    "ec49c5e9": {
+      "citation": "Nielsen, R. O., et al. (2013). Novice runners benefit from gradual mileage progression. BMJ Open Sport & Exercise Medicine.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/25155475/",
+      "study_type": "Observational study",
+      "year": 2013,
+      "quality": "High"
+    },
+    "f17f4ca7": {
+      "citation": "Gardiner, C., et al. (2023). The effect of caffeine on subsequent sleep: A systematic review and meta-analysis. Sleep Medicine Reviews, 69, Article 101764.",
+      "study_url": "https://acuresearchbank.acu.edu.au/item/8zqv7/the-effect-of-caffeine-on-subsequent-sleep-a-systematic-review-and-meta-analysis",
+      "study_type": "Meta-analysis",
+      "year": 2023,
+      "quality": "High"
+    },
+    "f18b658f": {
+      "citation": "Costa, J. A., et al. (2023). Sleep in shared vs individual rooms during training camps. International Journal of Sports Physiology and Performance, 18(1), 105-108.",
+      "study_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9913052/",
+      "study_type": "RCT",
+      "year": 2023,
+      "quality": "High"
+    },
+    "f4d259eb": {
+      "citation": "Helgerud, J., et al. (2007). Aerobic High-Intensity Intervals Improve VO₂max More Than Moderate Training. Medicine & Science in Sports & Exercise.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/17414804",
+      "study_type": "RCT",
+      "year": 2007,
+      "quality": "High"
+    },
+    "f601e54f": {
+      "citation": "Chaves, T. S., et al. (2024). Effects of resistance training overload progression protocols on strength and muscle mass. International Journal of Sports Medicine.",
+      "study_url": "https://pubmed.ncbi.nlm.nih.gov/38286409/",
+      "study_type": "Systematic review",
+      "year": 2024,
+      "quality": "High"
+    },
+    "f6fd34b6": {
+      "citation": "Schumann, M., et al. (2022). Compatibility of Concurrent Aerobic and Strength Training for Skeletal Muscle Size and Function: An Updated Systematic Review and Meta-Analysis. Sports Medicine, 52(3), 601-612.",
+      "study_url": "https://link.springer.com/article/10.1007/s40279-021-01587-7",
+      "study_type": "Meta-analysis",
+      "year": 2022,
+      "quality": "High"
+    },
+    "f7be4412": {
+      "citation": "Brown, M. J., et al. (2017). Time Course of Neuromuscular Adaptations to Resistance Training. Journal of Strength and Conditioning Research, 31(6), 1471-1479.",
+      "study_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5462902/",
+      "study_type": "RCT",
+      "year": 2017,
+      "quality": "High"
+    },
+    "fd0524cd": {
+      "citation": "Hostler, D., et al. (2001). The Effectiveness of 0.5-lb Increments in Progressive Resistance Exercise. Journal of Strength and Conditioning Research, 15(1), 86-91.",
+      "study_url": "https://journals.lww.com/nsca-jscr/abstract/2001/02000/the_effectiveness_of_0_5_lb_increments_in.14.aspx",
+      "study_type": "RCT",
+      "year": 2001,
+      "quality": "High"
+    }
+  },
+  "articles": [
+    {
+      "slug": "build-your-running-base-8-12-weeks-to-sustainable-speed",
+      "notion_title": "Build your running base: 8–12 weeks to sustainable speed",
+      "category": "motion",
+      "hi_level": "Level 1",
+      "trail": "Running Progression Trail",
+      "source_ids": [
+        "b7746d02",
+        "ec49c5e9",
+        "86706ae5",
+        "387b1052",
+        "14d9bcab"
+      ],
+      "source_count": 5
+    },
+    {
+      "slug": "fitness-recovery-what-works",
+      "notion_title": "Fitness Recovery: What Works vs What's Hype",
+      "category": "recovery",
+      "hi_level": "Level 2",
+      "trail": "Solo",
+      "source_ids": [
+        "cbb55232",
+        "cad1f8a5",
+        "59c50c08",
+        "c7de1aa2",
+        "c2f39624",
+        "9b7292a4"
+      ],
+      "source_count": 6
+    },
+    {
+      "slug": "how-to-improve-vo2max-12-week-plan",
+      "notion_title": "How to Improve Your VO₂ Max: The 12-Week Plan",
+      "category": "motion",
+      "hi_level": "Level 2",
+      "trail": "VO₂ Max Mastery",
+      "source_ids": [
+        "f4d259eb",
+        "a485d721"
+      ],
+      "source_count": 2
+    },
+    {
+      "slug": "managing-sleep-around-competition",
+      "notion_title": "Managing Sleep Around Competition & Travel",
+      "category": "recovery",
+      "hi_level": "Level 4",
+      "trail": "Sleep Science Trail",
+      "source_ids": [
+        "5c58742e",
+        "6af779cb",
+        "d60dcee3",
+        "a1cbea5b",
+        "f18b658f",
+        "29c3e1cc"
+      ],
+      "source_count": 6
+    },
+    {
+      "slug": "set-goals-that-last-smart-goals-lasting-motivation",
+      "notion_title": "Set Goals That Last: A Guide to SMART Goals and Lasting Motivation",
+      "category": "mindset",
+      "hi_level": "Level 2",
+      "trail": "Goal Setting Mastery",
+      "source_ids": [
+        "c700a226",
+        "5ca7c379",
+        "b0ec64c6"
+      ],
+      "source_count": 3
+    },
+    {
+      "slug": "sleep-and-recovery-guide-for-athletes",
+      "notion_title": "Sleep and Recovery: A Guide for Athletes",
+      "category": "recovery",
+      "hi_level": "Level 2",
+      "trail": "Sleep Science Trail",
+      "source_ids": [
+        "3e66e909",
+        "f17f4ca7",
+        "14fd5c02",
+        "d64ae8a3",
+        "ec1311e1",
+        "5315f038"
+      ],
+      "source_count": 6
+    },
+    {
+      "slug": "sleep-extension-performance-protocols",
+      "notion_title": "Sleep Extension & Performance Protocols: A Deep Dive",
+      "category": "recovery",
+      "hi_level": "Level 5",
+      "trail": "Sleep Science Trail",
+      "source_ids": [
+        "e8991184",
+        "e5879669",
+        "04f61789",
+        "40c1d5e5",
+        "813e9f7e",
+        "a28d091e",
+        "3b347330",
+        "e83ffb07",
+        "53c4c43f",
+        "03d4283c",
+        "5c58742e",
+        "6af779cb",
+        "d60dcee3"
+      ],
+      "source_count": 13
+    },
+    {
+      "slug": "sleep-for-performance",
+      "notion_title": "Sleep for Performance",
+      "category": "recovery",
+      "hi_level": "Level 1",
+      "trail": "Sleep Science Trail",
+      "source_ids": [
+        "e8991184",
+        "e5879669",
+        "04f61789",
+        "6af779cb",
+        "5995c7b6",
+        "65869789",
+        "9eb8a65c",
+        "17f01286",
+        "5bb15fef"
+      ],
+      "source_count": 9
+    },
+    {
+      "slug": "sleep-quality-optimization",
+      "notion_title": "Sleep Quality Optimization: Beyond Duration",
+      "category": "recovery",
+      "hi_level": "Level 3",
+      "trail": "Sleep Science Trail",
+      "source_ids": [
+        "9b48b0a9",
+        "e8991184",
+        "381e989d",
+        "74e962ab",
+        "8114c967",
+        "9ce37a83",
+        "e5879669",
+        "04f61789",
+        "40c1d5e5",
+        "813e9f7e",
+        "e504e6ae",
+        "29c3e1cc"
+      ],
+      "source_count": 12
+    },
+    {
+      "slug": "strength-progression-5-steps-to-sustainable-gains",
+      "notion_title": "Strength Progression: 5 Steps to Sustainable Gains",
+      "category": "motion",
+      "hi_level": "Level 2",
+      "trail": "Strength Mastery",
+      "source_ids": [
+        "2bb80b10",
+        "4bbe21cf",
+        "27128e33",
+        "ae33eaf6",
+        "1cbd3d42"
+      ],
+      "source_count": 5
+    },
+    {
+      "slug": "strength-training-for-beginners",
+      "notion_title": "Strength Training for Beginners – Your Evidence-Based Starting Point",
+      "category": "motion",
+      "hi_level": "Level 1",
+      "trail": "Strength Mastery",
+      "source_ids": [
+        "b135b45d",
+        "f6fd34b6",
+        "85364d8b",
+        "f7be4412",
+        "b9484618",
+        "b53863a4",
+        "978a1d23",
+        "cbd8360f",
+        "e3886c92",
+        "a48e01a6",
+        "f601e54f",
+        "fd0524cd",
+        "7e363855"
+      ],
+      "source_count": 13
+    },
+    {
+      "slug": "vo2-max-4x4-intervals-evidence-based-protocol",
+      "notion_title": "VO₂ Max with 4×4 – How to Structure the Block Right",
+      "category": "motion",
+      "hi_level": "Level 2",
+      "trail": "VO₂ Max Mastery",
+      "source_ids": [
+        "f4d259eb",
+        "a84f4abb",
+        "d1020f01",
+        "a485d721",
+        "6f8635cc",
+        "86759d74"
+      ],
+      "source_count": 6
+    },
+    {
+      "slug": "vo2-max-why-this-number-predicts-longevity",
+      "notion_title": "VO₂ Max: Why This Number Predicts How Long You'll Live",
+      "category": "motion",
+      "hi_level": "Level 1",
+      "trail": "VO₂ Max Mastery",
+      "source_ids": [
+        "72669372",
+        "057610ae",
+        "a84f4abb",
+        "d1020f01",
+        "1df6a565"
+      ],
+      "source_count": 5
+    },
+    {
+      "slug": "vo2max-physiological-mechanisms",
+      "notion_title": "VO₂ Max: Physiological Mechanisms & Research Frontiers",
+      "category": "motion",
+      "hi_level": "Level 4",
+      "trail": "VO₂ Max Mastery",
+      "source_ids": [
+        "86759d74",
+        "6f8635cc",
+        "89895049"
+      ],
+      "source_count": 3
+    }
+  ]
+}
