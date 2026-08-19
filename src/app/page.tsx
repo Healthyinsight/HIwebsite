@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import Footer from '@/components/Footer'
 import ArticleCard from '@/components/ArticleCard'
 import { getLatestArticlesAsync } from '@/lib/articles'
+import { getSiteStats } from '@/lib/siteStats'
 
 export const revalidate = 60
 import NewsletterForm from '@/components/NewsletterForm'
@@ -14,6 +15,7 @@ import HeroAnimation from '@/components/HeroAnimationLoader'
 
 export default async function HomePage() {
   const latest = await getLatestArticlesAsync(6)
+  const stats = await getSiteStats()
   const featuredTrails = getActiveTrails().slice(0, 3)
 
   return (
@@ -119,7 +121,7 @@ export default async function HomePage() {
         {/* TRUST STRIP */}
         <div className="trust-strip">
           {[
-            { num: '30–50', label: 'studies per\ndeep-dive article' },
+            { num: String(stats.librarySize), label: 'sources in the\nresearch library' },
             { num: '5y', label: 'preferred recency\nof cited research' },
             { num: '0', label: 'affiliate links\never' },
             { num: '4', label: 'evidence-based\npillars' },

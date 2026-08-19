@@ -21,8 +21,6 @@ export interface ArticleMeta {
   externalArticleUrl?: string
 }
 
-export const TOTAL_SOURCES = 75 // Manually synced from Notion Research Library DB. Update when new sources are added.
-
 const PUBLICATION_ARCHIVE_BASE = 'https://healthyinsight.beehiiv.com/articles' as const
 
 const articleSeeds: ArticleMeta[] = [
