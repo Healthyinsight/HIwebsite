@@ -27,7 +27,7 @@ export default function Footer() {
         { href: '/about',         label: 'About HI' },
         { href: '/about#method',  label: 'How we work with evidence' },
         { href: '/about#sources', label: 'Sources & transparency' },
-        { href: 'https://tracker.healthyinsight.eu', label: 'The Path Tracker' },
+        { href: 'https://tracker.healthyinsight.eu', label: 'Path by HI', external: true },
       ],
     },
     {
@@ -57,12 +57,18 @@ export default function Footer() {
               <h4 style={{ fontSize: '10px', fontWeight: 500, marginBottom: '16px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--muted)' }}>
                 {col.heading}
               </h4>
-              {col.links.map(({ href, label }) => (
-                <Link key={href} href={href}
-                  style={{ display: 'block', fontSize: '14px', marginBottom: '10px', textDecoration: 'none', color: '#444440' }}>
-                  {label}
-                </Link>
-              ))}
+              {col.links.map(({ href, label, external }) => {
+                const linkStyle = { display: 'block', fontSize: '14px', marginBottom: '10px', textDecoration: 'none', color: '#444440' }
+                return external ? (
+                  <a key={href} href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
+                    {label}
+                  </a>
+                ) : (
+                  <Link key={href} href={href} style={linkStyle}>
+                    {label}
+                  </Link>
+                )
+              })}
             </div>
           ))}
         </div>

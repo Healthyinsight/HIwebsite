@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
   }
 
   return new NextResponse(
-    resultPage("You've been removed.", "No hard feelings. You won't receive any more emails from us about The Path Tracker."),
+    resultPage("You've been removed.", "No hard feelings. You won't receive any more emails from us about Path by HI."),
     { status: 200, headers: { 'Content-Type': 'text/html' } }
   )
 }

@@ -16,6 +16,7 @@ type NavChild = {
 type NavItem = {
   label: string
   href: string
+  external?: boolean
   children?: NavChild[]
 }
 
@@ -26,8 +27,6 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { href: '/trails/sleepScience', label: 'The Sleep Stack' },
       { href: '/trails/vo2maxMastery', label: 'Build Your Engine' },
-      { href: '/trails/fuelingMastery', label: 'Fuel the Machine', comingSoon: true },
-      { href: '/trails/goalSettingMastery', label: 'The Performance Mind', comingSoon: true },
     ],
   },
   {
@@ -50,12 +49,9 @@ const NAV_ITEMS: NavItem[] = [
     href: '/protocols',
   },
   {
-    label: 'Tools',
-    href: '#',
-    children: [
-      { href: 'https://tracker.healthyinsight.eu/', label: 'The Path Tracker', external: true },
-      { href: '/waitlist', label: 'Challenges App', comingSoon: true },
-    ],
+    label: 'Path by HI',
+    href: 'https://tracker.healthyinsight.eu/',
+    external: true,
   },
   {
     label: 'About',
@@ -73,9 +69,10 @@ const NAV_ITEMS: NavItem[] = [
  * A top-level nav item is active when the current route is its section. "Trails"
  * used to be hardcoded active on every page, including the homepage. Items
  * whose href is "#" are pure dropdown parents and are never active; they match
- * on their children instead.
+ * on their children instead. External items never match a local route.
  */
 function isActive(item: NavItem, pathname: string): boolean {
+  if (item.external) return false
   const hrefs = item.href === '#'
     ? (item.children ?? []).filter(c => !c.external).map(c => c.href)
     : [item.href]
@@ -146,11 +143,15 @@ export default function Nav() {
           <ul className="site-nav__links">
             {NAV_ITEMS.map((item) => (
               <li key={item.label} className="site-nav__top">
-                <Link
-                  href={item.href}
-                  aria-current={isActive(item, pathname) ? 'page' : undefined}
-                  style={isActive(item, pathname) ? { color: 'var(--blue-mid)', fontWeight: 600 } : undefined}
-                >{item.label}</Link>
+                {item.external ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a>
+                ) : (
+                  <Link
+                    href={item.href}
+                    aria-current={isActive(item, pathname) ? 'page' : undefined}
+                    style={isActive(item, pathname) ? { color: 'var(--blue-mid)', fontWeight: 600 } : undefined}
+                  >{item.label}</Link>
+                )}
                 {item.children && (
                   <div className="site-nav__dropdown" role="menu">
                     {item.children.map((child) => (
@@ -255,10 +256,17 @@ export default function Nav() {
             <nav className="site-nav__drawer-nav" aria-label="Primary">
               {NAV_ITEMS.map((item) => (
                 <div key={item.label} className="site-nav__drawer-group">
-                  <Link href={item.href} className="site-nav__drawer-group-title" onClick={close}>
-                    {item.label}
-                    {item.children && <span style={{ fontSize: '12px', color: '#c0c0b8' }}>›</span>}
-                  </Link>
+                  {item.external ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer"
+                      className="site-nav__drawer-group-title" onClick={close}>
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link href={item.href} className="site-nav__drawer-group-title" onClick={close}>
+                      {item.label}
+                      {item.children && <span style={{ fontSize: '12px', color: '#c0c0b8' }}>›</span>}
+                    </Link>
+                  )}
                   {item.children && (
                     <div className="site-nav__drawer-group-children">
                       {item.children.map((child) =>

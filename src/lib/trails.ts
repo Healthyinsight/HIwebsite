@@ -30,7 +30,7 @@ export const trails: Trail[] = [
     id: 'sleepScience',
     pillar: 'recovery',
     name: 'Sleep Science Trail',
-    tagline: 'From sleep basics to elite recovery protocols',
+    tagline: 'Fix the half of training most first-timers underestimate.',
     description: 'Sleep is the highest-leverage intervention in all of health and performance. This trail takes you from the fundamentals of sleep science to the advanced protocols used by elite athletes.',
     badge: { emoji: '🛌', label: 'Sleep Scientist' },
     steps: [
@@ -82,7 +82,7 @@ export const trails: Trail[] = [
     id: 'vo2maxMastery',
     pillar: 'motion',
     name: 'VO₂ Max Mastery Trail',
-    tagline: 'Understand and improve your aerobic ceiling',
+    tagline: 'Raise the aerobic ceiling that decides your finishing time.',
     description: 'VO₂ max is the single best predictor of both endurance performance and long-term health. This trail goes from the foundational why to advanced training protocols that move the needle.',
     badge: { emoji: '🫁', label: 'VO₂ Max Specialist' },
     steps: [
@@ -126,7 +126,7 @@ export const trails: Trail[] = [
     id: 'strengthMastery',
     pillar: 'motion',
     name: 'Strength Mastery Trail',
-    tagline: 'Build strength the right way, from day one',
+    tagline: 'Get strong enough to hold form in the last hour of your race.',
     description: 'Strength training is the most evidence-backed intervention for performance, longevity, and body composition. This trail builds your foundation then teaches you how to keep progressing.',
     badge: { emoji: '💪', label: 'Strength Specialist' },
     steps: [
@@ -170,7 +170,7 @@ export const trails: Trail[] = [
     id: 'runningProgression',
     pillar: 'motion',
     name: 'Running Progression Trail',
-    tagline: 'Build durability and speed the right way',
+    tagline: 'Add mileage without ending up injured six weeks out.',
     description: 'Running is one of the most accessible and effective forms of exercise, but injury rates are high. This trail gives you the evidence on building a durable running base and supporting it with strength.',
     badge: { emoji: '🏃', label: 'Running Specialist' },
     steps: [
@@ -198,7 +198,7 @@ export const trails: Trail[] = [
     id: 'fuelingMastery',
     pillar: 'nutrition',
     name: 'Fueling Mastery Trail',
-    tagline: 'Evidence-based nutrition for performance',
+    tagline: 'Stop bonking on long runs and on race day.',
     description: 'What you eat, and when, has a measurable impact on performance, recovery, and body composition. This trail cuts through the noise with evidence-based guidance on fueling for sport.',
     badge: { emoji: '🥗', label: 'Nutrition Strategist' },
     steps: [
@@ -226,7 +226,7 @@ export const trails: Trail[] = [
     id: 'goalSettingMastery',
     pillar: 'mindset',
     name: 'Goal Setting Mastery Trail',
-    tagline: 'The psychology of sustainable change',
+    tagline: 'Keep showing up through the weeks that decide the result.',
     description:
       'Evidence-based strategies for setting and achieving goals that actually last: SMART structure, implementation intentions, and feedback loops that outlast motivation swings.',
     badge: { emoji: '🧠', label: 'Mental Edge' },
@@ -251,6 +251,30 @@ export function getTrailById(id: string): Trail | undefined {
 
 export function getActiveTrails(): Trail[] {
   return trails.filter(t => !t.comingSoon)
+}
+
+/**
+ * What a trail costs a reader: how many articles are actually released and how
+ * long they take end to end. Reading times live on the steps as '13 min'
+ * strings, so the minutes are parsed back out rather than stored twice.
+ */
+export function getTrailCommitment(trail: Trail): { articles: number; minutes: number } {
+  const released = trail.steps.filter(s => !s.comingSoon && s.slug)
+  const minutes = released.reduce((sum, s) => sum + (parseInt(s.readingTime, 10) || 0), 0)
+  return { articles: released.length, minutes }
+}
+
+/**
+ * '90 min' reads long; '1h 30m' reads like a commitment someone can plan around.
+ * Rounded to 5 minutes, because summed reading times are an estimate and '1h 1m'
+ * claims a precision they do not have.
+ */
+export function formatMinutes(minutes: number): string {
+  const rounded = Math.round(minutes / 5) * 5
+  if (rounded < 60) return `${rounded} min`
+  const h = Math.floor(rounded / 60)
+  const m = rounded % 60
+  return m === 0 ? `${h}h` : `${h}h ${m}m`
 }
 
 /** Returns the trail and step index for a given article slug, or undefined if not in a trail. */

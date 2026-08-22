@@ -13,9 +13,17 @@ interface NewsletterFormProps {
   onSuccess?: () => void
   /** Entry point tag recorded on the subscriber. See /api/subscribe. */
   source?: string
+  /** Submit button text. The hero names what the email gets you, not the channel. */
+  submitLabel?: string
 }
 
-export default function NewsletterForm({ dark = true, size = 'lg', onSuccess, source = 'newsletter' }: NewsletterFormProps) {
+export default function NewsletterForm({
+  dark = true,
+  size = 'lg',
+  onSuccess,
+  source = 'newsletter',
+  submitLabel = 'Get the newsletter',
+}: NewsletterFormProps) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
@@ -125,7 +133,7 @@ export default function NewsletterForm({ dark = true, size = 'lg', onSuccess, so
             : { background: '#0F2A3F', color: 'white', fontSize }
         }
       >
-        Get the newsletter
+        {submitLabel}
       </Button>
 
       {status === 'error' && (

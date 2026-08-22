@@ -107,14 +107,14 @@ function waitlistConfirmationEmail(email: string): string {
   </style>
 </head>
 <body>
-  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">The Path Tracker is coming. You're first in line.&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847;</div>
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">Path by HI is coming. You're first in line.&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847; &zwnj;&nbsp;&#847;</div>
   <div class="container">
     <div class="header">
       <img src="https://healthyinsight.eu/logo.png" width="120" height="120" alt="Healthy Insight" style="display:block;margin:0 auto;">
     </div>
     <div class="body">
       <h1>You made the list.</h1>
-      <p>We're putting the finishing touches on The Path Tracker, a personal health intelligence layer built for athletes who want to train smarter and race stronger. We'll reach out personally when it's ready for you.</p>
+      <p>We're putting the finishing touches on Path by HI, a personal health intelligence layer built for athletes who want to train smarter and race stronger. We'll reach out personally when it's ready for you.</p>
       <p class="sig">Filip, founder of Healthy Insight</p>
     </div>
     <div class="footer">
@@ -132,7 +132,7 @@ function waitlistConfirmationText(email: string): string {
   const unsubUrl = `https://healthyinsight.eu/api/waitlist-unsubscribe?email=${encodeURIComponent(email)}`
   return `You made the list.
 
-We're putting the finishing touches on The Path Tracker, a personal health intelligence layer built for athletes who want to train smarter and race stronger. We'll reach out personally when it's ready for you.
+We're putting the finishing touches on Path by HI, a personal health intelligence layer built for athletes who want to train smarter and race stronger. We'll reach out personally when it's ready for you.
 
 Filip, founder of Healthy Insight
 

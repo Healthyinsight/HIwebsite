@@ -87,7 +87,7 @@ before the rule existed. Shrink it, never add to it.
 - All new articles added to `src/lib/articles.ts` `articles` array. This is the single source for article data
 - Reading time is computed from the MDX body, never hand-entered
 - Article counts, source counts and protocol counts come from `getSiteStats()`, never a literal
-- No em-dashes in user-facing copy. Product names exactly: HI Programs, The Path Tracker, Health IQ, Learning Trails
+- No em-dashes in user-facing copy. Product names exactly: HI Programs, Path by HI, Health IQ, Learning Trails
 - `next-mdx-remote` renders article MDX bodies; do not add MDX rendering via other pipelines without an explicit decision
 
 ## Workflow & session context

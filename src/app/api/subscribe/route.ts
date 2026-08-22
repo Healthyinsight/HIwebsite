@@ -9,7 +9,7 @@ import { logger } from '@/lib/logger'
  */
 const SUBSCRIBE_SOURCES = [
   'newsletter',         // the newsletter block, wherever it appears
-  'tracker_waitlist',   // The Path Tracker waitlist
+  'tracker_waitlist',   // Path by HI waitlist
   'programs_waitlist',  // HI Programs waitlist
   'trail_unlock',       // Level 4+ article unlock
   'quiz',               // Health IQ quiz result capture

@@ -14,6 +14,18 @@ interface ArticleCardProps {
   large?: boolean
 }
 
+/**
+ * "Read" alone is a low-intent CTA. Naming what you get to read is specific and
+ * still verb-first. Falls back to plain "Read" for formats without a noun.
+ */
+const readLabels: Record<string, string> = {
+  'guide':     'Read the guide',
+  'protocol':  'Read the protocol',
+  'myth-bust': 'Read the myth-bust',
+  'review':    'Read the review',
+  'checklist': 'Read the checklist',
+}
+
 const formatLabels: Record<string, string> = {
   'guide':     'Guide',
   'protocol':  'Protocol',
@@ -91,7 +103,7 @@ export default function ArticleCard({ slug, title, excerpt, pillar, format, leve
             {excerpt}
           </p>
           <span style={{ fontSize: '13px', fontWeight: 500, color: '#0F2A3F' }}>
-            Read{readingTime ? ` · ${readingTime}` : ''}
+            {(format && readLabels[format]) || 'Read'}{readingTime ? ` · ${readingTime}` : ''}
           </span>
         </div>
       </article>
