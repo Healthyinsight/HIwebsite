@@ -16,7 +16,7 @@ export default function TermsPage() {
           </h1>
           <p style={{ fontSize: '16px', color: '#444440', lineHeight: 1.75, fontWeight: 300 }}>
             Content is for informational purposes and does not replace professional medical advice. For publication terms, see{' '}
-            <a href="https://www.healthyinsight.eu" style={{ color: 'var(--blue-mid)' }}>healthyinsight.eu</a>.
+            <a href="https://healthyinsight.eu" style={{ color: 'var(--blue-mid)' }}>healthyinsight.eu</a>.
           </p>
         </div>
       </main>

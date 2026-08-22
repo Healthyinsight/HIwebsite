@@ -8,8 +8,10 @@
  *
  *   1. No em-dash (—) in user-facing copy. Use a period, a colon or a comma.
  *      The en-dash (–) is allowed, and is correct, in numeric ranges (90–95%).
- *   2. Product names spelled exactly: HI Programs, The Path Tracker,
+ *   2. Product names spelled exactly: HI Programs, Path by HI,
  *      Health IQ, Learning Trails.
+ *      The app was renamed from "The Path Tracker" to "Path by HI" in May 2026,
+ *      so the old name is now the spelling this rule rejects.
  *
  * Code comments and CSS section dividers are not user-facing and are skipped.
  */
@@ -27,8 +29,9 @@ const SKIP_DIRS = new Set(['node_modules', '.next', '.git', '.vercel'])
 const PRODUCT_NAMES = [
   { wrong: /\bHI programs\b/g, right: 'HI Programs' },
   { wrong: /\bhi programs\b/g, right: 'HI Programs' },
-  { wrong: /\bPath Tracker\b(?<!The Path Tracker)/g, right: 'The Path Tracker' },
-  { wrong: /\bpath tracker\b/gi, right: 'The Path Tracker', unless: /The Path Tracker/ },
+  { wrong: /\bThe Path Tracker\b/g, right: 'Path by HI' },
+  { wrong: /\bPath Tracker\b/gi, right: 'Path by HI' },
+  { wrong: /\bpath by hi\b/gi, right: 'Path by HI', unless: /Path by HI/ },
   { wrong: /\bHealthIQ\b/g, right: 'Health IQ' },
   { wrong: /\bhealth iq\b/g, right: 'Health IQ' },
   { wrong: /\blearning trails\b/g, right: 'Learning Trails' },

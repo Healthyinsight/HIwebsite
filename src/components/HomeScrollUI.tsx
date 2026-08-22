@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+/** Must match the section ids on the homepage, in the order they appear. */
 const NAV_LINKS = [
+  { id: 'protocols',  label: 'Do this week' },
   { id: 'trails',     label: 'Trails' },
   { id: 'pillars',    label: 'Pillars' },
-  { id: 'protocols',  label: 'Protocols' },
   { id: 'articles',   label: 'Articles' },
   { id: 'newsletter', label: 'Newsletter' },
 ]

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import type { Trail } from '@/lib/trails'
+import { formatMinutes, getTrailCommitment, type Trail } from '@/lib/trails'
 import TrailCardAnimation, { type TrailTheme } from './TrailCardAnimation'
 
 const PILLAR_STYLES: Record<string, { bg: string; accent: string }> = {
@@ -36,6 +36,7 @@ export default function TrailCard({ trail }: { trail: Trail }) {
 
   const style = PILLAR_STYLES[trail.pillar] ?? PILLAR_STYLES.recovery
   const total = trail.steps.length
+  const commitment = getTrailCommitment(trail)
 
   return (
     <div style={{
@@ -70,6 +71,11 @@ export default function TrailCard({ trail }: { trail: Trail }) {
         <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.5, margin: 0 }}>
           {trail.tagline}
         </p>
+        {!trail.comingSoon && commitment.articles > 0 && (
+          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: '8px 0 0' }}>
+            {commitment.articles} articles · {formatMinutes(commitment.minutes)}
+          </p>
+        )}
       </div>
 
       {trail.comingSoon ? (
